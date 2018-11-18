@@ -1,0 +1,19 @@
+.navbar { 
+    background-color: #526b7b;
+	position: absolute;
+	width: 100%;
+	left: 0;
+	text-align: center;
+}
+.mr-sm-2 { 
+    background-color: #526b7b;
+	color: #d8eaf1;
+	border-color:#d8eaf1; 
+}
+
+.mr-sm-2:focus {
+	background-color: #526b7b;
+	box-shadow:none;
+	-webkit-box-shadow:none; 
+	border-color:#d8eaf1; 
+}

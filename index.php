@@ -1,4 +1,11 @@
 <!DOCTYPE html>
+
+<?php
+//include_once 'config/config.php';
+//require 'vendor/autoload.php';
+//session_start();
+?>
+
 <html lang="de">
   <head>
     <meta charset="utf-8" />
@@ -12,14 +19,10 @@
   </head>
   <body>
 	<nav class="navbar">
-		<div class="navbar-brand navbar-left"><a href="#"><img src="http://placehold.it/150x30"></a></div>
-		<div class="nav nav-justified">
-				<form class="form-inline">
-					<input class="form-control mr-sm-2" type="search" placeholder="PLZ oder Ort eingeben" aria-label="Search">
-				</form>
-		<div class="navbar-brand navbar-right"><a href="#"><img src="http://placehold.it/150x30"></a></div>
-		
-		</div>
-	</nav>
-  </body>
+		<form class="form-inline">
+			<input class="form-control mr-bg-2" type="search" placeholder="PLZ oder Ort eingeben" aria-label="Search">
+			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  </form>
+</nav>
+    </body>
 </html>
