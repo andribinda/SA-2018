@@ -23,7 +23,7 @@
 	  <div class="container">
 		      <ul class="nav justify-content-center">
             <li class="nav-item active">
-                <a class="nav-link" href="https://placeholder.com"> <img src="https://via.placeholder.com/25"></a>
+                <a class="nav-link" href="index.php"> <img src="https://via.placeholder.com/25"></a>
             </li>
         </ul>
 		<ul class="nav abs-center-x">
@@ -33,10 +33,10 @@
 		</ul>
 		<ul class="nav justify-content-center">
             <li class="nav-item">
-                <a class="nav-link" href="#">Registrieren</a>
+                <a class="nav-link" href="registration.php">Registrieren</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Login</a>
+                <a class="nav-link" href="profile.php">Login</a>
             </li>
         </ul>
 		</div>
