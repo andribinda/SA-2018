@@ -18,11 +18,28 @@
 			<link rel="stylesheet" type="text/css" href="css/main.css">
   </head>
   <body>
-	<nav class="navbar">
-		<form class="form-inline">
-			<input class="form-control mr-bg-2" type="search" placeholder="PLZ oder Ort eingeben" aria-label="Search">
-			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-  </form>
 </nav>
-    </body>
+	<nav class="navbar">
+	  <div class="container">
+		      <ul class="nav justify-content-center">
+            <li class="nav-item active">
+                <a class="nav-link" href="https://placeholder.com"> <img src="https://via.placeholder.com/25"></a>
+            </li>
+        </ul>
+		<ul class="nav abs-center-x">
+				<form class="form-inline">
+					<input class="form-control mr-sm-2" type="search" placeholder="PLZ oder Ort eingeben" aria-label="Search">
+				</form>
+		</ul>
+		<ul class="nav justify-content-center">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Registrieren</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Login</a>
+            </li>
+        </ul>
+		</div>
+	</nav>
+  </body>
 </html>

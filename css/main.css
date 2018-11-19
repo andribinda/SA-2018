@@ -1,19 +1,49 @@
 .navbar { 
     background-color: #526b7b;
-	position: absolute;
-	width: 100%;
-	left: 0;
-	text-align: center;
-}
-.mr-sm-2 { 
-    background-color: #526b7b;
-	color: #d8eaf1;
-	border-color:#d8eaf1; 
 }
 
-.mr-sm-2:focus {
-	background-color: #526b7b;
-	box-shadow:none;
-	-webkit-box-shadow:none; 
-	border-color:#d8eaf1; 
+.mr-sm-2, .mr-sm-2:focus, .mr-sm-2:active {
+	background-color: #6691ab;
+	border-radius: 50px;
+}
+input[type=search], input[type=search]:focus, input[type=search]:active {
+	box-shadow: none;
+	color: #526b7b;
+	-webkit-box-shadow: none;
+	outline: none;
+	border: none;
+    border: none;
+}
+
+input[type="search"]::-webkit-input-placeholder {
+color: #526b7b !important;
+}
+ 
+input[type="search"]:-moz-placeholder { /* Firefox 18- */
+color: #526b7b !important;  
+}
+ 
+input[type="search"]::-moz-placeholder {  /* Firefox 19+ */
+color: #526b7b !important;  
+}
+ 
+input[type="search"]:-ms-input-placeholder {  
+color: #526b7b !important;  
+}
+
+
+.nav-link:link, .nav-link:visited   {
+	color: #d8eaf1;
+}
+
+.nav-link:hover, .nav-link:active {
+	color: #b7a28b;
+}
+
+@media (min-width: 768px) {
+    .abs-center-x {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
 }
