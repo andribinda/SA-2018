@@ -3,34 +3,45 @@
 }
 
 .mr-sm-2, .mr-sm-2:focus, .mr-sm-2:active {
-	background-color: #6691ab;
-	border-radius: 50px;
+	background-color: #8e999d;
+	border-radius: 100px;
 }
 input[type=search], input[type=search]:focus, input[type=search]:active {
 	box-shadow: none;
-	color: #526b7b;
+	color: #d8eaf1;
 	-webkit-box-shadow: none;
 	outline: none;
-	border: none;
     border: none;
+	padding-left: 25px;
 }
 
 input[type="search"]::-webkit-input-placeholder {
-color: #526b7b !important;
+color: #d8eaf1 !important;
 }
  
 input[type="search"]:-moz-placeholder { /* Firefox 18- */
-color: #526b7b !important;  
+color: #d8eaf1 !important;  
 }
  
 input[type="search"]::-moz-placeholder {  /* Firefox 19+ */
-color: #526b7b !important;  
+color: #d8eaf1 !important;  
 }
  
 input[type="search"]:-ms-input-placeholder {  
-color: #526b7b !important;  
+color: #d8eaf1 !important;  
 }
 
+.btn-secondary:not(:disabled):not(.disabled).active, .btn-secondary:not(:disabled):not(.disabled):active, .show>.btn-secondary.dropdown-toggle {
+    color: #d8eaf1;
+    background-color: #8e999d ;
+    border:none;
+}
+	
+.btn-secondary {
+	width:50px;
+	height:50px;
+	border-radius: 30px;
+}
 
 .nav-link:link, .nav-link:visited   {
 	color: #d8eaf1;
@@ -46,4 +57,12 @@ color: #526b7b !important;
         left: 50%;
         transform: translateX(-50%);
     }
+}
+
+.col-sm, .col-sm-5{
+	border: 1px solid black;
+}
+
+body {
+	background-color: #8e999d;
 }

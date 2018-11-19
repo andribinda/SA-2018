@@ -18,28 +18,116 @@
 			<link rel="stylesheet" type="text/css" href="css/main.css">
   </head>
   <body>
-</nav>
 	<nav class="navbar">
 	  <div class="container">
 		      <ul class="nav justify-content-center">
             <li class="nav-item active">
-                <a class="nav-link" href="index.php"> <img src="https://via.placeholder.com/25"></a>
+                <a class="nav-link" href="https://placeholder.com"> <img src="https://via.placeholder.com/30"></a>
             </li>
         </ul>
 		<ul class="nav abs-center-x">
+				<a href="#" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">S</a>
 				<form class="form-inline">
 					<input class="form-control mr-sm-2" type="search" placeholder="PLZ oder Ort eingeben" aria-label="Search">
 				</form>
 		</ul>
 		<ul class="nav justify-content-center">
             <li class="nav-item">
-                <a class="nav-link" href="registration.php">Registrieren</a>
+                <a class="nav-link" href="#">Registrieren</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="profile.php">Login</a>
+                <a class="nav-link" href="#">Login</a>
             </li>
         </ul>
 		</div>
 	</nav>
+	<div class="container">
+	<div class="row">
+	 <div class="col-sm">
+		<h1>Heute</h1>
+				<ul>
+					<li>7.2°C</li>
+					<li>Regen</li>
+					<li>min.</li>
+					<li>max.</li>
+					<li>SoAuf</li>
+					<li>SoAb</li>
+					<li>Wind</li>
+				</ul>
+	 </div>
+	 </div>
+		<div class="row">
+			<div class="col-sm">
+				<h1>Montag</h1>
+				<ul>
+					<li>7.2°C</li>
+					<li>Regen</li>
+					<li>min.</li>
+					<li>max.</li>
+					<li>SoAuf</li>
+					<li>SoAb</li>
+					<li>Wind</li>
+				</ul>
+			</div>
+			<div class="col-sm">
+				<h1>Dienstag</h1>
+				<ul>
+					<li>7.2°C</li>
+					<li>Regen</li>
+					<li>min.</li>
+					<li>max.</li>
+					<li>SoAuf</li>
+					<li>SoAb</li>
+					<li>Wind</li>
+				</ul>
+			</div>
+			<div class="col-sm">
+				<h1>Mittwoch</h1>
+				<ul>
+					<li>7.2°C</li>
+					<li>Regen</li>
+					<li>min.</li>
+					<li>max.</li>
+					<li>SoAuf</li>
+					<li>SoAb</li>
+					<li>Wind</li>
+				</ul>
+			</div>
+			<div class="col-sm">
+				<h1>Donnerstag</h1>
+				<ul>
+					<li>7.2°C</li>
+					<li>Regen</li>
+					<li>min.</li>
+					<li>max.</li>
+					<li>SoAuf</li>
+					<li>SoAb</li>
+					<li>Wind</li>
+				</ul>
+			</div>
+			<div class="col-sm">
+				<h1>Freitag</h1>
+				<ul>
+					<li>7.2°C</li>
+					<li>Regen</li>
+					<li>min.</li>
+					<li>max.</li>
+					<li>SoAuf</li>
+					<li>SoAb</li>
+					<li>Wind</li>
+				</ul>
+			</div>
+	</div>
+		<div class="row">
+	 <div class="col-sm">
+		<h2>
+			GRAPH GRAPH GRAPH GRAPH GRAPH GRAPH GRAPH GRAPH GRAPH
+			GRAPH GRAPH GRAPH GRAPH GRAPH GRAPH GRAPH GRAPH GRAPH
+			GRAPH GRAPH GRAPH GRAPH GRAPH GRAPH GRAPH GRAPH GRAPH
+			GRAPH GRAPH GRAPH GRAPH GRAPH GRAPH GRAPH GRAPH GRAPH
+		</h2>
+	</div>
+	 </div>
+	 </div>
   </body>
 </html>
