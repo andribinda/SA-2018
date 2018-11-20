@@ -22,20 +22,15 @@
   </head>
   <body>
 	<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-		<ul class="nav justify-content-center">
-            <li class="nav-item active">
-                <a class="nav-link" href="https://weather.zubler.ch"> <i class="wi wi-day-sunny" id="wi-day-sunny-NavBar"></i></a>
-            </li>
-		</ul>
+		<button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
 		<ul class="nav abs-center-x">
 				<a href="#" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true"><img style="width:200%;" src="img/Suche.png"></a>
 				<form class="form-inline">
 					<input class="form-control mr-sm-2" type="search" placeholder="PLZ / Ort eingeben" aria-label="Search">
 				</form>
 		</ul>
-		<button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
 	<div class="collapse navbar-collapse" id="navbarCollapse">
 		<ul class="nav justify-content-center">
 			 <li class="nav-item">
