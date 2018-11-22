@@ -20,24 +20,26 @@
 			<link rel="stylesheet" type="text/css" href="css/main.css">
 			
   </head>
-  <body>
+   <body>
 	<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
 		<button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<ul class="nav abs-center-x">
-				<a href="#" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true"><img style="width:200%;" src="img/Suche.png"></a>
+				<a href="#" class="btn btn-secondary btn-lg btn-NavbarSearch" role="button" aria-pressed="true">S</a>
 				<form class="form-inline">
-					<input class="form-control mr-sm-2" type="search" placeholder="PLZ / Ort eingeben" aria-label="Search">
+					<input class="form-control mr-sm-2 formNavSearch" id="inputTextNav" type="search" placeholder="PLZ / Ort eingeben" aria-label="Search">
 				</form>
 		</ul>
 	<div class="collapse navbar-collapse" id="navbarCollapse">
 		<ul class="nav justify-content-center">
 			 <li class="nav-item">
-                <a class="nav-link" href="#">Registrieren</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Login</a>
+                <button type="button" class="btn btn-primary btn-Navbar1" data-toggle="modal" data-target="#modalRegistration">
+					Registrieren
+				</button>
+				<button type="button" class="btn btn-primary btn-Navbar1" data-toggle="modal" data-target="#modalRegistration">
+					Login
+				</button>
             </li>
 			</ul>
 		</div>
@@ -131,4 +133,42 @@
 	 </div>
 	 </div>
   </body>
+  
+  <div class="modal fade" id="modalRegistration" tabindex="-1" role="dialog" aria-labelledby="modalRegistration" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalRegistrationTitle">Boah modal</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+		
+					<form>
+			  <div class="form-group">
+				<label for="exampleInputEmail1">Email address</label>
+				<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" autofocus>
+				<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+			  </div>
+			  <div class="form-group">
+				<label for="exampleInputPassword1">Password</label>
+				<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+			  </div>
+			  <div class="form-check">
+				<input type="checkbox" class="form-check-input" id="exampleCheck1">
+				<label class="form-check-label" for="exampleCheck1">Subscribe</label>
+			  </div>
+			  <button type="submit" class="btn btn-primary btn-Navbar1">Submit</button>
+			</form>
+					
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary btn-Navbar1" data-dismiss="modal">Boah</button>
+        <button type="button" class="btn btn-primary btn-Navbar1">Wau</button>
+      </div>
+    </div>
+  </div>
+</div>  
 </html>
