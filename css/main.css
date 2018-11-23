@@ -8,6 +8,7 @@
     z-index:50;
     margin-left: -20px;
     height: 70%;
+	width: 120%;
 }
 
 input#inputTextNav[type=search], inputinput#TextNav[type=search]:focus, input#inputTextNav[type=search]:active {
@@ -27,34 +28,35 @@ input#inputTextNav[type="search"]::placeholder {
 
 .btn-Navbar1 {
     color: #d8eaf1;
-    background-color: #007bff00;
+    background-color: transparent !important;
 	border: none;
 	border-radius: 0;
 	border-bottom: 2px solid transparent;
 }
 
 .btn-Navbar1:hover, .btn-Navbar1:focus {
-    color: #ad997d !important ;
-    background-color: #007bff00 !important;
-	border: none !important;
-	outline: none !important;
-	box-shadow: none !important;
+    color: #ad997d  ;
+    background-color: transparent !important ;
+	border: none ;
+	outline: none ;
+	box-shadow: none ;
 	border-radius: 0;
-	border-bottom: 2px solid #ad997d !important ;
-	border-right: 2px solid #ad997d !important;
+	font-weight: bold;
+	border-bottom: 2px solid #ad997d;
+	border-right: 2px solid #ad997d ;
 }
 
 .btn-Navbar1:active, .btn-Navbar1.active {
     color: #ad997d ;
 	font-style: solid;
-    background-color: #007bff00;
+    background-color: transparent !important;
 	outline: none !important;
 	border: none !important;
 	box-shadow: none !important;
 	-webkit-box-shadow: none !important;
 	border-radius: 0;
-	border-bottom: 2px solid #ad997d !important ;
-	border-right: 2px solid #ad997d !important;
+	border-bottom: 2px solid #ad997d  ;
+	border-right: 2px solid #ad997d ;
 }
 
 .btn-NavbarSearch, .btn-NavbarSearch:active, .btn-NavbarSearch:focus, .btn-NavbarSearch:hover{
