@@ -149,8 +149,19 @@
           </div>
           <div class="tab-content">
    <div id="modalTabLogin" class="container tab-pane active"><br>
-     <h3>HOME</h3>
-     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+     <div class="form-row">
+       <div class="form-group col-sm-6">
+         <label for="emailInput" class="modalFormLabel">Email</label>
+         <input type="email" class="form-control" id="emailInput" placeholder="Email-Adresse">
+       </div>
+     </div>
+     <div class="form-row">
+        <div class="form-group col-sm-6">
+          <label for="passwordInput" class="modalFormLabel">Passwort</label>
+          <input type="password" class="form-control" id="passwordInput" placeholder="Passwort">
+        </div>
+    </div>
+
    </div>
    <div id="modalTabReg" class="container tab-pane fade"><br>
      <form>
