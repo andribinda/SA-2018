@@ -18,7 +18,7 @@
 			<link rel="stylesheet" type="text/css" href="css/weather-icons.min.css">
 			<link rel="stylesheet" type="text/css" href="css/weather-icons-wind.min.css">
 			<link rel="stylesheet" type="text/css" href="css/main.css">
-			
+
   </head>
    <body>
 	<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
@@ -133,42 +133,68 @@
 	 </div>
 	 </div>
   </body>
-  
+
   <div class="modal fade" id="modalRegistration" tabindex="-1" role="dialog" aria-labelledby="modalRegistration" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="modalRegistrationTitle">Boah modal</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        
-		
-					<form>
-			  <div class="form-group">
-				<label for="exampleInputEmail1">Email address</label>
-				<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" autofocus>
-				<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-			  </div>
-			  <div class="form-group">
-				<label for="exampleInputPassword1">Password</label>
-				<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-			  </div>
-			  <div class="form-check">
-				<input type="checkbox" class="form-check-input" id="exampleCheck1">
-				<label class="form-check-label" for="exampleCheck1">Subscribe</label>
-			  </div>
-			  <button type="submit" class="btn btn-primary btn-Navbar1">Submit</button>
-			</form>
-					
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary btn-Navbar1" data-dismiss="modal">Boah</button>
-        <button type="button" class="btn btn-primary btn-Navbar1">Wau</button>
-      </div>
+        <div class="modal-body">
+          <div role="tabpanel">
+              <ul class="nav nav-tabs nav-justified modalRegTabBar">
+                  <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#modalTabLogin">Login</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#modalTabReg">Registrieren</a>
+                  </li>
+          </div>
+          <div class="tab-content">
+   <div id="modalTabLogin" class="container tab-pane active"><br>
+     <h3>HOME</h3>
+     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+   </div>
+   <div id="modalTabReg" class="container tab-pane fade"><br>
+     <form>
+       <div class="form-row">
+         <div class="form-group col-sm-6">
+           <label for="nameInput" class="modalFormLabel">Name</label>
+           <input type="text" class="form-control" id="nameInput" placeholder="Name">
+         </div>
+         <div class="form-group col-sm-6">
+           <label for="vornameInput" class="modalFormLabel">Vorname</label>
+           <input type="text" class="form-control" id="nameInput" placeholder="Vorname">
+         </div>
+       </div>
+   <div class="form-row">
+     <div class="form-group col-sm-6">
+       <label for="emailInput" class="modalFormLabel">Email</label>
+       <input type="email" class="form-control" id="emailInput" placeholder="Email-Adresse">
+     </div>
+     <div class="form-group col-sm-4">
+       <label for="homebaseInput" class="modalFormLabel">Homebase</label>
+       <input type="text" class="form-control" id="homebaseInput" placeholder="Homebase">
+     </div>
+     <div class="form-group col-sm-2">
+       <label for="homebasePLZInput" class="modalFormLabel">Homebase PLZ</label>
+       <input type="text" class="form-control" id="homebasePLZInput" placeholder="PLZ">
+     </div>
+   </div>
+  <div class="form-row">
+     <div class="form-group col-sm-6">
+       <label for="passwordInput" class="modalFormLabel">Passwort</label>
+       <input type="password" class="form-control" id="passwordInput" placeholder="Passwort">
+     </div>
+     <div class="form-group col-sm-6">
+       <label for="passwordInput2" class="modalFormLabel">Passwort erneut eingeben</label>
+       <input type="password" class="form-control" id="passwordInput2" placeholder="Passwort">
+     </div>
+   </div>
+ </form>
+   </div>
+ </div>
+ <a href="user.html" class="btn btn-primary btn-modal1">Login</a>
+ <button type="button" class="btn btn-primary btn-modal1" data-dismiss="modal" aria-label="Close">Abbrechen</button>
     </div>
   </div>
-</div>  
+  </div>
+    </div>
 </html>
