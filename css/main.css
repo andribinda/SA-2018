@@ -32,31 +32,32 @@ input#inputTextNav[type="search"]::placeholder {
 	border: none;
 	border-radius: 0;
 	border-bottom: 2px solid transparent;
+  border-left: 2px solid #ad997d ;
+  margin-right: 20px;
 }
 
 .btn-Navbar1:hover, .btn-Navbar1:focus {
     color: #ad997d  ;
     background-color: transparent !important ;
-	border: none ;
-	outline: none ;
-	box-shadow: none ;
+	border: none;
+	outline: none;
+	box-shadow: none;
 	border-radius: 0;
 	font-weight: bold;
-	border-bottom: 2px solid #ad997d;
-	border-right: 2px solid #ad997d ;
+  border-bottom: 2px solid #ad997d;
+  border-left: 2px solid #ad997d;
 }
 
 .btn-Navbar1:active, .btn-Navbar1.active {
     color: #ad997d ;
-	font-style: solid;
+	   font-style: solid;
     background-color: transparent !important;
-	outline: none !important;
 	border: none !important;
 	box-shadow: none !important;
 	-webkit-box-shadow: none !important;
 	border-radius: 0;
-	border-bottom: 2px solid #ad997d  ;
-	border-right: 2px solid #ad997d ;
+  	border-bottom:70px solid #ad997d;
+    border-left: 2px solid #ad997d;
 }
 
 .btn-NavbarSearch, .btn-NavbarSearch:active, .btn-NavbarSearch:focus, .btn-NavbarSearch:hover{
@@ -83,12 +84,61 @@ input#inputTextNav[type="search"]::placeholder {
 	background-color: #526b7b30;
 }
 
+.modal-content {
+	background-color: #526b7b !important;
+	border-radius:10px;
+}
 
+.modal-body, .modal-header {
+	background-color: #526b7b !important;
+	border-radius:30px;
+	border: none;
+}
 
+.btn-modal1 {
+  color: #d8eaf1;
+  border: none;
+  background-color :#8e999d ;;
+  border-radius: 7px;
+  margin-right: 10px;
+}
+
+.btn-modal1:hover, .btn-modal1:focus, .btn-modal1:active, .btn-modal1.active {
+  color: #d8eaf1;
+  font-weight: bold;
+  border: none !important;
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  background-color: #565c5e !important;
+  border-radius: 5px;
 }
 
 .col-sm, .col-sm-5{
 	border: 1px solid black;
+}
+
+.standort, .homebase {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+.standort{
+  background-color: #375b5f;
+}
+
+.homebase{
+  background-color: #c19b6a;
+}
+
+.favoriten{
+  background-color: #82c9cf;
+}
+
+.favoriten-container {
+    padding: 5px;
+}
+
+.favorit{
+    margin: 5px;
 }
 
 body {

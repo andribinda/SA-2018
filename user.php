@@ -1,4 +1,12 @@
 <!DOCTYPE html>
+
+<?php
+//include_once 'config/config.php';
+//require 'vendor/autoload.php';
+//session_start();
+?>
+
+
 <html lang="de">
   <head>
     <meta charset="utf-8" />
@@ -131,59 +139,11 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
+        <h5 class="modal-title" id="modalRegistrationTitle">Boah modal</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-<<<<<<< HEAD
-        <div class="modal-body">
-          <div role="tabpanel">
-                <!-- Nav tabs -->
-        <ul class="nav nav-tabs modalRegistrationTabs" role="tablist">
-        <li role="presentation" class="active"><a href="#loginTab" aria-controls="loginTab" role="tab" data-toggle="tab"><h5>Login<h5></a>
-        </li>
-        <li role="presentation"><a href="#registrationTab" aria-controls="registrationTab" role="tab" data-toggle="tab"><h5>Registration<h5></a>
-        </li>
-    </ul>
-    <!-- Tab panes -->
-    <div class="tab-content">
-        <div role="tabpanel" class="tab-pane active" id="loginTab">
-        <form>
-        <div class="form-group">
-        <label for="exampleInputEmail1">Email address</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" autofocus>
-        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-        </div>
-        <div class="form-group">
-        <label for="exampleInputPassword1">Password</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-        </div>
-      </form>
-        </div>
-        <div role="tabpanel" class="tab-pane" id="registrationTab">
-          <form>
-          <div class="form-group">
-          <label for="exampleInputEmail1">Email address</label>
-          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Name" autofocus>
-          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="ENachname" autofocus>
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" autofocus>
-          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-          </div>
-          <div class="form-group">
-          <label for="exampleInputPassword1">Password</label>
-          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-          </div>
-        </form>
-        </div>
-    </div>
-  </div>
-  </div>
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Abbrechen</button>
-        <button type="button" class="btn btn-primary save">Absenden</button>
-=======
       <div class="modal-body">
 
 
@@ -196,10 +156,9 @@
 				<label for="exampleInputPassword1">Password</label>
 				<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
 			  </div>
-			  <a href="user.html" button type="submit" class="btn btn-primary btn-modal1">Login</a>
+			  <button type="submit" class="btn btn-primary btn-modal1">Login</button>
         <button type="button" class="btn btn-primary btn-modal1" data-dismiss="modal" aria-label="Close">Abbrechen</button>
 			</form>
->>>>>>> 2183d104aa54977ac6e0aabe6a1b8b37aa37a41d
       </div>
     </div>
   </div>
