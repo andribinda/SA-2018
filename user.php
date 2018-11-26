@@ -1,4 +1,12 @@
 <!DOCTYPE html>
+
+<?php
+//include_once 'config/config.php';
+//require 'vendor/autoload.php';
+//session_start();
+?>
+
+
 <html lang="de">
   <head>
     <meta charset="utf-8" />
@@ -148,7 +156,7 @@
 				<label for="exampleInputPassword1">Password</label>
 				<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
 			  </div>
-			  <a href="user.html" button type="submit" class="btn btn-primary btn-modal1">Login</a>
+			  <button type="submit" class="btn btn-primary btn-modal1">Login</button>
         <button type="button" class="btn btn-primary btn-modal1" data-dismiss="modal" aria-label="Close">Abbrechen</button>
 			</form>
       </div>
