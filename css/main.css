@@ -154,18 +154,25 @@ input#inputTextNav[type="search"]::placeholder {
   color: #d8eaf1;
   cursor: default;
   background-color: transparent;
-  border: 2px solid transparent;
-  border-radius: 0px;
+  border: none;
+  border-top-left-radius: : 3px;
+  border-top-left-radius: 3px;
   border-bottom: 2px solid #d8eaf1;
+}
+
+ .nav-tabs>li>a:focus, .nav-tabs>li>a:hover, .modalRegTabBar .nav-link:hover{
+  font-weight: bold;
 }
 
 .modalRegTabBar>li.active>a, .modalRegTabBar>li.active>a:focus, .nav-tabs>li.active>a:hover, .modalRegTabBar .nav-link.active {
   color: #d8eaf1;
   cursor: default;
+  font-weight: bold;
   background-color: transparent;
-  border-radius: 0px;
+  border-top-left-radius: : 3px;
+  border-top-left-radius: 3px;
   border: 2px solid #d8eaf1;
-  border-bottom: 2px solid #526b7b !important;
+  border-bottom:none;
 }
 
 body {
