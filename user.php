@@ -6,7 +6,6 @@
 //session_start();
 ?>
 
-
 <html lang="de">
   <head>
     <meta charset="utf-8" />
@@ -36,10 +35,10 @@
 		<ul class="nav justify-content-center">
 			 <li class="nav-item">
                 <button type="button" class="btn btn-primary btn-Navbar1" data-toggle="modal" data-target="#modalRegistration">
-					Registrieren
+					Home
 				</button>
 				<button type="button" class="btn btn-primary btn-Navbar1" data-toggle="modal" data-target="#modalRegistration">
-					Login
+					Profil
 				</button>
             </li>
 			</ul>
@@ -47,120 +46,142 @@
 	</nav>
 	<div class="container-fluid">
 	<div class="row">
-	 <div class="col-sm">
-		<h1>Heute</h1>
-				<ul>
-					<li>7.2°C</li>
-					<li>Regen</li>
-					<li>min.</li>
-					<li>max.</li>
-					<li>SoAuf</li>
-					<li>SoAb</li>
-					<li>Wind</li>
-				</ul>
+	 <div class="col-sm-5 standort">
+		<h1>Aktueller Standort</h1>
+		<div class=".container">
+				<div class= "row justify-content-center">
+            <div class="col-sm">
+          <a href="https://placeholder.com"><img src="https://via.placeholder.com/100"></a>
+            </div>
+            <div class="col-sm">
+          <ul>
+						<li><h3>Baden</h3></li>
+						<li><h3>7.2°C</h3></li>
+					</ul>
+          </div>
+				</div>
+			</div>
 	 </div>
+   <div class="col-sm-5 homebase">
+    <h1>Homebase</h1>
+		<div class=".container">
+				<div class= "row justify-content-center">
+						<div class="col-sm">
+					<a href="https://placeholder.com"><img src="https://via.placeholder.com/100"></a>
+						</div>
+						<div class="col-sm">
+					<ul>
+						<li><h3>Baden</h3></li>
+						<li><h3>7.2°C</h3></li>
+					</ul>
+					</div>
+				</div>
+			</div>
+   </div>
 	 </div>
 		<div class="row">
-			<div class="col-sm">
-				<h1>Montag</h1>
+			<div class="col-sm-10 favoriten">
+				<h1>Favoriten</h1>
+        <div class="d-flex flex-wrap align-items-start favoriten-container">
+				<div class="p-2 favorit">
+					<div class=".container">
+					<div class="row">
+					<div class="col-sm">
+				<a href="https://placeholder.com"><img src="https://via.placeholder.com/100"></a>
+					</div>
+					<div class="col-sm">
 				<ul>
-					<li>7.2°C</li>
-					<li>Regen</li>
-					<li>min.</li>
-					<li>max.</li>
-					<li>SoAuf</li>
-					<li>SoAb</li>
-					<li>Wind</li>
+				<li><h3>Baden</h3></li>
+				<li><h3>7.2°C</h3></li>
 				</ul>
-			</div>
-			<div class="col-sm">
-				<h1>Dienstag</h1>
-				<ul>
-					<li>7.2°C</li>
-					<li>Regen</li>
-					<li>min.</li>
-					<li>max.</li>
-					<li>SoAuf</li>
-					<li>SoAb</li>
-					<li>Wind</li>
-				</ul>
-			</div>
-			<div class="col-sm">
-				<h1>Mittwoch</h1>
-				<ul>
-					<li>7.2°C</li>
-					<li>Regen</li>
-					<li>min.</li>
-					<li>max.</li>
-					<li>SoAuf</li>
-					<li>SoAb</li>
-					<li>Wind</li>
-				</ul>
-			</div>
-			<div class="col-sm">
-				<h1>Donnerstag</h1>
-				<ul>
-					<li>7.2°C</li>
-					<li>Regen</li>
-					<li>min.</li>
-					<li>max.</li>
-					<li>SoAuf</li>
-					<li>SoAb</li>
-					<li>Wind</li>
-				</ul>
-			</div>
-			<div class="col-sm">
-				<h1>Freitag</h1>
-				<ul>
-					<li>7.2°C</li>
-					<li>Regen</li>
-					<li>min.</li>
-					<li>max.</li>
-					<li>SoAuf</li>
-					<li>SoAb</li>
-					<li>Wind</li>
-				</ul>
-			</div>
-	</div>
-		<div class="row">
-	 <div class="col-sm">
-		<h2>
-			GRAPH GRAPH GRAPH GRAPH GRAPH GRAPH GRAPH GRAPH GRAPH
-			GRAPH GRAPH GRAPH GRAPH GRAPH GRAPH GRAPH GRAPH GRAPH
-			GRAPH GRAPH GRAPH GRAPH GRAPH GRAPH GRAPH GRAPH GRAPH
-			GRAPH GRAPH GRAPH GRAPH GRAPH GRAPH GRAPH GRAPH GRAPH
-		</h2>
-	</div>
-	 </div>
-	 </div>
-  </body>
-
-  <div class="modal fade" id="modalRegistration" tabindex="-1" role="dialog" aria-labelledby="modalRegistration" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="modalRegistrationTitle">Boah modal</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+				</div>
+			 </div>
       </div>
-      <div class="modal-body">
-
-
-					<form>
-			  <div class="form-group">
-				<label for="exampleInputEmail1">Email address</label>
-				<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" autofocus>
-			  </div>
-			  <div class="form-group">
-				<label for="exampleInputPassword1">Password</label>
-				<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-			  </div>
-			  <button type="submit" class="btn btn-primary btn-modal1">Login</button>
-        <button type="button" class="btn btn-primary btn-modal1" data-dismiss="modal" aria-label="Close">Abbrechen</button>
-			</form>
       </div>
-    </div>
-  </div>
+
+			<div class="p-2 favorit">
+				<div class=".container">
+				<div class="row">
+				<div class="col-sm">
+			<a href="https://placeholder.com"><img src="https://via.placeholder.com/100"></a>
+				</div>
+				<div class="col-sm">
+			<ul>
+			<li><h3>Baden</h3></li>
+			<li><h3>7.2°C</h3></li>
+			</ul>
+			</div>
+		 </div>
+		</div>
+		</div>
+
+		<div class="p-2 favorit">
+			<div class=".container">
+			<div class="row">
+			<div class="col-sm">
+		<a href="https://placeholder.com"><img src="https://via.placeholder.com/100"></a>
+			</div>
+			<div class="col-sm">
+		<ul>
+		<li><h3>Baden</h3></li>
+		<li><h3>7.2°C</h3></li>
+		</ul>
+		</div>
+		</div>
+		</div>
+		</div>
+
+		<div class="p-2 favorit">
+			<div class=".container">
+			<div class="row">
+			<div class="col-sm">
+		<a href="https://placeholder.com"><img src="https://via.placeholder.com/100"></a>
+			</div>
+			<div class="col-sm">
+		<ul>
+		<li><h3>Baden</h3></li>
+		<li><h3>7.2°C</h3></li>
+		</ul>
+		</div>
+		</div>
+		</div>
+		</div>
+
+		<div class="p-2 favorit">
+			<div class=".container">
+			<div class="row">
+			<div class="col-sm">
+		<a href="https://placeholder.com"><img src="https://via.placeholder.com/100"></a>
+			</div>
+			<div class="col-sm">
+		<ul>
+		<li><h3>Baden</h3></li>
+		<li><h3>7.2°C</h3></li>
+		</ul>
+		</div>
+		</div>
+		</div>
+		</div>
+
+		<div class="p-2 favorit">
+			<div class=".container">
+			<div class="row">
+			<div class="col-sm">
+		<a href="https://placeholder.com"><img src="https://via.placeholder.com/100"></a>
+			</div>
+			<div class="col-sm">
+		<ul>
+		<li><h3>Baden</h3></li>
+		<li><h3>7.2°C</h3></li>
+		</ul>
+		</div>
+		</div>
+		</div>
+		</div>
+
+			</div>
+	 </div>
+ </div>
 </div>
+  </body>
 </html>
