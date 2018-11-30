@@ -9,13 +9,6 @@
 
 }
 
-.formNavSearch, .formNavSearch:focus, .formNavSearch:active {
-	background-color: #8e999d;
-	border-radius: 10px;
-    z-index:50;
-    margin-left: -20px;
-    height:100%;
-}
 
 input#inputTextNav[type=search], inputinput#TextNav[type=search]:focus, input#inputTextNav[type=search]:active {
 	font-style: italic;
@@ -95,7 +88,7 @@ input#inputTextNav[type="search"]::placeholder {
     }
     .sideNav {
       position: fixed;
-      top: 50%;
+      top: 30%;
     }
     .sideNavItem {
       margin-top: 10%;
