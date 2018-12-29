@@ -47,78 +47,36 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-sm">
-				<h1>Heute</h1>
+				<h1>Aktueller Standort</h1>
 				<ul id="heute">
-					<li>7.2°C</li>
-					<li>Regen</li>
-					<li>min. data["main"]["temp_min"]</li>
-					<li>max.</li>
-					<li>SoAuf</li>
-					<li>SoAb</li>
-					<li>Wind</li>
 				</ul>
 
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-sm">
-				<h1>Montag</h1>
+				<h1 id= day1-title></h1>
 				<ul id="day1">
-					<li>7.2°C</li>
-					<li>Regen</li>
-					<li>min.</li>
-					<li>max.</li>
-					<li>SoAuf</li>
-					<li>SoAb</li>
-					<li>Wind</li>
 				</ul>
 			</div>
 			<div class="col-sm">
-				<h1>Dienstag</h1>
+				<h1>Tag2</h1>
 				<ul id="day2">
-					<li>7.2°C</li>
-					<li>Regen</li>
-					<li>min.</li>
-					<li>max.</li>
-					<li>SoAuf</li>
-					<li>SoAb</li>
-					<li>Wind</li>
 				</ul>
 			</div>
 			<div class="col-sm">
-				<h1>Mittwoch</h1>
+				<h1>Tag3</h1>
 				<ul id="day3">
-					<li>7.2°C</li>
-					<li>Regen</li>
-					<li>min.</li>
-					<li>max.</li>
-					<li>SoAuf</li>
-					<li>SoAb</li>
-					<li>Wind</li>
 				</ul>
 			</div>
 			<div class="col-sm">
-				<h1>Donnerstag</h1>
+				<h1>Tag4</h1>
 				<ul id="day4">
-					<li>7.2°C</li>
-					<li>Regen</li>
-					<li>min.</li>
-					<li>max.</li>
-					<li>SoAuf</li>
-					<li>SoAb</li>
-					<li>Wind</li>
 				</ul>
 			</div>
 			<div class="col-sm">
-				<h1>Freitag</h1>
+				<h1>Tag5</h1>
 				<ul id="day5">
-					<li>7.2°C</li>
-					<li>Regen</li>
-					<li>min.</li>
-					<li>max.</li>
-					<li>SoAuf</li>
-					<li>SoAb</li>
-					<li>Wind</li>
 				</ul>
 			</div>
 		</div>
@@ -304,6 +262,10 @@
 
 		getLocation();
 	});
+	
+	var datum = new Date();
+	var tag = ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"];
+	document.getElementById("day1-title").innerHTML = tage[tag.getDay()];
 
 
 
