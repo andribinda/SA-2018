@@ -260,16 +260,18 @@
 	google.charts.setOnLoadCallback(drawChart);
 
 	function drawChart() {
+		console.log("draw chart ready");
 		var data = google.visualization.arrayToDataTable([
-			['Tag', 'Temparatur'],
+			["Tag", "Temparatur"],
 			["Montag", 100],
 			["Dienstag", 1170],
 			["Mittwoch", 400],
-
+			["Donnerstag", 600],
+			["Freitag", 100],
 		]);
 
 		var options = {
-			title: 'Temparatur Verlauf',
+			title: 'Temperatur Verlauf',
 			curveType: 'function',
 			legend: { position: 'bottom' }
 		};
