@@ -167,6 +167,14 @@
 </div>
 
 <script>
+	// Script starter
+	$(document).ready(function () {
+		console.log("ready!");
+		var latitude = 0;
+		var longitude = 0;
+		getLocation();
+	});
+
 	function getLocation() {
 		console.log("get location ready");
 		if (navigator.geolocation) {
@@ -176,9 +184,11 @@
 			x.innerHTML = "Geolocation is not supported by this browser.";
 		}
 	}
+
 	function showError(error) {
 		console.log(error);
 	}
+
 	function showPosition(position) {
 		console.log("get postition ready");
 		latitude = position.coords.latitude;
@@ -187,22 +197,29 @@
 		console.log(longitude);
 
 		$.ajax({
-			url: "http://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&units=metric&appid=6012cf5997f032d2c82563e60ef96a56",
+			url: "http://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude +
+				"&units=metric&appid=6012cf5997f032d2c82563e60ef96a56",
 			context: document.body,
 			dataType: 'json'
 		}).done(function (data) {
 
+			// shows days
+			ShowDay();
+
 			console.log(data);
 			console.log("max:  " + data["main"]["temp_max"] + " min: " + data["main"]["temp_min"]);
 			console.log(data["name"]);
+
 			tRise = data["sys"]["sunrise"];
 			tSet = data["sys"]["sunset"];
 			$("#actualPlace").html(data["name"]);
-			$("#heute").html("<li>Tag: " + ShowDay() + "</li><li> Temp: " + data["main"]["temp"] + " °C</li><li> Condition: " + data["weather"]["0"]["main"] + "</li><li> Min: " + data["main"]["temp_min"] +
-				" °C</li><li> Max: " + data["main"]["temp_max"] + " °C</li><li> Wind: " + data["wind"]["speed"] + " m/s</li><li> Sunrise: " + Unix_timestamp(tRise) + "  Uhr</li><li> Sunset: " + Unix_timestamp(tSet) + "  Uhr</li>");
+			$("#heute").html("<li> Temp: " + data["main"]["temp"] + " °C</li><li> Condition: " + data[
+					"weather"]["0"]["main"] + "</li><li> Min: " + data["main"]["temp_min"] +" °C</li><li> Max: " + data["main"]["temp_max"] + " °C</li><li> Wind: " + 
+					data["wind"]["speed"] + " m/s</li><li> Sunrise: " + Unix_timestamp(tRise) + "  Uhr</li><li> Sunset: " + Unix_timestamp(tSet) + "  Uhr</li>");
 		});
 		$.ajax({
-			url: "https://api.openweathermap.org/data/2.5/forecast?lat=" + latitude + "&lon=" + longitude + "&units=metric&appid=6012cf5997f032d2c82563e60ef96a56",
+			url: "https://api.openweathermap.org/data/2.5/forecast?lat=" + latitude + "&lon=" + longitude +
+				"&units=metric&appid=6012cf5997f032d2c82563e60ef96a56",
 			context: document.body,
 			dataType: 'json'
 		}).done(function (data) {
@@ -210,16 +227,22 @@
 			console.log("max:  " + data["list"]["0"]["main"]["temp_max"] + " min: " + data["list"]["0"]["main"]["temp_min"]);
 			console.log(data["city"]["name"]);
 			$("#day1").html("<li> Temp: " + data["list"]["0"]["main"]["temp"] + " °C</li><li> Condition: " + data["list"]["0"]["weather"]["0"]["main"] + "</li><li> Min: " +
-				data["list"]["0"]["main"]["temp_min"] + " °C</li><li> Max: " + data["list"]["0"]["main"]["temp_max"] + " °C</li><li> Wind: " + data["list"]["0"]["wind"]["speed"] + " m/s</li>");
+				data["list"]["0"]["main"]["temp_min"] + " °C</li><li> Max: " + data["list"]["0"]["main"]["temp_max"] +
+				" °C</li><li> Wind: " + data["list"]["0"]["wind"]["speed"] + " m/s</li>");
 			$("#day2").html("<li> Temp: " + data["list"]["8"]["main"]["temp"] + " °C</li><li> Condition: " + data["list"]["8"]["weather"]["0"]["main"] + "</li><li> Min: " +
-				data["list"]["8"]["main"]["temp_min"] + " °C</li><li> Max: " + data["list"]["8"]["main"]["temp_max"] + " °C</li><li> Wind: " + data["list"]["8"]["wind"]["speed"] + " m/s</li>");
+				data["list"]["8"]["main"]["temp_min"] + " °C</li><li> Max: " + data["list"]["8"]["main"]["temp_max"] +
+				" °C</li><li> Wind: " + data["list"]["8"]["wind"]["speed"] + " m/s</li>");
 			$("#day3").html("<li> Temp: " + data["list"]["16"]["main"]["temp"] + " °C</li><li> Condition: " + data["list"]["16"]["weather"]["0"]["main"] + "</li><li> Min: " +
-				data["list"]["16"]["main"]["temp_min"] + " °C</li><li> Max: " + data["list"]["16"]["main"]["temp_max"] + " °C</li><li> Wind: " + data["list"]["16"]["wind"]["speed"] + " m/s</li>");
+				data["list"]["16"]["main"]["temp_min"] + " °C</li><li> Max: " + data["list"]["16"]["main"]["temp_max"] +
+				" °C</li><li> Wind: " + data["list"]["16"]["wind"]["speed"] + " m/s</li>");
 			$("#day4").html("<li> Temp: " + data["list"]["24"]["main"]["temp"] + " °C</li><li> Condition: " + data["list"]["24"]["weather"]["0"]["main"] + "</li><li> Min: " +
-				data["list"]["24"]["main"]["temp_min"] + " °C</li><li> Max: " + data["list"]["24"]["main"]["temp_max"] + " °C</li><li> Wind: " + data["list"]["24"]["wind"]["speed"] + " m/s</li>");
+				data["list"]["24"]["main"]["temp_min"] + " °C</li><li> Max: " + data["list"]["24"]["main"]["temp_max"] +
+				" °C</li><li> Wind: " + data["list"]["24"]["wind"]["speed"] + " m/s</li>");
 			$("#day5").html("<li> Temp: " + data["list"]["32"]["main"]["temp"] + " °C</li><li> Condition: " + data["list"]["32"]["weather"]["0"]["main"] + "</li><li> Min: " +
-				data["list"]["32"]["main"]["temp_min"] + " °C</li><li> Max: " + data["list"]["32"]["main"]["temp_max"] + " °C</li><li> Wind: " + data["list"]["32"]["wind"]["speed"] + " m/s</li>");
+				data["list"]["32"]["main"]["temp_min"] + " °C</li><li> Max: " + data["list"]["32"]["main"]["temp_max"] +
+				" °C</li><li> Wind: " + data["list"]["32"]["wind"]["speed"] + " m/s</li>");
 		});
+
 		function Unix_timestamp(t) {
 			var dt = new Date(t * 1000);
 			var hr = dt.getHours();
@@ -248,7 +271,6 @@
 		$("#day_name5").html(name_day5);
 		console.log("get name day ready");
 
-		return name_day0;
 	}
 
 	// Datum von Binda
@@ -256,7 +278,9 @@
 	//var tag = ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"];
 	//document.getElementById("day1-title").innerHTML = tage[tag.getDay()];
 
-	google.charts.load('current', { 'packages': ['corechart'] });
+	google.charts.load('current', {
+		'packages': ['corechart']
+	});
 	google.charts.setOnLoadCallback(drawChart);
 
 	function drawChart() {
@@ -273,21 +297,14 @@
 		var options = {
 			title: 'Temperatur Verlauf',
 			curveType: 'function',
-			legend: { position: 'bottom' }
+			legend: {
+				position: 'bottom'
+			}
 		};
 
 		var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
 		chart.draw(data, options);
 	}
-
-	$(document).ready(function () {
-		console.log("ready!");
-		var latitude = 0;
-		var longitude = 0;
-		getLocation();
-	});
-
-
 </script>
 
 </html>
