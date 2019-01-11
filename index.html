@@ -48,7 +48,7 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-sm">
-				<h1>Aktueller Standort</h1>
+				<h1 id="actualPlace">Aktueller Standort</h1>
 				<ul id="heute">
 				</ul>
 
@@ -197,6 +197,7 @@
 			console.log(data["name"]);
 			tRise = data["sys"]["sunrise"];
 			tSet = data["sys"]["sunset"];
+			$("#actualPlace").html(data["name"]);
 			$("#heute").html("<li>Tag: " + ShowDay() + "</li><li> Temp: " + data["main"]["temp"] + " °C</li><li> Condition: " + data["weather"]["0"]["main"] + "</li><li> Min: " + data["main"]["temp_min"] +
 				" °C</li><li> Max: " + data["main"]["temp_max"] + " °C</li><li> Wind: " + data["wind"]["speed"] + " m/s</li><li> Sunrise: " + Unix_timestamp(tRise) + "  Uhr</li><li> Sunset: " + Unix_timestamp(tSet) + "  Uhr</li>");
 		});
