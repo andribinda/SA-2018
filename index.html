@@ -210,7 +210,7 @@
 			tSet = data["sys"]["sunset"];
 			$("#actualPlace").html(data["name"]);
 			$("#heute").html("<li> Temp: " + data["main"]["temp"] + " °C</li><li> Condition: " + data[
-					"weather"]["0"]["main"] + "</li><li> Min: " + data["main"]["temp_min"] +" °C</li><li> Max: " + data["main"]["temp_max"] + " °C</li><li> Wind: " + 
+					"weather"]["0"]["main"] + "</li><li> Min: " + data["main"]["temp_min"] +" °C</li><li> Max: " + data["main"]["temp_max"] + " °C</li><li> Wind: " +
 					data["wind"]["speed"] + " m/s</li><li> Sunrise: " + Unix_timestamp(tRise) + "  Uhr</li><li> Sunset: " + Unix_timestamp(tSet) + "  Uhr</li>");
 		});
 		$.ajax({
@@ -296,8 +296,8 @@
 		var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
 		chart.draw(data, options);
 	}
-	
-	
+
+
 	//Verknüpfen der Registration/LoginButtons mit den entsprechenden Tabs im Login-Modal
 	$('.btn-Navbar1').on('click', function setModalTab() {
 		var tabTarget = $(this).data('tab');
