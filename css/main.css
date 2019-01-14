@@ -17,7 +17,6 @@ input#inputTextNav[type=search], inputinput#TextNav[type=search]:focus, input#in
 	-webkit-box-shadow: none;
 	outline: none;
     border: none;
-	padding-left: 25px;
 }
 
 input#inputTextNav[type="search"]::placeholder {
@@ -72,12 +71,11 @@ input#inputTextNav[type="search"]::placeholder {
 
 @media (min-width: 576px) {
     .searchTop {
-      height: 75%;
+      height: 100%;
         position: absolute;
-	      top: 10px;
         left: 50%;
         transform: translateX(-50%);
-        width: 25%;
+        width: 50%;
     }
     .formNavSearch {
       width: 100% !important;
@@ -241,10 +239,10 @@ input#inputTextNav[type="search"]::placeholder {
 }
 
 
-
 body {
 	background-color: #ffffff;
 }
+
 footer {
   position: absolute;
   width: 100%;
