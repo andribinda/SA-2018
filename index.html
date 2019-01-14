@@ -35,11 +35,11 @@
 		<div class="collapse navbar-collapse" id="navbarCollapse">
 			<ul class="nav justify-content-center">
 				<li class="nav-item">
-					<button type="button" class="btn btn-primary btn-Navbar1" data-toggle="modal" data-target="#modalRegistration">
-						Registrieren
-					</button>
-					<button type="button" class="btn btn-primary btn-Navbar1" data-toggle="modal" data-target="#modalRegistration">
+					<button type="button" class="btn btn-primary btn-Navbar1" data-tab="modalTabLogin">
 						Login
+					</button>
+					<button type="button" class="btn btn-primary btn-Navbar1" data-tab="modalTabReg">
+						Registrieren
 					</button>
 				</li>
 			</ul>
@@ -48,7 +48,7 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-sm">
-				<h1 id="actualPlace">Aktueller Standort</h1>
+				<h1 id="actualPlace"></h1>
 				<ul id="heute">
 				</ul>
 
@@ -56,27 +56,27 @@
 		</div>
 		<div class="row">
 			<div class="col-sm">
-				<h1 id="day_name1">Tag1</h1>
+				<h1 id="day_name1"></h1>
 				<ul id="day1">
 				</ul>
 			</div>
 			<div class="col-sm">
-				<h1 id="day_name2">Tag2</h1>
+				<h1 id="day_name2"></h1>
 				<ul id="day2">
 				</ul>
 			</div>
 			<div class="col-sm">
-				<h1 id="day_name3">Tag3</h1>
+				<h1 id="day_name3"></h1>
 				<ul id="day3">
 				</ul>
 			</div>
 			<div class="col-sm">
-				<h1 id="day_name4">Tag4</h1>
+				<h1 id="day_name4"></h1>
 				<ul id="day4">
 				</ul>
 			</div>
 			<div class="col-sm">
-				<h1 id="day_name5">Tag5</h1>
+				<h1 id="day_name5"></h1>
 				<ul id="day5">
 				</ul>
 			</div>
@@ -89,7 +89,7 @@
 	</div>
 </body>
 
-<div class="modal fade" id="modalRegistration" tabindex="-1" role="dialog" aria-labelledby="modalRegistration"
+<div class="modal fade modalRegLog" id="modalRegistration" tabindex="-1" role="dialog" aria-labelledby="modalRegistration"
  aria-hidden="true">
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
@@ -269,11 +269,6 @@
 
 	}
 
-	// Datum von Binda
-	//var datum = new Date();
-	//var tag = ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"];
-	//document.getElementById("day1-title").innerHTML = tage[tag.getDay()];
-
 	google.charts.load('current', {
 		'packages': ['corechart']
 	});
@@ -301,6 +296,15 @@
 		var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
 		chart.draw(data, options);
 	}
+	
+	
+	//Verknüpfen der Registration/LoginButtons mit den entsprechenden Tabs im Login-Modal
+	$('.btn-Navbar1').on('click', function setModalTab() {
+		var tabTarget = $(this).data('tab');
+		$('.modalRegLog').modal('show');
+		$('.modalRegTabBar a[href="#' + tabTarget + '"]').tab('show');
+	}
+);
 </script>
 
 </html>
