@@ -136,7 +136,7 @@
 								</div>
 								<div class="form-group col-sm-6">
 									<label for="vornameInput" class="modalFormLabel">Vorname</label>
-									<input type="text" class="form-control" id="nameInput" placeholder="Vorname">
+									<input type="text" class="form-control" id="vornameInput" placeholder="Vorname">
 								</div>
 							</div>
 							<div class="form-row">
