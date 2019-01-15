@@ -29,29 +29,33 @@
 </head>
 
 <body>
-	<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-		<ul class="nav justify-content-center">
-			<li class="nav-item">
-				<button type="button" class="btn btn-primary btn-Navbar1" data-tab="modalTabLogin">
-					Login
-				</button>
-				<button type="button" class="btn btn-primary btn-Navbar1" data-tab="modalTabReg">
-					Registrieren
-				</button>
-			</li>
-		</ul>
+	<nav class="navbar navbar-expand-sm navbar-dark">
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarSupportedContent"
+		 aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
 		<ul class="nav abs-center-x">
 			<form class="form-inline">
-				<input class="form-control-lg mr-sm-2 formNavSearch" id="inputTextNav" type="search" placeholder="PLZ / Ort eingeben" aria-label="Search">
+				<input class="form-control-lg formNavSearch" id="inputTextNav" type="search" placeholder="PLZ / Ort eingeben" aria-label="Search">
 			</form>
 		</ul>
 		<div class="collapse navbar-collapse" id="navbarCollapse">
+			<ul class="nav justify-content-center">
+				<li class="nav-item">
+					<button type="button" class="btn btn-Navbar" data-tab="modalTabLogin">
+						Login
+					</button>
+					<button type="button" class="btn btn-Navbar" data-tab="modalTabReg">
+						Registrieren
+					</button>
+				</li>
+			</ul>
 		</div>
 	</nav>
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-sm">
-				<h2 id="actualPlace"></h2>
+				<h1 id="actualPlace"></h1>
 				<ul id="heute">
 				</ul>
 
@@ -59,27 +63,27 @@
 		</div>
 		<div class="row">
 			<div class="col-sm">
-				<h2 id="day_name1"></h2>
+				<h1 id="day_name1"></h1>
 				<ul id="day1">
 				</ul>
 			</div>
 			<div class="col-sm">
-				<h2 id="day_name2"></h2>
+				<h1 id="day_name2"></h1>
 				<ul id="day2">
 				</ul>
 			</div>
 			<div class="col-sm">
-				<h2 id="day_name3"></h2>
+				<h1 id="day_name3"></h1>
 				<ul id="day3">
 				</ul>
 			</div>
 			<div class="col-sm">
-				<h2 id="day_name4"></h2>
+				<h1 id="day_name4"></h1>
 				<ul id="day4">
 				</ul>
 			</div>
 			<div class="col-sm">
-				<h2 id="day_name5"></h2>
+				<h1 id="day_name5"></h1>
 				<ul id="day5">
 				</ul>
 			</div>
@@ -309,5 +313,8 @@
 	}
 );
 </script>
+
+</html>
+
 
 </html>
