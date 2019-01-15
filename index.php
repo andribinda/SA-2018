@@ -306,7 +306,8 @@
 
 
 	//Verknüpfen der Registration/LoginButtons mit den entsprechenden Tabs im Login-Modal
-	$('.btn-Navbar1').on('click', function setModalTab() {
+	$('.btn-Navbar').on('click', function setModalTab() {
+		console.log("Navbar-Buttons ok");
 		var tabTarget = $(this).data('tab');
 		$('.modalRegLog').modal('show');
 		$('.modalRegTabBar a[href="#' + tabTarget + '"]').tab('show');
