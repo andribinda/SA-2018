@@ -90,7 +90,7 @@
 		</div>
 		<div class="row">
 			<div class="col-sm">
-				<div id="curve_chart" style="width: 900px; height: 500px"></div>
+				<div id="curve_chart" style="width: 200px; height: 100x"></div>
 			</div>
 		</div>
 	</div>
