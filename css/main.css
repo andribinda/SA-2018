@@ -1,7 +1,7 @@
 .topNav{
   background: rgba(81, 107, 123, 0.5) !important;
   height: 70px;
-  margin-bottom: 2%;
+  margin-bottom: 1%;
 }
 
 .navbar-toggler{
@@ -10,7 +10,7 @@
 
 .searchTop {
   width: 50%;
-  height: 75%;
+  height: 100%;
 }
 
 .navbar-toggler:hover,.navbar-toggler:active,.navbar-toggler.active,.navbar-toggler:focus{
@@ -147,21 +147,17 @@ input#inputTextNav[type="search"]::placeholder {
   border-radius: 5px;
 }
 
-.standort, .homebase {
-  margin-top: 20px;
+.panel {
+  /* margin-top: 20px;
   margin-bottom: 10px;
+  margin-right: 1%; */
+  margin: 1%;
+  background: rgba(0, 0, 0, 0.2) !important;
+  border-radius: 15px;
+  border: 1px solid black;
 }
 .standort{
-  background: rgba(81, 107, 123, 0.5) !important;
   position: relative;
-}
-
-.homebase{
-  background: rgba(0, 0, 0, 0.5) !important;
-}
-
-.favoriten{
-  background: rgba(81, 107, 123, 0.5) !important;
 }
 
 .favoriten-container {
@@ -206,11 +202,11 @@ input#inputTextNav[type="search"]::placeholder {
 }
 
 .piktogrammWIndex {
-  padding-top: 10%;
-  padding-bottom: 10%;
+  padding-top: 5%;
+  padding-bottom: 5%;
 }
 .piktogrammWUser {
-  padding-top: 25%;
+  padding-top: 20%;
 }
 
 .sidebar {
@@ -243,9 +239,9 @@ input#inputTextNav[type="search"]::placeholder {
   z-index: 1;
 }
 
-.col-sm, .col-sm-4, .col-xs, .col-xs-4 {
+/* .col-sm, .col-sm-4, .col-xs, .col-xs-4 {
   border: 2px solid black;
-}
+} */
 
 ul {
   list-style: none;
@@ -262,7 +258,7 @@ ul {
 }
 
 .iconDiv {
-  padding: 5%;
+  padding: 5% 5% 0 5%;
 }
 
 .wi-big {

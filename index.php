@@ -13,15 +13,13 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Deine Wetter-App</title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-	 crossorigin="anonymous">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-	 crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-	 crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 	<script src="https://unpkg.com/eva-icons"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/trianglify/2.0.0/trianglify.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/weather-icons.min.css">
 	<link rel="stylesheet" type="text/css" href="css/weather-icons-wind.min.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
@@ -29,9 +27,8 @@
 </head>
 
 <body>
-	<nav class="navbar navbar-expand-sm navbar-dark">
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarSupportedContent"
-		 aria-expanded="false" aria-label="Toggle navigation">
+	<nav class="navbar navbar-expand-sm navbar-dark topNav">
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<ul class="nav abs-center-x">
@@ -53,36 +50,44 @@
 		</div>
 	</nav>
 	<div class="container-fluid">
-		<div class="row">
-			<div class="col-sm">
-				<h1 id="actualPlace"></h1>
-				<ul id="heute">
-				</ul>
-
+		<div class="row justify-content-center">
+			<div class="col-sm-4 mx-auto panel">
+					<h1 id="actualPlace"></h1>
+					<div class="container">
+							<div class= "row justify-content-center">
+								<div class="col-xs-4 text-center iconDiv">
+									<i class="wi wi-day-sunny wi-big piktogrammWIndex"></i>
+									<ul class ="ul-index" id="heuteTemp"></ul>
+								</div>
+								<div class="col-xs-4 iconDiv">
+										<ul class="ul-index-info" id="heuteInfo"></ul>
+								</div>
+							</div>
+					</div>
 			</div>
-		</div>
+	</div>
 		<div class="row">
-			<div class="col-sm">
+			<div class="col-sm panel">
 				<h1 id="day_name1"></h1>
 				<ul id="day1">
 				</ul>
 			</div>
-			<div class="col-sm">
+			<div class="col-sm panel">
 				<h1 id="day_name2"></h1>
 				<ul id="day2">
 				</ul>
 			</div>
-			<div class="col-sm">
+			<div class="col-sm panel">
 				<h1 id="day_name3"></h1>
 				<ul id="day3">
 				</ul>
 			</div>
-			<div class="col-sm">
+			<div class="col-sm panel">
 				<h1 id="day_name4"></h1>
 				<ul id="day4">
 				</ul>
 			</div>
-			<div class="col-sm">
+			<div class="col-sm panel">
 				<h1 id="day_name5"></h1>
 				<ul id="day5">
 				</ul>
@@ -96,8 +101,7 @@
 	</div>
 </body>
 
-<div class="modal fade modalRegLog" id="modalRegistration" tabindex="-1" role="dialog" aria-labelledby="modalRegistration"
- aria-hidden="true">
+<div class="modal fade modalRegLog" id="modalRegistration" tabindex="-1" role="dialog" aria-labelledby="modalRegistration" aria-hidden="true">
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
 			<div class="modal-body">
@@ -171,7 +175,7 @@
 
 <script>
 	// Script starter
-	$(document).ready(function () {
+	$(document).ready(function() {
 		console.log("ready!");
 		var latitude = 0;
 		var longitude = 0;
@@ -204,7 +208,7 @@
 				"&units=metric&appid=6012cf5997f032d2c82563e60ef96a56",
 			context: document.body,
 			dataType: 'json'
-		}).done(function (data) {
+		}).done(function(data) {
 
 			// shows days
 			ShowDay();
@@ -216,16 +220,16 @@
 			tRise = data["sys"]["sunrise"];
 			tSet = data["sys"]["sunset"];
 			$("#actualPlace").html(data["name"]);
-			$("#heute").html("<li> Temp: " + data["main"]["temp"] + " °C</li><li> Condition: " + data[
-					"weather"]["0"]["main"] + "</li><li> Min: " + data["main"]["temp_min"] +" °C</li><li> Max: " + data["main"]["temp_max"] + " °C</li><li> Wind: " +
-					data["wind"]["speed"] + " m/s</li><li> Sunrise: " + Unix_timestamp(tRise) + "  Uhr</li><li> Sunset: " + Unix_timestamp(tSet) + "  Uhr</li>");
+			$("#heuteInfo").html("<li> Min: " + data["main"]["temp_min"] + " °C</li><li> Max: " + data["main"]["temp_max"] + " °C</li><li><h5><i class='wi wi-strong-wind'></i> " +
+				data["wind"]["speed"] + " m/s</li><li><h5><i class='wi wi-sunrise'></i> " + Unix_timestamp(tRise) + "</h5></li><li><h5><i class='wi wi-sunset'></i> " + Unix_timestamp(tSet) + "</h5></li>");
+			$("#heuteTemp").html("<li><h3>" + data["weather"]["0"]["main"] + "</h3></li><h3><li> " + data["main"]["temp"] + "°C </h3></li>");
 		});
 		$.ajax({
 			url: "https://api.openweathermap.org/data/2.5/forecast?lat=" + latitude + "&lon=" + longitude +
 				"&units=metric&appid=6012cf5997f032d2c82563e60ef96a56",
 			context: document.body,
 			dataType: 'json'
-		}).done(function (data) {
+		}).done(function(data) {
 			console.log(data);
 			console.log("max:  " + data["list"]["0"]["main"]["temp_max"] + " min: " + data["list"]["0"]["main"]["temp_min"]);
 			console.log(data["city"]["name"]);
@@ -250,8 +254,7 @@
 			var dt = new Date(t * 1000);
 			var hr = dt.getHours();
 			var m = "0" + dt.getMinutes();
-			var s = "0" + dt.getSeconds();
-			return hr + ':' + m.substr(-2) + ':' + s.substr(-2);
+			return hr + ':' + m.substr(-2);
 		}
 
 	}
@@ -311,11 +314,16 @@
 		var tabTarget = $(this).data('tab');
 		$('.modalRegLog').modal('show');
 		$('.modalRegTabBar a[href="#' + tabTarget + '"]').tab('show');
-	}
-);
+	});
+
+	var pattern = Trianglify({
+		cell_size: 500,
+		variance: 1,
+		x_colors: ['#526b7b', '#6691ab', '#375b5f'],
+		width: window.innerWidth,
+		height: window.innerHeight
+	});
+	document.body.style.backgroundImage = "url(" + pattern.png() + ")"
 </script>
-
-</html>
-
 
 </html>

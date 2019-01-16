@@ -43,7 +43,7 @@
 	</nav>
 	<div class="container-fluid">
 		<div class="row justify-content-center">
-			<div class="col-sm-4 mx-auto">
+			<div class="col-sm-4 mx-auto panel">
 					<h1 id="actualPlace"></h1>
 					<div class="container">
 							<div class= "row justify-content-center">
@@ -59,27 +59,27 @@
 			</div>
 	</div>
 		<div class="row">
-			<div class="col-sm">
+			<div class="col-sm panel">
 				<h1 id="day_name1"></h1>
 				<ul id="day1">
 				</ul>
 			</div>
-			<div class="col-sm">
+			<div class="col-sm panel">
 				<h1 id="day_name2"></h1>
 				<ul id="day2">
 				</ul>
 			</div>
-			<div class="col-sm">
+			<div class="col-sm panel">
 				<h1 id="day_name3"></h1>
 				<ul id="day3">
 				</ul>
 			</div>
-			<div class="col-sm">
+			<div class="col-sm panel">
 				<h1 id="day_name4"></h1>
 				<ul id="day4">
 				</ul>
 			</div>
-			<div class="col-sm">
+			<div class="col-sm panel">
 				<h1 id="day_name5"></h1>
 				<ul id="day5">
 				</ul>
@@ -212,8 +212,8 @@
 			tRise = data["sys"]["sunrise"];
 			tSet = data["sys"]["sunset"];
 			$("#actualPlace").html(data["name"]);
-			$("#heuteInfo").html("<li> Min: " + data["main"]["temp_min"] + " °C</li><li> Max: " + data["main"]["temp_max"] + " °C</li><li> Wind: " +
-				data["wind"]["speed"] + " m/s</li><li><h5><i class='wi wi-sunrise'></i> " + Unix_timestamp(tRise) + "<h5></li><li><h5><i class='wi wi-sunset'></i> " + Unix_timestamp(tSet) + "</h5></li>");
+			$("#heuteInfo").html("<li> Min: " + data["main"]["temp_min"] + " °C</li><li> Max: " + data["main"]["temp_max"] + " °C</li><li><h5><i class='wi wi-strong-wind'></i> " +
+				data["wind"]["speed"] + " m/s</li><li><h5><i class='wi wi-sunrise'></i> " + Unix_timestamp(tRise) + "</h5></li><li><h5><i class='wi wi-sunset'></i> " + Unix_timestamp(tSet) + "</h5></li>");
 			$("#heuteTemp").html("<li><h3>" + data["weather"]["0"]["main"] + "</h3></li><h3><li> " + data["main"]["temp"] + "°C </h3></li>");
 		});
 		$.ajax({
