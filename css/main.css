@@ -244,17 +244,6 @@ input#inputTextNav[type="search"]::placeholder {
   z-index: 1;
 }
 
-
-body {
-  background-color: #ffffff;
-}
-
-footer {
-  position: absolute;
-  width: 100%;
-  height: 40px;
-  line-height: 40px;
-  background-color: #526b7b;
 }
 
 ul {
