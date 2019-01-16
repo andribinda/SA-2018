@@ -1,5 +1,5 @@
-.navbar{
-    background-color: #526b7b !important;
+.topNav{
+  background: rgba(81, 107, 123, 0.5) !important;
 }
 
 .navbar-toggler{
@@ -17,54 +17,54 @@
 
 .navbar-toggler-icon {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(216, 234, 241, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E") !important;
-  }
+}
 }
 input#inputTextNav[type=search], inputinput#TextNav[type=search]:focus, input#inputTextNav[type=search]:active {
-	font-style: italic;
-	color: #d8eaf1;
-	box-shadow: none;
-	-webkit-box-shadow: none;
-	outline: none;
-    border: none;
+  font-style: italic;
+  color: #d8eaf1;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  outline: none;
+  border: none;
 }
 
 input#inputTextNav[type="search"]::placeholder {
-	font-style: italic;
-	color: #d8eaf1;
+  font-style: italic;
+  color: #d8eaf1;
 }
 
 .btn-Navbar {
-    color: #d8eaf1;
-    background-color: #526b7b !important;
-	border: none;
-	border-radius: 0;
-	border-bottom: 2px solid transparent;
+  color: #d8eaf1;
+  background-color: #526b7b !important;
+  border: none;
+  border-radius: 0;
+  border-bottom: 2px solid transparent;
   border-left: 2px solid #ad997d ;
   margin-left: 30px;
 }
 
 .btn-Navbar:hover, .btn-Navbar:focus {
-    color: #ad997d  ;
-    background-color: transparent !important ;
-	border: none;
-	outline: none;
-	box-shadow: none;
-	border-radius: 0;
-	font-weight: bold;
+  color: #ad997d  ;
+  background-color: transparent !important ;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  border-radius: 0;
+  font-weight: bold;
   border-bottom: 2px solid #ad997d;
   border-left: 2px solid #ad997d;
 }
 
 .btn-Navbar:active, .btn-Navbar.active {
-    color: #ad997d ;
-	   font-style: solid;
-    background-color: transparent !important;
-	border: none !important;
-	box-shadow: none !important;
-	-webkit-box-shadow: none !important;
-	border-radius: 0;
-  	border-bottom:70px solid #ad997d;
-    border-left: 2px solid #ad997d;
+  color: #ad997d ;
+  font-style: solid;
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  border-radius: 0;
+  border-bottom:70px solid #ad997d;
+  border-left: 2px solid #ad997d;
 }
 
 @media (max-width: 576px) {
@@ -75,56 +75,56 @@ input#inputTextNav[type="search"]::placeholder {
 }
 
 @media (min-width: 576px) {
-    .searchTop {
-      height: 100%;
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 50%;
+  .searchTop {
+    height: 100%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
 
-    }
-    .formNavSearch {
-      width:100% !important;
-    }
+  }
+  .formNavSearch {
+    width:100% !important;
+  }
 
-    .sidebar {
-      background-color: transparent !important;
-    }
-    .sideNav {
-      position: fixed;
-      top: 30%;
-      align-items: center;
-      justify-content: center;
-      padding: 2%;
-    }
+  .sidebar {
+    background-color: transparent !important;
+  }
+  .sideNav {
+    position: fixed;
+    top: 30%;
+    align-items: center;
+    justify-content: center;
+    padding: 2%;
+  }
 
-    .sideNavItem {
-      margin-bottom: 25% !important;
-    }
+  .sideNavItem {
+    margin-bottom: 25% !important;
+  }
 
-    .sideNavItem > svg:hover, svg:active, svg:focus{
-      fill: green;
-    }
+  .sideNavItem > svg:hover, svg:active, svg:focus{
+    fill: green;
+  }
 
-    .sideNavItem:hover, .sideNavItem:active, .sideNavItem:focus {
-      color:green;
-      border: 1px solid green !important;
-    }
+  .sideNavItem:hover, .sideNavItem:active, .sideNavItem:focus {
+    color:green;
+    border: 1px solid green !important;
+  }
 }
 
 #modalRegistration, {
-	background-color: #526b7b30;
+  background-color: #526b7b30;
 }
 
 .modal-content {
-	background-color: #526b7b !important;
-	border-radius:10px;
+  background-color: #526b7b !important;
+  border-radius:10px;
 }
 
 .modal-body, .modal-header {
-	background-color: #526b7b !important;
-	border-radius:30px;
-	border: none;
+  background-color: #526b7b !important;
+  border-radius:30px;
+  border: none;
 }
 
 .btn-modal1 {
@@ -163,11 +163,11 @@ input#inputTextNav[type="search"]::placeholder {
 }
 
 .favoriten-container {
-    padding: 5px;
+  padding: 5px;
 }
 
 .favorit{
-    margin: 10px;
+  margin: 10px;
 }
 
 .modalFormLabel {
@@ -189,7 +189,7 @@ input#inputTextNav[type="search"]::placeholder {
   border-bottom: 2px solid #d8eaf1;
 }
 
- .nav-tabs>li>a:focus, .nav-tabs>li>a:hover, .modalRegTabBar .nav-link:hover{
+.nav-tabs>li>a:focus, .nav-tabs>li>a:hover, .modalRegTabBar .nav-link:hover{
   font-weight: bold;
 }
 
@@ -237,16 +237,16 @@ input#inputTextNav[type="search"]::placeholder {
 
 .emptyLink {
   position:absolute;
-   width:100%;
-   height:100%;
-   top:0;
-   left: 0;
-   z-index: 1;
+  width:100%;
+  height:100%;
+  top:0;
+  left: 0;
+  z-index: 1;
 }
 
 
 body {
-	background-color: #ffffff;
+  background-color: #ffffff;
 }
 
 footer {
