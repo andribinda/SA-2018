@@ -1,6 +1,7 @@
 .topNav{
   background: rgba(81, 107, 123, 0.5) !important;
-  height: 100px;
+  height: 70px;
+  margin-bottom: 2%;
 }
 
 .navbar-toggler{
@@ -151,16 +152,16 @@ input#inputTextNav[type="search"]::placeholder {
   margin-bottom: 10px;
 }
 .standort{
-  background-color: #375b5f;
+  background: rgba(81, 107, 123, 0.5) !important;
   position: relative;
 }
 
 .homebase{
-  background-color: #c19b6a;
+  background: rgba(0, 0, 0, 0.5) !important;
 }
 
 .favoriten{
-  background-color: #82c9cf;
+  background: rgba(81, 107, 123, 0.5) !important;
 }
 
 .favoriten-container {
@@ -199,16 +200,17 @@ input#inputTextNav[type="search"]::placeholder {
   cursor: default;
   font-weight: bold;
   background-color: transparent;
-  border-top-left-radius: : 3px;
   border-top-left-radius: 3px;
   border: 2px solid #d8eaf1;
   border-bottom:none;
 }
 
-#piktogrammWMain {
-  padding-top: 15%;
-  padding-bottom: 15%;
-
+.piktogrammWIndex {
+  padding-top: 10%;
+  padding-bottom: 10%;
+}
+.piktogrammWUser {
+  padding-top: 25%;
 }
 
 .sidebar {
@@ -241,10 +243,28 @@ input#inputTextNav[type="search"]::placeholder {
   z-index: 1;
 }
 
-.col-sm, .col-sm-4 {
+.col-sm, .col-sm-4, .col-xs, .col-xs-4 {
   border: 2px solid black;
 }
 
 ul {
   list-style: none;
+}
+
+.ul-index {
+  margin: 0;
+  padding: 1%;
+}
+
+.ul-index-info {
+  margin: 0;
+  padding: 1%;
+}
+
+.iconDiv {
+  padding: 5%;
+}
+
+.wi-big {
+  font-size: 72px;
 }
