@@ -1,5 +1,6 @@
 .topNav{
   background: rgba(81, 107, 123, 0.5) !important;
+  height: 100px;
 }
 
 .navbar-toggler{
@@ -103,12 +104,12 @@ input#inputTextNav[type="search"]::placeholder {
   }
 
   .sideNavItem > svg:hover, svg:active, svg:focus{
-    fill: green;
+    fill: #ad997d;
   }
 
   .sideNavItem:hover, .sideNavItem:active, .sideNavItem:focus {
-    color:green;
-    border: 1px solid green !important;
+    color:#ad997d;
+    border: 2px solid #ad997d !important;
   }
 }
 
@@ -218,21 +219,17 @@ input#inputTextNav[type="search"]::placeholder {
   margin: 2%;
   margin-top: 0px;
   padding: 1%;
-  border: 1px solid black;
+  border: 2px solid black;
   border-radius: 10px;
 }
 
 .sideNavItem > svg:hover, svg:active, svg:focus {
-  fill: green;
+  fill: #ad997d;
 }
 
 .sideNavItem:hover, .sideNavItem:active, .sideNavItem:focus {
-  color:green;
-  border: none;
-}
-
-.sidebarList {
-  list-style-type: none;
+  color: #ad997d;
+  border:2px solid #ad997d;
 }
 
 .emptyLink {
@@ -244,6 +241,8 @@ input#inputTextNav[type="search"]::placeholder {
   z-index: 1;
 }
 
+.col-sm, .col-sm-4 {
+  border: 2px solid black;
 }
 
 ul {
