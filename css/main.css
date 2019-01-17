@@ -240,6 +240,10 @@ input#inputTextNav[type="search"]::placeholder {
   border: 2px solid black;
 } */
 
+#actualPlace {
+  margin-bottom: 2%;
+}
+
 ul {
   list-style: none;
 }
@@ -266,7 +270,7 @@ ul {
 }
 
 .wi-big {
-  font-size: 72px;
+  font-size: 70px;
 }
 
 .no-margin {
