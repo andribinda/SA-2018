@@ -9,6 +9,9 @@
 <!DOCTYPE html>
 <html lang="de">
 
+<!DOCTYPE html>
+<html lang="de">
+
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -51,46 +54,80 @@
 	</nav>
 	<div class="container-fluid">
 		<div class="row justify-content-center">
-			<div class="col-sm-4 mx-auto panel">
-					<h1 id="actualPlace"></h1>
-					<div class="container">
-							<div class= "row justify-content-center">
-								<div class="col-xs-4 text-center iconDiv">
-									<i class="wi wi-day-sunny wi-big piktogrammWIndex"></i>
+			<div class="col-sm-4 col-xl-3 mx-auto panel">
+					<h1 id="actualPlace" class="text-center"></h1>
+							<div class= "row justify-content-center no-margin">
+								<div class="col-xs iconDiv text-center">
+									<i class="wi-big wi-fw piktogrammWIndex" id="heuteIcon"></i>
 									<ul class ="ul-index" id="heuteTemp"></ul>
 								</div>
-								<div class="col-xs-4 iconDiv">
+								<div class="col-xs">
 										<ul class="ul-index-info" id="heuteInfo"></ul>
 								</div>
 							</div>
-					</div>
 			</div>
 	</div>
 		<div class="row">
-			<div class="col-sm panel">
-				<h1 id="day_name1"></h1>
-				<ul id="day1">
+			<div class="col-sm panel text-center">
+				<h2 id="day_name1"></h2>
+						<div class= "row justify-content-center">
+							<div class="col-xs-6 iconDiv text-center" id="day1Container">
+								<i class="wi wi-day-sunny wi-medium piktogrammWIndex"></i>
+								<ul class ="ul-index" id="d1Temp"></ul>
+							</div>
+							<div class="col-xs-6">
+									<ul class="ul-info" id="d1Info"></ul>
+							</div>
+				</div>
 				</ul>
 			</div>
-			<div class="col-sm panel">
-				<h1 id="day_name2"></h1>
-				<ul id="day2">
-				</ul>
+			<div class="col-sm panel text-center">
+				<h2 id="day_name2"></h2>
+						<div class= "row justify-content-center">
+							<div class="col-xs-6 iconDiv text-center">
+								<i class="wi wi-day-sunny wi-medium piktogrammWIndex"></i>
+								<ul class ="ul-index" id="d2Temp"></ul>
+							</div>
+							<div class="col-xs-6">
+									<ul class="ul-info" id="d2Info"></ul>
+						</div>
+				</div>
 			</div>
-			<div class="col-sm panel">
-				<h1 id="day_name3"></h1>
-				<ul id="day3">
-				</ul>
+			<div class="col-sm panel text-center">
+				<h2 id="day_name3"></h2>
+						<div class= "row justify-content-center">
+							<div class="col-xs-6 iconDiv text-center">
+								<i class="wi wi-day-sunny wi-medium piktogrammWIndex"></i>
+								<ul class ="ul-index" id="d3Temp"></ul>
+							</div>
+							<div class="col-xs-6">
+									<ul class="ul-info" id="d3Info"></ul>
+						</div>
+				</div>
 			</div>
-			<div class="col-sm panel">
-				<h1 id="day_name4"></h1>
-				<ul id="day4">
-				</ul>
+			<div class="col-sm panel text-center">
+				<h2 id="day_name4"></h2>
+						<div class= "row justify-content-center">
+							<div class="col-xs-6 iconDiv text-center">
+								<i class="wi wi-day-sunny wi-medium piktogrammWIndex"></i>
+								<ul class ="ul-index" id="d4Temp"></ul>
+							</div>
+							<div class="col-xs-6">
+									<ul class="ul-info" id="d4Info"></ul>
+						</div>
+				</div>
 			</div>
-			<div class="col-sm panel">
-				<h1 id="day_name5"></h1>
-				<ul id="day5">
-				</ul>
+			<div class="col-sm panel text-center">
+				<h2 id="day_name5"></h2>
+						<div class= "row justify-content-center">
+							<div class="col-xs-6 iconDiv text-center">
+								<i class="wi wi-day-sunny wi-medium piktogrammWIndex"></i>
+								<ul class ="ul-index" id="d5Temp"></ul>
+							</div>
+							<div class="col-xs-6">
+									<ul class="ul-info" id="d5Info"></ul>
+						</div>
+				</div>
 			</div>
 		</div>
 		<div class="row">
@@ -205,7 +242,7 @@
 
 		$.ajax({
 			url: "https://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude +
-				"&units=metric&appid=6012cf5997f032d2c82563e60ef96a56",
+				"&units=metric&lang=de&appid=6012cf5997f032d2c82563e60ef96a56",
 			context: document.body,
 			dataType: 'json'
 		}).done(function(data) {
@@ -217,37 +254,56 @@
 			console.log("max:  " + data["main"]["temp_max"] + " min: " + data["main"]["temp_min"]);
 			console.log(data["name"]);
 
+			//Icon abfragen
+			var prefix = 'wi wi-';
+			var weatherid = data.weather[0].id;
+			var wIcon = weatherIcons[weatherid].icon;
+			console.log(weatherid);
+			console.log(wIcon)
+
+			if (!(weatherid > 699 && weatherid < 800) && !(weatherid > 899 && weatherid < 1000)) {
+				wIcon = 'day-' + wIcon;
+			}
+			wIcon = prefix + wIcon;
+
 			tRise = data["sys"]["sunrise"];
 			tSet = data["sys"]["sunset"];
-			$("#actualPlace").html(data["name"]);
-			$("#heuteInfo").html("<li> Min: " + data["main"]["temp_min"] + " °C</li><li> Max: " + data["main"]["temp_max"] + " °C</li><li><h5><i class='wi wi-strong-wind'></i> " +
+
+			$("#heuteIcon").addClass(wIcon)
+			$("#actualPlace").html(data["name"] + " / " + data["sys"]["country"]);
+			$("#heuteTemp").html("<h3><li> " + data["main"]["temp"] + "°C</h3></li><li><h5>" + data["weather"]["0"]["description"] + "</h5></li>");
+			$("#heuteInfo").html("<li><h5><i class='wi wi-thermometer'></i>- " + data["main"]["temp_min"] + " °C</h5></li><li><h5><i class='wi wi-thermometer'></i>+ " + data["main"]["temp_max"] + " °C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " +
 				data["wind"]["speed"] + " m/s</li><li><h5><i class='wi wi-sunrise'></i> " + Unix_timestamp(tRise) + "</h5></li><li><h5><i class='wi wi-sunset'></i> " + Unix_timestamp(tSet) + "</h5></li>");
-			$("#heuteTemp").html("<li><h3>" + data["weather"]["0"]["main"] + "</h3></li><h3><li> " + data["main"]["temp"] + "°C </h3></li>");
 		});
 		$.ajax({
 			url: "https://api.openweathermap.org/data/2.5/forecast?lat=" + latitude + "&lon=" + longitude +
-				"&units=metric&appid=6012cf5997f032d2c82563e60ef96a56",
+				"&units=metric&lang=de&appid=6012cf5997f032d2c82563e60ef96a56",
 			context: document.body,
 			dataType: 'json'
 		}).done(function(data) {
 			console.log(data);
 			console.log("max:  " + data["list"]["0"]["main"]["temp_max"] + " min: " + data["list"]["0"]["main"]["temp_min"]);
 			console.log(data["city"]["name"]);
-			$("#day1").html("<li> Temp: " + data["list"]["0"]["main"]["temp"] + " °C</li><li> Condition: " + data["list"]["0"]["weather"]["0"]["main"] + "</li><li> Min: " +
-				data["list"]["0"]["main"]["temp_min"] + " °C</li><li> Max: " + data["list"]["0"]["main"]["temp_max"] +
-				" °C</li><li> Wind: " + data["list"]["0"]["wind"]["speed"] + " m/s</li>");
-			$("#day2").html("<li> Temp: " + data["list"]["8"]["main"]["temp"] + " °C</li><li> Condition: " + data["list"]["8"]["weather"]["0"]["main"] + "</li><li> Min: " +
-				data["list"]["8"]["main"]["temp_min"] + " °C</li><li> Max: " + data["list"]["8"]["main"]["temp_max"] +
-				" °C</li><li> Wind: " + data["list"]["8"]["wind"]["speed"] + " m/s</li>");
-			$("#day3").html("<li> Temp: " + data["list"]["16"]["main"]["temp"] + " °C</li><li> Condition: " + data["list"]["16"]["weather"]["0"]["main"] + "</li><li> Min: " +
-				data["list"]["16"]["main"]["temp_min"] + " °C</li><li> Max: " + data["list"]["16"]["main"]["temp_max"] +
-				" °C</li><li> Wind: " + data["list"]["16"]["wind"]["speed"] + " m/s</li>");
-			$("#day4").html("<li> Temp: " + data["list"]["24"]["main"]["temp"] + " °C</li><li> Condition: " + data["list"]["24"]["weather"]["0"]["main"] + "</li><li> Min: " +
-				data["list"]["24"]["main"]["temp_min"] + " °C</li><li> Max: " + data["list"]["24"]["main"]["temp_max"] +
-				" °C</li><li> Wind: " + data["list"]["24"]["wind"]["speed"] + " m/s</li>");
-			$("#day5").html("<li> Temp: " + data["list"]["32"]["main"]["temp"] + " °C</li><li> Condition: " + data["list"]["32"]["weather"]["0"]["main"] + "</li><li> Min: " +
-				data["list"]["32"]["main"]["temp_min"] + " °C</li><li> Max: " + data["list"]["32"]["main"]["temp_max"] +
-				" °C</li><li> Wind: " + data["list"]["32"]["wind"]["speed"] + " m/s</li>");
+
+			$("#d1Temp").html("<h4><li>" + data["list"]["0"]["main"]["temp"]+ "°C</h4></li><li><h6>" + data["list"]["0"]["weather"]["0"]["description"] +"</h6></li>");
+			$("#d1Info").html("<li><h5><i class='wi wi-thermometer'></i>- " +	data["list"]["0"]["main"]["temp_min"] + "°C</h5></li><li><h5><i class='wi wi-thermometer'></i>+ " +
+			data["list"]["0"]["main"]["temp_max"] + "°C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " + data["list"]["0"]["wind"]["speed"] + "m/s</li>");
+
+			$("#d2Temp").html("<h4><li> " + data["list"]["8"]["main"]["temp"]+ "°C</h4></li><li><h6>" + data["list"]["8"]["weather"]["0"]["description"] + "</h6></li>");
+			$("#d2Info").html("<li><h5><i class='wi wi-thermometer'></i>- " +	data["list"]["8"]["main"]["temp_min"] + "°C</h5></li><li><h5><i class='wi wi-thermometer'></i>+ " +
+			data["list"]["8"]["main"]["temp_max"] + "°C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " + data["list"]["8"]["wind"]["speed"] + "m/s</li>");
+
+			$("#d3Temp").html("<li><h4>" + data["list"]["16"]["main"]["temp"]+ "°C</h4></li><li><h6>" + data["list"]["16"]["weather"]["0"]["description"] + "</h6></li>");
+			$("#d3Info").html("<li><h5><i class='wi wi-thermometer'></i>- " +	data["list"]["16"]["main"]["temp_min"] + "°C</h5></li><li><h5><i class='wi wi-thermometer'></i>+ " +
+			data["list"]["16"]["main"]["temp_max"] + "°C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " + data["list"]["16"]["wind"]["speed"] + "m/s</li>");
+
+			$("#d4Temp").html("<li><li><h4>" + data["list"]["24"]["main"]["temp"]+ "°C</h4></li><h6>" + data["list"]["24"]["weather"]["0"]["description"] + "</h6></li>");
+			$("#d4Info").html("<li><h5><i class='wi wi-thermometer'></i>- " +	data["list"]["24"]["main"]["temp_min"] + "°C</h5></li><li><h5><i class='wi wi-thermometer'></i>+ " +
+			data["list"]["24"]["main"]["temp_max"] + "°C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " + data["list"]["24"]["wind"]["speed"] + "m/s</li>");
+
+			$("#d5Temp").html("<li><h4>" + data["list"]["32"]["main"]["temp"]+ "°C</h4></li><li><h6>" + data["list"]["32"]["weather"]["0"]["description"] + "</h6></li>");
+			$("#d5Info").html("<li><h5><i class='wi wi-thermometer'></i>- " +	data["list"]["32"]["main"]["temp_min"] + "°C</h5></li><li><h5><i class='wi wi-thermometer'></i>+ " +
+			 data["list"]["32"]["main"]["temp_max"] + "°C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " + data["list"]["32"]["wind"]["speed"] + "m/s</li>");
 		});
 
 		function Unix_timestamp(t) {
@@ -324,6 +380,375 @@
 		height: window.innerHeight
 	});
 	document.body.style.backgroundImage = "url(" + pattern.png() + ")"
+
+	var weatherIcons = {
+
+	"200": {
+	  "label": "thunderstorm with light rain",
+	  "icon": "storm-showers"
+	},
+
+	"201": {
+	  "label": "thunderstorm with rain",
+	  "icon": "storm-showers"
+	},
+
+	"202": {
+	  "label": "thunderstorm with heavy rain",
+	  "icon": "storm-showers"
+	},
+
+	"210": {
+	  "label": "light thunderstorm",
+	  "icon": "storm-showers"
+	},
+
+	"211": {
+	  "label": "thunderstorm",
+	  "icon": "thunderstorm"
+	},
+
+	"212": {
+	  "label": "heavy thunderstorm",
+	  "icon": "thunderstorm"
+	},
+
+	"221": {
+	  "label": "ragged thunderstorm",
+	  "icon": "thunderstorm"
+	},
+
+	"230": {
+	  "label": "thunderstorm with light drizzle",
+	  "icon": "storm-showers"
+	},
+
+	"231": {
+	  "label": "thunderstorm with drizzle",
+	  "icon": "storm-showers"
+	},
+
+	"232": {
+	  "label": "thunderstorm with heavy drizzle",
+	  "icon": "storm-showers"
+	},
+
+	"300": {
+	  "label": "light intensity drizzle",
+	  "icon": "sprinkle"
+	},
+
+	"301": {
+	  "label": "drizzle",
+	  "icon": "sprinkle"
+	},
+
+	"302": {
+	  "label": "heavy intensity drizzle",
+	  "icon": "sprinkle"
+	},
+
+	"310": {
+	  "label": "light intensity drizzle rain",
+	  "icon": "sprinkle"
+	},
+
+	"311": {
+	  "label": "drizzle rain",
+	  "icon": "sprinkle"
+	},
+
+	"312": {
+	  "label": "heavy intensity drizzle rain",
+	  "icon": "sprinkle"
+	},
+
+	"313": {
+	  "label": "shower rain and drizzle",
+	  "icon": "sprinkle"
+	},
+
+	"314": {
+	  "label": "heavy shower rain and drizzle",
+	  "icon": "sprinkle"
+	},
+
+	"321": {
+	  "label": "shower drizzle",
+	  "icon": "sprinkle"
+	},
+
+	"500": {
+	  "label": "light rain",
+	  "icon": "rain"
+	},
+
+	"501": {
+	  "label": "moderate rain",
+	  "icon": "rain"
+	},
+
+	"502": {
+	  "label": "heavy intensity rain",
+	  "icon": "rain"
+	},
+
+	"503": {
+	  "label": "very heavy rain",
+	  "icon": "rain"
+	},
+
+	"504": {
+	  "label": "extreme rain",
+	  "icon": "rain"
+	},
+
+	"511": {
+	  "label": "freezing rain",
+	  "icon": "rain-mix"
+	},
+
+	"520": {
+	  "label": "light intensity shower rain",
+	  "icon": "showers"
+	},
+
+	"521": {
+	  "label": "shower rain",
+	  "icon": "showers"
+	},
+
+	"522": {
+	  "label": "heavy intensity shower rain",
+	  "icon": "showers"
+	},
+
+	"531": {
+	  "label": "ragged shower rain",
+	  "icon": "showers"
+	},
+
+	"600": {
+	  "label": "light snow",
+	  "icon": "snow"
+	},
+
+	"601": {
+	  "label": "snow",
+	  "icon": "snow"
+	},
+
+	"602": {
+	  "label": "heavy snow",
+	  "icon": "snow"
+	},
+
+	"611": {
+	  "label": "sleet",
+	  "icon": "sleet"
+	},
+
+	"612": {
+	  "label": "shower sleet",
+	  "icon": "sleet"
+	},
+
+	"615": {
+	  "label": "light rain and snow",
+	  "icon": "rain-mix"
+	},
+
+	"616": {
+	  "label": "rain and snow",
+	  "icon": "rain-mix"
+	},
+
+	"620": {
+	  "label": "light shower snow",
+	  "icon": "rain-mix"
+	},
+
+	"621": {
+	  "label": "shower snow",
+	  "icon": "rain-mix"
+	},
+
+	"622": {
+	  "label": "heavy shower snow",
+	  "icon": "rain-mix"
+	},
+
+	"701": {
+	  "label": "mist",
+	  "icon": "sprinkle"
+	},
+
+	"711": {
+	  "label": "smoke",
+	  "icon": "smoke"
+	},
+
+	"721": {
+	  "label": "haze",
+	  "icon": "day-haze"
+	},
+
+	"731": {
+	  "label": "sand, dust whirls",
+	  "icon": "cloudy-gusts"
+	},
+
+	"741": {
+	  "label": "fog",
+	  "icon": "fog"
+	},
+
+	"751": {
+	  "label": "sand",
+	  "icon": "cloudy-gusts"
+	},
+
+	"761": {
+	  "label": "dust",
+	  "icon": "dust"
+	},
+
+	"762": {
+	  "label": "volcanic ash",
+	  "icon": "smog"
+	},
+
+	"771": {
+	  "label": "squalls",
+	  "icon": "day-windy"
+	},
+
+	"781": {
+	  "label": "tornado",
+	  "icon": "tornado"
+	},
+
+	"800": {
+	  "label": "clear sky",
+	  "icon": "sunny"
+	},
+
+	"801": {
+	  "label": "few clouds",
+	  "icon": "cloudy"
+	},
+
+	"802": {
+	  "label": "scattered clouds",
+	  "icon": "cloudy"
+	},
+
+	"803": {
+	  "label": "broken clouds",
+	  "icon": "cloudy"
+	},
+
+	"804": {
+	  "label": "overcast clouds",
+	  "icon": "cloudy"
+	},
+
+
+	"900": {
+	  "label": "tornado",
+	  "icon": "tornado"
+	},
+
+	"901": {
+	  "label": "tropical storm",
+	  "icon": "hurricane"
+	},
+
+	"902": {
+	  "label": "hurricane",
+	  "icon": "hurricane"
+	},
+
+	"903": {
+	  "label": "cold",
+	  "icon": "snowflake-cold"
+	},
+
+	"904": {
+	  "label": "hot",
+	  "icon": "hot"
+	},
+
+	"905": {
+	  "label": "windy",
+	  "icon": "windy"
+	},
+
+	"906": {
+	  "label": "hail",
+	  "icon": "hail"
+	},
+
+	"951": {
+	  "label": "calm",
+	  "icon": "sunny"
+	},
+
+	"952": {
+	  "label": "light breeze",
+	  "icon": "cloudy-gusts"
+	},
+
+	"953": {
+	  "label": "gentle breeze",
+	  "icon": "cloudy-gusts"
+	},
+
+	"954": {
+	  "label": "moderate breeze",
+	  "icon": "cloudy-gusts"
+	},
+
+	"955": {
+	  "label": "fresh breeze",
+	  "icon": "cloudy-gusts"
+	},
+
+	"956": {
+	  "label": "strong breeze",
+	  "icon": "cloudy-gusts"
+	},
+
+	"957": {
+	  "label": "high wind, near gale",
+	  "icon": "cloudy-gusts"
+	},
+
+	"958": {
+	  "label": "gale",
+	  "icon": "cloudy-gusts"
+	},
+
+	"959": {
+	  "label": "severe gale",
+	  "icon": "cloudy-gusts"
+	},
+
+	"960": {
+	  "label": "storm",
+	  "icon": "thunderstorm"
+	},
+
+	"961": {
+	  "label": "violent storm",
+	  "icon": "thunderstorm"
+	},
+
+	"962": {
+	  "label": "hurricane",
+	  "icon": "cloudy-gusts"
+	}
+}
 </script>
 
 </html>
