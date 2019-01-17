@@ -251,10 +251,11 @@ ul {
 
 .ul-index-info, .ul-info {
   padding-left: 0;
+  padding-top: 20%;
 }
 
 .iconDiv {
-  padding: 1% 2% 0 2%;
+  padding: 0 2% 0 0;
 }
 .wi-medium {
   font-size: 48px;

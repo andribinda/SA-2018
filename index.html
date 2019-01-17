@@ -50,7 +50,7 @@
 									<i class="wi wi-day-sunny wi-big piktogrammWIndex"></i>
 									<ul class ="ul-index" id="heuteTemp"></ul>
 								</div>
-								<div class="col-xs iconDiv">
+								<div class="col-xs">
 										<ul class="ul-index-info" id="heuteInfo"></ul>
 								</div>
 							</div>
@@ -60,12 +60,12 @@
 			<div class="col-sm panel text-center">
 				<h2 id="day_name1"></h2>
 						<div class= "row justify-content-center">
-							<div class="col-xs iconDiv text-center">
+							<div class="col-xs-6 iconDiv text-center">
 								<i class="wi wi-day-sunny wi-medium piktogrammWIndex"></i>
 								<ul class ="ul-index" id="d1Temp"></ul>
 							</div>
-							<div class="col-xs iconDiv">
-									<ul class="ul-info center-text" id="d1Info"></ul>
+							<div class="col-xs-6">
+									<ul class="ul-info" id="d1Info"></ul>
 							</div>
 				</div>
 				</ul>
@@ -73,11 +73,11 @@
 			<div class="col-sm panel text-center">
 				<h2 id="day_name2"></h2>
 						<div class= "row justify-content-center">
-							<div class="col-xs iconDiv text-center">
+							<div class="col-xs-6 iconDiv text-center">
 								<i class="wi wi-day-sunny wi-medium piktogrammWIndex"></i>
 								<ul class ="ul-index" id="d2Temp"></ul>
 							</div>
-							<div class="col-xs-4 iconDiv">
+							<div class="col-xs-6">
 									<ul class="ul-info" id="d2Info"></ul>
 						</div>
 				</div>
@@ -85,11 +85,11 @@
 			<div class="col-sm panel text-center">
 				<h2 id="day_name3"></h2>
 						<div class= "row justify-content-center">
-							<div class="col-xs-4 iconDiv text-center">
+							<div class="col-xs-6 iconDiv text-center">
 								<i class="wi wi-day-sunny wi-medium piktogrammWIndex"></i>
 								<ul class ="ul-index" id="d3Temp"></ul>
 							</div>
-							<div class="col-xs-4 iconDiv">
+							<div class="col-xs-6">
 									<ul class="ul-info" id="d3Info"></ul>
 						</div>
 				</div>
@@ -97,11 +97,11 @@
 			<div class="col-sm panel text-center">
 				<h2 id="day_name4"></h2>
 						<div class= "row justify-content-center">
-							<div class="col-xs-4 iconDiv text-center">
+							<div class="col-xs-6 iconDiv text-center">
 								<i class="wi wi-day-sunny wi-medium piktogrammWIndex"></i>
 								<ul class ="ul-index" id="d4Temp"></ul>
 							</div>
-							<div class="col-xs-4 iconDiv">
+							<div class="col-xs-6">
 									<ul class="ul-info" id="d4Info"></ul>
 						</div>
 				</div>
@@ -109,11 +109,11 @@
 			<div class="col-sm panel text-center">
 				<h2 id="day_name5"></h2>
 						<div class= "row justify-content-center">
-							<div class="col-xs-4 iconDiv text-center">
+							<div class="col-xs-6 iconDiv text-center">
 								<i class="wi wi-day-sunny wi-medium piktogrammWIndex"></i>
 								<ul class ="ul-index" id="d5Temp"></ul>
 							</div>
-							<div class="col-xs-4 iconDiv">
+							<div class="col-xs-6">
 									<ul class="ul-info" id="d5Info"></ul>
 						</div>
 				</div>
@@ -262,42 +262,18 @@
 			$("#d1Temp").html("<h4><li>" + data["list"]["0"]["main"]["temp"]+ "°C</h4></li><li><h6>" + data["list"]["0"]["weather"]["0"]["description"] +"</h6></li>");
 			$("#d1Info").html("<li><h5><i class='wi wi-thermometer'></i>- " +	data["list"]["0"]["main"]["temp_min"] + "°C</h5></li><li><h5><i class='wi wi-thermometer'></i>+ " +
 			data["list"]["0"]["main"]["temp_max"] + "°C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " + data["list"]["0"]["wind"]["speed"] + "m/s</li>");
-			$("#d2Temp").html("<li><h6>" + data["list"]["8"]["weather"]["0"]["description"] + "</h6></li><h4><li> " + data["list"]["8"]["main"]["temp"]+ "°C</h4></li>");
+			$("#d2Temp").html("<h4><li> " + data["list"]["8"]["main"]["temp"]+ "°C</h4></li><li><h6>" + data["list"]["8"]["weather"]["0"]["description"] + "</h6></li>");
 			$("#d2Info").html("<li><h5><i class='wi wi-thermometer'></i>- " +	data["list"]["8"]["main"]["temp_min"] + "°C</h5></li><li><h5><i class='wi wi-thermometer'></i>+ " +
 			data["list"]["8"]["main"]["temp_max"] + "°C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " + data["list"]["8"]["wind"]["speed"] + "m/s</li>");
-			$("#d3Temp").html("<li><h6>" + data["list"]["16"]["weather"]["0"]["description"] + "</h6></li><h4><li>" + data["list"]["16"]["main"]["temp"]+ "°C</h4></li>");
+			$("#d3Temp").html("<li><h4>" + data["list"]["16"]["main"]["temp"]+ "°C</h4></li><li><h6>" + data["list"]["16"]["weather"]["0"]["description"] + "</h6></li>");
 			$("#d3Info").html("<li><h5><i class='wi wi-thermometer'></i>- " +	data["list"]["16"]["main"]["temp_min"] + "°C</h5></li><li><h5><i class='wi wi-thermometer'></i>+ " +
 			data["list"]["16"]["main"]["temp_max"] + "°C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " + data["list"]["16"]["wind"]["speed"] + "m/s</li>");
-			$("#d4Temp").html("<li><h6>" + data["list"]["24"]["weather"]["0"]["description"] + "</h6></li><h4><li> " + data["list"]["24"]["main"]["temp"]+ "°C</h4></li>");
+			$("#d4Temp").html("<li><li><h4>" + data["list"]["24"]["main"]["temp"]+ "°C</h4></li><h6>" + data["list"]["24"]["weather"]["0"]["description"] + "</h6></li>");
 			$("#d4Info").html("<li><h5><i class='wi wi-thermometer'></i>- " +	data["list"]["24"]["main"]["temp_min"] + "°C</h5></li><li><h5><i class='wi wi-thermometer'></i>+ " +
 			data["list"]["24"]["main"]["temp_max"] + "°C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " + data["list"]["24"]["wind"]["speed"] + "m/s</li>");
-			$("#d5Temp").html("<li><h6>" + data["list"]["32"]["weather"]["0"]["description"] + "</h6></li><h4><li> " + data["list"]["32"]["main"]["temp"]+ "°C</h4></li>");
+			$("#d5Temp").html("<li><h4>" + data["list"]["32"]["main"]["temp"]+ "°C</h4></li><li><h6>" + data["list"]["32"]["weather"]["0"]["description"] + "</h6></li>");
 			$("#d5Info").html("<li><h5><i class='wi wi-thermometer'></i>- " +	data["list"]["32"]["main"]["temp_min"] + "°C</h5></li><li><h5><i class='wi wi-thermometer'></i>+ " +
 			 data["list"]["32"]["main"]["temp_max"] + "°C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " + data["list"]["32"]["wind"]["speed"] + "m/s</li>");
-
-
-
-
-
-
-
-
-
-
-
-
-			$("#day2").html("" + data["list"]["8"]["main"]["temp"] + " °C</li><li> Condition: " + data["list"]["8"]["weather"]["0"]["main"] + "</li><li> Min: " +
-				data["list"]["8"]["main"]["temp_min"] + " °C</li><li> Max: " + data["list"]["8"]["main"]["temp_max"] +
-				" °C</li><li> Wind: " + data["list"]["8"]["wind"]["speed"] + " m/s</li>");
-			$("#day3").html("<li> Temp: " + data["list"]["16"]["main"]["temp"] + " °C</li><li> Condition: " + data["list"]["16"]["weather"]["0"]["main"] + "</li><li> Min: " +
-				data["list"]["16"]["main"]["temp_min"] + " °C</li><li> Max: " + data["list"]["16"]["main"]["temp_max"] +
-				" °C</li><li> Wind: " + data["list"]["16"]["wind"]["speed"] + " m/s</li>");
-			$("#day4").html("<li> Temp: " + data["list"]["24"]["main"]["temp"] + " °C</li><li> Condition: " + data["list"]["24"]["weather"]["0"]["main"] + "</li><li> Min: " +
-				data["list"]["24"]["main"]["temp_min"] + " °C</li><li> Max: " + data["list"]["24"]["main"]["temp_max"] +
-				" °C</li><li> Wind: " + data["list"]["24"]["wind"]["speed"] + " m/s</li>");
-			$("#day5").html("<li> Temp: " + data["list"]["32"]["main"]["temp"] + " °C</li><li> Condition: " + data["list"]["32"]["weather"]["0"]["main"] + "</li><li> Min: " +
-				data["list"]["32"]["main"]["temp_min"] + " °C</li><li> Max: " + data["list"]["32"]["main"]["temp_max"] +
-				" °C</li><li> Wind: " + data["list"]["32"]["wind"]["speed"] + " m/s</li>");
 		});
 
 		function Unix_timestamp(t) {
