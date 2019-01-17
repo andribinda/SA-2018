@@ -236,9 +236,9 @@ input#inputTextNav[type="search"]::placeholder {
   z-index: 1;
 }
 
-.col-sm, .col-sm-4, .col-xs, .col-xs-4, .col-xl-6 {
+/* .col-sm, .col-sm-4, .col-xs, .col-xs-4, .col-xl-6 {
   border: 2px solid black;
-}
+} */
 
 ul {
   list-style: none;
@@ -250,6 +250,10 @@ ul {
 }
 
 .ul-index-info, .ul-info {
+  padding-left: 0;
+}
+
+.ul-info {
   padding-left: 0;
   padding-top: 20%;
 }
