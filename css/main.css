@@ -199,8 +199,8 @@ input#inputTextNav[type="search"]::placeholder {
 }
 
 .piktogrammWIndex {
-  padding-top: 0%;
-  padding-bottom: 10%;
+  padding-top: 2%;
+  padding-bottom: 5%;
 }
 .piktogrammWUser {
   padding-top: 20%;
@@ -236,9 +236,9 @@ input#inputTextNav[type="search"]::placeholder {
   z-index: 1;
 }
 
-/* .col-sm, .col-sm-4, .col-xs, .col-xs-4 {
+.col-sm, .col-sm-4, .col-xs, .col-xs-4, .col-xl-6 {
   border: 2px solid black;
-} */
+}
 
 ul {
   list-style: none;
@@ -249,8 +249,12 @@ ul {
   padding: 1%;
 }
 
+.ul-index-info, .ul-info {
+  padding-left: 0;
+}
+
 .iconDiv {
-  padding: 1% 5% 0 5%;
+  padding: 1% 2% 0 2%;
 }
 .wi-medium {
   font-size: 48px;
@@ -258,4 +262,9 @@ ul {
 
 .wi-big {
   font-size: 72px;
+}
+
+.no-margin {
+  margin-left: 0;
+  margin-right: 0;
 }
