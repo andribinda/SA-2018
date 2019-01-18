@@ -374,18 +374,19 @@ function drawChartDetail() {
 
 		    // The data for our dataset
 		    data: {
-		        labels: ["January", "February", "March", "April", "May", "June", "July"],
+		        labels: ["Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag"],
 		        datasets: [{
 		            label: "Temperatur",
-		            borderColor: '#d8eaf1',
-		            data: [0, 10, 5, 2, 20, 30, 45],
+		            borderColor: 'rgb(255,99,132)',
+		            data: [0, 10, 5, 2, 20, 23,45,],
 								type: 'line',
 		        }, {
 								label: "Niederschlag",
 								backgroundColor: '#d8eaf1',
-          			data: [10, 20, 30, 40, 10, 21, 32],
-
+          			data: [10, 20, 30, 40, 10],
 						}
+						fontColor: '#d8eaf1',
+						fontSize: 16,
 					]
 		    },
 
@@ -394,7 +395,11 @@ function drawChartDetail() {
 					maintainAspectRatio: false,
 					responsive: true,
 					legend: {
-						position: 'right',
+						position: 'bottom',
+						labels: {
+							fontColor: '#d8eaf1',
+							fontSize: 16,
+						}
 				  }, scales: {
 				    yAxes: [{
 				      gridLines: {
@@ -403,11 +408,19 @@ function drawChartDetail() {
 				      }
 				    }],
 				    xAxes: [{
-							display: false,
-							barPercentage: 0.3,
+							gridLines: {
+								display: false,
+							},
+							barPercentage: 0.2,
 							categoryPercentage: 1,
 						}]
-				  }
+				  }, layout: {
+            padding: {
+                left: 15,
+                right: 15,
+                top: 15,
+            }
+					}
 				}
 		});
 	}
