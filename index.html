@@ -119,11 +119,11 @@
 				</div>
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-sm">
-				<div id="curve_chart" style="width: 200px; height: 100x"></div>
-			</div>
-		</div>
+		<div class="row justify-content-center">
+			<div class="panel tempChart-container">
+					<canvas id="tempChart">
+					</canvas>
+				</div>
 	</div>
 </body>
 
@@ -310,29 +310,31 @@
 			wIconD5 = prefix + wIconD5;
 
 			$("#wIconD1").addClass(wIconD1)
-			$("#d1Temp").html("<h4><li>" + data["list"]["0"]["main"]["temp"]+ "°C</h4></li><li><h6>" + data["list"]["0"]["weather"]["0"]["description"] +"</h6></li>");
+			$("#d1Temp").html("<h4><li>" + Math.round(data["list"]["0"]["main"]["temp"]) + "°C</h4></li><li><h6>" + data["list"]["0"]["weather"]["0"]["description"] +"</h6></li>");
 			$("#d1Info").html("<li><h5><i class='wi wi-thermometer'></i>" +	Math.round(data["list"]["0"]["main"]["temp_min"] * 10) / 10 + "°C</h5></li><li><h5><i class='wi wi-thermometer'></i>" +
 			Math.round(data["list"]["0"]["main"]["temp_max"] * 10) / 10 + "°C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " + data["list"]["0"]["wind"]["speed"] + "m/s</li>");
 
 			$("#wIconD2").addClass(wIconD2)
-			$("#d2Temp").html("<h4><li> " + data["list"]["8"]["main"]["temp"]+ "°C</h4></li><li><h6>" + data["list"]["8"]["weather"]["0"]["description"] + "</h6></li>");
+			$("#d2Temp").html("<h4><li> " + Math.round(data["list"]["8"]["main"]["temp"]) + "°C</h4></li><li><h6>" + data["list"]["8"]["weather"]["0"]["description"] + "</h6></li>");
 			$("#d2Info").html("<li><h5><i class='wi wi-thermometer'></i>" +	Math.round(data["list"]["6"]["main"]["temp_min"] * 10) / 10 + "°C</h5></li><li><h5><i class='wi wi-thermometer'></i>" +
 			Math.round(data["list"]["10"]["main"]["temp_max"] * 10) / 10 + "°C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " + data["list"]["8"]["wind"]["speed"] + "m/s</li>");
 
 			$("#wIconD3").addClass(wIconD3)
-			$("#d3Temp").html("<li><h4>" + data["list"]["16"]["main"]["temp"]+ "°C</h4></li><li><h6>" + data["list"]["16"]["weather"]["0"]["description"] + "</h6></li>");
+			$("#d3Temp").html("<li><h4>" + Math.round(data["list"]["16"]["main"]["temp"]) + "°C</h4></li><li><h6>" + data["list"]["16"]["weather"]["0"]["description"] + "</h6></li>");
 			$("#d3Info").html("<li><h5><i class='wi wi-thermometer'></i>" +	Math.round(data["list"]["14"]["main"]["temp_min"] * 10) / 10 + "°C</h5></li><li><h5><i class='wi wi-thermometer'></i>" +
 			Math.round(data["list"]["18"]["main"]["temp_max"] * 10) / 10 + "°C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " + data["list"]["16"]["wind"]["speed"] + "m/s</li>");
 
 			$("#wIconD4").addClass(wIconD4)
-			$("#d4Temp").html("<li><li><h4>" + data["list"]["24"]["main"]["temp"]+ "°C</h4></li><h6>" + data["list"]["24"]["weather"]["0"]["description"] + "</h6></li>");
+			$("#d4Temp").html("<li><li><h4>" + Math.round(data["list"]["24"]["main"]["temp"]) + "°C</h4></li><h6>" + data["list"]["24"]["weather"]["0"]["description"] + "</h6></li>");
 			$("#d4Info").html("<li><h5><i class='wi wi-thermometer'></i> " +	Math.round(data["list"]["22"]["main"]["temp_min"] * 10) / 10 + "°C</h5></li><li><h5><i class='wi wi-thermometer'></i>" +
 			Math.round(data["list"]["26"]["main"]["temp_max"] * 10) / 10 + "°C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " + data["list"]["24"]["wind"]["speed"] + "m/s</li>");
 
 			$("#wIconD5").addClass(wIconD5)
-			$("#d5Temp").html("<li><h4>" + data["list"]["32"]["main"]["temp"]+ "°C</h4></li><li><h6>" + data["list"]["32"]["weather"]["0"]["description"] + "</h6></li>");
+			$("#d5Temp").html("<li><h4>" + Math.round(data["list"]["32"]["main"]["temp"]) + "°C</h4></li><li><h6>" + data["list"]["32"]["weather"]["0"]["description"] + "</h6></li>");
 			$("#d5Info").html("<li><h5><i class='wi wi-thermometer'></i>" +	Math.round(data["list"]["30"]["main"]["temp_min"] * 10) / 10 + "°C</h5></li><li><h5><i class='wi wi-thermometer'></i>" +
 			Math.round(data["list"]["34"]["main"]["temp_max"] * 10) / 10 + "°C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " + data["list"]["32"]["wind"]["speed"] + "m/s</li>");
+
+			drawChartDetail();
 		});
 
 		function Unix_timestamp(t) {
@@ -364,34 +366,51 @@
 
 	}
 
-	// google.charts.load('current', {
-	// 	'packages': ['corechart']
-	// });
-	// google.charts.setOnLoadCallback(drawChart);
-	//
-	// function drawChart() {
-	// 	console.log("draw chart ready");
-	// 	var data = google.visualization.arrayToDataTable([
-	// 		["Tag", "Temparatur"],
-	// 		["Montag", 100],
-	// 		["Dienstag", 1170],
-	// 		["Mittwoch", 400],
-	// 		["Donnerstag", 600],
-	// 		["Freitag", 100],
-	// 	]);
-	//
-	// 	var options = {
-	// 		title: 'Temperatur Verlauf',
-	// 		curveType: 'function',
-	// 		legend: {
-	// 			position: 'bottom'
-	// 		}
-	// 	};
-	//
-	// 	var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-	// 	chart.draw(data, options);
-	// }
+function drawChartDetail() {
+		var ctx = document.getElementById('tempChart').getContext('2d');
+		var chart = new Chart(ctx, {
+		    // The type of chart we want to create
+		    type: 'bar',
 
+		    // The data for our dataset
+		    data: {
+		        labels: ["January", "February", "March", "April", "May", "June", "July"],
+		        datasets: [{
+		            label: "Temperatur",
+		            borderColor: '#d8eaf1',
+		            data: [0, 10, 5, 2, 20, 30, 45],
+								type: 'line',
+		        }, {
+								label: "Niederschlag",
+								backgroundColor: '#d8eaf1',
+          			data: [10, 20, 30, 40, 10, 21, 32],
+
+						}
+					]
+		    },
+
+		    // Configuration options go here
+		    options: {
+					maintainAspectRatio: false,
+					responsive: true,
+					legend: {
+						position: 'right',
+				  }, scales: {
+				    yAxes: [{
+				      gridLines: {
+				        display: true,
+				        color: "rgba(255,99,132,0.2)"
+				      }
+				    }],
+				    xAxes: [{
+							display: false,
+							barPercentage: 0.3,
+							categoryPercentage: 1,
+						}]
+				  }
+				}
+		});
+	}
 
 	//Verknüpfen der Registration/LoginButtons mit den entsprechenden Tabs im Login-Modal
 	$('.btn-Navbar').on('click', function setModalTab() {

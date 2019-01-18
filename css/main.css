@@ -238,6 +238,10 @@ input#inputTextNav[type="search"]::placeholder {
   margin-bottom: 5%;
 }
 
+.tempChart-container {
+  width: 100%;
+height: 40vh;
+}
 ul {
   list-style: none;
 }
