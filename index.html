@@ -321,8 +321,8 @@
 
 			$("#wIconD3").addClass(wIconD3)
 			$("#d3Temp").html("<li><h4>" + Math.round(data["list"]["16"]["main"]["temp"]) + "°C</h4></li><li><h6>" + data["list"]["16"]["weather"]["0"]["description"] + "</h6></li>");
-			$("#d3Info").html("<li><h5><i class='wi wi-thermometer'></i>" +	Math.round(data["list"]["14"]["main"]["temp_min"] * 10) / 10 + "°C</h5></li><li><h5><i class='wi wi-thermometer'></i>" +
-			Math.round(data["list"]["18"]["main"]["temp_max"] * 10) / 10 + "°C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " + data["list"]["16"]["wind"]["speed"] + "m/s</li>");
+			$("#d3Info").html("<li><h5><i class='wi wi-thermometer'></i>" +	Math.round(data["list"]["16"]["main"]["temp_min"] * 10) / 10 + "°C</h5></li><li><h5><i class='wi wi-thermometer'></i>" +
+			Math.round(data["list"]["16"]["main"]["temp_max"] * 10) / 10 + "°C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " + data["list"]["16"]["wind"]["speed"] + "m/s</li>");
 
 			$("#wIconD4").addClass(wIconD4)
 			$("#d4Temp").html("<li><li><h4>" + Math.round(data["list"]["24"]["main"]["temp"]) + "°C</h4></li><h6>" + data["list"]["24"]["weather"]["0"]["description"] + "</h6></li>");
@@ -334,7 +334,7 @@
 			$("#d5Info").html("<li><h5><i class='wi wi-thermometer'></i>" +	Math.round(data["list"]["30"]["main"]["temp_min"] * 10) / 10 + "°C</h5></li><li><h5><i class='wi wi-thermometer'></i>" +
 			Math.round(data["list"]["34"]["main"]["temp_max"] * 10) / 10 + "°C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " + data["list"]["32"]["wind"]["speed"] + "m/s</li>");
 
-			drawChartDetail();
+			drawChartDetail(data);
 		});
 
 		function Unix_timestamp(t) {
@@ -366,28 +366,24 @@
 
 	}
 
-function drawChartDetail() {
+function drawChartDetail(data) {
 		var ctx = document.getElementById('tempChart').getContext('2d');
+		Chart.defaults.global.defaultFontColor = 'white';
+		Chart.defaults.global.defaultFontSize = '12';
 		var chart1 = new Chart(ctx, {
-		    type: 'line',
-
+			  type: 'line',
 		    data: {
-		        labels: ["Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag"],
+		        labels: [data.list["0"].dt_txt, data.list["3"].dt_txt, data.list["6"].dt_txt,data.list["9"].dt_txt, data.list["12"].dt_txt, data.list["15"].dt_txt,
+										data.list["18"].dt_txt, data.list["21"].dt_txt, data.list["24"].dt_txt,data.list["27"].dt_txt, data.list["30"].dt_txt, data.list["33"].dt_txt],
 		        datasets: [{
 		            label: "Temperatur",
 								yAxisID: 'TemperaturY',
 		            borderColor: 'rgb(255,99,132)',
 								fill: false,
-		            data: [5, 2, 20, 23, 30],
+		            data: [data.list["0"].main.temp, data.list["3"].main.temp, data.list["6"].main.temp, data.list["9"].main.temp, data.list["12"].main.temp, data.list["15"].main.temp,
+												data.list["18"].main.temp, data.list["21"].main.temp, data.list["24"].main.temp, data.list["27"].main.temp, data.list["30"].main.temp, data.list["33"].main.temp],
 								type: 'line',
-		        }, {
-								label: 'Niederschlag',
-								yAxisID: 'NiederschlagY',
-								borderColor: '#d8eaf1',
-          			data: [10, 20, 30, 40, 10],
-								fill: false,
-						}
-					]
+		        }]
 		    },
 
 		    // Configuration options go here
@@ -408,43 +404,53 @@ function drawChartDetail() {
 								id: 'TemperaturY',
 								gridLines: {
 										display: true,
-						        color: 'rgba(255,99,132,0.2)',
 								}, ticks: {
+										fontColor: "rgb(255,99,132)",
 					          max: 40,
 					          min: -20,
 					        }, scaleLabel: {
-										fontColor: 'red',
+										fontColor: 'rgb(255,99,132)',
+										fontSize: 16,
 										display:true,
 										labelString: 'Temperatur °',
 									},
-							}, {
-								type: 'linear',
-								display: true,
-								position: 'right',
-								id: 'NiederschlagY',
-								gridLines: {
-										display: false,
-						        color: 'rgba(255,99,132,0.2)',
-								}, ticks: {
-					          max: 50,
-					          min: 0,
-					        },scaleLabel: {
-										fontColor: 'blue',
-										display:true,
-										labelString: 'Niederschlag mm',
-									},
 							}],
 				    xAxes: [{
+							id: 'xAxis-Zeit',
+							type: time,
+							time: {
+								displayFormats: {
+										minute: 'hh:mm',
+								}
+							},	ticks:{
+	            			callback:function(label){
+	              		var datum = label.split(" ")[0];
+			              var zeit = label.split(" ")[1];
+			              return zeit;
+										}
+								},
+							gridLines: {
+								display: true,
+							}
+						}, {
+							id: 'xAxis-Datum',
+								drawOnChartArea: false,
+								ticks:{
+            			callback:function(label){
+              		var datum = label.split(" ")[0];
+		              var zeit = (label.split(" ")[1]).substring(0,5);
+		              return datum;
+									}
+								},
 							gridLines: {
 								display: false,
-							},
-							barPercentage: 0.3,
+							}
 						}]
 				  }, layout: {
             padding: {
                 left: 15,
                 right: 15,
-                top: 15,
+                top: 30,
             }
 					}
 				}
