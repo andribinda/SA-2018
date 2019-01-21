@@ -368,22 +368,24 @@
 
 function drawChartDetail() {
 		var ctx = document.getElementById('tempChart').getContext('2d');
-		var chart = new Chart(ctx, {
-		    // The type of chart we want to create
-		    type: 'bar',
+		var chart1 = new Chart(ctx, {
+		    type: 'line',
 
-		    // The data for our dataset
 		    data: {
 		        labels: ["Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag"],
 		        datasets: [{
 		            label: "Temperatur",
+								yAxisID: 'TemperaturY',
 		            borderColor: 'rgb(255,99,132)',
-		            data: [0, 10, 5, 2, 20, 23,45,],
+								fill: false,
+		            data: [5, 2, 20, 23, 30],
 								type: 'line',
 		        }, {
-								label: "Niederschlag",
-								backgroundColor: '#d8eaf1',
+								label: 'Niederschlag',
+								yAxisID: 'NiederschlagY',
+								borderColor: '#d8eaf1',
           			data: [10, 20, 30, 40, 10],
+								fill: false,
 						}
 					]
 		    },
@@ -399,18 +401,44 @@ function drawChartDetail() {
 							fontSize: 16,
 						}
 				  }, scales: {
-				    yAxes: [{
-				      gridLines: {
-				        display: true,
-				        color: "rgba(255,99,132,0.2)"
-				      }
-				    }],
+							yAxes: [{
+								type: 'linear',
+								display: true,
+								position: 'left',
+								id: 'TemperaturY',
+								gridLines: {
+										display: true,
+						        color: 'rgba(255,99,132,0.2)',
+								}, ticks: {
+					          max: 40,
+					          min: -20,
+					        }, scaleLabel: {
+										fontColor: 'red',
+										display:true,
+										labelString: 'Temperatur °',
+									},
+							}, {
+								type: 'linear',
+								display: true,
+								position: 'right',
+								id: 'NiederschlagY',
+								gridLines: {
+										display: false,
+						        color: 'rgba(255,99,132,0.2)',
+								}, ticks: {
+					          max: 50,
+					          min: 0,
+					        },scaleLabel: {
+										fontColor: 'blue',
+										display:true,
+										labelString: 'Niederschlag mm',
+									},
+							}],
 				    xAxes: [{
 							gridLines: {
 								display: false,
 							},
-							barPercentage: 0.2,
-							categoryPercentage: 1,
+							barPercentage: 0.3,
 						}]
 				  }, layout: {
             padding: {
