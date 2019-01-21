@@ -367,6 +367,7 @@
 	}
 
 function drawChartDetail(data) {
+		console.log(data.list[0]["weather"]["0"].id);
 		var ctx = document.getElementById('tempChart').getContext('2d');
 		Chart.defaults.global.defaultFontColor = 'white';
 		Chart.defaults.global.defaultFontSize = '12';
@@ -374,18 +375,19 @@ function drawChartDetail(data) {
 			  type: 'line',
 		    data: {
 		        labels: [data.list["0"].dt_txt, data.list["3"].dt_txt, data.list["6"].dt_txt,data.list["9"].dt_txt, data.list["12"].dt_txt, data.list["15"].dt_txt,
-										data.list["18"].dt_txt, data.list["21"].dt_txt, data.list["24"].dt_txt,data.list["27"].dt_txt, data.list["30"].dt_txt, data.list["33"].dt_txt],
+										data.list["18"].dt_txt, data.list["21"].dt_txt, data.list["24"].dt_txt,data.list["27"].dt_txt, data.list["30"].dt_txt, data.list["33"].dt_txt,
+										data.list["36"].dt_txt,data.list["39"].dt_txt],
 		        datasets: [{
 		            label: "Temperatur",
 								yAxisID: 'TemperaturY',
 		            borderColor: 'rgb(255,99,132)',
 								fill: false,
 		            data: [data.list["0"].main.temp, data.list["3"].main.temp, data.list["6"].main.temp, data.list["9"].main.temp, data.list["12"].main.temp, data.list["15"].main.temp,
-												data.list["18"].main.temp, data.list["21"].main.temp, data.list["24"].main.temp, data.list["27"].main.temp, data.list["30"].main.temp, data.list["33"].main.temp],
+												data.list["18"].main.temp, data.list["21"].main.temp, data.list["24"].main.temp, data.list["27"].main.temp, data.list["30"].main.temp, data.list["33"].main.temp,
+												data.list["36"].main.temp,data.list["39"].main.temp],
 								type: 'line',
 		        }]
 		    },
-
 		    // Configuration options go here
 		    options: {
 					maintainAspectRatio: false,
@@ -417,17 +419,12 @@ function drawChartDetail(data) {
 							}],
 				    xAxes: [{
 							id: 'xAxis-Zeit',
-							type: time,
-							time: {
-								displayFormats: {
-										minute: 'hh:mm',
-								}
-							},	ticks:{
-	            			callback:function(label){
-	              		var datum = label.split(" ")[0];
-			              var zeit = label.split(" ")[1];
-			              return zeit;
-										}
+								ticks:{
+            			callback:function(label){
+              		var datum = label.split(" ")[0];
+		              var zeit = (label.split(" ")[1]).substring(0,5);
+		              return zeit;
+									}
 								},
 							gridLines: {
 								display: true,
@@ -438,7 +435,7 @@ function drawChartDetail(data) {
 								ticks:{
             			callback:function(label){
               		var datum = label.split(" ")[0];
-		              var zeit = (label.split(" ")[1]).substring(0,5);
+		              var zeit = label.split(" ")[1];
 		              return datum;
 									}
 								},
@@ -455,6 +452,7 @@ function drawChartDetail(data) {
 					}
 				}
 		});
+		setBackground();
 	}
 
 	//Verknüpfen der Registration/LoginButtons mit den entsprechenden Tabs im Login-Modal
@@ -465,14 +463,15 @@ function drawChartDetail(data) {
 		$('.modalRegTabBar a[href="#' + tabTarget + '"]').tab('show');
 	});
 
-	var pattern = Trianglify({
-		cell_size: 500,
-		variance: 1,
-		x_colors: ['#526b7b', '#6691ab', '#375b5f'],
-		width: window.innerWidth,
-		height: window.innerHeight
-	});
-	document.body.style.backgroundImage = "url(" + pattern.png() + ")"
+	function setBackground() {var pattern = Trianglify({
+			cell_size: 500,
+			variance: 1,
+			x_colors: ['#526b7b', '#6691ab', '#375b5f'],
+			width: window.innerWidth,
+			height: window.innerHeight
+			});
+		document.body.style.backgroundImage = "url(" + pattern.png() + ")"
+	}
 
 	var weatherIcons = {
 	"200": {
