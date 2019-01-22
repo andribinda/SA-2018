@@ -9,6 +9,7 @@
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 	<script src=https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js></script>
+	<script src=https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 	<script src="https://unpkg.com/eva-icons"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/trianglify/2.0.0/trianglify.min.js"></script>
@@ -18,7 +19,10 @@
 
 </head>
 <body>
+<div id="tempChartC" style="height:500px">
+	<canvas id="tempChart"></canvas>
 
+</div>
 </body>
 
 
@@ -90,10 +94,7 @@
 			console.log(data["list"]);
 			console.log("max:  " + data["list"]["0"]["main"]["temp_max"] + " min: " + data["list"]["0"]["main"]["temp_min"]);
 			console.log(data["city"]["name"]);
-			for (var i = 0; i < data["list"].length; i = (i+3)) {
-					console.log(data.list[i].dt_txt);
-			    console.log(i);
-			}
+			drawChartDetail(data);
 
 			//Icons setzen für 5-Tages-Vorhersage evtl als Array mit Loop zum setzen der Icons
 			var prefix = 'wi wi-';
@@ -161,27 +162,41 @@
 	}
 
 function drawChartDetail(data) {
-
-		console.log(data.list[0]["weather"][0].id);
-		console.log(data.list["0"].dt_txt);
+	console.log("Starte drawChart")
 		var ctx = document.getElementById('tempChart').getContext('2d');
 		Chart.defaults.global.defaultFontColor = 'white';
 		Chart.defaults.global.defaultFontSize = '12';
+
+		//Wetterdaten richtig formatieren für Chart - Push in 2 neue Arrays
+		var timestamp = [];
+		var wetterDaten = [];
+		for (var i = 0; i < data["list"].length; i = (i+2)) {
+				timestamp.push(data.list[i].dt_txt);
+				console.log(timestamp);
+				wetterDaten.push(Math.round(data.list[i].main.temp * 10) / 10);
+				console.log(wetterDaten)
+		}
 		var chart1 = new Chart(ctx, {
 			  type: 'line',
 		    data: {
-		        labels: [data.list[0].dt_txt, data.list["3"].dt_txt, data.list["6"].dt_txt,data.list["9"].dt_txt, data.list["12"].dt_txt, data.list["15"].dt_txt,
-										data.list["18"].dt_txt, data.list["21"].dt_txt, data.list["24"].dt_txt,data.list["27"].dt_txt, data.list["30"].dt_txt, data.list["33"].dt_txt,
-										data.list["36"].dt_txt,data.list["39"].dt_txt],
+		        labels: timestamp,
 		        datasets: [{
 		            label: "Temperatur",
 								yAxisID: 'TemperaturY',
-		            borderColor: 'rgb(255,99,132)',
+		            borderColor: 'red',
 								fill: false,
-		            data: [data.list["0"].main.temp, data.list["3"].main.temp, data.list["6"].main.temp, data.list["9"].main.temp, data.list["12"].main.temp, data.list["15"].main.temp,
-												data.list["18"].main.temp, data.list["21"].main.temp, data.list["24"].main.temp, data.list["27"].main.temp, data.list["30"].main.temp, data.list["33"].main.temp,
-												data.list["36"].main.temp,data.list["39"].main.temp],
-								type: 'line',
+		            data: wetterDaten,
+								datalabels: {
+									align: 'center',
+									anchor: 'center',
+									offset: 5,
+									borderRadius: 1,
+									backgroundColor:'red',
+									color: 'white',
+									font: {
+										weight: 'bold'
+									},
+								}
 		        }]
 		    },
 		    // Configuration options go here
@@ -203,11 +218,12 @@ function drawChartDetail(data) {
 								gridLines: {
 										display: true,
 								}, ticks: {
-										fontColor: "rgb(255,99,132)",
-					          max: 40,
-					          min: -20,
+										fontColor: "red",
+										min: Math.round(Math.min.apply(this, wetterDaten)) - 5,
+         						max: Math.round(Math.max.apply(this, wetterDaten)) + 5,
+										stepSize: 2,
 					        }, scaleLabel: {
-										fontColor: 'rgb(255,99,132)',
+										fontColor: 'red',
 										fontSize: 16,
 										display:true,
 										labelString: 'Temperatur °',

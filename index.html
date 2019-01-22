@@ -9,6 +9,7 @@
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 	<script src=https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js></script>
+	<script src=https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 	<script src="https://unpkg.com/eva-icons"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/trianglify/2.0.0/trianglify.min.js"></script>
@@ -366,481 +367,499 @@
 
 	}
 
-function drawChartDetail(data) {
-		console.log(data.list[0]["weather"][0].id);
-		console.log(data.list["0"].dt_txt);
-		var ctx = document.getElementById('tempChart').getContext('2d');
-		Chart.defaults.global.defaultFontColor = 'white';
-		Chart.defaults.global.defaultFontSize = '12';
-		var chart1 = new Chart(ctx, {
-			  type: 'line',
-		    data: {
-		        labels: [data.list[0].dt_txt, data.list["3"].dt_txt, data.list["6"].dt_txt,data.list["9"].dt_txt, data.list["12"].dt_txt, data.list["15"].dt_txt,
-										data.list["18"].dt_txt, data.list["21"].dt_txt, data.list["24"].dt_txt,data.list["27"].dt_txt, data.list["30"].dt_txt, data.list["33"].dt_txt,
-										data.list["36"].dt_txt,data.list["39"].dt_txt],
-		        datasets: [{
-		            label: "Temperatur",
-								yAxisID: 'TemperaturY',
-		            borderColor: 'rgb(255,99,132)',
-								fill: false,
-		            data: [data.list["0"].main.temp, data.list["3"].main.temp, data.list["6"].main.temp, data.list["9"].main.temp, data.list["12"].main.temp, data.list["15"].main.temp,
-												data.list["18"].main.temp, data.list["21"].main.temp, data.list["24"].main.temp, data.list["27"].main.temp, data.list["30"].main.temp, data.list["33"].main.temp,
-												data.list["36"].main.temp,data.list["39"].main.temp],
-								type: 'line',
-		        }]
-		    },
-		    // Configuration options go here
-		    options: {
-					maintainAspectRatio: false,
-					responsive: true,
-					legend: {
-						position: 'bottom',
-						labels: {
-							fontColor: '#d8eaf1',
-							fontSize: 16,
-						}
-				  }, scales: {
-							yAxes: [{
-								type: 'linear',
-								display: true,
-								position: 'left',
-								id: 'TemperaturY',
-								gridLines: {
-										display: true,
-								}, ticks: {
-										fontColor: "rgb(255,99,132)",
-					          max: 40,
-					          min: -20,
-					        }, scaleLabel: {
-										fontColor: 'rgb(255,99,132)',
-										fontSize: 16,
-										display:true,
-										labelString: 'Temperatur °',
+	function drawChartDetail(data) {
+		console.log("Starte drawChart")
+			var ctx = document.getElementById('tempChart').getContext('2d');
+			Chart.defaults.global.defaultFontColor = 'white';
+			Chart.defaults.global.defaultFontSize = '12';
+
+			//Wetterdaten richtig formatieren für Chart - Push in 2 neue Arrays
+			var timestamp = [];
+			var wetterDaten = [];
+			for (var i = 0; i < data["list"].length; i = (i+2)) {
+					timestamp.push(data.list[i].dt_txt);
+					console.log(timestamp);
+					wetterDaten.push(Math.round(data.list[i].main.temp * 10) / 10);
+					console.log(wetterDaten)
+			}
+			var chart1 = new Chart(ctx, {
+				  type: 'line',
+			    data: {
+			        labels: timestamp,
+			        datasets: [{
+			            label: "Temperatur",
+									yAxisID: 'TemperaturY',
+			            borderColor: 'red',
+									fill: false,
+			            data: wetterDaten,
+									datalabels: {
+										align: 'center',
+										anchor: 'center',
+										offset: 5,
+										borderRadius: 1,
+										backgroundColor:'red',
+										color: 'white',
+										font: {
+											weight: 'bold'
+										},
+									}
+			        }]
+			    },
+			    // Configuration options go here
+			    options: {
+						maintainAspectRatio: false,
+						responsive: true,
+						legend: {
+							position: 'top',
+							labels: {
+								fontColor: '#d8eaf1',
+								fontSize: 16,
+							}
+					  }, scales: {
+								yAxes: [{
+									type: 'linear',
+									display: true,
+									position: 'left',
+									id: 'TemperaturY',
+									gridLines: {
+											display: true,
+									}, ticks: {
+										display: false,
+											fontColor: "white",
+											min: Math.round(Math.min.apply(this, wetterDaten)) - 5,
+	         						max: Math.round(Math.max.apply(this, wetterDaten)) + 5,
+											stepSize: 2,
+						        }, scaleLabel: {
+											fontColor: 'white',
+											fontSize: 14,
+											display: false,
+											labelString: 'Temperatur °',
+										},
+								}],
+					    xAxes: [{
+								id: 'xAxis-Zeit',
+									ticks:{
+	            			callback:function(label){
+	              		var datum = label.split(" ")[0];
+			              var zeit = (label.split(" ")[1]).substring(0,5);
+			              return zeit;
+										}
 									},
-							}],
-				    xAxes: [{
-							id: 'xAxis-Zeit',
-								ticks:{
-            			callback:function(label){
-              		var datum = label.split(" ")[0];
-		              var zeit = (label.split(" ")[1]).substring(0,5);
-		              return zeit;
-									}
-								},
-							gridLines: {
-								display: true,
-							}
-						}, {
-							id: 'xAxis-Datum',
-								drawOnChartArea: false,
-								ticks:{
-            			callback:function(label){
-              		var datum = label.split(" ")[0];
-		              var zeit = label.split(" ")[1];
-		              return datum;
-									}
-								},
-							gridLines: {
-								display: false,
-							}
-						}]
-				  }, layout: {
-            padding: {
-                left: 15,
-                right: 15,
-                top: 30,
-            }
+								gridLines: {
+									display: false,
+								}
+							}, {
+								id: 'xAxis-Datum',
+									drawOnChartArea: false,
+									ticks:{
+	            			callback:function(label){
+	              		var datum = label.split(" ")[0];
+			              var zeit = label.split(" ")[1];
+			              return datum;
+										}
+									},
+								gridLines: {
+									display: false,
+									drawOnChartArea: false,
+								}
+							}]
+					  }, layout: {
+	            padding: {
+	                // left: 15,
+	                // right: 30,
+	                // top: 15,
+	            }
+						}
 					}
-				}
-		});
-		setBackground();
-	}
-
-	//Verknüpfen der Registration/LoginButtons mit den entsprechenden Tabs im Login-Modal
-	$('.btn-Navbar').on('click', function setModalTab() {
-		console.log("Navbar-Buttons ok");
-		var tabTarget = $(this).data('tab');
-		$('.modalRegLog').modal('show');
-		$('.modalRegTabBar a[href="#' + tabTarget + '"]').tab('show');
-	});
-
-	function setBackground() {var pattern = Trianglify({
-			cell_size: 500,
-			variance: 1,
-			x_colors: ['#526b7b', '#6691ab', '#375b5f'],
-			width: window.innerWidth,
-			height: window.innerHeight
 			});
-		document.body.style.backgroundImage = "url(" + pattern.png() + ")"
+			setBackground();
+		}
+
+		//Verknüpfen der Registration/LoginButtons mit den entsprechenden Tabs im Login-Modal
+		$('.btn-Navbar').on('click', function setModalTab() {
+			console.log("Navbar-Buttons ok");
+			var tabTarget = $(this).data('tab');
+			$('.modalRegLog').modal('show');
+			$('.modalRegTabBar a[href="#' + tabTarget + '"]').tab('show');
+		});
+
+		function setBackground() {var pattern = Trianglify({
+				cell_size: 500,
+				variance: 1,
+				x_colors: ['#526b7b', '#6691ab', '#375b5f'],
+				width: window.innerWidth,
+				height: window.innerHeight
+				});
+			document.body.style.backgroundImage = "url(" + pattern.png() + ")"
+		}
+
+		var weatherIcons = {
+		"200": {
+		  "label": "thunderstorm with light rain",
+		  "icon": "storm-showers"
+		},
+
+		"201": {
+		  "label": "thunderstorm with rain",
+		  "icon": "storm-showers"
+		},
+
+		"202": {
+		  "label": "thunderstorm with heavy rain",
+		  "icon": "storm-showers"
+		},
+
+		"210": {
+		  "label": "light thunderstorm",
+		  "icon": "storm-showers"
+		},
+
+		"211": {
+		  "label": "thunderstorm",
+		  "icon": "thunderstorm"
+		},
+
+		"212": {
+		  "label": "heavy thunderstorm",
+		  "icon": "thunderstorm"
+		},
+
+		"221": {
+		  "label": "ragged thunderstorm",
+		  "icon": "thunderstorm"
+		},
+
+		"230": {
+		  "label": "thunderstorm with light drizzle",
+		  "icon": "storm-showers"
+		},
+
+		"231": {
+		  "label": "thunderstorm with drizzle",
+		  "icon": "storm-showers"
+		},
+
+		"232": {
+		  "label": "thunderstorm with heavy drizzle",
+		  "icon": "storm-showers"
+		},
+
+		"300": {
+		  "label": "light intensity drizzle",
+		  "icon": "sprinkle"
+		},
+
+		"301": {
+		  "label": "drizzle",
+		  "icon": "sprinkle"
+		},
+
+		"302": {
+		  "label": "heavy intensity drizzle",
+		  "icon": "sprinkle"
+		},
+
+		"310": {
+		  "label": "light intensity drizzle rain",
+		  "icon": "sprinkle"
+		},
+
+		"311": {
+		  "label": "drizzle rain",
+		  "icon": "sprinkle"
+		},
+
+		"312": {
+		  "label": "heavy intensity drizzle rain",
+		  "icon": "sprinkle"
+		},
+
+		"313": {
+		  "label": "shower rain and drizzle",
+		  "icon": "sprinkle"
+		},
+
+		"314": {
+		  "label": "heavy shower rain and drizzle",
+		  "icon": "sprinkle"
+		},
+
+		"321": {
+		  "label": "shower drizzle",
+		  "icon": "sprinkle"
+		},
+
+		"500": {
+		  "label": "light rain",
+		  "icon": "rain"
+		},
+
+		"501": {
+		  "label": "moderate rain",
+		  "icon": "rain"
+		},
+
+		"502": {
+		  "label": "heavy intensity rain",
+		  "icon": "rain"
+		},
+
+		"503": {
+		  "label": "very heavy rain",
+		  "icon": "rain"
+		},
+
+		"504": {
+		  "label": "extreme rain",
+		  "icon": "rain"
+		},
+
+		"511": {
+		  "label": "freezing rain",
+		  "icon": "rain-mix"
+		},
+
+		"520": {
+		  "label": "light intensity shower rain",
+		  "icon": "showers"
+		},
+
+		"521": {
+		  "label": "shower rain",
+		  "icon": "showers"
+		},
+
+		"522": {
+		  "label": "heavy intensity shower rain",
+		  "icon": "showers"
+		},
+
+		"531": {
+		  "label": "ragged shower rain",
+		  "icon": "showers"
+		},
+
+		"600": {
+		  "label": "light snow",
+		  "icon": "snow"
+		},
+
+		"601": {
+		  "label": "snow",
+		  "icon": "snow"
+		},
+
+		"602": {
+		  "label": "heavy snow",
+		  "icon": "snow"
+		},
+
+		"611": {
+		  "label": "sleet",
+		  "icon": "sleet"
+		},
+
+		"612": {
+		  "label": "shower sleet",
+		  "icon": "sleet"
+		},
+
+		"615": {
+		  "label": "light rain and snow",
+		  "icon": "rain-mix"
+		},
+
+		"616": {
+		  "label": "rain and snow",
+		  "icon": "rain-mix"
+		},
+
+		"620": {
+		  "label": "light shower snow",
+		  "icon": "rain-mix"
+		},
+
+		"621": {
+		  "label": "shower snow",
+		  "icon": "rain-mix"
+		},
+
+		"622": {
+		  "label": "heavy shower snow",
+		  "icon": "rain-mix"
+		},
+
+		"701": {
+		  "label": "mist",
+		  "icon": "sprinkle"
+		},
+
+		"711": {
+		  "label": "smoke",
+		  "icon": "smoke"
+		},
+
+		"721": {
+		  "label": "haze",
+		  "icon": "day-haze"
+		},
+
+		"731": {
+		  "label": "sand, dust whirls",
+		  "icon": "cloudy-gusts"
+		},
+
+		"741": {
+		  "label": "fog",
+		  "icon": "fog"
+		},
+
+		"751": {
+		  "label": "sand",
+		  "icon": "cloudy-gusts"
+		},
+
+		"761": {
+		  "label": "dust",
+		  "icon": "dust"
+		},
+
+		"762": {
+		  "label": "volcanic ash",
+		  "icon": "smog"
+		},
+
+		"771": {
+		  "label": "squalls",
+		  "icon": "day-windy"
+		},
+
+		"781": {
+		  "label": "tornado",
+		  "icon": "tornado"
+		},
+
+		"800": {
+		  "label": "clear sky",
+		  "icon": "sunny"
+		},
+
+		"801": {
+		  "label": "few clouds",
+		  "icon": "cloudy"
+		},
+
+		"802": {
+		  "label": "scattered clouds",
+		  "icon": "cloudy"
+		},
+
+		"803": {
+		  "label": "broken clouds",
+		  "icon": "cloudy"
+		},
+
+		"804": {
+		  "label": "overcast clouds",
+		  "icon": "cloudy"
+		},
+
+
+		"900": {
+		  "label": "tornado",
+		  "icon": "tornado"
+		},
+
+		"901": {
+		  "label": "tropical storm",
+		  "icon": "hurricane"
+		},
+
+		"902": {
+		  "label": "hurricane",
+		  "icon": "hurricane"
+		},
+
+		"903": {
+		  "label": "cold",
+		  "icon": "snowflake-cold"
+		},
+
+		"904": {
+		  "label": "hot",
+		  "icon": "hot"
+		},
+
+		"905": {
+		  "label": "windy",
+		  "icon": "windy"
+		},
+
+		"906": {
+		  "label": "hail",
+		  "icon": "hail"
+		},
+
+		"951": {
+		  "label": "calm",
+		  "icon": "sunny"
+		},
+
+		"952": {
+		  "label": "light breeze",
+		  "icon": "cloudy-gusts"
+		},
+
+		"953": {
+		  "label": "gentle breeze",
+		  "icon": "cloudy-gusts"
+		},
+
+		"954": {
+		  "label": "moderate breeze",
+		  "icon": "cloudy-gusts"
+		},
+
+		"955": {
+		  "label": "fresh breeze",
+		  "icon": "cloudy-gusts"
+		},
+
+		"956": {
+		  "label": "strong breeze",
+		  "icon": "cloudy-gusts"
+		},
+
+		"957": {
+		  "label": "high wind, near gale",
+		  "icon": "cloudy-gusts"
+		},
+
+		"958": {
+		  "label": "gale",
+		  "icon": "cloudy-gusts"
+		},
+
+		"959": {
+		  "label": "severe gale",
+		  "icon": "cloudy-gusts"
+		},
+
+		"960": {
+		  "label": "storm",
+		  "icon": "thunderstorm"
+		},
+
+		"961": {
+		  "label": "violent storm",
+		  "icon": "thunderstorm"
+		},
+
+		"962": {
+		  "label": "hurricane",
+		  "icon": "cloudy-gusts"
+		}
 	}
-
-	var weatherIcons = {
-	"200": {
-	  "label": "thunderstorm with light rain",
-	  "icon": "storm-showers"
-	},
-
-	"201": {
-	  "label": "thunderstorm with rain",
-	  "icon": "storm-showers"
-	},
-
-	"202": {
-	  "label": "thunderstorm with heavy rain",
-	  "icon": "storm-showers"
-	},
-
-	"210": {
-	  "label": "light thunderstorm",
-	  "icon": "storm-showers"
-	},
-
-	"211": {
-	  "label": "thunderstorm",
-	  "icon": "thunderstorm"
-	},
-
-	"212": {
-	  "label": "heavy thunderstorm",
-	  "icon": "thunderstorm"
-	},
-
-	"221": {
-	  "label": "ragged thunderstorm",
-	  "icon": "thunderstorm"
-	},
-
-	"230": {
-	  "label": "thunderstorm with light drizzle",
-	  "icon": "storm-showers"
-	},
-
-	"231": {
-	  "label": "thunderstorm with drizzle",
-	  "icon": "storm-showers"
-	},
-
-	"232": {
-	  "label": "thunderstorm with heavy drizzle",
-	  "icon": "storm-showers"
-	},
-
-	"300": {
-	  "label": "light intensity drizzle",
-	  "icon": "sprinkle"
-	},
-
-	"301": {
-	  "label": "drizzle",
-	  "icon": "sprinkle"
-	},
-
-	"302": {
-	  "label": "heavy intensity drizzle",
-	  "icon": "sprinkle"
-	},
-
-	"310": {
-	  "label": "light intensity drizzle rain",
-	  "icon": "sprinkle"
-	},
-
-	"311": {
-	  "label": "drizzle rain",
-	  "icon": "sprinkle"
-	},
-
-	"312": {
-	  "label": "heavy intensity drizzle rain",
-	  "icon": "sprinkle"
-	},
-
-	"313": {
-	  "label": "shower rain and drizzle",
-	  "icon": "sprinkle"
-	},
-
-	"314": {
-	  "label": "heavy shower rain and drizzle",
-	  "icon": "sprinkle"
-	},
-
-	"321": {
-	  "label": "shower drizzle",
-	  "icon": "sprinkle"
-	},
-
-	"500": {
-	  "label": "light rain",
-	  "icon": "rain"
-	},
-
-	"501": {
-	  "label": "moderate rain",
-	  "icon": "rain"
-	},
-
-	"502": {
-	  "label": "heavy intensity rain",
-	  "icon": "rain"
-	},
-
-	"503": {
-	  "label": "very heavy rain",
-	  "icon": "rain"
-	},
-
-	"504": {
-	  "label": "extreme rain",
-	  "icon": "rain"
-	},
-
-	"511": {
-	  "label": "freezing rain",
-	  "icon": "rain-mix"
-	},
-
-	"520": {
-	  "label": "light intensity shower rain",
-	  "icon": "showers"
-	},
-
-	"521": {
-	  "label": "shower rain",
-	  "icon": "showers"
-	},
-
-	"522": {
-	  "label": "heavy intensity shower rain",
-	  "icon": "showers"
-	},
-
-	"531": {
-	  "label": "ragged shower rain",
-	  "icon": "showers"
-	},
-
-	"600": {
-	  "label": "light snow",
-	  "icon": "snow"
-	},
-
-	"601": {
-	  "label": "snow",
-	  "icon": "snow"
-	},
-
-	"602": {
-	  "label": "heavy snow",
-	  "icon": "snow"
-	},
-
-	"611": {
-	  "label": "sleet",
-	  "icon": "sleet"
-	},
-
-	"612": {
-	  "label": "shower sleet",
-	  "icon": "sleet"
-	},
-
-	"615": {
-	  "label": "light rain and snow",
-	  "icon": "rain-mix"
-	},
-
-	"616": {
-	  "label": "rain and snow",
-	  "icon": "rain-mix"
-	},
-
-	"620": {
-	  "label": "light shower snow",
-	  "icon": "rain-mix"
-	},
-
-	"621": {
-	  "label": "shower snow",
-	  "icon": "rain-mix"
-	},
-
-	"622": {
-	  "label": "heavy shower snow",
-	  "icon": "rain-mix"
-	},
-
-	"701": {
-	  "label": "mist",
-	  "icon": "sprinkle"
-	},
-
-	"711": {
-	  "label": "smoke",
-	  "icon": "smoke"
-	},
-
-	"721": {
-	  "label": "haze",
-	  "icon": "day-haze"
-	},
-
-	"731": {
-	  "label": "sand, dust whirls",
-	  "icon": "cloudy-gusts"
-	},
-
-	"741": {
-	  "label": "fog",
-	  "icon": "fog"
-	},
-
-	"751": {
-	  "label": "sand",
-	  "icon": "cloudy-gusts"
-	},
-
-	"761": {
-	  "label": "dust",
-	  "icon": "dust"
-	},
-
-	"762": {
-	  "label": "volcanic ash",
-	  "icon": "smog"
-	},
-
-	"771": {
-	  "label": "squalls",
-	  "icon": "day-windy"
-	},
-
-	"781": {
-	  "label": "tornado",
-	  "icon": "tornado"
-	},
-
-	"800": {
-	  "label": "clear sky",
-	  "icon": "sunny"
-	},
-
-	"801": {
-	  "label": "few clouds",
-	  "icon": "cloudy"
-	},
-
-	"802": {
-	  "label": "scattered clouds",
-	  "icon": "cloudy"
-	},
-
-	"803": {
-	  "label": "broken clouds",
-	  "icon": "cloudy"
-	},
-
-	"804": {
-	  "label": "overcast clouds",
-	  "icon": "cloudy"
-	},
-
-
-	"900": {
-	  "label": "tornado",
-	  "icon": "tornado"
-	},
-
-	"901": {
-	  "label": "tropical storm",
-	  "icon": "hurricane"
-	},
-
-	"902": {
-	  "label": "hurricane",
-	  "icon": "hurricane"
-	},
-
-	"903": {
-	  "label": "cold",
-	  "icon": "snowflake-cold"
-	},
-
-	"904": {
-	  "label": "hot",
-	  "icon": "hot"
-	},
-
-	"905": {
-	  "label": "windy",
-	  "icon": "windy"
-	},
-
-	"906": {
-	  "label": "hail",
-	  "icon": "hail"
-	},
-
-	"951": {
-	  "label": "calm",
-	  "icon": "sunny"
-	},
-
-	"952": {
-	  "label": "light breeze",
-	  "icon": "cloudy-gusts"
-	},
-
-	"953": {
-	  "label": "gentle breeze",
-	  "icon": "cloudy-gusts"
-	},
-
-	"954": {
-	  "label": "moderate breeze",
-	  "icon": "cloudy-gusts"
-	},
-
-	"955": {
-	  "label": "fresh breeze",
-	  "icon": "cloudy-gusts"
-	},
-
-	"956": {
-	  "label": "strong breeze",
-	  "icon": "cloudy-gusts"
-	},
-
-	"957": {
-	  "label": "high wind, near gale",
-	  "icon": "cloudy-gusts"
-	},
-
-	"958": {
-	  "label": "gale",
-	  "icon": "cloudy-gusts"
-	},
-
-	"959": {
-	  "label": "severe gale",
-	  "icon": "cloudy-gusts"
-	},
-
-	"960": {
-	  "label": "storm",
-	  "icon": "thunderstorm"
-	},
-
-	"961": {
-	  "label": "violent storm",
-	  "icon": "thunderstorm"
-	},
-
-	"962": {
-	  "label": "hurricane",
-	  "icon": "cloudy-gusts"
-	}
-}
 </script>
 
 </html>

@@ -241,6 +241,7 @@ input#inputTextNav[type="search"]::placeholder {
 .tempChart-container {
   width: 100vw;
   height: 35vh;
+  padding: 1%;
 }
 ul {
   list-style: none;
