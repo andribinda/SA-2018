@@ -1,13 +1,9 @@
 .topNav{
   background: rgba(81, 107, 123, 0.5) !important;
-  margin-bottom: 1%;
 }
 
 .navbar-toggler{
   border-color: #d8eaf1 !important;
-}
-
-.searchTop {
 }
 
 .navbar-toggler:hover,.navbar-toggler:active,.navbar-toggler.active,.navbar-toggler:focus{
@@ -75,12 +71,7 @@ input#inputTextNav[type="search"]::placeholder {
 
 @media (min-width: 576px) {
   .searchTop {
-    height: 100%;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 50%;
-
+    width: 40%;
   }
   .formNavSearch {
     width:100% !important;
@@ -145,7 +136,7 @@ input#inputTextNav[type="search"]::placeholder {
   margin: 1%;
   background: rgba(0, 0, 0, 0.3) !important;
   border-radius: 15px;
-  border: 1px solid black;
+  border: 2px solid black;
 }
 .standort{
   position: relative;
@@ -201,7 +192,7 @@ input#inputTextNav[type="search"]::placeholder {
 }
 
 .sidebar {
-  background-color: transparent !important;
+  background: rgba(81, 107, 123, 0.5) !important;
 }
 
 .sideNavItem {
@@ -229,10 +220,6 @@ input#inputTextNav[type="search"]::placeholder {
   left: 0;
   z-index: 1;
 }
-
-/* .col-sm, .col-sm-4, .col-xs, .col-xs-4, .col-xl-6 {
-  border: 2px solid black;
-} */
 
 #actualPlace {
   margin-bottom: 5%;
@@ -275,4 +262,12 @@ ul {
 .no-margin {
   margin-left: 0;
   margin-right: 0;
+}
+
+.tempMax {
+  color: red;
+}
+
+.tempMin {
+  color: blue;
 }

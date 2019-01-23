@@ -13,6 +13,7 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 	<script src="https://unpkg.com/eva-icons"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/trianglify/2.0.0/trianglify.min.js"></script>
+	<script src="script.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/weather-icons.min.css">
 	<link rel="stylesheet" type="text/css" href="css/weather-icons-wind.min.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
@@ -200,7 +201,7 @@
 	</div>
 </div>
 
-<script>
+<!-- <script>
 	// Script starter
 	$(document).ready(function() {
 		console.log("ready!");
@@ -262,7 +263,7 @@
 			$("#heuteIcon").addClass(wIcon)
 			$("#actualPlace").html(data["name"] + " / " + data["sys"]["country"]);
 			$("#heuteTemp").html("<h3><li> " + Math.round(data["main"]["temp"]) + "°C</h3></li><li><h5>" + data["weather"]["0"]["description"] + "</h5></li>");
-			$("#heuteInfo").html("<li><h5><i class='wi wi-thermometer'></i>" + data["main"]["temp_min"] + " °C</h5></li><li><h5><i class='wi wi-thermometer'></i>" + data["main"]["temp_max"] + " °C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " +
+			$("#heuteInfo").html("<li><h5><i class='wi wi-thermometer tempMin'></i> " + data["main"]["temp_min"] + " °C</h5></li><li><h5><i class='wi wi-thermometer tempMax'></i> " + data["main"]["temp_max"] + " °C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " +
 				data["wind"]["speed"] + " m/s</li><li><h5><i class='wi wi-sunrise'></i> " + Unix_timestamp(tRise) + "</h5></li><li><h5><i class='wi wi-sunset'></i> " + Unix_timestamp(tSet) + "</h5></li>");
 		});
 		$.ajax({
@@ -312,28 +313,28 @@
 
 			$("#wIconD1").addClass(wIconD1)
 			$("#d1Temp").html("<h4><li>" + Math.round(data["list"]["0"]["main"]["temp"]) + "°C</h4></li><li><h6>" + data["list"]["0"]["weather"]["0"]["description"] +"</h6></li>");
-			$("#d1Info").html("<li><h5><i class='wi wi-thermometer'></i>" +	Math.round(data["list"]["0"]["main"]["temp_min"] * 10) / 10 + "°C</h5></li><li><h5><i class='wi wi-thermometer'></i>" +
-			Math.round(data["list"]["0"]["main"]["temp_max"] * 10) / 10 + "°C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " + data["list"]["0"]["wind"]["speed"] + "m/s</li>");
+			$("#d1Info").html("<li><h5><i class='wi wi-thermometer tempMin'></i> " +	Math.round(data["list"]["0"]["main"]["temp_min"]) + "°C</h5></li><li><h5><i class='wi wi-thermometer tempMax'></i> " +
+			Math.round(data["list"]["0"]["main"]["temp_max"]) + "°C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " + data["list"]["0"]["wind"]["speed"] + "m/s</li>");
 
 			$("#wIconD2").addClass(wIconD2)
 			$("#d2Temp").html("<h4><li> " + Math.round(data["list"]["8"]["main"]["temp"]) + "°C</h4></li><li><h6>" + data["list"]["8"]["weather"]["0"]["description"] + "</h6></li>");
-			$("#d2Info").html("<li><h5><i class='wi wi-thermometer'></i>" +	Math.round(data["list"]["6"]["main"]["temp_min"] * 10) / 10 + "°C</h5></li><li><h5><i class='wi wi-thermometer'></i>" +
-			Math.round(data["list"]["10"]["main"]["temp_max"] * 10) / 10 + "°C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " + data["list"]["8"]["wind"]["speed"] + "m/s</li>");
+			$("#d2Info").html("<li><h5><i class='wi wi-thermometer tempMin'></i> " +	Math.round(data["list"]["8"]["main"]["temp_min"]) + "°C</h5></li><li><h5><i class='wi wi-thermometer tempMax'></i> " +
+			Math.round(data["list"]["8"]["main"]["temp_max"]) + "°C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " + data["list"]["8"]["wind"]["speed"] + "m/s</li>");
 
 			$("#wIconD3").addClass(wIconD3)
 			$("#d3Temp").html("<li><h4>" + Math.round(data["list"]["16"]["main"]["temp"]) + "°C</h4></li><li><h6>" + data["list"]["16"]["weather"]["0"]["description"] + "</h6></li>");
-			$("#d3Info").html("<li><h5><i class='wi wi-thermometer'></i>" +	Math.round(data["list"]["16"]["main"]["temp_min"] * 10) / 10 + "°C</h5></li><li><h5><i class='wi wi-thermometer'></i>" +
-			Math.round(data["list"]["16"]["main"]["temp_max"] * 10) / 10 + "°C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " + data["list"]["16"]["wind"]["speed"] + "m/s</li>");
+			$("#d3Info").html("<li><h5><i class='wi wi-thermometer tempMin'></i> " +	Math.round(data["list"]["16"]["main"]["temp_min"]) + "°C</h5></li><li><h5><i class='wi wi-thermometer tempMax'></i> " +
+			Math.round(data["list"]["16"]["main"]["temp_max"]) + "°C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " + data["list"]["16"]["wind"]["speed"] + "m/s</li>");
 
 			$("#wIconD4").addClass(wIconD4)
 			$("#d4Temp").html("<li><li><h4>" + Math.round(data["list"]["24"]["main"]["temp"]) + "°C</h4></li><h6>" + data["list"]["24"]["weather"]["0"]["description"] + "</h6></li>");
-			$("#d4Info").html("<li><h5><i class='wi wi-thermometer'></i> " +	Math.round(data["list"]["22"]["main"]["temp_min"] * 10) / 10 + "°C</h5></li><li><h5><i class='wi wi-thermometer'></i>" +
-			Math.round(data["list"]["26"]["main"]["temp_max"] * 10) / 10 + "°C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " + data["list"]["24"]["wind"]["speed"] + "m/s</li>");
+			$("#d4Info").html("<li><h5><i class='wi wi-thermometer tempMin'></i> " +	Math.round(data["list"]["24"]["main"]["temp_min"]) + "°C</h5></li><li><h5><i class='wi wi-thermometer tempMax'></i> " +
+			Math.round(data["list"]["24"]["main"]["temp_max"]) + "°C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " + data["list"]["24"]["wind"]["speed"] + "m/s</li>");
 
 			$("#wIconD5").addClass(wIconD5)
 			$("#d5Temp").html("<li><h4>" + Math.round(data["list"]["32"]["main"]["temp"]) + "°C</h4></li><li><h6>" + data["list"]["32"]["weather"]["0"]["description"] + "</h6></li>");
-			$("#d5Info").html("<li><h5><i class='wi wi-thermometer'></i>" +	Math.round(data["list"]["30"]["main"]["temp_min"] * 10) / 10 + "°C</h5></li><li><h5><i class='wi wi-thermometer'></i>" +
-			Math.round(data["list"]["34"]["main"]["temp_max"] * 10) / 10 + "°C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " + data["list"]["32"]["wind"]["speed"] + "m/s</li>");
+			$("#d5Info").html("<li><h5><i class='wi wi-thermometer tempMin'></i> " +	Math.round(data["list"]["32"]["main"]["temp_min"]) + "°C</h5></li><li><h5><i class='wi wi-thermometer tempMax'></i> " +
+			Math.round(data["list"]["32"]["main"]["temp_max"]) + "°C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " + data["list"]["32"]["wind"]["speed"] + "m/s</li>");
 
 			drawChartDetail(data);
 		});
@@ -378,7 +379,6 @@
 			var wetterDaten = [];
 			for (var i = 0; i < data["list"].length; i = (i+2)) {
 					timestamp.push(data.list[i].dt_txt);
-					console.log(timestamp);
 					wetterDaten.push(Math.round(data.list[i].main.temp * 10) / 10);
 					console.log(wetterDaten)
 			}
@@ -463,13 +463,7 @@
 									drawOnChartArea: false,
 								}
 							}]
-					  }, layout: {
-	            padding: {
-	                // left: 15,
-	                // right: 30,
-	                // top: 15,
-	            }
-						}
+					  }
 					}
 			});
 			setBackground();
@@ -860,6 +854,6 @@
 		  "icon": "cloudy-gusts"
 		}
 	}
-</script>
+</script> -->
 
 </html>
