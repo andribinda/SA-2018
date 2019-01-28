@@ -14,7 +14,7 @@
   crossorigin="anonymous"></script>
   <script src="https://unpkg.com/eva-icons"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/trianglify/2.0.0/trianglify.min.js"></script>
-  <script src="scripts.js"></script>
+  <script src="js/scripts-user.js"></script>
   <link rel="stylesheet" type="text/css" href="css/weather-icons.min.css">
   <link rel="stylesheet" type="text/css" href="css/weather-icons-wind.min.css">
   <link rel="stylesheet" type="text/css" href="css/main.css">
@@ -31,7 +31,7 @@
   <div class="row">
     <div class="col-sm-2 sidebar h-100">
       <ul class="nav flex-sm-column sideNav justify-content-center">
-        <a href="#" class="sideNavItem" id="menuUser"><i data-eva="person-outline" data-eva-height="48" data-eva-width="48"></i></a>
+        <a href="#modalUser" class="sideNavItem" id="menuUser"><i data-eva="person-outline" data-eva-height="48" data-eva-width="48"></i></a>
         <a href="#modalLogout" class="sideNavItem" id="menuLogout"><i data-eva="power" data-eva-height="48" data-eva-width="48"></i></a>
         <a href="#modalAbout" class="sideNavItem" id="menuAbout"><i data-eva="question-mark" data-eva-height="48" data-eva-width="48"></i></a>
       </ul>
@@ -175,6 +175,20 @@
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
 			<div class="modal-body">
+        <div class="form-row">
+          <div class="form-group col-sm-8">
+            <label for="emailInput" class="modalFormLabel">Email</label>
+            <input type="email" class="form-control" id="emailInputLogin" placeholder="Email-Adresse">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-sm-8">
+            <label for="emailInput" class="modalFormLabel">Email</label>
+            <input type="email" class="form-control" id="emailInputLogin" placeholder="Email-Adresse">
+          </div>
+          <div class="form-group col-sm-8">
+            <label for="passwordInput" class="modalFormLabel">Passwort</label>
+            <input type="password" class="form-control" id="passwordInputLogin" placeholder="Passwort">
 				<a href="#" class="btn btn-primary btn-modal1">Speichern</a>
 				<button type="button" class="btn btn-primary btn-modal1" data-dismiss="modal" aria-label="Close">Abbrechen</button>
 			</div>
@@ -193,25 +207,4 @@
 	</div>
 </div>
 
-<!-- <script>
-eva.replace()
-console.log("script start")
-
-$('#menuUser').on('click', function showModalUser() {
-  $('#modalUser').modal('show');
-});
-$('#menuAbout').on('click', function showModalAbout() {
-  $('#modalAbout').modal('show');
-});
-
-var pattern = Trianglify({
-		cell_size: 500,
-		variance: 1,
-		x_colors: ['#526b7b', '#6691ab', '#375b5f'],
-		width: window.innerWidth,
-		height: window.innerHeight
-	});
-	document.body.style.backgroundImage =  "url(" + pattern.png() + ")"
-
-</script>
 </html> -->

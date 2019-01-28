@@ -177,7 +177,7 @@
 			for (var i = 0; i < data["list"].length; i = (i+2)) {
 					timestamp.push(data.list[i].dt_txt);
 					wetterDaten.push(Math.round(data.list[i].main.temp * 10) / 10);
-					console.log(wetterDaten)
+					// console.log(wetterDaten)
 			}
 			var chart1 = new Chart(ctx, {
 				  type: 'line',
@@ -267,12 +267,18 @@
 		}
 
 		//Verknüpfen der Registration/LoginButtons mit den entsprechenden Tabs im Login-Modal
-		$('.btn-Navbar').on('click', function setModalTab() {
-			console.log("Navbar-Buttons ok");
-			var tabTarget = $(this).data('tab');
-			$('.modalRegLog').modal('show');
-			$('.modalRegTabBar a[href="#' + tabTarget + '"]').tab('show');
-		});
+		const articles = document.getElementsByClassName('btn-Navbar');
+		console.log(articles);
+		console.log(articles.length)
+		for (let ul of articles) {
+		  console.log("test");
+		};
+					// 				console.log(test);
+					// console.log("Navbar-Buttons ok");
+					// var tabTarget = $(this).data('tab');
+					// console.log(tabTarget)
+					// $('.modalRegLog').modal('show');
+					// $('.modalRegTabBar a[href="#' + tabTarget + '"]').tab('show');
 
 		$('#menuUser').on('click', function showModalUser() {
 		  $('#modalUser').modal('show');
@@ -286,8 +292,9 @@
 				variance: 1,
 				x_colors: ['#526b7b', '#6691ab', '#375b5f'],
 				width: window.innerWidth,
-				height: window.innerHeight
+				height: window.innerHeight,
 				});
+				console.log(document.body);
 			document.body.style.backgroundImage = "url(" + pattern.png() + ")"
 		}
 
@@ -349,7 +356,7 @@
 		},		"321": {
 		  "label": "shower drizzle",
 		  "icon": "sprinkle"
-				"500": {
+		},		"500": {
 		  "label": "light rain",
 		  "icon": "rain"
 		},		"501": {
