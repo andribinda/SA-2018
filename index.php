@@ -6,7 +6,7 @@ include_once 'includes/connect_db.php';
 
 secure_session_start();
 
-if (login_check($mysqli) == true) {
+if (userlogin_check($mysqli) == true) {
     $logged = 'in';
 } else {
     $logged = 'out';
@@ -188,7 +188,7 @@ if (login_check($mysqli) == true) {
 						</form>
 					</div>
 					<div id="modalTabReg" class="container tab-pane fade"><br>
-						<form action="<?php echo esc_url($_SERVER['PHP_SELF']); ?>"
+						<form action="<?php echo clean_php_url($_SERVER['PHP_SELF']); ?>"
 							method="post"
 							name="registration_form">
 							<div class="form-row">
