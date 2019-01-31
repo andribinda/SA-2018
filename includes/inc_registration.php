@@ -1,10 +1,10 @@
 <?php
-include_once 'db_connect.php';
+include_once 'connect_db.php';
 include_once 'db_config.php';
 
 $error_msg = "";
 
-if (isset $_POST['email'], $_POST['p'])) {
+if (isset ($_POST['email'], $_POST['p'])) {
     // Bereinige und überprüfe die Daten
     $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
     $email = filter_var($email, FILTER_VALIDATE_EMAIL);
