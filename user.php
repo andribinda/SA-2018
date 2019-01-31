@@ -1,12 +1,4 @@
 <!DOCTYPE html>
-
-<?php
-//include_once 'config/config.php';
-//require 'vendor/autoload.php';
-//session_start();
-?>
-
-<!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="utf-8" />
@@ -28,7 +20,7 @@
   <link rel="stylesheet" type="text/css" href="css/main.css">
 
 </head>
-<?php if (login_check($mysqli) == true) : ?>
+<?php if (userlogin_check($mysqli) == true) : ?>
 <body>
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark justify-content-center topNav">
     <form class="form-inline searchTop justify-content-center">
