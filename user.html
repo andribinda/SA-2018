@@ -182,6 +182,7 @@
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
 			<div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
 				<a href="#" class="btn btn-primary btn-modal1">Speichern</a>
 				<button type="button" class="btn btn-primary btn-modal1" data-dismiss="modal" aria-label="Close">Abbrechen</button>
 			</div>
@@ -193,8 +194,12 @@
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
 			<div class="modal-body">
-				<a href="#" class="btn btn-primary btn-modal1">Speichern</a>
-				<button type="button" class="btn btn-primary btn-modal1" data-dismiss="modal" aria-label="Close">Abbrechen</button>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h1>Hilfe</h1>
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+        <h2>About</h2>
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
 			</div>
 		</div>
 	</div>
@@ -203,6 +208,7 @@
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
 			<div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
 				<a href="#" class="btn btn-primary btn-modal1">Speichern</a>
 				<button type="button" class="btn btn-primary btn-modal1" data-dismiss="modal" aria-label="Close">Abbrechen</button>
 			</div>
@@ -213,6 +219,47 @@
 <script>
 eva.replace()
 console.log("script start")
+
+$(document).ready(function() {
+  console.log("ready!");
+  var latitude = 0;
+  var longitude = 0;
+  getLocation();
+});
+
+function getLocation() {
+  console.log("get location ready");
+  if (navigator.geolocation) {
+    console.log("navigator ready");
+    navigator.geolocation.getCurrentPosition(showPosition, showError);
+  } else {
+    x.innerHTML = "Geolocation is not supported by this browser.";
+  }
+}
+
+function showError(error) {
+  console.log(error);
+}
+
+function showPosition(position) {
+  console.log("get postition ready");
+  latitude = position.coords.latitude;
+  longitude = position.coords.longitude;
+  console.log(latitude);
+  console.log(longitude);
+
+  $.ajax({
+    url: "https://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude +
+      "&units=metric&lang=de&appid=6012cf5997f032d2c82563e60ef96a56",
+    context: document.body,
+    dataType: 'json'
+  }).done(function(data) {
+    setItems(data, weatherIcons);
+    $("#standortOrt").html(data["name"] + " / " + data["sys"]["country"]);
+    $("#standortTemperatur").html("<h2>" + Math.round(data["main"]["temp"]) + "°C </h2>");
+    $("#standortBeschreibung").html(data["weather"]["0"]["description"]);
+  });
+}
 
   function ortSuche() {
       var options = {
@@ -247,7 +294,7 @@ console.log("script start")
       });
   }
 
-    function setItems(data,weatherIcons) {
+  function setItems(data,weatherIcons) {
             var prefix = 'wi wi-';
             var weatherid = data.weather[0].id;
             var wIcon = weatherIcons[weatherid].icon;
@@ -261,7 +308,6 @@ console.log("script start")
             wIcon = prefix + wIcon;
             $("#heuteIcon").addClass(wIcon);
           }
-
 $('#menuUser').on('click', function showModalUser() {
   $('#modalUser').modal('show');
 });
@@ -279,8 +325,7 @@ var pattern = Trianglify({
 		width: window.innerWidth,
 		height: window.innerHeight
 	});
-	document.body.style.backgroundImage =  "url(" + pattern.png() + ")"
-
+	document.body.style.backgroundImage =  "url(" + pattern.png() + ")";
 
 var weatherIcons =  {
   "200": {
