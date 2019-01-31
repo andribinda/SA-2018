@@ -24,8 +24,8 @@ function secure_session_start() {
 
 function userlogin($email, $password, $mysqli) {
     // Das Benutzen vorbereiteter Statements verhindert SQL-Injektion.
-    if ($stmt = $mysqli->prepare("SELECT id, username, password, salt
-        FROM members
+    if ($stmt = $mysqli->prepare("SELECT id, email, password, salt
+        FROM User
        WHERE email = ?
         LIMIT 1")) {
         $stmt->bind_param('s', $email);  // Bind "$email" to parameter.
@@ -33,7 +33,7 @@ function userlogin($email, $password, $mysqli) {
         $stmt->store_result();
 
         // hole Variablen von result.
-        $stmt->bind_result($user_id, $username, $db_password, $salt);
+        $stmt->bind_result($user_id, $email, $user_password, $salt);
         $stmt->fetch();
 
         // hash das Passwort mit dem eindeutigen salt.
@@ -42,14 +42,14 @@ function userlogin($email, $password, $mysqli) {
             // Wenn es den Benutzer gibt, dann wird überprüft ob das Konto
             // blockiert ist durch zu viele Login-Versuche
 
-            if (checkbrute($user_id, $mysqli) == true) {
+            if (bruteforcecheck($user_id, $mysqli) == true) {
                 // Konto ist blockiert
                 // Schicke E-Mail an Benutzer, dass Konto blockiert ist
                 return false;
             } else {
                 // Überprüfe, ob das Passwort in der Datenbank mit dem vom
                 // Benutzer angegebenen übereinstimmt.
-                if ($db_password == $password) {
+                if ($user_password == $password) {
                     // Passwort ist korrekt!
                     // Hole den user-agent string des Benutzers.
                     $user_browser = $_SERVER['HTTP_USER_AGENT'];
@@ -110,18 +110,18 @@ function bruteforcecheck($user_id, $mysqli) {
 function userlogin_check($mysqli) {
     // Überprüfe, ob alle Session-Variablen gesetzt sind
     if (isset($_SESSION['user_id'],
-                        $_SESSION['username'],
+                        $_SESSION['email'],
                         $_SESSION['login_string'])) {
 
         $user_id = $_SESSION['user_id'];
         $login_string = $_SESSION['login_string'];
-        $username = $_SESSION['username'];
+        $username = $_SESSION['email'];
 
         // Hole den user-agent string des Benutzers.
         $user_browser = $_SERVER['HTTP_USER_AGENT'];
 
         if ($stmt = $mysqli->prepare("SELECT password
-                                      FROM members
+                                      FROM User
                                       WHERE id = ? LIMIT 1")) {
             // Bind "$user_id" zum Parameter.
             $stmt->bind_param('i', $user_id);

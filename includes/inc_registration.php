@@ -1,12 +1,11 @@
 <?php
-include_once 'connect_db.php';
-include_once 'psl_config.php';
- 
+include_once 'db_connect.php';
+include_once 'db_config.php';
+
 $error_msg = "";
 
-if (isset($_POST['username'], $_POST['email'], $_POST['p'])) {
+if (isset $_POST['email'], $_POST['p'])) {
     // Bereinige und überprüfe die Daten
-    $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
     $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
     $email = filter_var($email, FILTER_VALIDATE_EMAIL);
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -26,7 +25,7 @@ if (isset($_POST['username'], $_POST['email'], $_POST['p'])) {
     // verletzt werden.
     //
 
-    $prep_stmt = "SELECT id FROM members WHERE email = ? LIMIT 1";
+    $prep_stmt = "SELECT user_id FROM User WHERE email = ? LIMIT 1";
     $stmt = $mysqli->prepare($prep_stmt);
 
     if ($stmt) {
@@ -55,8 +54,8 @@ if (isset($_POST['username'], $_POST['email'], $_POST['p'])) {
         $password = hash('sha512', $password . $random_salt);
 
         // Trage den neuen Benutzer in die Datenbank ein
-        if ($insert_stmt = $mysqli->prepare("INSERT INTO members (username, email, password, salt) VALUES (?, ?, ?, ?)")) {
-            $insert_stmt->bind_param('ssss', $username, $email, $password, $random_salt);
+        if ($insert_stmt = $mysqli->prepare("INSERT INTO User (last_name, first_name, email, home_city_id, password, salt, access_failed) VALUES (?, ?, ?, ?, ?, ?, 0)")) {
+            $insert_stmt->bind_param('sssssss', $lastname, $firstname, $email, $homecity, $password, $random_salt, $access_failed);
             // Führe die vorbereitete Anfrage aus.
             if (! $insert_stmt->execute()) {
                 header('Location: ../error.php?err=Registration failure: INSERT');

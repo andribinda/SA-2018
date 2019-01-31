@@ -28,6 +28,7 @@
   <link rel="stylesheet" type="text/css" href="css/main.css">
 
 </head>
+<?php if (login_check($mysqli) == true) : ?>
 <body>
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark justify-content-center topNav">
     <form class="form-inline searchTop justify-content-center">
@@ -223,6 +224,11 @@
 		</div>
 	</div>
 </div>
+<?php else : ?>
+            <p>
+                <span class="error">You are not authorized to access this page.</span> Please <a href="index.php">login</a>.
+            </p>
+        <?php endif; ?>
 
 <script>
 eva.replace()

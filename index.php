@@ -1,7 +1,17 @@
 <?php
-//include_once 'config/config.php';
-//require 'vendor/autoload.php';
-//session_start();
+include_once 'includes/inc_registration.php';
+include_once 'includes/php_functions.php';
+
+include_once 'includes/db_connect.php';
+include_once 'includes/functions.php';
+
+sec_session_start();
+
+if (login_check($mysqli) == true) {
+    $logged = 'in';
+} else {
+    $logged = 'out';
+}
 ?>
 
 <!DOCTYPE html>
@@ -19,6 +29,8 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 	<script src="https://unpkg.com/eva-icons"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/trianglify/2.0.0/trianglify.min.js"></script>
+	<script src="js/sha512.js"></script>
+	<script src="js/forms.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/weather-icons.min.css">
 	<link rel="stylesheet" type="text/css" href="css/weather-icons-wind.min.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
@@ -26,6 +38,12 @@
 </head>
 
 <body>
+	<?php
+        if (!empty($error_msg)) {
+            echo $error_msg;
+        }
+        ?>
+
 	<nav class="navbar navbar-expand-sm navbar-dark topNav">
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
@@ -148,58 +166,73 @@
 						</li>
 				</div>
 				<div class="tab-content">
+								<?php
+						 if (isset($_GET['error'])) {
+								 echo '<p class="error">Error Logging In!</p>';
+						 }
+						 ?>
 					<div id="modalTabLogin" class="container tab-pane active"><br>
-						<form>
+						<form action="includes/login.php" method="post" name="login_form">
 							<div class="form-row">
 								<div class="form-group col-sm-8">
 									<label for="emailInput" class="modalFormLabel">Email</label>
-									<input type="email" class="form-control" id="emailInputLogin" placeholder="Email-Adresse">
+									<input type="email" name='email' class="form-control" id="emailInputLogin" placeholder="Email-Adresse">
 								</div>
 							</div>
 							<div class="form-row">
 								<div class="form-group col-sm-8">
 									<label for="passwordInput" class="modalFormLabel">Passwort</label>
-									<input type="password" class="form-control" id="passwordInputLogin" placeholder="Passwort">
+									<input type="password" name='password' class="form-control" id="passwordInputLogin" placeholder="Passwort">
 								</div>
 							</div>
+							<button class="btn btn-primary btn-modal1" onclick="formhash(this.form, this.form.password)">Login</button>
 						</form>
 					</div>
 					<div id="modalTabReg" class="container tab-pane fade"><br>
-						<form>
+						<form action="<?php echo esc_url($_SERVER['PHP_SELF']); ?>"
+							method="post"
+							name="registration_form">
 							<div class="form-row">
 								<div class="form-group col-sm-6">
 									<label for="nameInput" class="modalFormLabel">Name</label>
-									<input type="text" class="form-control" id="nameInput" placeholder="Name">
+									<input type="text" name='name' class="form-control" id="nameInput" placeholder="Name">
 								</div>
 								<div class="form-group col-sm-6">
 									<label for="vornameInput" class="modalFormLabel">Vorname</label>
-									<input type="text" class="form-control" id="vornameInput" placeholder="Vorname">
+									<input type="text" name='vorname'class="form-control" id="vornameInput" placeholder="Vorname">
 								</div>
 							</div>
 							<div class="form-row">
 								<div class="form-group col-sm-6">
 									<label for="emailInput" class="modalFormLabel">Email</label>
-									<input type="email" class="form-control" id="emailInput" placeholder="Email-Adresse">
+									<input type="email" name='email' class="form-control" id="emailInput" placeholder="Email-Adresse">
 								</div>
 								<div class="form-group col-sm-6">
 									<label for="homebaseInput" class="modalFormLabel">Homebase</label>
-									<input type="text" class="form-control" id="homebaseInput" placeholder="Homebase">
+									<input type="text" name='homebase'class="form-control" id="homebaseInput" placeholder="Homebase">
 								</div>
 							</div>
 							<div class="form-row">
 								<div class="form-group col-sm-6">
 									<label for="passwordInput" class="modalFormLabel">Passwort</label>
-									<input type="password" class="form-control" id="passwordInput" placeholder="Passwort">
+									<input type="password" name='password1' class="form-control" id="passwordInput" placeholder="Passwort">
 								</div>
 								<div class="form-group col-sm-6">
 									<label for="passwordInput2" class="modalFormLabel">Passwort erneut eingeben</label>
-									<input type="password" class="form-control" id="passwordInput2" placeholder="Passwort">
+									<input type="password" name='password1' class="form-control" id="passwordInput2" placeholder="Passwort">
 								</div>
 							</div>
+							<button class="btn btn-primary btn-modal1"
+															onclick="return regformhash(this.form,
+                                   this.form.name,
+																	 this.form.vorname,
+                                   this.form.email,
+																	 this.form.homebase,
+                                   this.form.password,
+                                   this.form.confirmpwd);">Registrieren</button>
 						</form>
 					</div>
 				</div>
-				<a href="user.html" class="btn btn-primary btn-modal1">Login</a>
 				<button type="button" class="btn btn-primary btn-modal1" data-dismiss="modal" aria-label="Close">Abbrechen</button>
 			</div>
 		</div>

@@ -1,6 +1,6 @@
 <?php
 include_once 'connect_db.php';
-include_once 'functions.php';
+include_once 'php_functions.php';
 
 secure_session_start(); // Unsere selbstgemachte sichere Funktion um eine PHP-Sitzung zu starten.
 
@@ -10,7 +10,7 @@ if (isset($_POST['email'], $_POST['p'])) {
 
     if (login($email, $password, $mysqli) == true) {
         // Login erfolgreich
-        header('Location: ../protected_page.php');
+        header('Location: ../user.php');
     } else {
         // Login fehlgeschlagen
         header('Location: ../index.php?error=1');
