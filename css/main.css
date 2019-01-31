@@ -1,5 +1,6 @@
 .topNav{
   background: rgba(81, 107, 123, 0.5) !important;
+  margin-bottom: 0.5%;
 }
 
 .navbar-toggler{
@@ -13,10 +14,9 @@
 .navbar-toggler-icon {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(216, 234, 241, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E") !important;
 }
-}
+
 input#inputTextNav[type=search], inputinput#TextNav[type=search]:focus, input#inputTextNav[type=search]:active {
   font-style: italic;
-  color: #d8eaf1;
   box-shadow: none;
   -webkit-box-shadow: none;
   outline: none;
@@ -25,26 +25,25 @@ input#inputTextNav[type=search], inputinput#TextNav[type=search]:focus, input#in
 
 input#inputTextNav[type="search"]::placeholder {
   font-style: italic;
-  color: #d8eaf1;
 }
 
 .btn-Navbar {
   color: #d8eaf1;
-  background-color: #526b7b !important;
+  background-color: rgba(81, 107, 123, 0.5) !important;
   border: none;
-  border-radius: 0;
+  border-radius: 0px;
   border-bottom: 2px solid transparent;
   border-left: 2px solid #ad997d ;
   margin-left: 30px;
 }
 
 .btn-Navbar:hover, .btn-Navbar:focus {
-  color: #ad997d  ;
-  background-color: transparent !important ;
+  color: #ad997d ;
+  background-color: transparent !important;
   border: none;
   outline: none;
   box-shadow: none;
-  border-radius: 0;
+  border-radius: 0px;
   font-weight: bold;
   border-bottom: 2px solid #ad997d;
   border-left: 2px solid #ad997d;
@@ -71,7 +70,7 @@ input#inputTextNav[type="search"]::placeholder {
 
 @media (min-width: 576px) {
   .searchTop {
-    width: 40%;
+    width: 30%;
   }
   .formNavSearch {
     width:100% !important;
@@ -134,25 +133,26 @@ input#inputTextNav[type="search"]::placeholder {
 
 .panel {
   margin: 1%;
+  padding: 0.25%;
   background: rgba(0, 0, 0, 0.3) !important;
   border-radius: 15px;
-  border: 2px solid black;
-}
-.standort{
-  position: relative;
 }
 
-.favoriten-container {
-  padding: 5px;
+.panel-user {
+  background: rgba(0, 0, 0, 0.3) !important;
+  border-radius: 15px;
+  margin: 1% 0% 1% 0 ;
+  padding-top: 0.25%;
 }
+
 
 .favorit{
   margin: 10px;
+  border: 1px solid black;
 }
 
 .modalFormLabel {
   color: #d8eaf1;
-
 }
 
 .modalRegTabBar {
@@ -184,11 +184,15 @@ input#inputTextNav[type="search"]::placeholder {
 }
 
 .piktogrammWIndex {
-  padding-top: 2%;
+  padding-top: 5%;
   padding-bottom: 5%;
 }
 .piktogrammWUser {
-  padding-top: 20%;
+  padding-bottom: 15%;
+}
+
+.wUserContainerL, .wUserContainerR {
+  padding: 10% 0% 5% 0%;
 }
 
 .sidebar {
@@ -239,7 +243,7 @@ ul {
   padding: 1%;
 }
 
-.ul-index-info, .ul-info {
+.ul-index-info {
   padding-left: 0;
 }
 
@@ -247,6 +251,9 @@ ul {
   padding-left: 0;
   padding-top: 20%;
 }
+
+.ul-user-info {
+  }
 
 .iconDiv {
   padding: 0 2% 0 0;
@@ -256,7 +263,11 @@ ul {
 }
 
 .wi-big {
-  font-size: 70px;
+  font-size: 72px;
+}
+
+.wi-xl {
+  font-size: 120px;
 }
 
 .no-margin {
@@ -265,9 +276,9 @@ ul {
 }
 
 .tempMax {
-  color: red;
+  color: #f44256;
 }
 
 .tempMin {
-  color: blue;
+  color: #a9e2e8;
 }
