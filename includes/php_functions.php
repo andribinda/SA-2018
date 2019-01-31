@@ -1,5 +1,5 @@
 <?php
-include_once 'psl-config.php';
+include_once 'db_config.php';
 
 function secure_session_start() {
     $session_name = 'secure_session_id';

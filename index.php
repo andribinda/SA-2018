@@ -1,11 +1,10 @@
 <?php
 include_once 'includes/inc_registration.php';
 include_once 'includes/php_functions.php';
+include_once 'includes/connect_db.php';
 
-include_once 'includes/db_connect.php';
-include_once 'includes/functions.php';
 
-sec_session_start();
+secure_session_start();
 
 if (login_check($mysqli) == true) {
     $logged = 'in';
