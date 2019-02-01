@@ -6,7 +6,7 @@ secure_session_start(); // Unsere selbstgemachte sichere Funktion um eine PHP-Si
 
 if (isset($_POST['email'], $_POST['p'])) {
     $email = $_POST['email'];
-    $password = $_POST['p']; // Das gehashte Passwort.
+    $password = $_POST['p']; // Das gehashte Passwort.    $message = "[{$email}] [{$password}] Errorlog Test";
 
     if (userlogin($email, $password, $mysqli) == true) {
         // Login erfolgreich
@@ -18,4 +18,8 @@ if (isset($_POST['email'], $_POST['p'])) {
 } else {
     // Die korrekten POST-Variablen wurden nicht zu dieser Seite geschickt.
     echo 'Invalid Request';
+    $email = $_POST['email'];
+    $password = $_POST['p']; // Das gehashte Passwort.    $message = "[{$email}] [{$password}] Errorlog Test";
+        $message = "[{$email}] [{$password}] Errorlog Test";
+        error_log($message);
 }

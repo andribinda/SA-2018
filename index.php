@@ -184,7 +184,7 @@ if (userlogin_check($mysqli) == true) {
 									<input type="password" name='password' class="form-control" id="passwordInputLogin" placeholder="Passwort">
 								</div>
 							</div>
-							<button class="btn btn-primary btn-modal1" onclick="formhash(this.form, this.form.password)">Login</button>
+							<button class="btn btn-primary btn-modal1" onclick="formhash(this.form, this.form.password) console.log(test)">Login</button>
 						</form>
 					</div>
 					<div id="modalTabReg" class="container tab-pane fade"><br>
