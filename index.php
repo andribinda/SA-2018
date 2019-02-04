@@ -165,13 +165,8 @@ if (userlogin_check($mysqli) == true) {
 						</li>
 				</div>
 				<div class="tab-content">
-								<?php
-						 if (isset($_GET['error'])) {
-								 echo '<p class="error">Error Logging In!</p>';
-						 }
-						 ?>
 					<div id="modalTabLogin" class="container tab-pane active"><br>
-						<form action="includes/login.php" method="post" name="login_form">
+						<form action="includes/login.php" method="post" name="login_form" id="loginForm">
 							<div class="form-row">
 								<div class="form-group col-sm-8">
 									<label for="emailInput" class="modalFormLabel">Email</label>
@@ -184,6 +179,11 @@ if (userlogin_check($mysqli) == true) {
 									<input type="password" name='password' class="form-control" id="passwordInputLogin" placeholder="Passwort">
 								</div>
 							</div>
+                    <?php
+                 if (isset($_GET['error'])) {
+                     echo '<p class="error">Error Logging In!</p>';
+                 }
+                 ?>
 							<button class="btn btn-primary btn-modal1" onclick="formhash(this.form, this.form.password) console.log(test)">Login</button>
 						</form>
 					</div>

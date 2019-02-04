@@ -3,7 +3,7 @@ function formhash(form, password) {
     var p = document.createElement("input");
 
     // Füge es dem Formular hinzu.
-    form.appendChild(p);
+    document.getElementById("loginForm").appendChild(p);
     p.name = "p";
     p.type = "hidden";
     p.value = hex_sha512(password.value);
