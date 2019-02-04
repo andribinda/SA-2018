@@ -184,7 +184,7 @@ if (userlogin_check($mysqli) == true) {
                      echo '<p class="error">Error Logging In!</p>';
                  }
                  ?>
-							<button class="btn btn-primary btn-modal1" onclick="formhash(this.form, this.form.password) console.log(test)">Login</button>
+							<button class="btn btn-primary btn-modal1" onclick="formhash(this.loginForm, this.loginForm.password) console.log(test)">Login</button>
 						</form>
 					</div>
 					<div id="modalTabReg" class="container tab-pane fade"><br>
