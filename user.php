@@ -1,3 +1,10 @@
+<?php
+include_once 'includes/connect_db.php';
+include_once 'includes/php_functions.php';
+
+secure_session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -19,8 +26,8 @@
   <link rel="stylesheet" type="text/css" href="css/weather-icons-wind.min.css">
   <link rel="stylesheet" type="text/css" href="css/main.css">
 
+  <?php if (userlogin_check($mysqli) == true) : ?>
 </head>
-<?php if (userlogin_check($mysqli) == true) : ?>
 <body>
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark justify-content-center topNav">
     <form class="form-inline searchTop justify-content-center">
@@ -220,7 +227,7 @@
             <p>
                 <span class="error">You are not authorized to access this page.</span> Please <a href="index.php">login</a>.
             </p>
-        <?php endif; ?>
+<?php endif; ?>
 
 <script>
 eva.replace()

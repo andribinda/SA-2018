@@ -26,10 +26,8 @@ function userlogin($email, $password, $mysqli) {
     error_log($email);
     error_log($password);
     // Das Benutzen vorbereiteter Statements verhindert SQL-Injektion.
-    if ($stmt = $mysqli->prepare("SELECT id, email, password, salt
-        FROM users
-       WHERE email = ?
-        LIMIT 1")) {
+    if ($stmt = $mysqli->prepare("SELECT id, email, password, salt FROM users
+       WHERE email = ? LIMIT 1")) {
         $stmt->bind_param('s', $email);  // Bind "$email" to parameter.
         $stmt->execute();    // Führe die vorbereitete Anfrage aus.
         $stmt->store_result();
@@ -37,7 +35,6 @@ function userlogin($email, $password, $mysqli) {
         // hole Variablen von result.
         $stmt->bind_result($user_id, $email, $user_password, $salt);
         $stmt->fetch();
-        error_log($user_id, $email, $user_password, $salt);
 
         // hash das Passwort mit dem eindeutigen salt.
         $password = hash('sha512', $password . $salt);
@@ -61,39 +58,18 @@ function userlogin($email, $password, $mysqli) {
                     $user_id = preg_replace("/[^0-9]+/", "", $user_id);
                     $_SESSION['user_id'] = $user_id;
                     // XSS-Schutz, denn eventuell wir der Wert gedruckt
-                    $username = preg_replace("/[^a-zA-Z0-9_\-]+/",
-                                                                "",
-                                                                $username);
-                    $_SESSION['username'] = $username;
-                    $_SESSION['login_string'] = hash('sha512',
-                              $password . $user_browser);
+                    $_SESSION['login_string'] = hash('sha512', $password . $user_browser);
                     // Login erfolgreich.
+                                error_log($_SESSION['login_string']);
                     return true;
-                } else {
-                    // Passwort ist nicht korrekt
-                    // Der Versuch wird in der Datenbank gespeichert
-                    $now = time();
-                    $mysqli->query("INSERT INTO login_attempts(user_id, time)
-                                    VALUES ('$user_id', '$now')");
-                    error_log('test3');
-                    return false;
-                }
-            }
-        } else {
+                    } else {
             //Es gibt keinen Benutzer.
             error_log('test4');
             return false;
         }
-    }else {
-      error_log($stmt);
-
-/* check if server is alive */
-if ($mysqli->ping()) {
-    error_log("Our connection is ok!\n");
-} else {
-    error_log("Error: %s\n", $mysqli->error);
+    }
 }
-        return false;}
+}
 }
 
 function bruteforcecheck($user_id, $mysqli) {
@@ -123,14 +99,13 @@ function bruteforcecheck($user_id, $mysqli) {
 }
 
 function userlogin_check($mysqli) {
+  error_log($_SESSION['user_id']);
+  error_log($_SESSION['login_string']);
     // Überprüfe, ob alle Session-Variablen gesetzt sind
-    if (isset($_SESSION['user_id'],
-                        $_SESSION['email'],
-                        $_SESSION['login_string'])) {
+    if (isset($_SESSION['user_id'], $_SESSION['login_string'])) {
 
         $user_id = $_SESSION['user_id'];
         $login_string = $_SESSION['login_string'];
-        $username = $_SESSION['email'];
 
         // Hole den user-agent string des Benutzers.
         $user_browser = $_SERVER['HTTP_USER_AGENT'];
@@ -169,6 +144,7 @@ function userlogin_check($mysqli) {
         }
     } else {
         // Nicht eingeloggt
+        error_log('Fehler bei userlogin');
         return false;
     }
 }
