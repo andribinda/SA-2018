@@ -184,7 +184,8 @@ if (userlogin_check($mysqli) == true) {
                      echo '<p class="error">Error Logging In!</p>';
                  }
                  ?>
-							<button class="btn btn-primary btn-modal1" onclick="formhash(this.form, this.form.password)">Login</button>
+							<button type="button" class="btn btn-primary btn-modal1" onclick="formhash(this.form, this.form.password)">Login</button>
+							<button type="button" class="btn btn-primary btn-modal1" data-dismiss="modal" aria-label="Close">Schliessen</button>
 						</form>
 					</div>
 					<div id="modalTabReg" class="container tab-pane fade"><br>
@@ -221,7 +222,7 @@ if (userlogin_check($mysqli) == true) {
 									<input type="password" name='password1' class="form-control" id="passwordInput2" placeholder="Passwort">
 								</div>
 							</div>
-							<button class="btn btn-primary btn-modal1"
+							<button type="button" class="btn btn-primary btn-modal1"
 															onclick="return regformhash(this.form,
                                    this.form.name,
 																	 this.form.vorname,
@@ -229,10 +230,10 @@ if (userlogin_check($mysqli) == true) {
 																	 this.form.homebase,
                                    this.form.password,
                                    this.form.confirmpwd);">Registrieren</button>
-						</form>
+							<button type="button" class="btn btn-primary btn-modal1" data-dismiss="modal" aria-label="Close">Schliessen</button>
+							</form>
 					</div>
 				</div>
-				<button type="button" class="btn btn-primary btn-modal1" data-dismiss="modal" aria-label="Close">Abbrechen</button>
 			</div>
 		</div>
 	</div>
@@ -291,6 +292,7 @@ if (userlogin_check($mysqli) == true) {
 			$("#heuteInfo").html("<li><h5><i class='wi wi-thermometer tempMin'></i> " + data["main"]["temp_min"] + " °C</h5></li><li><h5><i class='wi wi-thermometer tempMax'></i> " + data["main"]["temp_max"] + " °C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " +
 				data["wind"]["speed"] + " m/s</li><li><h5><i class='wi wi-sunrise'></i> " + Unix_timestamp(tRise) + "</h5></li><li><h5><i class='wi wi-sunset'></i> " + Unix_timestamp(tSet) + "</h5></li>");
 		});
+
 		$.ajax({
 			url: "https://api.openweathermap.org/data/2.5/forecast?lat=" + latitude + "&lon=" + longitude +
 				"&units=metric&lang=de&appid=6012cf5997f032d2c82563e60ef96a56",
@@ -527,7 +529,7 @@ if (userlogin_check($mysqli) == true) {
 			document.body.style.backgroundImage = "url(" + pattern.png() + ")"
 		}
 
-		var weatherIcons = {
+ var weatherIcons = {
 		"200": {
 		  "label": "thunderstorm with light rain",
 		  "icon": "storm-showers"
