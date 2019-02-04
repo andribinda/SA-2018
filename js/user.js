@@ -108,8 +108,8 @@ function showPosition(position) {
   });
   $('#modalLaunchStandort').on('click', function showModalAbout() {
   $('#modalStandort').modal('show');
-  });
-}
+  };
+
 
   function setBackground() {var pattern = Trianglify({
       cell_size: 500,

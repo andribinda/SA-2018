@@ -4,6 +4,7 @@ $(document).ready(function() {
   var latitude = 0;
   var longitude = 0;
   getLocation();
+  prepareButtons();
 });
 
 function getLocation() {
@@ -307,6 +308,7 @@ function drawChartDetail(data) {
   }
 
   //Verknüpfen der Registration/LoginButtons mit den entsprechenden Tabs im Login-Modal
+  prepareButtons(){
   $('.btn-Navbar').on('click', function setModalTab() {
     console.log("Navbar-Buttons ok");
     var tabTarget = $(this).data('tab');
@@ -323,6 +325,7 @@ function drawChartDetail(data) {
       });
     document.body.style.backgroundImage = "url(" + pattern.png() + ")"
   }
+}
 
 var weatherIcons = {
   "200": {

@@ -240,14 +240,4 @@ if (userlogin_check($mysqli) == true) {
 		</div>
 	</div>
 </div>
-
-<script>
-		$('.btn-Navbar').on('click', function setModalTab() {
-			console.log("Navbar-Buttons ok");
-			var tabTarget = $(this).data('tab');
-			$('.modalRegLog').modal('show');
-			$('.modalRegTabBar a[href="#' + tabTarget + '"]').tab('show');
-		});
-</script> -->
-
 </html>
