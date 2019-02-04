@@ -125,6 +125,43 @@ function showPosition(position) {
   });
 }
 
+function ortSuche() {
+    var options = {
+      types: ['(regions)'],
+      componentRestrictions: {country: 'CH'}
+    };
+
+    var input = document.getElementById('inputTextNav');
+    var autocomplete = new google.maps.places.Autocomplete(input, options);
+
+    autocomplete.addListener('place_changed', getWeather);
+  }
+  google.maps.event.addDomListener(window, 'load', ortSuche);
+
+function getWeather() {
+    // Get the place details from the autocomplete object.
+    var place = this.getPlace();
+    var long = place.geometry.location.lng();
+    var lat = place.geometry.location.lat();
+    console.log(lat, long);
+
+    $.ajax({
+      url: "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + long +
+        "&units=metric&lang=de&appid=6012cf5997f032d2c82563e60ef96a56",
+      context: document.body,
+      dataType: 'json'
+    }).done(function(data) {
+      setItems(data, weatherIcons);
+
+      tRise = data["sys"]["sunrise"];
+      tSet = data["sys"]["sunset"];
+
+      $("#actualPlace").html(data["name"] + " / " + data["sys"]["country"]);
+      $("#heuteTemp").html("<h3><li> " + Math.round(data["main"]["temp"]) + "°C</h3></li><li><h5>" + data["weather"]["0"]["description"] + "</h5></li>");
+      $("#heuteInfo").html("<li><h5><i class='wi wi-thermometer tempMin'></i> " + data["main"]["temp_min"] + " °C</h5></li><li><h5><i class='wi wi-thermometer tempMax'></i> " + data["main"]["temp_max"] + " °C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " +
+        data["wind"]["speed"] + " m/s</li><li><h5><i class='wi wi-sunrise'></i> " + Unix_timestamp(tRise) + "</h5></li><li><h5><i class='wi wi-sunset'></i> " + Unix_timestamp(tSet) + "</h5></li>");
+    });
+    };
 
 //Icon abfragen und setzen (Heute)
 function setItems(data,weatherIcons) {
