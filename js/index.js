@@ -64,7 +64,6 @@ function showPosition(position) {
     console.log(data["city"]["name"]);
 
     setItems5day(data, weatherIcons);
-    setHTML5day(data);
 
   });
 }
@@ -107,7 +106,7 @@ function getWeather() {
     });
 
     $.ajax({
-      url: "https://api.openweathermap.org/data/2.5/forecast?lat=" + latitude + "&lon=" + longitude +
+      url: "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + long +
         "&units=metric&lang=de&appid=6012cf5997f032d2c82563e60ef96a56",
       context: document.body,
       dataType: 'json'
@@ -118,7 +117,6 @@ function getWeather() {
       console.log(data["city"]["name"]);
 
       setItems5day(data, weatherIcons);
-      setHTML5day(data);
     });
 }
 
@@ -173,13 +171,17 @@ function setItems5day(data, weatherIcons){
   wIconD3 = prefix + wIconD3;
   wIconD4 = prefix + wIconD4;
   wIconD5 = prefix + wIconD5;
+
+  console.log(data);
+  console.log("Help");
+  setHTML5day(data, wIconD1, wIconD2, wIconD3, wIconD4, wIconD5);
 }
 
-function setHTML5day(data) {
-
+function setHTML5day(data, wIconD1, wIconD2, wIconD3, wIconD4, wIconD5) {
+console.log(data);
 
 $("#wIconD1").addClass(wIconD1)
-$("#d1Temp").html("<h4><li>" + Math.round(data["list"]["0"]["main"]["temp"]) + "°C</h4></li><li><h6>" + data["list"]["0"]["weather"]["0"]["description"] +"</h6></li>");
+$("#d1Temp").html("<h4><li>" + Math.round(data["list"]["0"]["main"]["temp"]) + "°C</h4></li><li><h6>" + ["list"]["0"]["weather"]["0"]["description"] +"</h6></li>");
 $("#d1Info").html("<li><h5><i class='wi wi-thermometer tempMin'></i> " +	Math.round(data["list"]["0"]["main"]["temp_min"]) + "°C</h5></li><li><h5><i class='wi wi-thermometer tempMax'></i> " +
 Math.round(data["list"]["0"]["main"]["temp_max"]) + "°C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " + data["list"]["0"]["wind"]["speed"] + "m/s</li>");
 
