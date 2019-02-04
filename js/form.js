@@ -8,11 +8,13 @@ function formhash(form, password) {
     p.type = "hidden";
     p.value = hex_sha512(password.value);
 
+
     // Sorge dafür, dass kein Text-Passwort geschickt wird.
     password.value = "";
 
     // Reiche das Formular ein.
-    form.submit();
+    //form.submit();
+    console.log(p)
 }
 
 function regformhash(form, uid, email, password, conf) {
