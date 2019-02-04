@@ -7,8 +7,6 @@ secure_session_start(); // Unsere selbstgemachte sichere Funktion um eine PHP-Si
 if (isset($_POST['email'], $_POST['p'])) {
     $email = $_POST['email'];
     $password = $_POST['p'];
-    error_log('loginphp');
-    error_log($_POST['p']);
 
     if (userlogin($email, $password, $mysqli) == true) {
         // Login erfolgreich

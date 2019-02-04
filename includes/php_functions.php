@@ -25,13 +25,9 @@ function secure_session_start() {
 function userlogin($email, $password, $mysqli) {
     error_log($email);
     error_log($password);
-
-    if (mysqli_connect_errno()) {
-    error_log("Connect failed: %s\n", mysqli_connect_error());
-    }
     // Das Benutzen vorbereiteter Statements verhindert SQL-Injektion.
     if ($stmt = $mysqli->prepare("SELECT id, email, password, salt
-        FROM users;
+        FROM users
        WHERE email = ?
         LIMIT 1")) {
         $stmt->bind_param('s', $email);  // Bind "$email" to parameter.
@@ -88,7 +84,15 @@ function userlogin($email, $password, $mysqli) {
             error_log('test4');
             return false;
         }
-    }else {    error_log('fehler');
+    }else {
+      error_log($stmt);
+
+/* check if server is alive */
+if ($mysqli->ping()) {
+    error_log("Our connection is ok!\n");
+} else {
+    error_log("Error: %s\n", $mysqli->error);
+}
         return false;}
 }
 
