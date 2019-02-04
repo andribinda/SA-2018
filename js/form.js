@@ -13,8 +13,7 @@ function formhash(form, password) {
     password.value = "";
 
     // Reiche das Formular ein.
-    //form.submit();
-    console.log(p)
+    form.submit();
 }
 
 function regformhash(form, uid, email, password, conf) {
