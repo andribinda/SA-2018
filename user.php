@@ -32,7 +32,7 @@ secure_session_start();
 <body>
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark justify-content-center topNav">
     <form class="form-inline searchTop justify-content-center">
-      <input class="form-control-lg formNavSearch" id="inputTextNav" type="search" placeholder="PLZ / Ort eingeben" aria-label="Search"> <p><h1><?= $user_id ?>"</h1></p>
+      <input class="form-control-lg formNavSearch" id="inputTextNav" type="search" placeholder="PLZ / Ort eingeben" aria-label="Search"></p>
     </form>
   </div>
 </nav>

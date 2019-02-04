@@ -6,6 +6,7 @@ $(document).ready(function() {
   getLocation();
   setBackground()
   eva.replace()
+  prepareButtons();
 });
 
 function getLocation() {
@@ -89,22 +90,26 @@ function showPosition(position) {
                   wIcon = prefix + wIcon;
                   $("#heuteIcon").addClass(wIcon);
                 }
-        $('#menuUser').on('click', function showModalUser() {
-        $('#modalUser').modal('show');
-        });
-        $('#menuAbout').on('click', function showModalAbout() {
-        $('#modalAbout').modal('show');
-        });
-        $('#modalLaunchStandort').on('click', function showModalAbout() {
-        $('#modalStandort').modal('show');
-        });
 
+
+  function prepareButtons() {
   $('.btn-Navbar').on('click', function setModalTab() {
     console.log("Navbar-Buttons ok");
     var tabTarget = $(this).data('tab');
     $('.modalRegLog').modal('show');
     $('.modalRegTabBar a[href="#' + tabTarget + '"]').tab('show');
   });
+
+  $('#menuUser').on('click', function showModalUser() {
+  $('#modalUser').modal('show');
+  });
+  $('#menuAbout').on('click', function showModalAbout() {
+  $('#modalAbout').modal('show');
+  });
+  $('#modalLaunchStandort').on('click', function showModalAbout() {
+  $('#modalStandort').modal('show');
+  });
+}
 
   function setBackground() {var pattern = Trianglify({
       cell_size: 500,
