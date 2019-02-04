@@ -28,7 +28,7 @@ if (userlogin_check($mysqli) == true) {
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 	<script src="https://unpkg.com/eva-icons"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/trianglify/2.0.0/trianglify.min.js"></script>
-	<script src="js/crypt.js"></script>
+	<script src="js/sha512.js"></script>
 	<script src="js/form.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/weather-icons.min.css">
 	<link rel="stylesheet" type="text/css" href="css/weather-icons-wind.min.css">
@@ -184,7 +184,7 @@ if (userlogin_check($mysqli) == true) {
                      echo '<p class="error">Error Logging In!</p>';
                  }
                  ?>
-							<button class="btn btn-primary btn-modal1" onclick="formhash(this.form, this.loginForm.form)">Login</button>
+							<button class="btn btn-primary btn-modal1" onclick="formhash(this.form, this.form.password)">Login</button>
 						</form>
 					</div>
 					<div id="modalTabReg" class="container tab-pane fade"><br>

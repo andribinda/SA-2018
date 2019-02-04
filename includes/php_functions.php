@@ -23,9 +23,15 @@ function secure_session_start() {
 }
 
 function userlogin($email, $password, $mysqli) {
+    error_log($email);
+    error_log($password);
+
+    if (mysqli_connect_errno()) {
+    error_log("Connect failed: %s\n", mysqli_connect_error());
+    }
     // Das Benutzen vorbereiteter Statements verhindert SQL-Injektion.
     if ($stmt = $mysqli->prepare("SELECT id, email, password, salt
-        FROM User
+        FROM users;
        WHERE email = ?
         LIMIT 1")) {
         $stmt->bind_param('s', $email);  // Bind "$email" to parameter.
@@ -35,6 +41,7 @@ function userlogin($email, $password, $mysqli) {
         // hole Variablen von result.
         $stmt->bind_result($user_id, $email, $user_password, $salt);
         $stmt->fetch();
+        error_log($user_id, $email, $user_password, $salt);
 
         // hash das Passwort mit dem eindeutigen salt.
         $password = hash('sha512', $password . $salt);
@@ -45,6 +52,7 @@ function userlogin($email, $password, $mysqli) {
             if (bruteforcecheck($user_id, $mysqli) == true) {
                 // Konto ist blockiert
                 // Schicke E-Mail an Benutzer, dass Konto blockiert ist
+                error_log('test2');
                 return false;
             } else {
                 // Überprüfe, ob das Passwort in der Datenbank mit dem vom
@@ -71,14 +79,17 @@ function userlogin($email, $password, $mysqli) {
                     $now = time();
                     $mysqli->query("INSERT INTO login_attempts(user_id, time)
                                     VALUES ('$user_id', '$now')");
+                    error_log('test3');
                     return false;
                 }
             }
         } else {
             //Es gibt keinen Benutzer.
+            error_log('test4');
             return false;
         }
-    }
+    }else {    error_log('fehler');
+        return false;}
 }
 
 function bruteforcecheck($user_id, $mysqli) {
@@ -121,7 +132,7 @@ function userlogin_check($mysqli) {
         $user_browser = $_SERVER['HTTP_USER_AGENT'];
 
         if ($stmt = $mysqli->prepare("SELECT password
-                                      FROM User
+                                      FROM users
                                       WHERE id = ? LIMIT 1")) {
             // Bind "$user_id" zum Parameter.
             $stmt->bind_param('i', $user_id);
@@ -139,14 +150,17 @@ function userlogin_check($mysqli) {
                     return true;
                 } else {
                     // Nicht eingeloggt
+                    error_log('test8');
                     return false;
                 }
             } else {
                 // Nicht eingeloggt
+                error_log('test5');
                 return false;
             }
         } else {
             // Nicht eingeloggt
+            error_log('test6');
             return false;
         }
     } else {
