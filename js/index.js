@@ -9,6 +9,7 @@ $(document).ready(function() {
 
 tMin = "<i data-eva='thermometer-minus' data-eva-height='24' data-eva-width='24'></i> ";
 tMax = "<i data-eva='thermometer-plus' data-eva-height='24' data-eva-width='24'></i> ";
+tNormal = "<i data-eva='thermometer' data-eva-height='24' data-eva-width='24'></i> ";
 
 function getLocation() {
   console.log("get location ready");

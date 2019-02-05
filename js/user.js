@@ -5,9 +5,12 @@ $(document).ready(function() {
   var longitude = 0;
   getLocation();
   setBackground() ;
-  eva.replace();
   prepareButtons();
 });
+
+tMin = "<i data-eva='thermometer-minus' data-eva-height='24' data-eva-width='24'></i> ";
+tMax = "<i data-eva='thermometer-plus' data-eva-height='24' data-eva-width='24'></i> ";
+tNormal = "<i data-eva='thermometer' data-eva-height='36' data-eva-width='36'></i> "
 
 function getLocation() {
   console.log("get location ready");
@@ -38,12 +41,13 @@ function showPosition(position) {
         }).done(function(data) {
           setItems(data, weatherIcons);
           $("#standortOrt").html(data["name"] + " / " + data["sys"]["country"]);
-          $("#standortTemperatur").html("<h2>" + Math.round(data["main"]["temp"]) + "°C </h2>");
+          $("#standortTemperatur").html("<h2>" + tNormal + Math.round(data["main"]["temp"]) + "°C </h2>");
           $("#standortBeschreibung").html(data["weather"]["0"]["description"]);
+          eva.replace();
         });
         }
 
-        function ortSuche() {
+function ortSuche() {
             var options = {
               types: ['(regions)'],
               componentRestrictions: {country: 'CH'}
@@ -54,65 +58,65 @@ function showPosition(position) {
 
             autocomplete.addListener('place_changed', getWeather);
           }
-          google.maps.event.addDomListener(window, 'load', ortSuche);
+google.maps.event.addDomListener(window, 'load', ortSuche);
 
-        function getWeather() {
-            // Get the place details from the autocomplete object.
-            var place = this.getPlace();
-            var long = place.geometry.location.lng();
-            var lat = place.geometry.location.lat();
-            console.log(lat, long);
+function getWeather() {
+        // Get the place details from the autocomplete object.
+        var place = this.getPlace();
+        var long = place.geometry.location.lng();
+        var lat = place.geometry.location.lat();
+        console.log(lat, long);
 
-            $.ajax({
-              url: "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + long +
-                "&units=metric&lang=de&appid=6012cf5997f032d2c82563e60ef96a56",
-              context: document.body,
-              dataType: 'json'
-            }).done(function(data) {
-              setItems(data, weatherIcons);
-              $("#standortBeschreibung").html(data["weather"]["0"]["description"]);
-              $("#standortTemperatur").html("<h2>" + Math.round(data["main"]["temp"]) + "°C </h2>");
-              $("#standortOrt").html(data["name"] + " / " + data["sys"]["country"]);
-            });
+        $.ajax({
+          url: "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + long +
+            "&units=metric&lang=de&appid=6012cf5997f032d2c82563e60ef96a56",
+          context: document.body,
+          dataType: 'json'
+        }).done(function(data) {
+          setItems(data, weatherIcons);
+          console.log(tNormal);
+          $("#standortBeschreibung").html(data["weather"]["0"]["description"]);
+          $("#standortTemperatur").html("<h2>" + tNormal + Math.round(data["main"]["temp"]) + "°C </h2>");
+          $("#standortOrt").html(data["name"] + " / " + data["sys"]["country"]);
+          eva.replace();
+        });
+    }
+
+function setItems(data,weatherIcons) {
+          var prefix = 'wi wi-';
+          var weatherid = data.weather[0].id;
+          var wIcon = weatherIcons[weatherid].icon;
+          console.log(weatherid);
+          console.log(wIcon)
+
+          if (!(weatherid > 699 && weatherid < 800) && !(weatherid > 899 && weatherid < 1000)) {
+            wIcon = 'day-' + wIcon;
+            console.log(weatherid)
+          }
+          wIcon = prefix + wIcon;
+          $("#heuteIcon").addClass(wIcon);
         }
 
-        function setItems(data,weatherIcons) {
-                  var prefix = 'wi wi-';
-                  var weatherid = data.weather[0].id;
-                  var wIcon = weatherIcons[weatherid].icon;
-                  console.log(weatherid);
-                  console.log(wIcon)
-
-                  if (!(weatherid > 699 && weatherid < 800) && !(weatherid > 899 && weatherid < 1000)) {
-                    wIcon = 'day-' + wIcon;
-                    console.log(weatherid)
-                  }
-                  wIcon = prefix + wIcon;
-                  $("#heuteIcon").addClass(wIcon);
-                }
-
-
-  function prepareButtons() {
-  $('.btn-Navbar').on('click', function setModalTab() {
-    console.log("Navbar-Buttons ok");
-    var tabTarget = $(this).data('tab');
-    $('.modalRegLog').modal('show');
-    $('.modalRegTabBar a[href="#' + tabTarget + '"]').tab('show');
-  });
+function prepareButtons() {
+    $('.btn-Navbar').on('click', function setModalTab() {
+      var tabTarget = $(this).data('tab');
+      $('.modalRegLog').modal('show');
+      $('.modalRegTabBar a[href="#' + tabTarget + '"]').tab('show');
+    });
 
     $('#menuUser').on('click', function showModalUser() {
-    $('#modalUser').modal('show');
+      $('#modalUser').modal('show');
     });
     $('#menuAbout').on('click', function showModalAbout() {
-    $('#modalAbout').modal('show');
+      $('#modalAbout').modal('show');
     });
     $('#modalLaunchStandort').on('click', function showModalAbout() {
-    $('#modalStandort').modal('show');
+      $('#modalStandort').modal('show');
     });
-  }
+}
 
-
-  function setBackground() {var pattern = Trianglify({
+function setBackground() {
+  var pattern = Trianglify({
       cell_size: 500,
       variance: 1,
       x_colors: ['#526b7b', '#6691ab', '#375b5f'],
