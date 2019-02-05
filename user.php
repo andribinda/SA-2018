@@ -126,8 +126,26 @@ secure_session_start();
 		<div class="modal-content">
 			<div class="modal-body">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-				<a href="#" class="btn btn-primary btn-modal1">Speichern</a>
-				<button type="button" class="btn btn-primary btn-modal1" data-dismiss="modal" aria-label="Close">Abbrechen</button>
+        <form action="" method="post" name="login_form" id="loginForm">
+          <div class="form-row">
+            <div class="form-group col-sm-8">
+              <label for="emailInput" class="modalFormLabel">Email-Adresse ändern</label>
+              <input type="email" name='emailUser' class="form-control" id="emailInputUser" placeholder="Email-Adresse">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-sm-8">
+              <label for="passwordInput" class="modalFormLabel">Passwort ändern</label>
+              <input type="password" name='password' class="form-control" id="passwordInputUser" placeholder="Passwort">
+              <input type="password" name='password' class="form-control" id="passwordInputUserConfirm" placeholder="Passwort bestätigen">
+            </div>
+          </div>
+                <?php
+                 if (isset($_GET['error'])) {echo '<p class="error">Error Logging In!</p>';}
+             ?>
+          <button type="button" class="btn btn-primary btn-modal1" onclick="">Bestätigen</button>
+          <button type="button" class="btn btn-primary btn-modal1" data-dismiss="modal" aria-label="Close">Schliessen</button>
+        </form>
 			</div>
 		</div>
 	</div>
@@ -148,10 +166,78 @@ secure_session_start();
 	</div>
 </div>
 <div class="modal fade" id="modalStandort" role="dialog" aria-labelledby="modalStandort" aria-hidden="true">
-	<div class="modal-dialog modal-lg" role="document">
+	<div class="modal-dialog mw-100 w-75" role="document">
 		<div class="modal-content">
 			<div class="modal-body">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <div class="row">
+    			<div class="col-sm panel text-center">
+    				<h2 id="day_name1"></h2>
+    						<div class= "row justify-content-center">
+    							<div class="col-xs-6 iconDiv text-center" id="day1Container">
+    								<i class="wi wi-medium piktogrammWIndex" id="wIconD1"></i>
+    								<ul class ="ul-index" id="d1Temp"></ul>
+    							</div>
+    							<div class="col-xs-6">
+    									<ul class="ul-info" id="d1Info"></ul>
+    							</div>
+    				</div>
+    				</ul>
+    			</div>
+    			<div class="col-sm panel text-center">
+    				<h2 id="day_name2"></h2>
+    						<div class= "row justify-content-center">
+    							<div class="col-xs-6 iconDiv text-center">
+    								<i class="wi wi-medium piktogrammWIndex" id="wIconD2"></i>
+    								<ul class ="ul-index" id="d2Temp"></ul>
+    							</div>
+    							<div class="col-xs-6">
+    									<ul class="ul-info" id="d2Info"></ul>
+    						</div>
+    				</div>
+    			</div>
+    			<div class="col-sm panel text-center">
+    				<h2 id="day_name3"></h2>
+    						<div class= "row justify-content-center">
+    							<div class="col-xs-6 iconDiv text-center">
+    								<i class="wi wi-medium piktogrammWIndex" id="wIconD3"></i>
+    								<ul class ="ul-index" id="d3Temp"></ul>
+    							</div>
+    							<div class="col-xs-6">
+    									<ul class="ul-info" id="d3Info"></ul>
+    						</div>
+    				</div>
+    			</div>
+    			<div class="col-sm panel text-center">
+    				<h2 id="day_name4"></h2>
+    						<div class= "row justify-content-center">
+    							<div class="col-xs-6 iconDiv text-center">
+    								<i class="wi wi-medium piktogrammWIndex" id="wIconD4"></i>
+    								<ul class ="ul-index" id="d4Temp"></ul>
+    							</div>
+    							<div class="col-xs-6">
+    									<ul class="ul-info" id="d4Info"></ul>
+    						</div>
+    				</div>
+    			</div>
+    			<div class="col-sm panel text-center">
+    				<h2 id="day_name5"></h2>
+    						<div class= "row justify-content-center">
+    							<div class="col-xs-6 iconDiv text-center">
+    								<i class="wi wi-medium piktogrammWIndex" id="wIconD5"></i>
+    								<ul class ="ul-index" id="d5Temp"></ul>
+    							</div>
+    							<div class="col-xs-6">
+    									<ul class="ul-info" id="d5Info"></ul>
+    						</div>
+    				</div>
+    			</div>
+    		</div>
+    		<div class="row justify-content-center">
+    			<div class="panel tempChart-container">
+    					<canvas id="tempChart">
+    					</canvas>
+    				</div>
+    	</div>
 			</div>
 		</div>
 	</div>

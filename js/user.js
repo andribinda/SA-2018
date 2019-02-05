@@ -97,6 +97,78 @@ function setItems(data,weatherIcons) {
           $("#heuteIcon").addClass(wIcon);
         }
 
+function setItems5day(data, weatherIcons){
+          //Icons setzen für 5-Tages-Vorhersage evtl als Array mit Loop zum setzen der Icons
+          var prefix = 'wi wi-';
+          var weatheridD1 = data.list[0]["weather"]["0"].id;
+          var weatheridD2 = data.list[8]["weather"]["0"].id;
+          var weatheridD3 = data.list[16]["weather"]["0"].id;
+          var weatheridD4 = data.list[24]["weather"]["0"].id;
+          var weatheridD5 = data.list[32]["weather"]["0"].id;
+
+          var wIconD1 = weatherIcons[weatheridD1].icon;
+          var wIconD2 = weatherIcons[weatheridD2].icon;
+          var wIconD3 = weatherIcons[weatheridD3].icon;
+          var wIconD4 = weatherIcons[weatheridD4].icon;
+          var wIconD5 = weatherIcons[weatheridD5].icon;
+
+          if (!(weatheridD1 > 699 && weatheridD1 < 800) && !(weatheridD1 > 899 && weatheridD1 < 1000)) {
+            wIconD1 = 'day-' + wIconD1;
+          }
+          if (!(weatheridD2 > 699 && weatheridD2 < 800) && !(weatheridD2 > 899 && weatheridD2 < 1000)) {
+            wIconD2 = 'day-' + wIconD2;
+          }
+          if (!(weatheridD3 > 699 && weatheridD3 < 800) && !(weatheridD3 > 899 && weatheridD3 < 1000)) {
+            wIconD3 = 'day-' + wIconD3;
+          }
+          if (!(weatheridD4 > 699 && weatheridD4 < 800) && !(weatheridD4 > 899 && weatheridD4 < 1000)) {
+            wIconD4 = 'day-' + wIconD4;
+          }
+          if (!(weatheridD5 > 699 && weatheridD5 < 800) && !(weatheridD5 > 899 && weatheridD5 < 1000)) {
+            wIconD5 = 'day-' + wIconD5;
+          }
+          wIconD1 = prefix + wIconD1;
+          wIconD2 = prefix + wIconD2;
+          wIconD3 = prefix + wIconD3;
+          wIconD4 = prefix + wIconD4;
+          wIconD5 = prefix + wIconD5;
+
+          console.log(data);
+          console.log("Help");
+          setHTML5day(data, wIconD1, wIconD2, wIconD3, wIconD4, wIconD5);
+        }
+
+function setHTML5day(data, wIconD1, wIconD2, wIconD3, wIconD4, wIconD5) {
+
+        $("#wIconD1").addClass(wIconD1);
+        $("#d1Temp").html("<h4><li>" +  Math.round(data["list"]["0"]["main"]["temp"]) + "°C</h4></li><li><h6>" + data["list"]["0"]["weather"]["0"]["description"] +"</h6></li>");
+        $("#d1Info").html("<li><h5>" + tMin +	Math.round(data["list"]["0"]["main"]["temp_min"]) + "°C</h5></li><li><h5>" + tMax +
+        Math.round(data["list"]["0"]["main"]["temp_max"]) + "°C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " + data["list"]["0"]["wind"]["speed"] + "m/s</li>");
+
+        $("#wIconD2").addClass(wIconD2);
+        $("#d2Temp").html("<h4><li> " + Math.round(data["list"]["8"]["main"]["temp"]) + "°C</h4></li><li><h6>" + data["list"]["8"]["weather"]["0"]["description"] + "</h6></li>");
+        $("#d2Info").html("<li><h5>" + tMin +	Math.round(data["list"]["8"]["main"]["temp_min"]) + "°C</h5></li><li><h5>" + tMax +
+        Math.round(data["list"]["8"]["main"]["temp_max"]) + "°C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " + data["list"]["8"]["wind"]["speed"] + "m/s</li>");
+
+        $("#wIconD3").addClass(wIconD3);
+        $("#d3Temp").html("<li><h4>" + Math.round(data["list"]["16"]["main"]["temp"]) + "°C</h4></li><li><h6>" + data["list"]["16"]["weather"]["0"]["description"] + "</h6></li>");
+        $("#d3Info").html("<li><h5>" + tMin +	Math.round(data["list"]["16"]["main"]["temp_min"]) + "°C</h5></li><li><h5>" + tMax +
+        Math.round(data["list"]["16"]["main"]["temp_max"]) + "°C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " + data["list"]["16"]["wind"]["speed"] + "m/s</li>");
+
+        $("#wIconD4").addClass(wIconD4);
+        $("#d4Temp").html("<li><li><h4>" + Math.round(data["list"]["24"]["main"]["temp"]) + "°C</h4></li><h6>" + data["list"]["24"]["weather"]["0"]["description"] + "</h6></li>");
+        $("#d4Info").html("<li><h5>" + tMin +	Math.round(data["list"]["24"]["main"]["temp_min"]) + "°C</h5></li><li><h5>" + tMax +
+        Math.round(data["list"]["24"]["main"]["temp_max"]) + "°C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " + data["list"]["24"]["wind"]["speed"] + "m/s</li>");
+
+        $("#wIconD5").addClass(wIconD5);
+        $("#d5Temp").html("<li><h4>" + Math.round(data["list"]["32"]["main"]["temp"]) + "°C</h4></li><li><h6>" + data["list"]["32"]["weather"]["0"]["description"] + "</h6></li>");
+        $("#d5Info").html("<li><h5>" + tMin +	Math.round(data["list"]["32"]["main"]["temp_min"]) + "°C</h5></li><li><h5>" + tMax +
+        Math.round(data["list"]["32"]["main"]["temp_max"]) + "°C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " + data["list"]["32"]["wind"]["speed"] + "m/s</li>");
+
+        drawChartDetail(data);
+        eva.replace()
+        }
+
 function prepareButtons() {
     $('.btn-Navbar').on('click', function setModalTab() {
       var tabTarget = $(this).data('tab');
@@ -107,11 +179,20 @@ function prepareButtons() {
     $('#menuUser').on('click', function showModalUser() {
       $('#modalUser').modal('show');
     });
+    $('#modalUser').on('shown.bs.modal', function () {
+        $('#emailInputUser').focus()
+      })
+
     $('#menuAbout').on('click', function showModalAbout() {
       $('#modalAbout').modal('show');
     });
     $('#modalLaunchStandort').on('click', function showModalAbout() {
       $('#modalStandort').modal('show');
+    });
+
+    $('#modalStandort').on('shown.bs.modal', function () {
+      setItems5day(data, weatherIcons);
+      setHTML5day(data, wIconD1, wIconD2, wIconD3, wIconD4, wIconD5);
     });
 }
 
