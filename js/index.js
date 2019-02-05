@@ -111,11 +111,6 @@ function getWeather() {
       context: document.body,
       dataType: 'json'
     }).done(function(data) {
-
-      console.log(data);
-      console.log("max:  " + data["list"]["0"]["main"]["temp_max"] + " min: " + data["list"]["0"]["main"]["temp_min"]);
-      console.log(data["city"]["name"]);
-
       setItems5day(data, weatherIcons);
     });
 }
@@ -125,12 +120,9 @@ function setItems(data,weatherIcons) {
     var prefix = 'wi wi-';
     var weatherid = data.weather[0].id;
     var wIcon = weatherIcons[weatherid].icon;
-    console.log(weatherid);
-    console.log(wIcon)
 
     if (!(weatherid > 699 && weatherid < 800) && !(weatherid > 899 && weatherid < 1000)) {
       wIcon = 'day-' + wIcon;
-      console.log(weatherid)
     }
     wIcon = prefix + wIcon;
     $("#heuteIcon").addClass(wIcon);
@@ -178,29 +170,28 @@ function setItems5day(data, weatherIcons){
 }
 
 function setHTML5day(data, wIconD1, wIconD2, wIconD3, wIconD4, wIconD5) {
-console.log(data);
 
-$("#wIconD1").addClass(wIconD1)
-$("#d1Temp").html("<h4><li>" + Math.round(data["list"]["0"]["main"]["temp"]) + "°C</h4></li><li><h6>" + ["list"]["0"]["weather"]["0"]["description"] +"</h6></li>");
+$("#wIconD1").addClass(wIconD1);
+$("#d1Temp").html("<h4><li>" +  Math.round(data["list"]["0"]["main"]["temp"]) + "°C</h4></li><li><h6>" + data["list"]["0"]["weather"]["0"]["description"] +"</h6></li>");
 $("#d1Info").html("<li><h5><i class='wi wi-thermometer tempMin'></i> " +	Math.round(data["list"]["0"]["main"]["temp_min"]) + "°C</h5></li><li><h5><i class='wi wi-thermometer tempMax'></i> " +
 Math.round(data["list"]["0"]["main"]["temp_max"]) + "°C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " + data["list"]["0"]["wind"]["speed"] + "m/s</li>");
 
-$("#wIconD2").addClass(wIconD2)
+$("#wIconD2").addClass(wIconD2);
 $("#d2Temp").html("<h4><li> " + Math.round(data["list"]["8"]["main"]["temp"]) + "°C</h4></li><li><h6>" + data["list"]["8"]["weather"]["0"]["description"] + "</h6></li>");
 $("#d2Info").html("<li><h5><i class='wi wi-thermometer tempMin'></i> " +	Math.round(data["list"]["8"]["main"]["temp_min"]) + "°C</h5></li><li><h5><i class='wi wi-thermometer tempMax'></i> " +
 Math.round(data["list"]["8"]["main"]["temp_max"]) + "°C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " + data["list"]["8"]["wind"]["speed"] + "m/s</li>");
 
-$("#wIconD3").addClass(wIconD3)
+$("#wIconD3").addClass(wIconD3);
 $("#d3Temp").html("<li><h4>" + Math.round(data["list"]["16"]["main"]["temp"]) + "°C</h4></li><li><h6>" + data["list"]["16"]["weather"]["0"]["description"] + "</h6></li>");
 $("#d3Info").html("<li><h5><i class='wi wi-thermometer tempMin'></i> " +	Math.round(data["list"]["16"]["main"]["temp_min"]) + "°C</h5></li><li><h5><i class='wi wi-thermometer tempMax'></i> " +
 Math.round(data["list"]["16"]["main"]["temp_max"]) + "°C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " + data["list"]["16"]["wind"]["speed"] + "m/s</li>");
 
-$("#wIconD4").addClass(wIconD4)
+$("#wIconD4").addClass(wIconD4);
 $("#d4Temp").html("<li><li><h4>" + Math.round(data["list"]["24"]["main"]["temp"]) + "°C</h4></li><h6>" + data["list"]["24"]["weather"]["0"]["description"] + "</h6></li>");
 $("#d4Info").html("<li><h5><i class='wi wi-thermometer tempMin'></i> " +	Math.round(data["list"]["24"]["main"]["temp_min"]) + "°C</h5></li><li><h5><i class='wi wi-thermometer tempMax'></i> " +
 Math.round(data["list"]["24"]["main"]["temp_max"]) + "°C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " + data["list"]["24"]["wind"]["speed"] + "m/s</li>");
 
-$("#wIconD5").addClass(wIconD5)
+$("#wIconD5").addClass(wIconD5);
 $("#d5Temp").html("<li><h4>" + Math.round(data["list"]["32"]["main"]["temp"]) + "°C</h4></li><li><h6>" + data["list"]["32"]["weather"]["0"]["description"] + "</h6></li>");
 $("#d5Info").html("<li><h5><i class='wi wi-thermometer tempMin'></i> " +	Math.round(data["list"]["32"]["main"]["temp_min"]) + "°C</h5></li><li><h5><i class='wi wi-thermometer tempMax'></i> " +
 Math.round(data["list"]["32"]["main"]["temp_max"]) + "°C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " + data["list"]["32"]["wind"]["speed"] + "m/s</li>");
@@ -336,7 +327,7 @@ function drawChartDetail(data) {
   }
 
   //Verknüpfen der Registration/LoginButtons mit den entsprechenden Tabs im Login-Modal
-  function prepareButtons() {
+function prepareButtons() {
   $('.btn-Navbar').on('click', function setModalTab() {
     console.log("Navbar-Buttons ok");
     var tabTarget = $(this).data('tab');
@@ -345,7 +336,7 @@ function drawChartDetail(data) {
   });
 }
 
-  function setBackground() {var pattern = Trianglify({
+function setBackground() {var pattern = Trianglify({
       cell_size: 500,
       variance: 1,
       x_colors: ['#526b7b', '#6691ab', '#375b5f'],
