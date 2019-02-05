@@ -7,6 +7,7 @@ $(document).ready(function() {
   setBackground() ;
   prepareButtons();
 });
+data = 0;
 
 tMin = "<i data-eva='thermometer-minus' data-eva-height='24' data-eva-width='24'></i> ";
 tMax = "<i data-eva='thermometer-plus' data-eva-height='24' data-eva-width='24'></i> ";
@@ -44,8 +45,127 @@ function showPosition(position) {
           $("#standortTemperatur").html("<h2>" + tNormal + Math.round(data["main"]["temp"]) + "°C </h2>");
           $("#standortBeschreibung").html(data["weather"]["0"]["description"]);
           eva.replace();
+
+
         });
+
+        //nur Temporär für die Modal sder Detailansicht
+        $.ajax({
+          url: "https://api.openweathermap.org/data/2.5/forecast?lat=" + latitude + "&lon=" + longitude +
+            "&units=metric&lang=de&appid=6012cf5997f032d2c82563e60ef96a56",
+          context: document.body,
+          dataType: 'json'
+        }).done(function(data) {
+
+          console.log(data);
+          console.log("max:  " + data["list"]["0"]["main"]["temp_max"] + " min: " + data["list"]["0"]["main"]["temp_min"]);
+          console.log(data["city"]["name"]);
+
+          setItems5day(data, weatherIcons);
+          eva.replace();
+        });
+
         }
+
+        function drawChartDetail(data) {
+          console.log("Starte drawChart")
+            var ctx = document.getElementById('tempChart').getContext('2d');
+            Chart.defaults.global.defaultFontColor = 'white';
+            Chart.defaults.global.defaultFontSize = '12';
+
+            //Wetterdaten richtig formatieren für Chart - Push in 2 neue Arrays
+            var timestamp = [];
+            var wetterDaten = [];
+            for (var i = 0; i < data["list"].length; i = (i+2)) {
+                timestamp.push(data.list[i].dt_txt);
+                wetterDaten.push(Math.round(data.list[i].main.temp * 10) / 10);
+            }
+            var chart1 = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: timestamp,
+                    datasets: [{
+                        label: "Temperatur",
+                        yAxisID: 'TemperaturY',
+                        backgroundColor: '#f44256',
+                        borderColor: '#f44256',
+                        fill: false,
+                        data: wetterDaten,
+                        datalabels: {
+                          align: 'center',
+                          anchor: 'center',
+                          offset: 5,
+                          borderRadius: 1,
+                          backgroundColor:'#f44256',
+                          color: 'white',
+                          font: {
+                            weight: 'bold'
+                          },
+                        }
+                    }]
+                },
+                // Configuration options go here
+                options: {
+                  maintainAspectRatio: false,
+                  responsive: true,
+                  legend: {
+                    position: 'top',
+                    labels: {
+                      fontColor: '#d8eaf1',
+                      fontSize: 16,
+                    }
+                  }, scales: {
+                      yAxes: [{
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                        id: 'TemperaturY',
+                        gridLines: {
+                            display: true,
+                        }, ticks: {
+                          display: false,
+                            fontColor: "white",
+                            min: Math.round(Math.min.apply(this, wetterDaten)) - 5,
+                            max: Math.round(Math.max.apply(this, wetterDaten)) + 5,
+                            stepSize: 2,
+                          }, scaleLabel: {
+                            fontColor: 'white',
+                            fontSize: 14,
+                            display: false,
+                            labelString: 'Temperatur °',
+                          },
+                      }],
+                    xAxes: [{
+                      id: 'xAxis-Zeit',
+                        ticks:{
+                          callback:function(label){
+                          var datum = label.split(" ")[0];
+                          var zeit = (label.split(" ")[1]).substring(0,5);
+                          return zeit;
+                          }
+                        },
+                      gridLines: {
+                        display: false,
+                      }
+                    }, {
+                      id: 'xAxis-Datum',
+                        drawOnChartArea: true,
+                        ticks:{
+                          callback:function(label){
+                          var datum = label.split(" ")[0];
+                          var zeit = label.split(" ")[1];
+                          return datum;
+                          }
+                        },
+                      gridLines: {
+                        display: true,
+                      }
+                    }]
+                  }
+                }
+            });
+            //setBackground();
+          }
 
 function ortSuche() {
             var options = {
@@ -191,8 +311,9 @@ function prepareButtons() {
     });
 
     $('#modalStandort').on('shown.bs.modal', function () {
-      setItems5day(data, weatherIcons);
-      setHTML5day(data, wIconD1, wIconD2, wIconD3, wIconD4, wIconD5);
+      getLocation();
+      // setItems5day(data, weatherIcons);
+      // setHTML5day(data, wIconD1, wIconD2, wIconD3, wIconD4, wIconD5);
     });
 }
 
@@ -207,7 +328,7 @@ function setBackground() {
     document.body.style.backgroundImage = "url(" + pattern.png() + ")"
   }
 
-var weatherIcons = {
+weatherIcons = {
   "200": {
     "label": "thunderstorm with light rain",
     "icon": "storm-showers"
