@@ -7,6 +7,9 @@ $(document).ready(function() {
   prepareButtons();
 });
 
+tMin = "<i data-eva='thermometer-minus' data-eva-height='24' data-eva-width='24'></i> ";
+tMax = "<i data-eva='thermometer-plus' data-eva-height='24' data-eva-width='24'></i> ";
+
 function getLocation() {
   console.log("get location ready");
   if (navigator.geolocation) {
@@ -46,9 +49,10 @@ function showPosition(position) {
     tRise = data["sys"]["sunrise"];
     tSet = data["sys"]["sunset"];
 
+
     $("#actualPlace").html(data["name"] + " / " + data["sys"]["country"]);
     $("#heuteTemp").html("<h3><li> " + Math.round(data["main"]["temp"]) + "°C</h3></li><li><h5>" + data["weather"]["0"]["description"] + "</h5></li>");
-    $("#heuteInfo").html("<li><h5><i class='wi wi-thermometer tempMin'></i> " + data["main"]["temp_min"] + " °C</h5></li><li><h5><i class='wi wi-thermometer tempMax'></i> " + data["main"]["temp_max"] + " °C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " +
+    $("#heuteInfo").html("<li><h5>" + tMin + data["main"]["temp_min"] + " °C</h5></li><li><h5>" + tMax + data["main"]["temp_max"] + " °C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " +
       data["wind"]["speed"] + " m/s</li><li><h5><i class='wi wi-sunrise'></i> " + Unix_timestamp(tRise) + "</h5></li><li><h5><i class='wi wi-sunset'></i> " + Unix_timestamp(tSet) + "</h5></li>");
   });
 
@@ -64,7 +68,6 @@ function showPosition(position) {
     console.log(data["city"]["name"]);
 
     setItems5day(data, weatherIcons);
-
   });
 }
 
@@ -101,7 +104,7 @@ function getWeather() {
 
       $("#actualPlace").html(data["name"] + " / " + data["sys"]["country"]);
       $("#heuteTemp").html("<h3><li> " + Math.round(data["main"]["temp"]) + "°C</h3></li><li><h5>" + data["weather"]["0"]["description"] + "</h5></li>");
-      $("#heuteInfo").html("<li><h5><i class='wi wi-thermometer tempMin'></i> " + data["main"]["temp_min"] + " °C</h5></li><li><h5><i class='wi wi-thermometer tempMax'></i> " + data["main"]["temp_max"] + " °C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " +
+      $("#heuteInfo").html("<li><h5>" + tMin + data["main"]["temp_min"] + " °C</h5></li><li><h5>" + tMax + data["main"]["temp_max"] + " °C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " +
         data["wind"]["speed"] + " m/s</li><li><h5><i class='wi wi-sunrise'></i> " + Unix_timestamp(tRise) + "</h5></li><li><h5><i class='wi wi-sunset'></i> " + Unix_timestamp(tSet) + "</h5></li>");
     });
 
@@ -173,30 +176,31 @@ function setHTML5day(data, wIconD1, wIconD2, wIconD3, wIconD4, wIconD5) {
 
 $("#wIconD1").addClass(wIconD1);
 $("#d1Temp").html("<h4><li>" +  Math.round(data["list"]["0"]["main"]["temp"]) + "°C</h4></li><li><h6>" + data["list"]["0"]["weather"]["0"]["description"] +"</h6></li>");
-$("#d1Info").html("<li><h5><i class='wi wi-thermometer tempMin'></i> " +	Math.round(data["list"]["0"]["main"]["temp_min"]) + "°C</h5></li><li><h5><i class='wi wi-thermometer tempMax'></i> " +
+$("#d1Info").html("<li><h5>" + tMin +	Math.round(data["list"]["0"]["main"]["temp_min"]) + "°C</h5></li><li><h5>" + tMax +
 Math.round(data["list"]["0"]["main"]["temp_max"]) + "°C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " + data["list"]["0"]["wind"]["speed"] + "m/s</li>");
 
 $("#wIconD2").addClass(wIconD2);
 $("#d2Temp").html("<h4><li> " + Math.round(data["list"]["8"]["main"]["temp"]) + "°C</h4></li><li><h6>" + data["list"]["8"]["weather"]["0"]["description"] + "</h6></li>");
-$("#d2Info").html("<li><h5><i class='wi wi-thermometer tempMin'></i> " +	Math.round(data["list"]["8"]["main"]["temp_min"]) + "°C</h5></li><li><h5><i class='wi wi-thermometer tempMax'></i> " +
+$("#d2Info").html("<li><h5>" + tMin +	Math.round(data["list"]["8"]["main"]["temp_min"]) + "°C</h5></li><li><h5>" + tMax +
 Math.round(data["list"]["8"]["main"]["temp_max"]) + "°C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " + data["list"]["8"]["wind"]["speed"] + "m/s</li>");
 
 $("#wIconD3").addClass(wIconD3);
 $("#d3Temp").html("<li><h4>" + Math.round(data["list"]["16"]["main"]["temp"]) + "°C</h4></li><li><h6>" + data["list"]["16"]["weather"]["0"]["description"] + "</h6></li>");
-$("#d3Info").html("<li><h5><i class='wi wi-thermometer tempMin'></i> " +	Math.round(data["list"]["16"]["main"]["temp_min"]) + "°C</h5></li><li><h5><i class='wi wi-thermometer tempMax'></i> " +
+$("#d3Info").html("<li><h5>" + tMin +	Math.round(data["list"]["16"]["main"]["temp_min"]) + "°C</h5></li><li><h5>" + tMax +
 Math.round(data["list"]["16"]["main"]["temp_max"]) + "°C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " + data["list"]["16"]["wind"]["speed"] + "m/s</li>");
 
 $("#wIconD4").addClass(wIconD4);
 $("#d4Temp").html("<li><li><h4>" + Math.round(data["list"]["24"]["main"]["temp"]) + "°C</h4></li><h6>" + data["list"]["24"]["weather"]["0"]["description"] + "</h6></li>");
-$("#d4Info").html("<li><h5><i class='wi wi-thermometer tempMin'></i> " +	Math.round(data["list"]["24"]["main"]["temp_min"]) + "°C</h5></li><li><h5><i class='wi wi-thermometer tempMax'></i> " +
+$("#d4Info").html("<li><h5>" + tMin +	Math.round(data["list"]["24"]["main"]["temp_min"]) + "°C</h5></li><li><h5>" + tMax +
 Math.round(data["list"]["24"]["main"]["temp_max"]) + "°C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " + data["list"]["24"]["wind"]["speed"] + "m/s</li>");
 
 $("#wIconD5").addClass(wIconD5);
 $("#d5Temp").html("<li><h4>" + Math.round(data["list"]["32"]["main"]["temp"]) + "°C</h4></li><li><h6>" + data["list"]["32"]["weather"]["0"]["description"] + "</h6></li>");
-$("#d5Info").html("<li><h5><i class='wi wi-thermometer tempMin'></i> " +	Math.round(data["list"]["32"]["main"]["temp_min"]) + "°C</h5></li><li><h5><i class='wi wi-thermometer tempMax'></i> " +
+$("#d5Info").html("<li><h5>" + tMin +	Math.round(data["list"]["32"]["main"]["temp_min"]) + "°C</h5></li><li><h5>" + tMax +
 Math.round(data["list"]["32"]["main"]["temp_max"]) + "°C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " + data["list"]["32"]["wind"]["speed"] + "m/s</li>");
 
 drawChartDetail(data);
+eva.replace()
 }
 
 function Unix_timestamp(t) {
@@ -331,10 +335,18 @@ function prepareButtons() {
   $('.btn-Navbar').on('click', function setModalTab() {
     console.log("Navbar-Buttons ok");
     var tabTarget = $(this).data('tab');
-    $('.modalRegLog').modal('show');
+    $('.modalRegLog').modal({'backdrop':'static'});
     $('.modalRegTabBar a[href="#' + tabTarget + '"]').tab('show');
   });
 }
+
+function submitFormControl() {
+  $('#loginForm').submit(function(e){
+    e.preventDefault();
+    $(this.form).submit();
+    $('#modalRegistration').modal('show');
+  })
+};
 
 function setBackground() {var pattern = Trianglify({
       cell_size: 500,

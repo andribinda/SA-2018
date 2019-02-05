@@ -43,8 +43,7 @@ if (userlogin_check($mysqli) == true) {
         if (!empty($error_msg)) {
             echo $error_msg;
         }
-        ?>
-
+  ?>
 	<nav class="navbar navbar-expand-sm navbar-dark topNav">
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
@@ -182,9 +181,7 @@ if (userlogin_check($mysqli) == true) {
 								</div>
 							</div>
                     <?php
-                 if (isset($_GET['error'])) {
-                     echo '<p class="error">Error Logging In!</p>';
-                 }
+										 if (isset($_GET['error'])) {echo '<p class="error">Error Logging In!</p>';}
                  ?>
 							<button type="button" class="btn btn-primary btn-modal1" onclick="formhash(this.form, this.form.password)">Login</button>
 							<button type="button" class="btn btn-primary btn-modal1" data-dismiss="modal" aria-label="Close">Schliessen</button>

@@ -258,6 +258,11 @@ ul {
 .iconDiv {
   padding: 0 2% 0 0;
 }
+
+.wi {
+  color:black;
+}
+
 .wi-medium {
   font-size: 48px;
 }
@@ -281,4 +286,12 @@ ul {
 
 .tempMin {
   color: #a9e2e8;
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+    margin-bottom: .5rem;
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.2;
+    color: black;
 }

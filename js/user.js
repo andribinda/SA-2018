@@ -4,8 +4,8 @@ $(document).ready(function() {
   var latitude = 0;
   var longitude = 0;
   getLocation();
-  setBackground()
-  eva.replace()
+  setBackground() ;
+  eva.replace();
   prepareButtons();
 });
 
@@ -100,15 +100,16 @@ function showPosition(position) {
     $('.modalRegTabBar a[href="#' + tabTarget + '"]').tab('show');
   });
 
-  $('#menuUser').on('click', function showModalUser() {
-  $('#modalUser').modal('show');
-  });
-  $('#menuAbout').on('click', function showModalAbout() {
-  $('#modalAbout').modal('show');
-  });
-  $('#modalLaunchStandort').on('click', function showModalAbout() {
-  $('#modalStandort').modal('show');
-  };
+    $('#menuUser').on('click', function showModalUser() {
+    $('#modalUser').modal('show');
+    });
+    $('#menuAbout').on('click', function showModalAbout() {
+    $('#modalAbout').modal('show');
+    });
+    $('#modalLaunchStandort').on('click', function showModalAbout() {
+    $('#modalStandort').modal('show');
+    });
+  }
 
 
   function setBackground() {var pattern = Trianglify({
