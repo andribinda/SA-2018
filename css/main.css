@@ -103,10 +103,6 @@ input#inputTextNav[type="search"]::placeholder {
   .modalSize {
     width: 75% !important;
   }
-
-  .ul-user-info {
-    padding-left: 0;
-    }
 }
 
 #modalRegistration, {
