@@ -66,6 +66,9 @@ input#inputTextNav[type="search"]::placeholder {
     margin-top:10px;
     margin-right: 10px;
   }
+  .modalSize {
+    width: 90% !important;
+  }
 }
 
 @media (min-width: 576px) {
@@ -95,6 +98,10 @@ input#inputTextNav[type="search"]::placeholder {
   .sideNavItem:hover, .sideNavItem:active, .sideNavItem:focus {
     color:#ad997d;
     border: 2px solid #ad997d !important;
+  }
+
+  .modalSize {
+    width: 75% !important;
   }
 }
 
