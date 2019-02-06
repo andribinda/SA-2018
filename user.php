@@ -179,7 +179,7 @@ secure_session_start();
     								<ul class ="ul-index" id="d1Temp"></ul>
     							</div>
     							<div class="col-6 col-sm-12">
-    									<ul class="ul-info" id="d1Info"></ul>
+    									<ul class="ul-user-info" id="d1Info"></ul>
     							</div>
     				</div>
     				</ul>
@@ -192,7 +192,7 @@ secure_session_start();
     								<ul class ="ul-index" id="d2Temp"></ul>
     							</div>
     							<div class="col-xs-6">
-    									<ul class="ul-info" id="d2Info"></ul>
+    									<ul class="ul-user-info" id="d2Info"></ul>
     						</div>
     				</div>
     			</div>
@@ -204,7 +204,7 @@ secure_session_start();
     								<ul class ="ul-index" id="d3Temp"></ul>
     							</div>
     							<div class="col-xs-6">
-    									<ul class="ul-info" id="d3Info"></ul>
+    									<ul class="ul-user-info" id="d3Info"></ul>
     						</div>
     				</div>
     			</div>
@@ -216,7 +216,7 @@ secure_session_start();
     								<ul class ="ul-index" id="d4Temp"></ul>
     							</div>
     							<div class="col-xs-6">
-    									<ul class="ul-info" id="d4Info"></ul>
+    									<ul class="ul-user-info" id="d4Info"></ul>
     						</div>
     				</div>
     			</div>
@@ -228,7 +228,7 @@ secure_session_start();
     								<ul class ="ul-index" id="d5Temp"></ul>
     							</div>
     							<div class="col-xs-6">
-    									<ul class="ul-info" id="d5Info"></ul>
+    									<ul class="ul-user-info" id="d5Info"></ul>
     						</div>
     				</div>
     			</div>
