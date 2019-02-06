@@ -232,8 +232,8 @@ function setItems5day(daten5tage, icons){
 
 function setHTML(dataDay) {
 
-  tRise = data["sys"]["sunrise"];
-  tSet = data["sys"]["sunset"];
+  tRise = dataDay["sys"]["sunrise"];
+  tSet = dataDay["sys"]["sunset"];
 
   $("#standortOrt").html(dataDay["name"] + " / " + dataDay["sys"]["country"]);
   $("#standortTemperatur").html(tNormal + Math.round(dataDay["main"]["temp"]) + "°C");
