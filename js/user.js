@@ -236,11 +236,11 @@ function setHTML(dataDay) {
   tSet = dataDay["sys"]["sunset"];
 
   $("#standortOrt").html(dataDay["name"] + " / " + dataDay["sys"]["country"]);
-  $("#standortTemperatur").html(tNormal + Math.round(dataDay["main"]["temp"]) + "°C");
+  $("#standortTemperatur").html(Math.round(dataDay["main"]["temp"]) + "°C");
   $("#standortBeschreibung").html(dataDay["weather"]["0"]["description"]);
-  $("#standortInfo").html("<li><h5>" + tMin + dataDay["main"]["temp_min"] + " °C</h5></li><li><h5>" + tMax + dataDay["main"]["temp_max"] +
-  " °C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " + dataDay["wind"]["speed"] + " m/s</li><li><h5><i class='wi wi-sunrise'></i> " +
-  Unix_timestamp(tRise) + "</h5></li><li><h5><i class='wi wi-sunset'></i> " + Unix_timestamp(tSet) + "</h5></li>");
+  $("#standortInfo").html("<li><h4>" + tMin + dataDay["main"]["temp_min"] + " °C</h4></li><li><h4>" + tMax + dataDay["main"]["temp_max"] +
+  " °C</h4></li><li><h4><i class='wi wi-strong-wind'></i> " + dataDay["wind"]["speed"] + " m/s</li><li><h4><i class='wi wi-sunrise'></i> " +
+  Unix_timestamp(tRise) + "</h4></li><li><h4><i class='wi wi-sunset'></i> " + Unix_timestamp(tSet) + "</h4></li>");
   eva.replace()
 }
 
