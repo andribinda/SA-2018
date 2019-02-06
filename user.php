@@ -174,11 +174,11 @@ secure_session_start();
     			<div class="col-sm panel text-center">
     				<h2 id="day_name1"></h2>
     						<div class= "row justify-content-center">
-    							<div class="col-xs-6 iconDiv text-center" id="day1Container">
+    							<div class="col-6 col-sm-12 iconDiv text-center" id="day1Container">
     								<i class="wi wi-medium piktogrammWIndex" id="wIconD1"></i>
     								<ul class ="ul-index" id="d1Temp"></ul>
     							</div>
-    							<div class="col-xs-6">
+    							<div class="col-6 col-sm-12">
     									<ul class="ul-info" id="d1Info"></ul>
     							</div>
     				</div>
@@ -187,7 +187,7 @@ secure_session_start();
     			<div class="col-sm panel text-center">
     				<h2 id="day_name2"></h2>
     						<div class= "row justify-content-center">
-    							<div class="col-xs-6 iconDiv text-center">
+    							<div class="col-xs-6 col-md-8 iconDiv text-center">
     								<i class="wi wi-medium piktogrammWIndex" id="wIconD2"></i>
     								<ul class ="ul-index" id="d2Temp"></ul>
     							</div>
@@ -199,7 +199,7 @@ secure_session_start();
     			<div class="col-sm panel text-center">
     				<h2 id="day_name3"></h2>
     						<div class= "row justify-content-center">
-    							<div class="col-xs-6 iconDiv text-center">
+    							<div class="col-xs-6 col-md-8 iconDiv text-center">
     								<i class="wi wi-medium piktogrammWIndex" id="wIconD3"></i>
     								<ul class ="ul-index" id="d3Temp"></ul>
     							</div>
@@ -211,7 +211,7 @@ secure_session_start();
     			<div class="col-sm panel text-center">
     				<h2 id="day_name4"></h2>
     						<div class= "row justify-content-center">
-    							<div class="col-xs-6 iconDiv text-center">
+    							<div class="col-xs-6 col-md-8 iconDiv text-center">
     								<i class="wi wi-medium piktogrammWIndex" id="wIconD4"></i>
     								<ul class ="ul-index" id="d4Temp"></ul>
     							</div>
@@ -223,7 +223,7 @@ secure_session_start();
     			<div class="col-sm panel text-center">
     				<h2 id="day_name5"></h2>
     						<div class= "row justify-content-center">
-    							<div class="col-xs-6 iconDiv text-center">
+    							<div class="col-xs-6 col-md-8 iconDiv text-center">
     								<i class="wi wi-medium piktogrammWIndex" id="wIconD5"></i>
     								<ul class ="ul-index" id="d5Temp"></ul>
     							</div>

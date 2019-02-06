@@ -1,6 +1,5 @@
 // Script starter
 $(document).ready(function() {
-  console.log("ready!");
   var latitude = 0;
   var longitude = 0;
   getLocation();
@@ -10,6 +9,8 @@ $(document).ready(function() {
 
 dataDay = 0;
 data5Day = 0;
+lat = 0;
+lng = 0;
 
 tMin = "<i data-eva='thermometer-minus' data-eva-height='24' data-eva-width='24'></i> ";
 tMax = "<i data-eva='thermometer-plus' data-eva-height='24' data-eva-width='24'></i> ";
@@ -35,7 +36,6 @@ function showPosition(position) {
 }
 
 function getWeatherToday(latitude,longitude) {
-  console.log(latitude,longitude);
        $.ajax({
           url: "https://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude +
             "&units=metric&lang=de&appid=6012cf5997f032d2c82563e60ef96a56",
@@ -47,21 +47,17 @@ function getWeatherToday(latitude,longitude) {
   }
 
 function getWeather5Day(latitude,longitude) {
-  console.log(latitude,longitude);
         $.ajax({
           url: "https://api.openweathermap.org/data/2.5/forecast?lat=" + latitude + "&lon=" + longitude +
             "&units=metric&lang=de&appid=6012cf5997f032d2c82563e60ef96a56",
           context: document.body,
           dataType: 'json'
         }).done(function(data5Day) {
-          console.log("max:  " + data5Day["list"]["0"]["main"]["temp_max"] + " min: " + data5Day["list"]["0"]["main"]["temp_min"]);
-          console.log(data5Day["city"]["name"]);
           setItems5day(data5Day, weatherIcons)
       });
     }
 
 function drawChartDetail(weatherData) {
-          console.log("Starte drawChart")
             var ctx = document.getElementById('tempChart').getContext('2d');
             Chart.defaults.global.defaultFontColor = 'white';
             Chart.defaults.global.defaultFontSize = '12';
@@ -176,9 +172,8 @@ google.maps.event.addDomListener(window, 'load', ortSuche);
 function getPlaceSearch() {
         // Get the place details from the autocomplete object.
         var place = this.getPlace();
-        var lng = place.geometry.location.lng();
-        var lat = place.geometry.location.lat();
-        console.log(lat, lng);
+        lng = place.geometry.location.lng();
+        lat = place.geometry.location.lat();
 
         getWeatherToday(lat,lng);
         getWeather5Day(lat,lng);
@@ -188,12 +183,9 @@ function setItems(wetterDaten,icons) {
           var prefix = 'wi wi-';
           var weatherid = wetterDaten.weather[0].id;
           var wIcon = weatherIcons[weatherid].icon;
-          console.log(weatherid);
-          console.log(wIcon)
 
           if (!(weatherid > 699 && weatherid < 800) && !(weatherid > 899 && weatherid < 1000)) {
             wIcon = 'day-' + wIcon;
-            console.log(weatherid)
           }
           wIcon = prefix + wIcon;
           $("#heuteIcon").addClass(wIcon);
@@ -236,7 +228,6 @@ function setItems5day(daten5tage, icons){
           wIconD4 = prefix + wIconD4;
           wIconD5 = prefix + wIconD5;
 
-          console.log(daten5tage);
           setHTML5day(daten5tage, wIconD1, wIconD2, wIconD3, wIconD4, wIconD5);
         }
 
@@ -300,7 +291,8 @@ function prepareButtons() {
     });
 
     $('#modalStandort').on('shown.bs.modal', function () {
-      getWeather5Day();
+      console.log(lat,lng);
+      getWeather5Day(lat,lng);
     });
 }
 
