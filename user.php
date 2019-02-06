@@ -170,9 +170,10 @@ secure_session_start();
 	<div class="modal-dialog mw-100 modalSize modal-dialog-centered" role="document">
 		<div class="modal-content">
       <div class ="modal-header justify-content-center">
-        <h2 id="userPageDetailHeader"></h2>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
 			<div class="modal-body">
+        <h2 id="userPageDetailHeader"></h2>
         <div class="row">
     			<div class="col-sm panel text-center">
     				<h2 id="day_name1"></h2>
