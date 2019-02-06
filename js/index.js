@@ -88,12 +88,12 @@ function ortSuche() {
 function getWeather() {
     // Get the place details from the autocomplete object.
     var place = this.getPlace();
-    var long = place.geometry.location.lng();
+    var lng = place.geometry.location.lng();
     var lat = place.geometry.location.lat();
-    console.log(lat, long);
+    console.log(lat, lng);
 
     $.ajax({
-      url: "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + long +
+      url: "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lng +
         "&units=metric&lang=de&appid=6012cf5997f032d2c82563e60ef96a56",
       context: document.body,
       dataType: 'json'

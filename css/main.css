@@ -207,7 +207,7 @@ input#inputTextNav[type="search"]::placeholder {
 }
 
 .wUserContainerL, .wUserContainerR {
-  padding: 10% 0% 5% 0%;
+  padding-bottom: 5%;
 }
 
 .sidebar {

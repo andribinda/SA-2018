@@ -55,13 +55,13 @@ secure_session_start();
                 <div class="col-6">
                   <div class="wUserContainerL text-center">
                     <i class="wi wi-night-sleet wi-xl piktogrammWUser" id="standortIcon"></i>
+                    <h3 id="standortTemperatur"></h3>
                     <h3 id="standortBeschreibung"></h3>
                 </div>
               </div>
                 <div class="col-6">
                   <div class="wUserContainerR text-left">
-                    <ul class="ul-user-info">
-                      <li id="standortTemperatur"><h2></h2></li>
+                    <ul class="ul-user-info" id="standortInfo">
                     </ul>
                   </div>
                 </div>
@@ -170,6 +170,8 @@ secure_session_start();
 	<div class="modal-dialog mw-100 modalSize modal-dialog-centered" role="document">
 		<div class="modal-content">
 			<div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h2 id="userPageDetailHeader"></h2>
         <div class="row">
     			<div class="col-sm panel text-center">
     				<h2 id="day_name1"></h2>
@@ -187,11 +189,11 @@ secure_session_start();
     			<div class="col-sm panel text-center">
     				<h2 id="day_name2"></h2>
     						<div class= "row justify-content-center">
-    							<div class="col-xs-6 col-md-8 iconDiv text-center">
+    							<div class="col-6 col-sm-12 iconDiv text-center">
     								<i class="wi wi-medium piktogrammWIndex" id="wIconD2"></i>
     								<ul class ="ul-index" id="d2Temp"></ul>
     							</div>
-    							<div class="col-xs-6">
+    							<div class="col-6 col-sm-12">
     									<ul class="ul-user-info" id="d2Info"></ul>
     						</div>
     				</div>
@@ -199,11 +201,11 @@ secure_session_start();
     			<div class="col-sm panel text-center">
     				<h2 id="day_name3"></h2>
     						<div class= "row justify-content-center">
-    							<div class="col-xs-6 col-md-8 iconDiv text-center">
+    							<div class="col-6 col-sm-12 iconDiv text-center">
     								<i class="wi wi-medium piktogrammWIndex" id="wIconD3"></i>
     								<ul class ="ul-index" id="d3Temp"></ul>
     							</div>
-    							<div class="col-xs-6">
+    							<div class="col-6 col-sm-12">
     									<ul class="ul-user-info" id="d3Info"></ul>
     						</div>
     				</div>
@@ -211,11 +213,11 @@ secure_session_start();
     			<div class="col-sm panel text-center">
     				<h2 id="day_name4"></h2>
     						<div class= "row justify-content-center">
-    							<div class="col-xs-6 col-md-8 iconDiv text-center">
+    							<div class="col-6 col-sm-12 iconDiv text-center">
     								<i class="wi wi-medium piktogrammWIndex" id="wIconD4"></i>
     								<ul class ="ul-index" id="d4Temp"></ul>
     							</div>
-    							<div class="col-xs-6">
+    							<div class="col-6 col-sm-12">
     									<ul class="ul-user-info" id="d4Info"></ul>
     						</div>
     				</div>
@@ -223,11 +225,11 @@ secure_session_start();
     			<div class="col-sm panel text-center">
     				<h2 id="day_name5"></h2>
     						<div class= "row justify-content-center">
-    							<div class="col-xs-6 col-md-8 iconDiv text-center">
+    							<div class="col-6 col-sm-12 iconDiv text-center">
     								<i class="wi wi-medium piktogrammWIndex" id="wIconD5"></i>
     								<ul class ="ul-index" id="d5Temp"></ul>
     							</div>
-    							<div class="col-xs-6">
+    							<div class="col-6 col-sm-12">
     									<ul class="ul-user-info" id="d5Info"></ul>
     						</div>
     				</div>

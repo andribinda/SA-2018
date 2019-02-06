@@ -170,14 +170,13 @@ function ortSuche() {
 google.maps.event.addDomListener(window, 'load', ortSuche);
 
 function getPlaceSearch() {
-        // Get the place details from the autocomplete object.
         var place = this.getPlace();
         lng = place.geometry.location.lng();
         lat = place.geometry.location.lat();
 
         getWeatherToday(lat,lng);
         getWeather5Day(lat,lng);
-    }
+}
 
 function setItems(wetterDaten,icons) {
           var prefix = 'wi wi-';
@@ -232,9 +231,16 @@ function setItems5day(daten5tage, icons){
         }
 
 function setHTML(dataDay) {
+
+  tRise = dataDay["sys"]["sunrise"];
+  tSet = dataDay["sys"]["sunset"];
+
   $("#standortOrt").html(dataDay["name"] + " / " + dataDay["sys"]["country"]);
-  $("#standortTemperatur").html("<h2>" + tNormal + Math.round(dataDay["main"]["temp"]) + "°C </h2>");
+  $("#standortTemperatur").html(Math.round(dataDay["main"]["temp"]) + "°C");
   $("#standortBeschreibung").html(dataDay["weather"]["0"]["description"]);
+  $("#standortInfo").html("<li><h4>" + tMin + dataDay["main"]["temp_min"] + " °C</h4></li><li><h4>" + tMax + dataDay["main"]["temp_max"] +
+  " °C</h4></li><li><h4><i class='wi wi-strong-wind'></i> " + dataDay["wind"]["speed"] + " m/s</li><li><h4><i class='wi wi-sunrise'></i> " +
+  Unix_timestamp(tRise) + "</h4></li><li><h4><i class='wi wi-sunset'></i> " + Unix_timestamp(tSet) + "</h4></li>");
   eva.replace()
 }
 
@@ -264,6 +270,12 @@ function setHTML5day(wetter, wIconD1, wIconD2, wIconD3, wIconD4, wIconD5) {
         $("#d5Temp").html("<li><h4>" + Math.round(wetter["list"]["32"]["main"]["temp"]) + "°C</h4></li><li><h6>" + wetter["list"]["32"]["weather"]["0"]["description"] + "</h6></li>");
         $("#d5Info").html("<li><h5>" + tMin +	Math.round(wetter["list"]["32"]["main"]["temp_min"]) + "°C</h5></li><li><h5>" + tMax +
         Math.round(wetter["list"]["32"]["main"]["temp_max"]) + "°C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " + wetter["list"]["32"]["wind"]["speed"] + "m/s</li>");
+
+        //Header Detailansicht nur setzen wenn das Modal auf der User-Site geöffnet wird
+        var onUserPage = document.getElementById("userPageDetailHeader");
+          if(onUserPage){
+              $("#userPageDetailHeader").html(wetter["city"]["name"]);
+            }
 
         eva.replace()
         drawChartDetail(wetter);
@@ -306,6 +318,13 @@ function setBackground() {
       });
     document.body.style.backgroundImage = "url(" + pattern.png() + ")"
   }
+
+function Unix_timestamp(t) {
+      var dt = new Date(t * 1000);
+      var hr = dt.getHours();
+      var m = "0" + dt.getMinutes();
+      return hr + ':' + m.substr(-2);
+    }
 
 weatherIcons = {
   "200": {
