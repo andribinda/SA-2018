@@ -69,10 +69,6 @@ input#inputTextNav[type="search"]::placeholder {
   .modalSize {
     width: 90% !important;
   }
-  .ul-user-info {
-    padding-left: 0;
-    padding-top: 10%;
-    }
 }
 
 @media (min-width: 576px) {
@@ -266,6 +262,11 @@ ul {
   padding-left: 0;
   padding-top: 20%;
 }
+
+.ul-user-info {
+  padding-left: 0;
+  padding-top: 10%;
+  }
 
 .iconDiv {
   padding: 0 2% 0 0;
