@@ -169,11 +169,8 @@ secure_session_start();
 <div class="modal fade" id="modalStandort" role="dialog" aria-labelledby="modalStandort" aria-hidden="true">
 	<div class="modal-dialog mw-100 modalSize modal-dialog-centered" role="document">
 		<div class="modal-content">
-      <div class ="modal-header justify-content-center">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
 			<div class="modal-body">
-        <h2 id="userPageDetailHeader"></h2>
+        <h2 id="userPageDetailHeader"></h2><button type="button" class="close" data-dismiss="modal">&times;</button>
         <div class="row">
     			<div class="col-sm panel text-center">
     				<h2 id="day_name1"></h2>
