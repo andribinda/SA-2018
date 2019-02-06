@@ -7,16 +7,16 @@ $(document).ready(function() {
   setBackground() ;
   prepareButtons();
 });
-data = 0;
+
+dataDay = 0;
+data5Day = 0;
 
 tMin = "<i data-eva='thermometer-minus' data-eva-height='24' data-eva-width='24'></i> ";
 tMax = "<i data-eva='thermometer-plus' data-eva-height='24' data-eva-width='24'></i> ";
 tNormal = "<i data-eva='thermometer' data-eva-height='36' data-eva-width='36'></i> "
 
 function getLocation() {
-  console.log("get location ready");
   if (navigator.geolocation) {
-    console.log("navigator ready");
     navigator.geolocation.getCurrentPosition(showPosition, showError);
   } else {
     x.innerHTML = "Geolocation is not supported by this browser.";
@@ -28,46 +28,39 @@ function showError(error) {
 }
 
 function showPosition(position) {
-  console.log("get postition ready");
-  latitude = position.coords.latitude;
-  longitude = position.coords.longitude;
-  console.log(latitude);
-  console.log(longitude);
+  lat = position.coords.latitude;
+  lng = position.coords.longitude;
+  getWeatherToday(lat,lng);
+  getWeather5Day(lat,lng);
+}
 
-        $.ajax({
+function getWeatherToday(latitude,longitude) {
+  console.log(latitude,longitude);
+       $.ajax({
           url: "https://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude +
             "&units=metric&lang=de&appid=6012cf5997f032d2c82563e60ef96a56",
           context: document.body,
           dataType: 'json'
-        }).done(function(data) {
-          setItems(data, weatherIcons);
-          $("#standortOrt").html(data["name"] + " / " + data["sys"]["country"]);
-          $("#standortTemperatur").html("<h2>" + tNormal + Math.round(data["main"]["temp"]) + "°C </h2>");
-          $("#standortBeschreibung").html(data["weather"]["0"]["description"]);
-          eva.replace();
-
-
+        }).done(function(dataDay) {
+          setItems(dataDay, weatherIcons);
         });
+  }
 
-        //nur Temporär für die Modal sder Detailansicht
+function getWeather5Day(latitude,longitude) {
+  console.log(latitude,longitude);
         $.ajax({
           url: "https://api.openweathermap.org/data/2.5/forecast?lat=" + latitude + "&lon=" + longitude +
             "&units=metric&lang=de&appid=6012cf5997f032d2c82563e60ef96a56",
           context: document.body,
           dataType: 'json'
-        }).done(function(data) {
+        }).done(function(data5Day) {
+          console.log("max:  " + data5Day["list"]["0"]["main"]["temp_max"] + " min: " + data5Day["list"]["0"]["main"]["temp_min"]);
+          console.log(data5Day["city"]["name"]);
+          setItems5day(data5Day, weatherIcons)
+      });
+    }
 
-          console.log(data);
-          console.log("max:  " + data["list"]["0"]["main"]["temp_max"] + " min: " + data["list"]["0"]["main"]["temp_min"]);
-          console.log(data["city"]["name"]);
-
-          setItems5day(data, weatherIcons);
-          eva.replace();
-        });
-
-        }
-
-        function drawChartDetail(data) {
+function drawChartDetail(weatherData) {
           console.log("Starte drawChart")
             var ctx = document.getElementById('tempChart').getContext('2d');
             Chart.defaults.global.defaultFontColor = 'white';
@@ -76,9 +69,9 @@ function showPosition(position) {
             //Wetterdaten richtig formatieren für Chart - Push in 2 neue Arrays
             var timestamp = [];
             var wetterDaten = [];
-            for (var i = 0; i < data["list"].length; i = (i+2)) {
-                timestamp.push(data.list[i].dt_txt);
-                wetterDaten.push(Math.round(data.list[i].main.temp * 10) / 10);
+            for (var i = 0; i < weatherData["list"].length; i = (i+2)) {
+                timestamp.push(weatherData.list[i].dt_txt);
+                wetterDaten.push(Math.round(weatherData.list[i].main.temp * 10) / 10);
             }
             var chart1 = new Chart(ctx, {
                 type: 'line',
@@ -176,35 +169,24 @@ function ortSuche() {
             var input = document.getElementById('inputTextNav');
             var autocomplete = new google.maps.places.Autocomplete(input, options);
 
-            autocomplete.addListener('place_changed', getWeather);
+            autocomplete.addListener('place_changed', getPlaceSearch);
           }
 google.maps.event.addDomListener(window, 'load', ortSuche);
 
-function getWeather() {
+function getPlaceSearch() {
         // Get the place details from the autocomplete object.
         var place = this.getPlace();
-        var long = place.geometry.location.lng();
+        var lng = place.geometry.location.lng();
         var lat = place.geometry.location.lat();
-        console.log(lat, long);
+        console.log(lat, lng);
 
-        $.ajax({
-          url: "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + long +
-            "&units=metric&lang=de&appid=6012cf5997f032d2c82563e60ef96a56",
-          context: document.body,
-          dataType: 'json'
-        }).done(function(data) {
-          setItems(data, weatherIcons);
-          console.log(tNormal);
-          $("#standortBeschreibung").html(data["weather"]["0"]["description"]);
-          $("#standortTemperatur").html("<h2>" + tNormal + Math.round(data["main"]["temp"]) + "°C </h2>");
-          $("#standortOrt").html(data["name"] + " / " + data["sys"]["country"]);
-          eva.replace();
-        });
+        getWeatherToday(lat,lng);
+        getWeather5Day(lat,lng);
     }
 
-function setItems(data,weatherIcons) {
+function setItems(wetterDaten,icons) {
           var prefix = 'wi wi-';
-          var weatherid = data.weather[0].id;
+          var weatherid = wetterDaten.weather[0].id;
           var wIcon = weatherIcons[weatherid].icon;
           console.log(weatherid);
           console.log(wIcon)
@@ -215,22 +197,23 @@ function setItems(data,weatherIcons) {
           }
           wIcon = prefix + wIcon;
           $("#heuteIcon").addClass(wIcon);
+          setHTML(wetterDaten);
         }
 
-function setItems5day(data, weatherIcons){
+function setItems5day(daten5tage, icons){
           //Icons setzen für 5-Tages-Vorhersage evtl als Array mit Loop zum setzen der Icons
           var prefix = 'wi wi-';
-          var weatheridD1 = data.list[0]["weather"]["0"].id;
-          var weatheridD2 = data.list[8]["weather"]["0"].id;
-          var weatheridD3 = data.list[16]["weather"]["0"].id;
-          var weatheridD4 = data.list[24]["weather"]["0"].id;
-          var weatheridD5 = data.list[32]["weather"]["0"].id;
+          var weatheridD1 = daten5tage.list[0]["weather"]["0"].id;
+          var weatheridD2 = daten5tage.list[8]["weather"]["0"].id;
+          var weatheridD3 = daten5tage.list[16]["weather"]["0"].id;
+          var weatheridD4 = daten5tage.list[24]["weather"]["0"].id;
+          var weatheridD5 = daten5tage.list[32]["weather"]["0"].id;
 
-          var wIconD1 = weatherIcons[weatheridD1].icon;
-          var wIconD2 = weatherIcons[weatheridD2].icon;
-          var wIconD3 = weatherIcons[weatheridD3].icon;
-          var wIconD4 = weatherIcons[weatheridD4].icon;
-          var wIconD5 = weatherIcons[weatheridD5].icon;
+          var wIconD1 = icons[weatheridD1].icon;
+          var wIconD2 = icons[weatheridD2].icon;
+          var wIconD3 = icons[weatheridD3].icon;
+          var wIconD4 = icons[weatheridD4].icon;
+          var wIconD5 = icons[weatheridD5].icon;
 
           if (!(weatheridD1 > 699 && weatheridD1 < 800) && !(weatheridD1 > 899 && weatheridD1 < 1000)) {
             wIconD1 = 'day-' + wIconD1;
@@ -253,40 +236,46 @@ function setItems5day(data, weatherIcons){
           wIconD4 = prefix + wIconD4;
           wIconD5 = prefix + wIconD5;
 
-          console.log(data);
-          console.log("Help");
-          setHTML5day(data, wIconD1, wIconD2, wIconD3, wIconD4, wIconD5);
+          console.log(daten5tage);
+          setHTML5day(daten5tage, wIconD1, wIconD2, wIconD3, wIconD4, wIconD5);
         }
 
-function setHTML5day(data, wIconD1, wIconD2, wIconD3, wIconD4, wIconD5) {
+function setHTML(dataDay) {
+  $("#standortOrt").html(dataDay["name"] + " / " + dataDay["sys"]["country"]);
+  $("#standortTemperatur").html("<h2>" + tNormal + Math.round(dataDay["main"]["temp"]) + "°C </h2>");
+  $("#standortBeschreibung").html(dataDay["weather"]["0"]["description"]);
+  eva.replace()
+}
+
+function setHTML5day(wetter, wIconD1, wIconD2, wIconD3, wIconD4, wIconD5) {
 
         $("#wIconD1").addClass(wIconD1);
-        $("#d1Temp").html("<h4><li>" +  Math.round(data["list"]["0"]["main"]["temp"]) + "°C</h4></li><li><h6>" + data["list"]["0"]["weather"]["0"]["description"] +"</h6></li>");
-        $("#d1Info").html("<li><h5>" + tMin +	Math.round(data["list"]["0"]["main"]["temp_min"]) + "°C</h5></li><li><h5>" + tMax +
-        Math.round(data["list"]["0"]["main"]["temp_max"]) + "°C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " + data["list"]["0"]["wind"]["speed"] + "m/s</li>");
+        $("#d1Temp").html("<h4><li>" +  Math.round(wetter["list"]["0"]["main"]["temp"]) + "°C</h4></li><li><h6>" + wetter["list"]["0"]["weather"]["0"]["description"] +"</h6></li>");
+        $("#d1Info").html("<li><h5>" + tMin +	Math.round(wetter["list"]["0"]["main"]["temp_min"]) + "°C</h5></li><li><h5>" + tMax +
+        Math.round(wetter["list"]["0"]["main"]["temp_max"]) + "°C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " + wetter["list"]["0"]["wind"]["speed"] + "m/s</li>");
 
         $("#wIconD2").addClass(wIconD2);
-        $("#d2Temp").html("<h4><li> " + Math.round(data["list"]["8"]["main"]["temp"]) + "°C</h4></li><li><h6>" + data["list"]["8"]["weather"]["0"]["description"] + "</h6></li>");
-        $("#d2Info").html("<li><h5>" + tMin +	Math.round(data["list"]["8"]["main"]["temp_min"]) + "°C</h5></li><li><h5>" + tMax +
-        Math.round(data["list"]["8"]["main"]["temp_max"]) + "°C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " + data["list"]["8"]["wind"]["speed"] + "m/s</li>");
+        $("#d2Temp").html("<h4><li> " + Math.round(wetter["list"]["8"]["main"]["temp"]) + "°C</h4></li><li><h6>" + wetter["list"]["8"]["weather"]["0"]["description"] + "</h6></li>");
+        $("#d2Info").html("<li><h5>" + tMin +	Math.round(wetter["list"]["8"]["main"]["temp_min"]) + "°C</h5></li><li><h5>" + tMax +
+        Math.round(wetter["list"]["8"]["main"]["temp_max"]) + "°C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " + wetter["list"]["8"]["wind"]["speed"] + "m/s</li>");
 
         $("#wIconD3").addClass(wIconD3);
-        $("#d3Temp").html("<li><h4>" + Math.round(data["list"]["16"]["main"]["temp"]) + "°C</h4></li><li><h6>" + data["list"]["16"]["weather"]["0"]["description"] + "</h6></li>");
-        $("#d3Info").html("<li><h5>" + tMin +	Math.round(data["list"]["16"]["main"]["temp_min"]) + "°C</h5></li><li><h5>" + tMax +
-        Math.round(data["list"]["16"]["main"]["temp_max"]) + "°C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " + data["list"]["16"]["wind"]["speed"] + "m/s</li>");
+        $("#d3Temp").html("<li><h4>" + Math.round(wetter["list"]["16"]["main"]["temp"]) + "°C</h4></li><li><h6>" + wetter["list"]["16"]["weather"]["0"]["description"] + "</h6></li>");
+        $("#d3Info").html("<li><h5>" + tMin +	Math.round(wetter["list"]["16"]["main"]["temp_min"]) + "°C</h5></li><li><h5>" + tMax +
+        Math.round(wetter["list"]["16"]["main"]["temp_max"]) + "°C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " + wetter["list"]["16"]["wind"]["speed"] + "m/s</li>");
 
         $("#wIconD4").addClass(wIconD4);
-        $("#d4Temp").html("<li><li><h4>" + Math.round(data["list"]["24"]["main"]["temp"]) + "°C</h4></li><h6>" + data["list"]["24"]["weather"]["0"]["description"] + "</h6></li>");
-        $("#d4Info").html("<li><h5>" + tMin +	Math.round(data["list"]["24"]["main"]["temp_min"]) + "°C</h5></li><li><h5>" + tMax +
-        Math.round(data["list"]["24"]["main"]["temp_max"]) + "°C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " + data["list"]["24"]["wind"]["speed"] + "m/s</li>");
+        $("#d4Temp").html("<li><li><h4>" + Math.round(wetter["list"]["24"]["main"]["temp"]) + "°C</h4></li><h6>" + wetter["list"]["24"]["weather"]["0"]["description"] + "</h6></li>");
+        $("#d4Info").html("<li><h5>" + tMin +	Math.round(wetter["list"]["24"]["main"]["temp_min"]) + "°C</h5></li><li><h5>" + tMax +
+        Math.round(wetter["list"]["24"]["main"]["temp_max"]) + "°C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " + wetter["list"]["24"]["wind"]["speed"] + "m/s</li>");
 
         $("#wIconD5").addClass(wIconD5);
-        $("#d5Temp").html("<li><h4>" + Math.round(data["list"]["32"]["main"]["temp"]) + "°C</h4></li><li><h6>" + data["list"]["32"]["weather"]["0"]["description"] + "</h6></li>");
-        $("#d5Info").html("<li><h5>" + tMin +	Math.round(data["list"]["32"]["main"]["temp_min"]) + "°C</h5></li><li><h5>" + tMax +
-        Math.round(data["list"]["32"]["main"]["temp_max"]) + "°C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " + data["list"]["32"]["wind"]["speed"] + "m/s</li>");
+        $("#d5Temp").html("<li><h4>" + Math.round(wetter["list"]["32"]["main"]["temp"]) + "°C</h4></li><li><h6>" + wetter["list"]["32"]["weather"]["0"]["description"] + "</h6></li>");
+        $("#d5Info").html("<li><h5>" + tMin +	Math.round(wetter["list"]["32"]["main"]["temp_min"]) + "°C</h5></li><li><h5>" + tMax +
+        Math.round(wetter["list"]["32"]["main"]["temp_max"]) + "°C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " + wetter["list"]["32"]["wind"]["speed"] + "m/s</li>");
 
-        drawChartDetail(data);
         eva.replace()
+        drawChartDetail(wetter);
         }
 
 function prepareButtons() {
@@ -311,9 +300,7 @@ function prepareButtons() {
     });
 
     $('#modalStandort').on('shown.bs.modal', function () {
-      getLocation();
-      // setItems5day(data, weatherIcons);
-      // setHTML5day(data, wIconD1, wIconD2, wIconD3, wIconD4, wIconD5);
+      getWeather5Day();
     });
 }
 
