@@ -170,7 +170,6 @@ function ortSuche() {
 google.maps.event.addDomListener(window, 'load', ortSuche);
 
 function getPlaceSearch() {
-        // Get the place details from the autocomplete object.
         var place = this.getPlace();
         lng = place.geometry.location.lng();
         lat = place.geometry.location.lat();
@@ -264,6 +263,12 @@ function setHTML5day(wetter, wIconD1, wIconD2, wIconD3, wIconD4, wIconD5) {
         $("#d5Temp").html("<li><h4>" + Math.round(wetter["list"]["32"]["main"]["temp"]) + "°C</h4></li><li><h6>" + wetter["list"]["32"]["weather"]["0"]["description"] + "</h6></li>");
         $("#d5Info").html("<li><h5>" + tMin +	Math.round(wetter["list"]["32"]["main"]["temp_min"]) + "°C</h5></li><li><h5>" + tMax +
         Math.round(wetter["list"]["32"]["main"]["temp_max"]) + "°C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " + wetter["list"]["32"]["wind"]["speed"] + "m/s</li>");
+
+        //Header Detailansicht nur setzen wenn das Modal auf der User-Site geöffnet wird
+        var onUserPage = document.getElementById("userPageDetailHeader");
+          if(onUserPage){
+              $("#userPageDetailHeader").html(wetter["city"]["name"]);
+            }
 
         eva.replace()
         drawChartDetail(wetter);

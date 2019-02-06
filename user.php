@@ -169,6 +169,9 @@ secure_session_start();
 <div class="modal fade" id="modalStandort" role="dialog" aria-labelledby="modalStandort" aria-hidden="true">
 	<div class="modal-dialog mw-100 modalSize modal-dialog-centered" role="document">
 		<div class="modal-content">
+      <div class ="modal-header justify-content-center">
+        <h2 id="userPageDetailHeader"></h2>
+      </div>
 			<div class="modal-body">
         <div class="row">
     			<div class="col-sm panel text-center">
