@@ -179,7 +179,7 @@ secure_session_start();
     								<ul class ="ul-index" id="d1Temp"></ul>
     							</div>
     							<div class="col-6 col-sm-12">
-    									<ul class="ul-info" id="d1Info"></ul>
+    									<ul class="ul-user-info" id="d1Info"></ul>
     							</div>
     				</div>
     				</ul>
