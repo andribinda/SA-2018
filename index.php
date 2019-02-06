@@ -221,7 +221,7 @@ if (userlogin_check($mysqli) == true) {
 									<input type="password" name='password1' class="form-control" id="passwordInput2" placeholder="Passwort">
 								</div>
 							</div>
-							<button type="button" class="btn btn-primary btn-modal1"
+							<button type="button" class="btn btn-primary btn-modal1" jwhj
 															onclick="return regformhash(this.form,
                                    this.form.name,
 																	 this.form.vorname,
