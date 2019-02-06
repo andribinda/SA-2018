@@ -231,9 +231,16 @@ function setItems5day(daten5tage, icons){
         }
 
 function setHTML(dataDay) {
+
+  tRise = data["sys"]["sunrise"];
+  tSet = data["sys"]["sunset"];
+
   $("#standortOrt").html(dataDay["name"] + " / " + dataDay["sys"]["country"]);
-  $("#standortTemperatur").html("<h2>" + tNormal + Math.round(dataDay["main"]["temp"]) + "°C </h2>");
+  $("#standortTemperatur").html(tNormal + Math.round(dataDay["main"]["temp"]) + "°C");
   $("#standortBeschreibung").html(dataDay["weather"]["0"]["description"]);
+  $("#standortInfo").html("<li><h5>" + tMin + dataDay["main"]["temp_min"] + " °C</h5></li><li><h5>" + tMax + dataDay["main"]["temp_max"] +
+  " °C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " + dataDay["wind"]["speed"] + " m/s</li><li><h5><i class='wi wi-sunrise'></i> " +
+  Unix_timestamp(tRise) + "</h5></li><li><h5><i class='wi wi-sunset'></i> " + Unix_timestamp(tSet) + "</h5></li>");
   eva.replace()
 }
 
@@ -311,6 +318,13 @@ function setBackground() {
       });
     document.body.style.backgroundImage = "url(" + pattern.png() + ")"
   }
+
+function Unix_timestamp(t) {
+      var dt = new Date(t * 1000);
+      var hr = dt.getHours();
+      var m = "0" + dt.getMinutes();
+      return hr + ':' + m.substr(-2);
+    }
 
 weatherIcons = {
   "200": {
