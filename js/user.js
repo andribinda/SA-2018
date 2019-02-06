@@ -176,7 +176,7 @@ function getPlaceSearch() {
 
         getWeatherToday(lat,lng);
         getWeather5Day(lat,lng);
-    }
+}
 
 function setItems(wetterDaten,icons) {
           var prefix = 'wi wi-';
