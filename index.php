@@ -50,7 +50,7 @@ if (userlogin_check($mysqli) == true) {
 		</button>
 		<ul class="nav abs-center-x">
 			<form class="form-inline">
-				<input class="form-control-lg formNavSearch" id="inputTextNav" type="search" placeholder="PLZ / Ort eingeben" aria-label="Search">
+				<input class="form-control-lg formNavSearch text-center" id="inputTextNav" type="search" placeholder="PLZ / Ort eingeben" aria-label="Search">
 			</form>
 		</ul>
 		<div class="collapse navbar-collapse" id="navbarCollapse">
