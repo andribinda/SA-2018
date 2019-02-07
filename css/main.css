@@ -220,7 +220,7 @@ input#inputTextNav[type="search"]::placeholder {
   cursor: default;
   background-color: transparent;
   border: none;
-  border-top-left-radius: : 3px;
+  border-top-left-radius: 3px;
   border-top-left-radius: 3px;
   border-bottom: 2px solid #d8eaf1;
 }
