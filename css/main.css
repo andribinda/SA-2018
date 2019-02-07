@@ -69,6 +69,17 @@ input#inputTextNav[type="search"]::placeholder {
   .modalSize {
     width: 90% !important;
   }
+  .ul-user-info {
+    padding-left: 0;
+    padding-top: 10%;
+    text-align: left;
+    }
+
+  .ul-user {
+      margin: 0;
+      padding: 1%;
+      text-align: right;
+    }
 }
 
 @media (min-width: 576px) {
@@ -103,6 +114,15 @@ input#inputTextNav[type="search"]::placeholder {
   .modalSize {
     width: 75% !important;
   }
+
+  .ul-user-info {
+    padding-left: 0;
+    }
+
+  .ul-user {
+      margin: 0;
+      padding: 1%;
+    }
 }
 
 #modalRegistration, {
@@ -259,10 +279,6 @@ ul {
   padding-top: 20%;
 }
 
-.ul-user-info {
-  padding-left: 0;
-  padding-top: 10%;
-  }
 
 .iconDiv {
   padding: 0 2% 0 0;
