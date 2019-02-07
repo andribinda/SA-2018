@@ -340,8 +340,14 @@ function prepareButtons() {
     $('.modalRegTabBar a[href="#' + tabTarget + '"]').tab('show');
   });
 
-  $('#modalRegLog').on('shown.bs.modal', function () {
-      $('#emailInput').focus()
+  $('.modalRegLog').on('shown.bs.modal', function () {
+    console.log("Login");
+      $('#emailInputLogin').focus();
+  });
+
+  $('.modalRegTabBar a[href="#modalTabReg"]').on('shown.bs.tab', function () {
+    console.log("Reg");
+      $('#nameInput').focus();
   });
 }
 
