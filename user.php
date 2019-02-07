@@ -41,9 +41,9 @@ secure_session_start();
   <div class="row">
     <div class="col-sm-1 sidebar h-100">
       <ul class="nav flex-sm-column sideNav justify-content-center">
-        <a href="#" class="sideNavItem" id="menuUser"><i data-eva="person-outline" data-eva-height="54" data-eva-width="54"></i></a>
-        <a href="#modalLogout" class="sideNavItem" id="menuLogout"><i data-eva="power" data-eva-height="54" data-eva-width="54"></i></a>
-        <a href="#modalAbout" class="sideNavItem" id="menuAbout"><i data-eva="question-mark" data-eva-height="54" data-eva-width="54"></i></a>
+        <a href="#" class="sideNavItem" id="menuUser"><i data-eva="person-outline" data-eva-fill="#d8eaf1" data-eva-height="54" data-eva-width="54"></i></a>
+        <a href="#modalLogout" class="sideNavItem" id="menuLogout"><i data-eva="power" data-eva-fill="#d8eaf1" data-eva-height="54" data-eva-width="54"></i></a>
+        <a href="#modalAbout" class="sideNavItem" id="menuAbout"><i data-eva="question-mark" data-eva-fill="#d8eaf1" data-eva-height="54" data-eva-width="54"></i></a>
       </ul>
       </div>
       <div class="col-sm content">
