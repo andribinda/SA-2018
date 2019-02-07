@@ -244,8 +244,10 @@ secure_session_start();
 	</div>
 </div>
 <?php else : ?>
+            <p>
             <h1 id = errorNotLoggedIn>
                 <span class="error">Sie sind nicht eingeloggt. </span> Bitte <a href="index.php">einloggen</a>.
             </h1>
+            <p>
 <?php endif; ?>
 </html>
