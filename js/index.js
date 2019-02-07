@@ -5,7 +5,7 @@ $(document).ready(function() {
   var longitude = 0;
   getLocation();
   prepareButtons();
-  document.getElementById('login_form').addEventListener('submit', submitFormControl, false);
+  //document.getElementById('login_form').addEventListener('submit', submitFormControl, false);
 });
 
 tMin = "<i data-eva='thermometer-minus' data-eva-fill='#d8eaf1' data-eva-height='24' data-eva-width='24'></i> ";
@@ -342,22 +342,20 @@ function prepareButtons() {
   });
 
   $('.modalRegLog').on('shown.bs.modal', function () {
-    console.log("Login");
       $('#emailInputLogin').focus();
   });
 
   $('.modalRegTabBar a[href="#modalTabReg"]').on('shown.bs.tab', function () {
-    console.log("Reg");
       $('#nameInput').focus();
   });
 }
 
-function submitFormControl(e) {
-    e.preventDefault();
-    $('#modalRegistration').modal('show');
-    formhash(this.form, this.form.password)
-    console.log("test");
-};
+// function submitFormControl(e) {
+//     e.preventDefault();
+//     $('#modalRegistration').modal('show');
+//     formhash(this.form, this.form.password)
+//     console.log("test");
+// };
 
 function setBackground() {var pattern = Trianglify({
       cell_size: 500,
