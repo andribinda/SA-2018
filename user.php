@@ -179,7 +179,7 @@ secure_session_start();
     								<ul class ="ul-user" id="d1Temp"></ul>
     							</div>
     							<div class="col-6 col-sm-12">
-    									<ul class="ul-user-info" id="d1Info"></ul>
+    									<ul class="ul-user-info-detail" id="d1Info"></ul>
     							</div>
     				</div>
     				</ul>
@@ -192,7 +192,7 @@ secure_session_start();
     								<ul class ="ul-user" id="d2Temp"></ul>
     							</div>
     							<div class="col-6 col-sm-12">
-    									<ul class="ul-user-info" id="d2Info"></ul>
+    									<ul class="ul-user-info-detail" id="d2Info"></ul>
     						</div>
     				</div>
     			</div>
@@ -204,7 +204,7 @@ secure_session_start();
     								<ul class ="ul-user" id="d3Temp"></ul>
     							</div>
     							<div class="col-6 col-sm-12">
-    									<ul class="ul-user-info" id="d3Info"></ul>
+    									<ul class="ul-user-info-detail" id="d3Info"></ul>
     						</div>
     				</div>
     			</div>
@@ -216,7 +216,7 @@ secure_session_start();
     								<ul class ="ul-user" id="d4Temp"></ul>
     							</div>
     							<div class="col-6 col-sm-12">
-    									<ul class="ul-user-info" id="d4Info"></ul>
+    									<ul class="ul-user-info-detail" id="d4Info"></ul>
     						</div>
     				</div>
     			</div>
@@ -228,7 +228,7 @@ secure_session_start();
     								<ul class ="ul-user" id="d5Temp"></ul>
     							</div>
     							<div class="col-6 col-sm-12">
-    									<ul class="ul-user-info" id="d5Info"></ul>
+    									<ul class="ul-user-info-detail" id="d5Info"></ul>
     						</div>
     				</div>
     			</div>
@@ -244,8 +244,8 @@ secure_session_start();
 	</div>
 </div>
 <?php else : ?>
-            <p>
-                <span class="error">You are not authorized to access this page.</span> Please <a href="index.php">login</a>.
-            </p>
+            <h1 id = errorNotLoggedIn>
+                <span class="error">Sie sind nicht eingeloggt. </span> Bitte <a href="index.php">einloggen</a>.
+            </h1>
 <?php endif; ?>
 </html>
