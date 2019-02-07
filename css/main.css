@@ -80,6 +80,14 @@ input#inputTextNav[type="search"]::placeholder {
       padding: 1%;
       text-align: right;
     }
+
+    .wi-medium {
+      font-size: 62px;
+    }
+
+    .piktogrammWUserDetail {
+      padding-top: 10%;
+    }
 }
 
 @media (min-width: 576px) {
@@ -122,6 +130,15 @@ input#inputTextNav[type="search"]::placeholder {
   .ul-user {
       margin: 0;
       padding: 1%;
+    }
+
+    .wi-medium {
+      font-size: 48px;
+    }
+
+    .piktogrammWUserDetail {
+      padding-top: 5%;
+      padding-bottom: 5%;
     }
 }
 
@@ -214,6 +231,7 @@ input#inputTextNav[type="search"]::placeholder {
   padding-top: 5%;
   padding-bottom: 5%;
 }
+
 .piktogrammWUser {
   padding-bottom: 15%;
 }
@@ -261,6 +279,7 @@ input#inputTextNav[type="search"]::placeholder {
   height: 35vh;
   padding: 1%;
 }
+
 ul {
   list-style: none;
 }
@@ -288,9 +307,6 @@ ul {
   color:black;
 }
 
-.wi-medium {
-  font-size: 48px;
-}
 
 .wi-big {
   font-size: 72px;
