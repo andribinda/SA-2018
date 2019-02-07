@@ -334,8 +334,8 @@ function drawChartDetail(data) {
   //Verknüpfen der Registration/LoginButtons mit den entsprechenden Tabs im Login-Modal
 function prepareButtons() {
   $('.btn-Navbar').on('click', function setModalTab() {
-    console.log("Navbar-Buttons ok");
     var tabTarget = $(this).data('tab');
+      console.log(tabTarget);
     $('.modalRegLog').modal({'backdrop':'static'});
     $('.modalRegTabBar a[href="#' + tabTarget + '"]').tab('show');
   });
