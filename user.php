@@ -54,7 +54,7 @@ secure_session_start();
               <div class="row">
                 <div class="col-6">
                   <div class="wUserContainerL text-center">
-                    <i class="wi wi-night-sleet wi-xl piktogrammWUser" id="standortIcon"></i>
+                    <i class="wi wi-xl piktogrammWUser" id="standortIcon"></i>
                     <h3 id="standortTemperatur"></h3>
                     <h3 id="standortBeschreibung"></h3>
                 </div>
@@ -70,20 +70,18 @@ secure_session_start();
             <div class="col-sm-3"></div>
             <div class="col-sm-4 panel-user panel-top">
               <a href="#" class="emptyLink" id="modalLaunchHomebase"></a>
-              <h1 class="text-center">Homebase</h1>
+              <h1 class="text-center" id="homebaseOrt"></h1>
               <div class="row">
                 <div class="col-6">
                   <div class="wUserContainerL text-center">
-                    <i class="wi wi-night-sleet wi-xl piktogrammWUser"></i>
-                    <h3>Leichter Regen</h3>
+                    <i class="wi wi-night-sleet wi-xl piktogrammWUser" id="homebaseIcon"></i>
+                    <h3 id="homebaseTemperatur"></h3>
+                    <h3 id="homebaseBeschreibung"></h3>
                 </div>
               </div>
                 <div class="col-6">
                   <div class="wUserContainerR text-left">
-                    <ul class="ul-user-info">
-                      <li id="HomebaseOrt"><h2>Baden</h2></li>
-                      <li id="HomebaseTemperatur"><h2>7.2°C</h2></li>
-                      <li id="HomebaseUhrzeit"><h2>12:16</h2></li>
+                    <ul class="ul-user-info" id="homebaseInfo">
                     </ul>
                   </div>
                 </div>

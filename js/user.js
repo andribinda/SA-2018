@@ -5,6 +5,7 @@ $(document).ready(function() {
   getLocation();
   setBackground() ;
   prepareButtons();
+  console.log(modalSelection);
 });
 
 dataDay = 0;
@@ -14,6 +15,7 @@ data5HomeDay = 0;
 lat = 0;
 lng = 0;
 plz = 5400;
+modalSelection = "none";
 
 tMin = "<i data-eva='thermometer-minus' data-eva-height='24' data-eva-width='24'></i> ";
 tMax = "<i data-eva='thermometer-plus' data-eva-height='24' data-eva-width='24'></i> ";
@@ -40,23 +42,24 @@ function showPosition(position) {
 
 function getWeatherHomeToday(plz){
   $.ajax({
-     url: "https://api.openweathermap.org/data/2.5/zip=" + plz + ",us" +
+     url: "https://api.openweathermap.org/data/2.5/weather?zip=" + plz + ",ch" +
        "&units=metric&lang=de&appid=6012cf5997f032d2c82563e60ef96a56",
      context: document.body,
      dataType: 'json'
    }).done(function(dataHomeDay) {
-     setItems(dataHomeDay, weatherIcons);
+     setItemsHome(dataHomeDay, weatherIcons);
    });
 }
 
 function getWeatherHome5Day(plz) {
         $.ajax({
-          url: "https://api.openweathermap.org/data/2.5/forecast?lat=" + plz + ",us" +
+          url: "https://api.openweathermap.org/data/2.5/forecast?zip=" + plz + ",ch" +
             "&units=metric&lang=de&appid=6012cf5997f032d2c82563e60ef96a56",
           context: document.body,
           dataType: 'json'
         }).done(function(dataHome5Day) {
-          setItems5day(dataHome5Day, weatherIcons)
+          console.log(dataHome5Day);
+          setItems5day(dataHome5Day, weatherIcons);
       });
     }
 
@@ -78,7 +81,7 @@ function getWeather5Day(latitude,longitude) {
           context: document.body,
           dataType: 'json'
         }).done(function(data5Day) {
-          setItems5day(data5Day, weatherIcons)
+          setItems5day(data5Day, weatherIcons);
       });
     }
 
@@ -212,9 +215,21 @@ function setItems(wetterDaten,icons) {
             wIcon = 'day-' + wIcon;
           }
           wIcon = prefix + wIcon;
-          $("#heuteIcon").addClass(wIcon);
+          $("#standortIcon").addClass(wIcon);
           setHTML(wetterDaten);
         }
+function setItems(wetterDaten,icons) {
+        var prefix = 'wi wi-';
+        var weatherid = wetterDaten.weather[0].id;
+        var wIcon = weatherIcons[weatherid].icon;
+
+        if (!(weatherid > 699 && weatherid < 800) && !(weatherid > 899 && weatherid < 1000)) {
+          wIcon = 'day-' + wIcon;
+        }
+        wIcon = prefix + wIcon;
+        $("#homebaseIcon").addClass(wIcon);
+        setHTML(wetterDaten);
+      }
 
 function setItems5day(daten5tage, icons){
           //Icons setzen für 5-Tages-Vorhersage evtl als Array mit Loop zum setzen der Icons
@@ -264,6 +279,20 @@ function setHTML(dataDay) {
   $("#standortTemperatur").html(Math.round(dataDay["main"]["temp"]) + "°C");
   $("#standortBeschreibung").html(dataDay["weather"]["0"]["description"]);
   $("#standortInfo").html("<li><h4>" + tMin + dataDay["main"]["temp_min"] + " °C</h4></li><li><h4>" + tMax + dataDay["main"]["temp_max"] +
+  " °C</h4></li><li><h4><i class='wi wi-strong-wind'></i> " + dataDay["wind"]["speed"] + " m/s</li><li><h4><i class='wi wi-sunrise'></i> " +
+  Unix_timestamp(tRise) + "</h4></li><li><h4><i class='wi wi-sunset'></i> " + Unix_timestamp(tSet) + "</h4></li>");
+  eva.replace()
+}
+
+function setHTMLHome(dataDay) {
+
+  tRise = dataDay["sys"]["sunrise"];
+  tSet = dataDay["sys"]["sunset"];
+
+  $("#homebaseOrt").html(dataDay["name"] + " / " + dataDay["sys"]["country"]);
+  $("#homebaseTemperatur").html(Math.round(dataDay["main"]["temp"]) + "°C");
+  $("#homebaseBeschreibung").html(dataDay["weather"]["0"]["description"]);
+  $("#homebaseInfo").html("<li><h4>" + tMin + dataDay["main"]["temp_min"] + " °C</h4></li><li><h4>" + tMax + dataDay["main"]["temp_max"] +
   " °C</h4></li><li><h4><i class='wi wi-strong-wind'></i> " + dataDay["wind"]["speed"] + " m/s</li><li><h4><i class='wi wi-sunrise'></i> " +
   Unix_timestamp(tRise) + "</h4></li><li><h4><i class='wi wi-sunset'></i> " + Unix_timestamp(tSet) + "</h4></li>");
   eva.replace()
@@ -323,23 +352,23 @@ function prepareButtons() {
     $('#menuAbout').on('click', function showModalAbout() {
       $('#modalAbout').modal('show');
     });
-    $('#modalLaunchStandort').on('click', function shwoModalStandort() {
-      var triggerElement = $(event.relatedTarget);
-      console.log(triggerElement);
-      $('#modalDetail').modal('show');
+    $('#modalLaunchStandort').on('click', function () {
+        modalSelection = "standort";
+        $('#modalDetail').modal('show');
+    });
+    $('#modalLaunchHomebase').on('click', function () {
+        modalSelection = "home";
+        console.log("home click");
+        $('#modalDetail').modal('show');
     });
 
     $('#modalDetail').on('shown.bs.modal', function () {
-      getWeather5Day(lat,lng);
+      if (modalSelection == "standort") {
+        getWeather5Day(lat,lng)
+      } else if (modalSelection == "home") {
+        getWeatherHome5Day(plz);
+      };
     });
-    // $('#modalHomebase').on('shown.bs.modal', function () {
-    //   console.log(plz);
-    //   getWeatherHome5Day(plz);
-    // });
-    // $('#modalFavorit').on('shown.bs.modal', function () {
-    //   console.log(favplz);
-    //   getWeather5Day(favplz;
-    // });
 }
 
 function setBackground() {
@@ -376,6 +405,7 @@ function setDay() {
       $("#day_name4").html(name_day4);
       $("#day_name5").html(name_day5);
 }
+
 weatherIcons = {
   "200": {
     "label": "thunderstorm with light rain",
