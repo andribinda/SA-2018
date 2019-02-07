@@ -55,8 +55,8 @@ secure_session_start();
                 <div class="col-6">
                   <div class="wUserContainerL text-center">
                     <i class="wi wi-xl piktogrammWUser" id="standortIcon"></i>
-                    <h3 id="standortTemperatur"></h3>
-                    <h3 id="standortBeschreibung"></h3>
+                    <h3 id="standortTemperatur" class="text-right"></h3>
+                    <h3 id="standortBeschreibung" class="text-right"></h3>
                 </div>
               </div>
                 <div class="col-6">
@@ -75,8 +75,8 @@ secure_session_start();
                 <div class="col-6">
                   <div class="wUserContainerL text-center">
                     <i class="wi wi-xl piktogrammWUser" id="homebaseIcon"></i>
-                    <h3 id="homebaseTemperatur"></h3>
-                    <h3 id="homebaseBeschreibung"></h3>
+                    <h3 id="homebaseTemperatur" class="text-right"></h3>
+                    <h3 id="homebaseBeschreibung" class="text-right"></h3>
                 </div>
               </div>
                 <div class="col-6">

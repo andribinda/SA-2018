@@ -38,7 +38,7 @@ function showPosition(position) {
   lng = position.coords.longitude;
   getWeatherToday(lat,lng);
   getWeather5Day(lat,lng);
-  getWeatherHome5Day(plz)
+  getWeatherHomeToday(plz);
 }
 
 function getWeatherHomeToday(plz){
@@ -48,6 +48,7 @@ function getWeatherHomeToday(plz){
      context: document.body,
      dataType: 'json'
    }).done(function(dataHomeDay) {
+     console.log("homebase")
      setItemsHome(dataHomeDay, weatherIcons);
    });
 }

@@ -124,7 +124,8 @@ input#inputTextNav[type="search"]::placeholder {
   }
 
   .ul-user-info {
-    padding-left: 0;
+    padding-left: 10%;
+    padding-top: 10%;
     }
 
   .ul-user {
@@ -233,7 +234,8 @@ input#inputTextNav[type="search"]::placeholder {
 }
 
 .piktogrammWUser {
-  padding-bottom: 15%;
+  padding-top: 15%;
+  padding-bottom: 5%;
 }
 
 .wUserContainerL, .wUserContainerR {
@@ -313,7 +315,7 @@ ul {
 }
 
 .wi-xl {
-  font-size: 120px;
+  font-size: 100px;
 }
 
 .no-margin {
