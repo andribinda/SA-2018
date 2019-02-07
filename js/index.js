@@ -352,13 +352,11 @@ function prepareButtons() {
   });
 }
 
-function submitFormControl() {
-  $('#loginForm').submit(function(e){
+function submitFormControl(e) {
     e.preventDefault();
     $('#modalRegistration').modal('show');
-    $(this.form).submit();
+    formhash(this.form, this.form.password)
     console.log("test");
-  })
 };
 
 function setBackground() {var pattern = Trianglify({
