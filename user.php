@@ -166,7 +166,7 @@ secure_session_start();
 		</div>
 	</div>
 </div>
-<div class="modal fade" id="modalStandort" role="dialog" aria-labelledby="modalStandort" aria-hidden="true">
+<div class="modal fade" id="modalDetail" role="dialog" aria-labelledby="modalDetail" aria-hidden="true">
 	<div class="modal-dialog mw-100 modalSize modal-dialog-centered" role="document">
 		<div class="modal-content">
 			<div class="modal-body">
