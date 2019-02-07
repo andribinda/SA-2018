@@ -183,7 +183,8 @@ if (userlogin_check($mysqli) == true) {
                     <?php
 										 if (isset($_GET['error'])) {echo '<p class="error">Error Logging In!</p>';}
                  ?>
-							<button type="button" class="btn btn-primary btn-modal1" onclick="formhash(this.form, this.form.password)">Login</button>
+							<button type="button" class="btn btn-primary btn-modal1">Login</button>
+              <!-- onclick="formhash(this.form, this.form.password)" -->
 							<button type="button" class="btn btn-primary btn-modal1" data-dismiss="modal" aria-label="Close">Schliessen</button>
 						</form>
 					</div>

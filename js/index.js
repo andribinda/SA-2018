@@ -5,6 +5,7 @@ $(document).ready(function() {
   var longitude = 0;
   getLocation();
   prepareButtons();
+  document.getElementById('loginFormn').addEventListener('submit', submitFormControl, false);
 });
 
 tMin = "<i data-eva='thermometer-minus' data-eva-fill='#d8eaf1' data-eva-height='24' data-eva-width='24'></i> ";
@@ -354,8 +355,9 @@ function prepareButtons() {
 function submitFormControl() {
   $('#loginForm').submit(function(e){
     e.preventDefault();
-    $(this.form).submit();
     $('#modalRegistration').modal('show');
+    $(this.form).submit();
+    console.log("test");
   })
 };
 
