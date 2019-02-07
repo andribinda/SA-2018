@@ -231,7 +231,7 @@ function setItemsHome(wetterDaten,icons) {
         }
         wIcon = prefix + wIcon;
         $("#homebaseIcon").addClass(wIcon);
-        setHTML(wetterDaten);
+        setHTMLHome(wetterDaten);
       }
 
 function setItems5day(daten5tage, icons){
