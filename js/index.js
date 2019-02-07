@@ -339,6 +339,10 @@ function prepareButtons() {
     $('.modalRegLog').modal({'backdrop':'static'});
     $('.modalRegTabBar a[href="#' + tabTarget + '"]').tab('show');
   });
+
+  $('#modalRegLog').on('shown.bs.modal', function () {
+      $('#emailInput').focus()
+  });
 }
 
 function submitFormControl() {
