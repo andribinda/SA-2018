@@ -28,7 +28,7 @@ secure_session_start();
   <link rel="stylesheet" type="text/css" href="css/weather-icons-wind.min.css">
   <link rel="stylesheet" type="text/css" href="css/main.css">
 
-  <!-- <?php if (userlogin_check($mysqli) == true) : ?> -->
+  <?php if (userlogin_check($mysqli) == true) : ?>
 </head>
 <body>
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark justify-content-center topNav">
@@ -243,9 +243,9 @@ secure_session_start();
 		</div>
 	</div>
 </div>
-<!-- <?php else : ?>
+<?php else : ?>
             <h1 id = errorNotLoggedIn>
                 <span class="error">Sie sind nicht eingeloggt. </span> Bitte <a href="index.php">einloggen</a>.
             </h1>
-<?php endif; ?> -->
+<?php endif; ?>
 </html>

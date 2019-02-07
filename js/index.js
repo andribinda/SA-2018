@@ -110,7 +110,7 @@ function getWeather() {
     });
 
     $.ajax({
-      url: "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + long +
+      url: "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lng +
         "&units=metric&lang=de&appid=6012cf5997f032d2c82563e60ef96a56",
       context: document.body,
       dataType: 'json'
