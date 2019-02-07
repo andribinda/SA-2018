@@ -70,8 +70,8 @@ input#inputTextNav[type="search"]::placeholder {
     width: 90% !important;
   }
   .ul-user-info {
-    padding-left: 0;
-    padding-top: 10%;
+    padding-left: 10%;
+    padding-top: 15%;
     text-align: left;
     }
 
@@ -88,6 +88,12 @@ input#inputTextNav[type="search"]::placeholder {
     .piktogrammWUserDetail {
       padding-top: 10%;
     }
+
+    .ul-user-info-detail {
+      padding-left: 5%;
+      padding-top: 10%;
+      text-align: left
+      }
 }
 
 @media (min-width: 576px) {
@@ -120,7 +126,7 @@ input#inputTextNav[type="search"]::placeholder {
   }
 
   .modalSize {
-    width: 75% !important;
+    width: 80% !important;
   }
 
   .ul-user-info {
