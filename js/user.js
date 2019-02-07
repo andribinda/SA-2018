@@ -324,12 +324,12 @@ function prepareButtons() {
       $('#modalAbout').modal('show');
     });
     $('#modalLaunchStandort').on('click', function shwoModalStandort() {
+      var triggerElement = $(event.relatedTarget);
+      console.log(triggerElement);
       $('#modalDetail').modal('show');
     });
 
     $('#modalDetail').on('shown.bs.modal', function () {
-      var triggerElement = $(event.relatedTarget);
-      console.log(triggerElement;
       getWeather5Day(lat,lng);
     });
     // $('#modalHomebase').on('shown.bs.modal', function () {
