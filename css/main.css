@@ -261,7 +261,7 @@ input#inputTextNav[type="search"]::placeholder {
   margin: 2%;
   margin-top: 0px;
   padding: 1%;
-  border: 2px solid black;
+  border: 2px solid #d8eaf1;
   border-radius: 10px;
 }
 
@@ -319,7 +319,6 @@ ul {
 .wi, .i{
   color: #d8eaf1;
 }
-
 
 .wi-big {
   font-size: 72px;

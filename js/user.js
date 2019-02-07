@@ -19,7 +19,7 @@ modalSelection = "none";
 
 tMin = "<i data-eva='thermometer-minus' data-eva-fill='#d8eaf1' data-eva-height='24' data-eva-width='24'></i> ";
 tMax = "<i data-eva='thermometer-plus' data-eva-fill='#d8eaf1' data-eva-height='24' data-eva-width='24'></i> ";
-tNormal = "<i data-eva='thermometer' data-eva-fill='#d8eaf1' data-eva-height='36' data-eva-width='36'></i> "
+tNormal = "<i data-eva='thermometer' data-eva-fill='#d8eaf1' data-eva-height='24' data-eva-width='24'></i> ";
 
 function getLocation() {
   if (navigator.geolocation) {
