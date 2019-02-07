@@ -171,17 +171,17 @@ if (userlogin_check($mysqli) == true) {
 							<div class="form-row">
 								<div class="form-group col-sm-8">
 									<label for="emailInput" class="modalFormLabel">Email</label>
-									<input type="email" name='email' class="form-control" id="emailInputLogin" placeholder="Email-Adresse">
+									<input type="email" name='email' class="form-control" id="emailInputLogin" placeholder="Email-Adresse" required>
 								</div>
 							</div>
 							<div class="form-row">
 								<div class="form-group col-sm-8">
 									<label for="passwordInput" class="modalFormLabel">Passwort</label>
-									<input type="password" name='password' class="form-control" id="passwordInputLogin" placeholder="Passwort">
+									<input type="password" name='password' class="form-control" id="passwordInputLogin" placeholder="Passwort" required>
 								</div>
 							</div>
                     <?php
-										 if (isset($_GET['error'])) {echo '<p class="error">Error Logging In!</p>';}
+										 if (isset($_GET['error'])) {echo '<p class="error">Benutzername / Passwort falsch</p>';}
                  ?>
 							<button type="button" class="btn btn-primary btn-modal1">Login</button>
               <!-- onclick="formhash(this.form, this.form.password)" -->
