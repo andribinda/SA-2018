@@ -74,7 +74,7 @@ secure_session_start();
               <div class="row">
                 <div class="col-6">
                   <div class="wUserContainerL text-center">
-                    <i class="wi wi-night-sleet wi-xl piktogrammWUser" id="homebaseIcon"></i>
+                    <i class="wi wi-xl piktogrammWUser" id="homebaseIcon"></i>
                     <h3 id="homebaseTemperatur"></h3>
                     <h3 id="homebaseBeschreibung"></h3>
                 </div>

@@ -38,6 +38,7 @@ function showPosition(position) {
   lng = position.coords.longitude;
   getWeatherToday(lat,lng);
   getWeather5Day(lat,lng);
+  getWeatherHome5Day(plz)
 }
 
 function getWeatherHomeToday(plz){
@@ -218,7 +219,8 @@ function setItems(wetterDaten,icons) {
           $("#standortIcon").addClass(wIcon);
           setHTML(wetterDaten);
         }
-function setItems(wetterDaten,icons) {
+
+function setItemsHome(wetterDaten,icons) {
         var prefix = 'wi wi-';
         var weatherid = wetterDaten.weather[0].id;
         var wIcon = weatherIcons[weatherid].icon;
