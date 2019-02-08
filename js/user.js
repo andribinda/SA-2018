@@ -187,26 +187,41 @@ function drawChartDetail(weatherData) {
           }
 
 function ortSuche() {
-            var options = {
+              var options = {
               types: ['(regions)'],
               componentRestrictions: {country: 'CH'}
             };
 
             var input = document.getElementById('inputTextNav');
             var autocomplete = new google.maps.places.Autocomplete(input, options);
+            // autocomplete.addListener('place_changed', getPlaceSearch);
 
-            autocomplete.addListener('place_changed', getPlaceSearch);
-          }
-google.maps.event.addDomListener(window, 'load', ortSuche);
+            google.maps.event.addDomListener(input, 'keydown', function(e) {
+              if (e.keyCode == 13 && $('.pac-container:visible').length) {
+                  e.preventDefault();
+                  var firstChoice = $(".pac-container .pac-item:first").text();
+                  console.log(firstChoice);
+                  var geocode = new google.maps.Geocoder();
+                  geocode.geocode({"address":firstChoice }, function(resultat, status) {
+                      if (status == google.maps.GeocoderStatus.OK) {
+                        lat = resultat[0].geometry.location.lat();
+                        lng = resultat[0].geometry.location.lng();
+                        $("input").val(firstChoice.match(/[A-Z][a-z]+|[0-9]+/g).join(", "));
+                        getWeatherToday(lat,lng);
+                        getWeather5Day(lat,lng);
+                      }
+                  });
+              } autocomplete.addListener('place_changed', getPlaceSearch);
+          })
+};
 
 function getPlaceSearch() {
         var place = this.getPlace();
         lng = place.geometry.location.lng();
         lat = place.geometry.location.lat();
-
         getWeatherToday(lat,lng);
         getWeather5Day(lat,lng);
-}
+      }
 
 function setItems(wetterDaten,icons) {
           var prefix = 'wi wi-';
@@ -372,7 +387,9 @@ function prepareButtons() {
         getWeatherHome5Day(plz);
       };
     });
-}
+
+    google.maps.event.addDomListener(window, 'load', ortSuche);
+};
 
 function setBackground() {
   var pattern = Trianglify({
