@@ -16,6 +16,7 @@ lat = 0;
 lng = 0;
 plz = 5400;
 modalSelection = "none";
+manualSelection = true;
 
 tMin = "<i data-eva='thermometer-minus' data-eva-fill='#d8eaf1' data-eva-height='24' data-eva-width='24'></i> ";
 tMax = "<i data-eva='thermometer-plus' data-eva-fill='#d8eaf1' data-eva-height='24' data-eva-width='24'></i> ";
@@ -194,11 +195,12 @@ function ortSuche() {
 
             var input = document.getElementById('inputTextNav');
             var autocomplete = new google.maps.places.Autocomplete(input, options);
-            // autocomplete.addListener('place_changed', getPlaceSearch);
+            autocomplete.addListener('place_changed', getPlaceSearch);
 
             google.maps.event.addDomListener(input, 'keydown', function(e) {
               if (e.keyCode == 13 && $('.pac-container:visible').length) {
                   e.preventDefault();
+                  manualSelection = false;
                   var firstChoice = $(".pac-container .pac-item:first").text();
                   console.log(firstChoice);
                   var geocode = new google.maps.Geocoder();
@@ -211,16 +213,18 @@ function ortSuche() {
                         getWeather5Day(lat,lng);
                       }
                   });
-              } autocomplete.addListener('place_changed', getPlaceSearch);
+              } else {manualSelection = true;}
           })
 };
 
 function getPlaceSearch() {
+      if (manualSelection == true) {
         var place = this.getPlace();
         lng = place.geometry.location.lng();
         lat = place.geometry.location.lat();
         getWeatherToday(lat,lng);
         getWeather5Day(lat,lng);
+      }
       }
 
 function setItems(wetterDaten,icons) {
