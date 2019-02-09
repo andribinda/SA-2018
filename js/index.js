@@ -348,14 +348,7 @@ function prepareButtons() {
   $('.modalRegTabBar a[href="#modalTabReg"]').on('shown.bs.tab', function () {
       $('#nameInput').focus();
   });
-<<<<<<< HEAD
-
-  $(document).ready(function () {
-  $("#loginForm").submit(formhash(this.form, this.form.password));
-  });
-=======
 }
->>>>>>> parent of 5b4c810... Update index.js
 
 // function submitFormControl(e) {
 //     e.preventDefault();

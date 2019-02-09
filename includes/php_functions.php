@@ -45,6 +45,7 @@ function userlogin($email, $password, $mysqli) {
             if (bruteforcecheck($user_id, $mysqli) == true) {
                 // Konto ist blockiert
                 // Schicke E-Mail an Benutzer, dass Konto blockiert ist
+                error_log('test2');
                 return false;
             } else {
                 // Überprüfe, ob das Passwort in der Datenbank mit dem vom
@@ -60,7 +61,6 @@ function userlogin($email, $password, $mysqli) {
                     $_SESSION['login_string'] = hash('sha512', $password . $user_browser);
                     // Login erfolgreich.
                                 error_log($_SESSION['login_string']);
-                                error_log($_SESSION['user_id']);
                     return true;
                     } else {
             //Es gibt keinen Benutzer.
@@ -68,6 +68,9 @@ function userlogin($email, $password, $mysqli) {
             return false;
         }
     }
+}
+}
+}
 
 function bruteforcecheck($user_id, $mysqli) {
     // Hole den aktuellen Zeitstempel
@@ -96,6 +99,8 @@ function bruteforcecheck($user_id, $mysqli) {
 }
 
 function userlogin_check($mysqli) {
+  error_log($_SESSION['user_id']);
+  error_log($_SESSION['login_string']);
     // Überprüfe, ob alle Session-Variablen gesetzt sind
     if (isset($_SESSION['user_id'], $_SESSION['login_string'])) {
 
@@ -140,7 +145,6 @@ function userlogin_check($mysqli) {
     } else {
         // Nicht eingeloggt
         error_log('Fehler bei userlogin');
-        error_log($login_check);
         return false;
     }
 }
