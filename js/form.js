@@ -72,7 +72,7 @@ function regformhash(form, email, homebasePlz, password, password2) {
 
     // Sorge dafür, dass kein Text-Passwort geschickt wird.
     password.value = "";
-    conf.value = "";
+    password2.value = "";
 
     // Reiche das Formular ein.
     form.submit();
