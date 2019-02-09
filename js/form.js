@@ -16,14 +16,14 @@ function formhash(form, password) {
     form.submit();
 }
 
-function regformhash(form, uid, email, password, conf) {
+function regformhash(form, email, homebasePlz, password, password2) {
      // Überprüfe, ob jedes Feld einen Wert hat
-    if (uid.value == ''         ||
-          email.value == ''     ||
+    if (email.value == ''         ||
+          homebasePlz.value == ''     ||
           password.value == ''  ||
-          conf.value == '') {
+          password2.value == '') {
 
-        alert('You must provide all the requested details. Please try again');
+        alert('Bitte alle Felder ausfüllen');
         return false;
     }
 
@@ -40,7 +40,7 @@ function regformhash(form, uid, email, password, conf) {
     // Die Überprüfung wird unten noch einmal wiederholt, aber so kann man dem
     // Benutzer mehr Anleitung geben
     if (password.value.length < 6) {
-        alert('Passwords must be at least 6 characters long.  Please try again');
+        alert('Das Passwort sollte mindestens 6 Zeichen lang sein');
         form.password.focus();
         return false;
     }
@@ -50,22 +50,22 @@ function regformhash(form, uid, email, password, conf) {
 
     var re = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
     if (!re.test(password.value)) {
-        alert('Passwords must contain at least one number, one lowercase and one uppercase letter.  Please try again');
+        alert('Das Passwort soll Gross- und Kleinbuchstaben, sowie eine Zahl enthalten');
         return false;
     }
 
     // Überprüfe die Passwörter und bestätige, dass sie gleich sind
     if (password.value != conf.value) {
-        alert('Your password and confirmation do not match. Please try again');
+        alert('Die Passwörter stimmen nicht überein');
         form.password.focus();
         return false;
     }
 
     // Erstelle ein neues Feld für das gehashte Passwort.
-    var p = document.createElement("input");
+    var pReg = document.createElement("inputReg");
 
     // Füge es dem Formular hinzu.
-    form.appendChild(p);
+    form.appendChild(pReg);
     p.name = "p";
     p.type = "hidden";
     p.value = hex_sha512(password.value);

@@ -41,11 +41,6 @@ if (isset ($_POST['email'], $_POST['p'])) {
         $error_msg .= '<p class="error">Database error</p>';
     }
 
-    // Noch zu tun:
-    // Wir müssen uns noch um den Fall kümmern, wo der Benutzer keine
-    // Berechtigung für die Anmeldung hat indem wir überprüfen welche Art
-    // von Benutzer versucht diese Operation durchzuführen.
-
     if (empty($error_msg)) {
         // Erstelle ein zufälliges Salt
         $random_salt = hash('sha512', uniqid(openssl_random_pseudo_bytes(16), TRUE));
@@ -54,13 +49,13 @@ if (isset ($_POST['email'], $_POST['p'])) {
         $password = hash('sha512', $password . $random_salt);
 
         // Trage den neuen Benutzer in die Datenbank ein
-        if ($insert_stmt = $mysqli->prepare("INSERT INTO users (id,username,email,password,salt) VALUES (?, ?, ?, ?, ?)")) {
-            $insert_stmt->bind_param('sssss', $id, $username, $email, $password, $salt);
+        if ($insert_stmt = $mysqli->prepare("INSERT INTO users (id,email,homebasePlz,password,salt) VALUES (?, ?, ?, ?, ?)")) {
+            $insert_stmt->bind_param('sssss', $id, $email, $username, $password, $salt);
             // Führe die vorbereitete Anfrage aus.
             if (! $insert_stmt->execute()) {
                 header('Location: ../error.php?err=Registration failure: INSERT');
             }
         }
-        header('Location: ./register_success.php');
+        header('Location: ../index.html');
     }
 }

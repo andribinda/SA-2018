@@ -194,22 +194,12 @@ if (userlogin_check($mysqli) == true) {
 							name="registration_form">
 							<div class="form-row">
 								<div class="form-group col-sm-6">
-									<label for="nameInput" class="modalFormLabel">Name</label>
-									<input type="text" name='name' class="form-control" id="nameInput" placeholder="Name">
-								</div>
-								<div class="form-group col-sm-6">
-									<label for="vornameInput" class="modalFormLabel">Vorname</label>
-									<input type="text" name='vorname'class="form-control" id="vornameInput" placeholder="Vorname">
-								</div>
-							</div>
-							<div class="form-row">
-								<div class="form-group col-sm-6">
 									<label for="emailInput" class="modalFormLabel">Email</label>
 									<input type="email" name='email' class="form-control" id="emailInput" placeholder="Email-Adresse">
 								</div>
 								<div class="form-group col-sm-6">
 									<label for="homebaseInput" class="modalFormLabel">Homebase</label>
-									<input type="text" name='homebase'class="form-control" id="homebaseInput" placeholder="Homebase">
+									<input type="text" name='homebase' class="form-control" id="homebaseInput" placeholder="Homebase">
 								</div>
 							</div>
 							<div class="form-row">
@@ -219,17 +209,16 @@ if (userlogin_check($mysqli) == true) {
 								</div>
 								<div class="form-group col-sm-6">
 									<label for="passwordInput2" class="modalFormLabel">Passwort erneut eingeben</label>
-									<input type="password" name='password1' class="form-control" id="passwordInput2" placeholder="Passwort">
+									<input type="password" name='password2' class="form-control" id="passwordInput2" placeholder="Passwort">
 								</div>
 							</div>
 							<button type="button" class="btn btn-primary btn-modal1"
 															onclick="return regformhash(this.form,
-                                   this.form.name,
-																	 this.form.vorname,
                                    this.form.email,
 																	 this.form.homebase,
                                    this.form.password,
-                                   this.form.confirmpwd);">Registrieren</button>
+																	 this.form.password2);"
+              >Registrieren</button>
 							<button type="button" class="btn btn-primary btn-modal1" data-dismiss="modal" aria-label="Close">Schliessen</button>
 							</form>
 					</div>
