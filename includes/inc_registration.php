@@ -3,9 +3,9 @@ include_once 'connect_db.php';
 include_once 'db_config.php';
 
 $error_msg = "";
-$id = "DEFAULT";
 error_log($_POST['email']);
 error_log($_POST['pReg']);
+error_log($POST['homebasePlz']);
 
 if (isset ($_POST['email'], $_POST['pReg'])) {
   error_log("gesetzt");
@@ -51,15 +51,15 @@ if (isset ($_POST['email'], $_POST['pReg'])) {
     if (empty($error_msg)) {
         // Erstelle ein zufälliges Salt
         error_log("salt erstellen");
-        $random_salt = hash('sha512', uniqid(openssl_random_pseudo_bytes(16), TRUE));
-        error_log($random_salt);
+        $salt = hash('sha512', uniqid(openssl_random_pseudo_bytes(16), TRUE));
+        error_log($salt);
 
         // Erstelle saltet Passwort
-        $password = hash('sha512', $password . $random_salt);
+        $password = hash('sha512', $password . $salt);
 
 
         // Trage den neuen Benutzer in die Datenbank ein
-        if ($insert_stmt = $mysqli->prepare("INSERT INTO 'users' (email, homebasePlz ,password ,salt) VALUES (?, ?, ?, ?)")) {
+        if ($insert_stmt = $mysqli->prepare("INSERT INTO users (email, homebasePlz ,password ,salt) VALUES (?, ?, ?, ?)")) {
             $insert_stmt->bind_param('ssss', $email, $homebasePlz, $password, $salt);
             error_log($email);
             error_log($homebasePlz);
@@ -67,11 +67,16 @@ if (isset ($_POST['email'], $_POST['pReg'])) {
             error_log($salt);
             // Führe die vorbereitete Anfrage aus.
             if (! $insert_stmt->execute()) {
-                header('Location: ../error.php?err=Registration failure: INSERT');
+              $error = $mysqli->errno . ' ' . $mysqli->error;
+                  echo $error;
+                  error_log("ConnectionIssue");
+                  error_log($error);
             }
-        } if ($mysqli->connect_errno) {
-                    die('Connect Error: ' . $db->connect_errno);
-                    }
+        } else {
+              $error = $mysqli->errno . ' ' . $mysqli->error;
+                  echo $error;
+                  error_log($error);
+                }
          // header('Location: ../index.php');
     }
 }
