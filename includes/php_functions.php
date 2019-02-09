@@ -44,6 +44,7 @@ function userlogin($email, $password, $mysqli) {
             // blockiert ist durch zu viele Login-Versuche
               error_log("logon");
               error_log($email);
+              error_log($password);
               error_log($user_password);
             if (bruteforcecheck($user_id, $mysqli) == true) {
                 // Konto ist blockiert
