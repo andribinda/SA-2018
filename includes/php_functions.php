@@ -38,10 +38,10 @@ function userlogin($email, $password, $mysqli) {
         $stmt->fetch();
 
         // hash das Passwort mit dem eindeutigen salt.
-        error_log("vor hash");
+        error_log("nach hash")
         error_log($password);
         $password = hash('sha512', $password . $salt);
-        error_log("nach hash");
+        error_log("nach hash")
         error_log($password);
         if ($stmt->num_rows == 1) {
             // Wenn es den Benutzer gibt, dann wird überprüft ob das Konto
