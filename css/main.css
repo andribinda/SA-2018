@@ -152,6 +152,11 @@ input#inputTextNav[type="search"]::placeholder {
       padding-top: 5%;
       padding-bottom: 5%;
     }
+
+    .btn-fav {
+      margin-left: 20%;
+      margin-top: 50%;
+    }
 }
 
 #modalRegistration, {
