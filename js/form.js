@@ -29,10 +29,10 @@ function regformhash(form, email, homebasePlz, password, password2) {
 
     // Überprüfe den Benutzernamen
 
-    re = /^\w+$/;
-    if(!re.test(form.username.value)) {
-        alert("Username must contain only letters, numbers and underscores. Please try again");
-        form.username.focus();
+    re = /^[0-9]{4,4}$/
+    if(!re.test(form.homebasePlz.value)) {
+        alert("Bitte gültige Postleitzahl eingeben");
+        form.homebasePlz.focus();
         return false;
     }
 
