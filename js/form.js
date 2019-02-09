@@ -1,5 +1,4 @@
 function formhash(form, password) {
-    event.preventDefault();
     // Erstelle ein neues Feld für das gehashte Passwort.
     var p = document.createElement("input");
 
@@ -13,26 +12,8 @@ function formhash(form, password) {
     // Sorge dafür, dass kein Text-Passwort geschickt wird.
     password.value = "";
 
-     event.preventDefault();
-     console.log("loginTest");
-     $.ajax({
-         url: "/includes/login.php",
-         type:"POST",
-         data: {
-          'email': $('#emailInputLogin').val(),
-          'p': $('#p').val(),
-        },
-         success: function(data) {
-            if (data === 'Login') {
-              window.location = '/user.php';
-            } else {
-              alert('Invalid Credentials');
-            }
-          }
-         });
-
     // Reiche das Formular ein.
-    // form.submit();
+    form.submit();
 }
 
 function regformhash(form, uid, email, password, conf) {
