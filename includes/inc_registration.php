@@ -3,6 +3,7 @@ include_once 'connect_db.php';
 include_once 'db_config.php';
 
 $error_msg = "";
+$id = "DEFAULT";
 error_log($_POST['email']);
 error_log($_POST['pReg']);
 
@@ -55,16 +56,22 @@ if (isset ($_POST['email'], $_POST['pReg'])) {
 
         // Erstelle saltet Passwort
         $password = hash('sha512', $password . $random_salt);
-        error_log($password);
+
 
         // Trage den neuen Benutzer in die Datenbank ein
-        if ($insert_stmt = $mysqli->prepare("INSERT INTO users (id,email,homebasePlz,password,salt) VALUES (?, ?, ?, ?, ?)")) {
-            $insert_stmt->bind_param('sssss', $id, $email, $homebasePlz, $password, $salt);
-            error_log("ok");
+        if ($insert_stmt = $mysqli->prepare("INSERT INTO 'users' (email, homebasePlz ,password ,salt) VALUES (?, ?, ?, ?)")) {
+            $insert_stmt->bind_param('ssss', $email, $homebasePlz, $password, $salt);
+            error_log($email);
+            error_log($homebasePlz);
+            error_log($password);
+            error_log($salt);
             // Führe die vorbereitete Anfrage aus.
             if (! $insert_stmt->execute()) {
                 header('Location: ../error.php?err=Registration failure: INSERT');
             }
-        } header('Location: ../index.php');
+        } if ($mysqli->connect_errno) {
+                    die('Connect Error: ' . $db->connect_errno);
+                    }
+         // header('Location: ../index.php');
     }
 }

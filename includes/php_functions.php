@@ -76,11 +76,11 @@ function bruteforcecheck($user_id, $mysqli) {
     // Hole den aktuellen Zeitstempel
     $now = time();
 
-    // Alle Login-Versuche der letzten zwei Stunden werden gezählt.
-    $valid_attempts = $now - (2 * 60 * 60);
+    // Alle Login-Versuche der letzten Stunde werden gezählt.
+    $valid_attempts = $now - (60 * 60);
 
     if ($stmt = $mysqli->prepare("SELECT time
-                             FROM login_attempts <code><pre>
+                             FROM login_attempts
                              WHERE user_id = ?
                             AND time > '$valid_attempts'")) {
         $stmt->bind_param('i', $user_id);
