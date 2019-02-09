@@ -94,6 +94,10 @@ input#inputTextNav[type="search"]::placeholder {
       padding-top: 10%;
       text-align: left
       }
+
+    .btn-fav {
+        margin: 5% 10% 5% 10%;
+      }
 }
 
 @media (min-width: 576px) {
@@ -154,7 +158,7 @@ input#inputTextNav[type="search"]::placeholder {
     }
 
     .btn-fav {
-margin: auto;
+      margin: 25%;
     }
 }
 
