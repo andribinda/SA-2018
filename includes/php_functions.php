@@ -61,6 +61,7 @@ function userlogin($email, $password, $mysqli) {
                     $_SESSION['login_string'] = hash('sha512', $password . $user_browser);
                     // Login erfolgreich.
                                 error_log($_SESSION['login_string']);
+                                error_log($_SESSION['user_id']);
                     return true;
                     } else {
             //Es gibt keinen Benutzer.
@@ -99,8 +100,6 @@ function bruteforcecheck($user_id, $mysqli) {
 }
 
 function userlogin_check($mysqli) {
-  error_log($_SESSION['user_id']);
-  error_log($_SESSION['login_string']);
     // Überprüfe, ob alle Session-Variablen gesetzt sind
     if (isset($_SESSION['user_id'], $_SESSION['login_string'])) {
 
