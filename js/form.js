@@ -75,6 +75,7 @@ function regformhash(form, email, homebasePlz, password, password2) {
     password2.value = "";
 
     // Reiche das Formular ein.
+    console.log(submitted);
     form.submit();
     return true;
 }

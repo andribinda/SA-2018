@@ -4,6 +4,9 @@ include_once 'db_config.php';
 
 $error_msg = "";
 
+error_log($_POST['email']);
+error_log($_POST['pReg']);
+
 if (isset ($_POST['email'], $_POST['pReg'])) {
     // Bereinige und überprüfe die Daten
     $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
