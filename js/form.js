@@ -18,11 +18,16 @@ function formhash(form, password) {
      $.ajax({
          url: "/includes/login.php",
          type:"POST",
-         data:
-         {
+         data: {
           'email': $('#emailInputLogin').val(),
           'p': $('#p').val(),
-         }
+        },
+         success: function(data) {
+            if (data === 'Login') {
+              window.location = '/user.php';
+            } else {
+              alert('Invalid Credentials');
+            }
          });
 
     // Reiche das Formular ein.
