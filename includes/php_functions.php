@@ -23,7 +23,7 @@ function secure_session_start() {
 }
 
 function userlogin($email, $password, $mysqli) {
-  error_log("Userlogin");
+  error_log("Userlogin")
     error_log($email);
     error_log($password);
     // Das Benutzen vorbereiteter Statements verhindert SQL-Injektion.
