@@ -4,9 +4,6 @@ include_once 'db_config.php';
 
 $error_msg = "";
 
-error_log($_POST['email']);
-error_log($_POST['pReg']);
-
 if (isset ($_POST['email'], $_POST['pReg'])) {
     // Bereinige und überprüfe die Daten
     $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
@@ -53,12 +50,12 @@ if (isset ($_POST['email'], $_POST['pReg'])) {
 
         // Trage den neuen Benutzer in die Datenbank ein
         if ($insert_stmt = $mysqli->prepare("INSERT INTO users (id,email,homebasePlz,password,salt) VALUES (?, ?, ?, ?, ?)")) {
-            $insert_stmt->bind_param('sssss', $id, $email, $username, $password, $salt);
+            $insert_stmt->bind_param('sssss', $id, $email, $homebasePlz, $password, $salt);
             // Führe die vorbereitete Anfrage aus.
             if (! $insert_stmt->execute()) {
                 header('Location: ../error.php?err=Registration failure: INSERT');
             }
         }
-        header('Location: ../index.html');
+        header('Location: ../index.php');
     }
 }
