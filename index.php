@@ -6,11 +6,11 @@ include_once 'includes/connect_db.php';
 
 secure_session_start();
 
-// if (userlogin_check($mysqli) == true) {
-//     $logged = 'in';
-// } else {
-//     $logged = 'out';
-// }
+if (userlogin_check($mysqli) == true) {
+    $logged = 'in';
+} else {
+    $logged = 'out';
+}
 ?>
 
 <!DOCTYPE html>
@@ -39,11 +39,6 @@ secure_session_start();
 </head>
 
 <body>
-	<?php
-        if (!empty($error_msg)) {
-            echo $error_msg;
-        }
-  ?>
 	<nav class="navbar navbar-expand-sm navbar-dark topNav">
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
@@ -181,7 +176,7 @@ secure_session_start();
 								</div>
 							</div>
                     <?php
-										 if (isset($_GET['error'])) {echo '<p class="error">Benutzername / Passwort falsch</p>';}
+										 if (isset($_GET['error-login'])) {echo '<p class="error">Benutzername / Passwort falsch</p>';}
                  ?>
 							<button type="button" class="btn btn-primary btn-modal1" onclick="formhash(this.form, this.form.password)">Login</button>
               <!--  -->
@@ -197,10 +192,17 @@ secure_session_start();
 								<div class="form-group col-sm-6">
 									<label for="emailInput" class="modalFormLabel">Email</label>
 									<input type="email" name='email' class="form-control" id="emailInput" placeholder="Email-Adresse">
+                  <?php
+                   if (isset($_GET['error-reg'])) {echo '<p class="error">Keine gültige Emailadresse</p>';}
+                   else if (isset($_GET['error-reg4'])) {echo '<p class="error">Emailadresse bereits verwendet</p>';}
+                   ?>
 								</div>
 								<div class="form-group col-sm-6">
-									<label for="homebaseInput" class="modalFormLabel">Homebase</label>
-									<input type="text" name='homebase' class="form-control" id="homebaseInput" placeholder="Homebase">
+									<label for="homebaseInput" class="modalFormLabel">PLZ Homebase</label>
+									<input type="text" name='homebasePlz' class="form-control" id="homebaseInput" placeholder="Homebase">
+                  <?php
+                   if (isset($_GET['error-reg3'])) {echo '<p class="error">Keine gültige Postleitzahl</p>';}
+                   ?>
 								</div>
 							</div>
 							<div class="form-row">
@@ -212,11 +214,17 @@ secure_session_start();
 									<label for="passwordInput2" class="modalFormLabel">Passwort erneut eingeben</label>
 									<input type="password" name='password2' class="form-control" id="passwordInput2" placeholder="Passwort">
 								</div>
+                <?php
+                 if (isset($_GET['error-reg2'])) {echo '<p class="error">Fehler bei Passwortkonfiguration</p>';}
+                 ?>
 							</div>
+              <?php
+              if (isset($_GET['error-reg5'])) {echo '<p class="error">Datenbankfehler</p>';}
+              ?>
 							<button type="button" class="btn btn-primary btn-modal1"
 															onclick="return regformhash(this.form,
                                    this.form.email,
-																	 this.form.homebase,
+																	 this.form.homebasePlz,
                                    this.form.password,
 																	 this.form.password2);"
               >Registrieren</button>

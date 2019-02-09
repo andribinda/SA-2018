@@ -30,9 +30,9 @@ function regformhash(form, email, homebasePlz, password, password2) {
     // Überprüfe den Benutzernamen
 
     re = /^[0-9]{4,4}$/
-    if(!re.test(form.homebase.value)) {
+    if(!re.test(form.homebasePlz.value)) {
         alert("Bitte gültige Postleitzahl eingeben");
-        form.homebase.focus();
+        form.homebasePlz.focus();
         return false;
     }
 

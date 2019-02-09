@@ -332,7 +332,7 @@ ul {
   padding: 0 2% 0 0;
 }
 
-.wi, .i, .a{
+.wi, .i, a, p{
   color: #d8eaf1;
 }
 
@@ -356,4 +356,9 @@ ul {
     font-weight: 500;
     line-height: 1.2;
     color: #d8eaf1;
+}
+
+.error {
+  font-weight: bold;
+  color: #ad997d;
 }

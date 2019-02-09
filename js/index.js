@@ -5,6 +5,7 @@ $(document).ready(function() {
   var longitude = 0;
   getLocation();
   prepareButtons();
+  console.log("Page location is " + window.location.href);
 });
 
 tMin = "<i data-eva='thermometer-minus' data-eva-fill='#d8eaf1' data-eva-height='24' data-eva-width='24'></i> ";
@@ -344,9 +345,21 @@ function prepareButtons() {
       $('#emailInputLogin').focus();
   });
 
-  $('.modalRegTabBar a[href="#modalTabReg"]').on('shown.bs.tab', function () {
-      $('#nameInput').focus();
+  $('.modalRegTabBar a[href="#modalTabLogin"]').on('shown.bs.tab', function () {
+      $('#emailInputLogin').focus();
   });
+
+  $('.modalRegTabBar a[href="#modalTabReg"]').on('shown.bs.tab', function () {
+    $('#emailInput').focus();
+  });
+
+  if (window.location.href == 'https://weather.zubler.ch/index.php?error-login') {
+    $('.modalRegLog').modal({'backdrop':'static'});
+    $('.modalRegTabBar a[href="#modalTabLogin]').tab('show');
+  } else if (window.location.href.match(/error-reg/gi)) {
+    $('.modalRegLog').modal({'backdrop':'static'});
+    $('.modalRegTabBar a[href="#modalTabReg"]').tab('show');
+  }
 }
 
 function setBackground() {var pattern = Trianglify({

@@ -12,7 +12,7 @@ if (isset($_POST['email'], $_POST['p'])) {
         // Login erfolgreich
         header('Location: ../user.php');
     } else {
-      header('Location: ../index.php');
+      header('Location: ../index.php?error-login');
     }
 } else {
     // Die korrekten POST-Variablen wurden nicht zu dieser Seite geschickt.
