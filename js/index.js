@@ -5,7 +5,7 @@ $(document).ready(function() {
   var longitude = 0;
   getLocation();
   prepareButtons();
-  //document.getElementById('login_form').addEventListener('submit', submitFormControl, false);
+  $("#loginForm").submit(formhash(this.form, this.form.password));
 });
 
 tMin = "<i data-eva='thermometer-minus' data-eva-fill='#d8eaf1' data-eva-height='24' data-eva-width='24'></i> ";
@@ -347,10 +347,6 @@ function prepareButtons() {
 
   $('.modalRegTabBar a[href="#modalTabReg"]').on('shown.bs.tab', function () {
       $('#nameInput').focus();
-  });
-
-  $(document).ready(function () {
-  $("#loginForm").submit(formhash(this.form, this.form.password));
   });
 
 }
