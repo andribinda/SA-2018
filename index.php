@@ -191,7 +191,8 @@ if (userlogin_check($mysqli) == true) {
 					<div id="modalTabReg" class="container tab-pane fade"><br>
 						<form action="<?php echo clean_php_url($_SERVER['PHP_SELF']); ?>"
 							method="post"
-							name="registration_form">
+							name="registration_form"
+              id="regForm">
 							<div class="form-row">
 								<div class="form-group col-sm-6">
 									<label for="emailInput" class="modalFormLabel">Email</label>

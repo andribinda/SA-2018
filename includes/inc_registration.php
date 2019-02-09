@@ -3,8 +3,11 @@ include_once 'connect_db.php';
 include_once 'db_config.php';
 
 $error_msg = "";
+error_log($_POST['email']);
+error_log(print_r($_POST));
 
 if (isset ($_POST['email'], $_POST['pReg'])) {
+  error_log("gesetzt");
     // Bereinige und überprüfe die Daten
     $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
     $email = filter_var($email, FILTER_VALIDATE_EMAIL);

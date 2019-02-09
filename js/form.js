@@ -65,8 +65,9 @@ function regformhash(form, email, homebasePlz, password, password2) {
     var pReg = document.createElement("inputReg");
 
     // Füge es dem Formular hinzu.
-    form.appendChild(pReg);
+  document.getElementById("regForm").appendChild(pReg);
     pReg.name = "pReg";
+    pReg.id = "pReg"
     pReg.type = "hidden";
     pReg.value = hex_sha512(password.value);
 
@@ -75,6 +76,7 @@ function regformhash(form, email, homebasePlz, password, password2) {
     password2.value = "";
 
     // Reiche das Formular ein.
+    console.log(pReg);
     form.submit();
     return true;
 }
