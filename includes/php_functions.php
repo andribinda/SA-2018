@@ -63,11 +63,15 @@ function userlogin($email, $password, $mysqli) {
                                 error_log($_SESSION['user_id']);
                     return true;
                     } else {
-            //Es gibt keinen Benutzer.
-            error_log('test4');
-            return false;
-        }
-    }
+                        //Es gibt keinen Benutzer.
+                        error_log('test4');
+                        return false;
+                      }
+            }
+  }
+}
+
+  }
 
 function bruteforcecheck($user_id, $mysqli) {
     // Hole den aktuellen Zeitstempel
@@ -175,5 +179,4 @@ function clean_php_url($url) {
         return $url;
     }
 }
-
 ?>
