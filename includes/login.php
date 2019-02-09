@@ -10,9 +10,9 @@ if (isset($_POST['email'], $_POST['p'])) {
 
     if (userlogin($email, $password, $mysqli) == true) {
         // Login erfolgreich
-        $success = true;;
+        $success = true;
     } else {
-        $success = false;);
+        $success = false;
     }
      return $success;
 } else {
