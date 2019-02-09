@@ -4,7 +4,7 @@ include_once 'db_config.php';
 
 $error_msg = "";
 error_log($_POST['email']);
-error_log(print_r($_POST));
+error_log($_POST['pReg']);
 
 if (isset ($_POST['email'], $_POST['pReg'])) {
   error_log("gesetzt");
@@ -14,6 +14,7 @@ if (isset ($_POST['email'], $_POST['pReg'])) {
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         // keine gültige E-Mail
         $error_msg .= '<p class="error">The email address you entered is not valid</p>';
+        error_log("fehler 1");
     }
 
     $password = filter_input(INPUT_POST, 'pReg', FILTER_SANITIZE_STRING);
@@ -21,6 +22,7 @@ if (isset ($_POST['email'], $_POST['pReg'])) {
         // Das gehashte Passwort sollte 128 Zeichen lang sein.
         // Wenn nicht, dann ist etwas sehr seltsames passiert
         $error_msg .= '<p class="error">Invalid password configuration.</p>';
+        error_log("fehler 2");
     }
 
     // Benutzername und Passwort wurde auf der Benutzer-Seite schon überprüft.
@@ -39,6 +41,7 @@ if (isset ($_POST['email'], $_POST['pReg'])) {
         if ($stmt->num_rows == 1) {
             // Ein Benutzer mit dieser E-Mail-Adresse existiert schon
             $error_msg .= '<p class="error">A user with this email address already exists.</p>';
+            error_log("fehler 3");
         }
     } else {
         $error_msg .= '<p class="error">Database error</p>';
@@ -46,19 +49,22 @@ if (isset ($_POST['email'], $_POST['pReg'])) {
 
     if (empty($error_msg)) {
         // Erstelle ein zufälliges Salt
+        error_log("salt erstellen");
         $random_salt = hash('sha512', uniqid(openssl_random_pseudo_bytes(16), TRUE));
+        error_log($random_salt);
 
         // Erstelle saltet Passwort
         $password = hash('sha512', $password . $random_salt);
+        error_log($password);
 
         // Trage den neuen Benutzer in die Datenbank ein
         if ($insert_stmt = $mysqli->prepare("INSERT INTO users (id,email,homebasePlz,password,salt) VALUES (?, ?, ?, ?, ?)")) {
             $insert_stmt->bind_param('sssss', $id, $email, $homebasePlz, $password, $salt);
+            error_log("ok");
             // Führe die vorbereitete Anfrage aus.
             if (! $insert_stmt->execute()) {
                 header('Location: ../error.php?err=Registration failure: INSERT');
             }
-        }
-        header('Location: ../index.php');
+        } header('Location: ../index.php');
     }
 }

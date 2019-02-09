@@ -62,10 +62,10 @@ function regformhash(form, email, homebasePlz, password, password2) {
     }
 
     // Erstelle ein neues Feld für das gehashte Passwort.
-    var pReg = document.createElement("inputReg");
+    var pReg = document.createElement("input");
 
     // Füge es dem Formular hinzu.
-  document.getElementById("regForm").appendChild(pReg);
+    document.getElementById("regForm").appendChild(pReg);
     pReg.name = "pReg";
     pReg.id = "pReg"
     pReg.type = "hidden";

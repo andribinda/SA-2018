@@ -6,11 +6,11 @@ include_once 'includes/connect_db.php';
 
 secure_session_start();
 
-if (userlogin_check($mysqli) == true) {
-    $logged = 'in';
-} else {
-    $logged = 'out';
-}
+// if (userlogin_check($mysqli) == true) {
+//     $logged = 'in';
+// } else {
+//     $logged = 'out';
+// }
 ?>
 
 <!DOCTYPE html>
