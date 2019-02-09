@@ -401,10 +401,10 @@ function prepareButtons() {
         data: { 'action': $('#menuLogout').val()}
         });
      });
+    google.maps.event.addDomListener(window, 'load', ortSuche);
     }
 
-    google.maps.event.addDomListener(window, 'load', ortSuche);
-};
+
 
 function setBackground() {
   var pattern = Trianglify({
