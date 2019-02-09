@@ -205,7 +205,7 @@ if (userlogin_check($mysqli) == true) {
 							<div class="form-row">
 								<div class="form-group col-sm-6">
 									<label for="passwordInput" class="modalFormLabel">Passwort</label>
-									<input type="password" name='password1' class="form-control" id="passwordInput" placeholder="Passwort">
+									<input type="password" name='password' class="form-control" id="passwordInput" placeholder="Passwort">
 								</div>
 								<div class="form-group col-sm-6">
 									<label for="passwordInput2" class="modalFormLabel">Passwort erneut eingeben</label>
@@ -216,7 +216,7 @@ if (userlogin_check($mysqli) == true) {
 															onclick="return regformhash(this.form,
                                    this.form.email,
 																	 this.form.homebase,
-                                   this.form.password1,
+                                   this.form.password,
 																	 this.form.password2);"
               >Registrieren</button>
 							<button type="button" class="btn btn-primary btn-modal1" data-dismiss="modal" aria-label="Close">Schliessen</button>
