@@ -14,13 +14,13 @@ function login(){
       error_log($password);
 
       if (userlogin($email, $password, $mysqli) == true) {
-        error_log("SUCCESS");
+        error_log("SUCCESS")
           // Login erfolgreich
           $success = true;
       } else {
           $success = false;
       }
-      error_log($success);
+      error_log($success)
        return $success;
   } else {
       // Die korrekten POST-Variablen wurden nicht zu dieser Seite geschickt.
