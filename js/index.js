@@ -11,6 +11,7 @@ $(document).ready(function() {
 tMin = "<i data-eva='thermometer-minus' data-eva-fill='#d8eaf1' data-eva-height='24' data-eva-width='24'></i> ";
 tMax = "<i data-eva='thermometer-plus' data-eva-fill='#d8eaf1' data-eva-height='24' data-eva-width='24'></i> ";
 tNormal = "<i data-eva='thermometer' data-eva-fill='#d8eaf1' data-eva-height='24' data-eva-width='24'></i> ";
+manualSelection = true;
 
 function getLocation() {
   console.log("get location ready");
@@ -74,25 +75,45 @@ function showPosition(position) {
 }
 
 function ortSuche() {
-    var options = {
-      types: ['(regions)'],
-      componentRestrictions: {country: 'CH'}
-    };
+              var options = {
+              types: ['(regions)'],
+              componentRestrictions: {country: 'CH'}
+            };
 
-    var input = document.getElementById('inputTextNav');
-    var autocomplete = new google.maps.places.Autocomplete(input, options);
+            var input = document.getElementById('inputTextNav');
+            var autocomplete = new google.maps.places.Autocomplete(input, options);
+            autocomplete.addListener('place_changed', getPlaceSearch);
 
-    autocomplete.addListener('place_changed', getWeather);
-  }
-  google.maps.event.addDomListener(window, 'load', ortSuche);
+            google.maps.event.addDomListener(input, 'keydown', function(e) {
+              if (e.keyCode == 13 && $('.pac-container:visible').length) {
+                  e.preventDefault();
+                  manualSelection = false;
+                  var firstChoice = $(".pac-container .pac-item:first").text();
+                  console.log(firstChoice);
+                  var geocode = new google.maps.Geocoder();
+                  geocode.geocode({"address":firstChoice }, function(resultat, status) {
+                      if (status == google.maps.GeocoderStatus.OK) {
+                        lat = resultat[0].geometry.location.lat();
+                        lng = resultat[0].geometry.location.lng();
+                        $("input").val(firstChoice.match(/[A-Z][a-z]+|[0-9]+/g).join(", "));
+                        getWeather(lat,lng);
+                      }
+                  });
+              } else {manualSelection = true;}
+          })
+};
+
+function getPlaceSearch() {
+      if (manualSelection == true) {
+        var place = this.getPlace();
+        lng = place.geometry.location.lng();
+        lat = place.geometry.location.lat();
+        getWeather(lat,lng);
+      }
+      }
+
 
 function getWeather() {
-    // Get the place details from the autocomplete object.
-    var place = this.getPlace();
-    var lng = place.geometry.location.lng();
-    var lat = place.geometry.location.lat();
-    console.log(lat, lng);
-
     $.ajax({
       url: "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lng +
         "&units=metric&lang=de&appid=6012cf5997f032d2c82563e60ef96a56",
@@ -360,6 +381,8 @@ function prepareButtons() {
     $('.modalRegLog').modal({'backdrop':'static'});
     $('.modalRegTabBar a[href="#modalTabReg"]').tab('show');
   }
+
+    google.maps.event.addDomListener(window, 'load', ortSuche);
 }
 
 function setBackground() {var pattern = Trianglify({
