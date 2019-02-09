@@ -67,8 +67,8 @@ secure_session_start();
                 </div>
             </div>
           </div>
-            <div class="col-sm-3">
-              <div class="panel-user panel-top"> Favorit hinzufügen </div>
+            <div class="col-sm-3 panel-user panel-top">
+              <button> Favorit hinzufügen </button>
             </div>
             <div class="col-sm-4 panel-user panel-top">
               <a href="#" class="emptyLink" id="modalLaunchHomebase"></a>
