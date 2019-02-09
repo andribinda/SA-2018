@@ -348,12 +348,21 @@ function prepareButtons() {
   $('.modalRegTabBar a[href="#modalTabReg"]').on('shown.bs.tab', function () {
       $('#nameInput').focus();
   });
+<<<<<<< HEAD
 
   $(document).ready(function () {
   $("#loginForm").submit(formhash(this.form, this.form.password));
   });
-
+=======
 }
+>>>>>>> parent of 5b4c810... Update index.js
+
+// function submitFormControl(e) {
+//     e.preventDefault();
+//     $('#modalRegistration').modal('show');
+//     formhash(this.form, this.form.password)
+//     console.log("test");
+// };
 
 function setBackground() {var pattern = Trianglify({
       cell_size: 500,
