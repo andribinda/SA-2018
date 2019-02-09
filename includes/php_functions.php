@@ -68,17 +68,6 @@ function userlogin($email, $password, $mysqli) {
             return false;
         }
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
-}
-}
-}
-=======
-}}
->>>>>>> parent of b42bec0... Update php_functions.php
-=======
-}
->>>>>>> parent of b254931... Update php_functions.php
 
 function bruteforcecheck($user_id, $mysqli) {
     // Hole den aktuellen Zeitstempel
