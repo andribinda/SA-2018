@@ -66,9 +66,9 @@ function regformhash(form, email, homebasePlz, password, password2) {
 
     // Füge es dem Formular hinzu.
     form.appendChild(pReg);
-    p.name = "p";
-    p.type = "hidden";
-    p.value = hex_sha512(password.value);
+    pReg.name = "pReg";
+    pReg.type = "hidden";
+    pReg.value = hex_sha512(password.value);
 
     // Sorge dafür, dass kein Text-Passwort geschickt wird.
     password.value = "";

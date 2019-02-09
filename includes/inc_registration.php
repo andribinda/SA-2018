@@ -4,7 +4,7 @@ include_once 'db_config.php';
 
 $error_msg = "";
 
-if (isset ($_POST['email'], $_POST['p'])) {
+if (isset ($_POST['email'], $_POST['pReg'])) {
     // Bereinige und überprüfe die Daten
     $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
     $email = filter_var($email, FILTER_VALIDATE_EMAIL);
@@ -13,7 +13,7 @@ if (isset ($_POST['email'], $_POST['p'])) {
         $error_msg .= '<p class="error">The email address you entered is not valid</p>';
     }
 
-    $password = filter_input(INPUT_POST, 'p', FILTER_SANITIZE_STRING);
+    $password = filter_input(INPUT_POST, 'pReg', FILTER_SANITIZE_STRING);
     if (strlen($password) != 128) {
         // Das gehashte Passwort sollte 128 Zeichen lang sein.
         // Wenn nicht, dann ist etwas sehr seltsames passiert
