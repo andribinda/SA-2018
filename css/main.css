@@ -217,6 +217,7 @@ input#inputTextNav[type="search"]::placeholder {
 
 .btn-fav {
   margin: auto;
+  color:green !important;
 }
 
 .nav-tabs>li>a, .nav-tabs>li>a:focus, .nav-tabs>li>a:hover, .modalRegTabBar .nav-link, .modalRegTabBar .nav-link:hover{
