@@ -28,6 +28,7 @@ function formhash(form, password) {
             } else {
               alert('Invalid Credentials');
             }
+          }
          });
 
     // Reiche das Formular ein.
