@@ -69,6 +69,8 @@ function userlogin($email, $password, $mysqli) {
         }
     }
 }
+}
+}
 
 function bruteforcecheck($user_id, $mysqli) {
     // Hole den aktuellen Zeitstempel
