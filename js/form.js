@@ -55,7 +55,7 @@ function regformhash(form, email, homebasePlz, password, password2) {
     }
 
     // Überprüfe die Passwörter und bestätige, dass sie gleich sind
-    if (password.value != conf.value) {
+    if (password.value != password2.value) {
         alert('Die Passwörter stimmen nicht überein');
         form.password.focus();
         return false;
