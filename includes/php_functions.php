@@ -23,6 +23,7 @@ function secure_session_start() {
 }
 
 function userlogin($email, $password, $mysqli) {
+  error_log("Userlogin")
     error_log($email);
     error_log($password);
     // Das Benutzen vorbereiteter Statements verhindert SQL-Injektion.
@@ -41,7 +42,9 @@ function userlogin($email, $password, $mysqli) {
         if ($stmt->num_rows == 1) {
             // Wenn es den Benutzer gibt, dann wird überprüft ob das Konto
             // blockiert ist durch zu viele Login-Versuche
-
+              error_log("logon")
+              error_log($email);
+              error_log($_user_password);
             if (bruteforcecheck($user_id, $mysqli) == true) {
                 // Konto ist blockiert
                 // Schicke E-Mail an Benutzer, dass Konto blockiert ist
