@@ -154,8 +154,7 @@ input#inputTextNav[type="search"]::placeholder {
     }
 
     .btn-fav {
-      margin-left: 20%;
-      margin-top: 50%;
+margin: auto;
     }
 }
 
