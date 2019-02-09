@@ -20,7 +20,7 @@ function secure_session_start() {
     session_name($session_name);
     session_start();            // Startet die PHP-Sitzung
     session_regenerate_id();    // Erneuert die Session, löscht die alte.
-}}
+}
 
 function userlogin($email, $password, $mysqli) {
     error_log($email);
@@ -68,7 +68,7 @@ function userlogin($email, $password, $mysqli) {
             return false;
         }
     }
-}}
+}
 
 function bruteforcecheck($user_id, $mysqli) {
     // Hole den aktuellen Zeitstempel
@@ -94,7 +94,7 @@ function bruteforcecheck($user_id, $mysqli) {
             return false;
         }
     }
-}}
+}
 
 function userlogin_check($mysqli) {
     // Überprüfe, ob alle Session-Variablen gesetzt sind
@@ -144,7 +144,7 @@ function userlogin_check($mysqli) {
         error_log($login_check);
         return false;
     }
-}}
+}
 
 function clean_php_url($url) {
 
@@ -175,6 +175,5 @@ function clean_php_url($url) {
     } else {
         return $url;
     }
-}}
-
+}
 ?>
