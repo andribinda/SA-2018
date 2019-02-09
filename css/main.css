@@ -221,8 +221,7 @@ input#inputTextNav[type="search"]::placeholder {
 }
 
 .btn-fav {
-  margin-left: 20%;
-  margin-top: 50%;
+  font-weight: bold;
   color: #ad997d;
   border: none;
   border-radius: 7px;
