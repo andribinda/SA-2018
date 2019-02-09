@@ -216,7 +216,7 @@ if (userlogin_check($mysqli) == true) {
 															onclick="return regformhash(this.form,
                                    this.form.email,
 																	 this.form.homebase,
-                                   this.form.password,
+                                   this.form.password1,
 																	 this.form.password2);"
               >Registrieren</button>
 							<button type="button" class="btn btn-primary btn-modal1" data-dismiss="modal" aria-label="Close">Schliessen</button>
