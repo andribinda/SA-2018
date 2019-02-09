@@ -4,8 +4,6 @@ include_once 'php_functions.php';
 
 secure_session_start(); // Unsere selbstgemachte sichere Funktion um eine PHP-Sitzung zu starten.
 $success = false;
-error_log($_POST['email']);
-error_log($_POST['p']);
 if (isset($_POST['email'], $_POST['p'])) {
     $email = $_POST['email'];
     $password = $_POST['p'];
