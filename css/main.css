@@ -169,7 +169,7 @@ input#inputTextNav[type="search"]::placeholder {
   border: none;
 }
 
-.btn-modal1 {
+.btn-modal1, .btn-fav {
   color: #d8eaf1;
   border: none;
   background-color :#8e999d ;;
@@ -213,6 +213,10 @@ input#inputTextNav[type="search"]::placeholder {
 
 .modalRegTabBar {
   border: none;
+}
+
+.btn-fav {
+  margin: auto;
 }
 
 .nav-tabs>li>a, .nav-tabs>li>a:focus, .nav-tabs>li>a:hover, .modalRegTabBar .nav-link, .modalRegTabBar .nav-link:hover{
