@@ -45,7 +45,6 @@ function userlogin($email, $password, $mysqli) {
             if (bruteforcecheck($user_id, $mysqli) == true) {
                 // Konto ist blockiert
                 // Schicke E-Mail an Benutzer, dass Konto blockiert ist
-                error_log('test2');
                 return false;
             } else {
                 // Überprüfe, ob das Passwort in der Datenbank mit dem vom
@@ -69,8 +68,6 @@ function userlogin($email, $password, $mysqli) {
             return false;
         }
     }
-}
-}
 }
 
 function bruteforcecheck($user_id, $mysqli) {
@@ -144,6 +141,7 @@ function userlogin_check($mysqli) {
     } else {
         // Nicht eingeloggt
         error_log('Fehler bei userlogin');
+        error_log()
         return false;
     }
 }
