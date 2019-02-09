@@ -350,13 +350,6 @@ function prepareButtons() {
   });
 }
 
-// function submitFormControl(e) {
-//     e.preventDefault();
-//     $('#modalRegistration').modal('show');
-//     formhash(this.form, this.form.password)
-//     console.log("test");
-// };
-
 function setBackground() {var pattern = Trianglify({
       cell_size: 500,
       variance: 1,

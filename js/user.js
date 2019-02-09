@@ -390,7 +390,17 @@ function prepareButtons() {
       } else if (modalSelection == "home") {
         getWeatherHome5Day(plz);
       };
+
     });
+
+    $('#menuLogout').click(function(){
+      $.ajax({
+        url: "/includes/logout.php",
+        type:"POST",
+        data: { 'action': $('#menuLogout').val()}
+        });
+     });
+    }
 
     google.maps.event.addDomListener(window, 'load', ortSuche);
 };
