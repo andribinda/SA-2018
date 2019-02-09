@@ -24,7 +24,7 @@ function formhash(form, password) {
           'p': $('#p').val(),
         },
          success: function(data) {
-            if (data === 'Login') {
+            if (data === 'userlogin') {
               window.location = '/user.php';
             } else {
               alert('Invalid Credentials');
