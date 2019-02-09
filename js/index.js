@@ -348,14 +348,12 @@ function prepareButtons() {
   $('.modalRegTabBar a[href="#modalTabReg"]').on('shown.bs.tab', function () {
       $('#nameInput').focus();
   });
+
+  $(document).ready(function () {
+  $("#loginForm").submit(formhash(this.form, this.form.password));
 }
 
-// function submitFormControl(e) {
-//     e.preventDefault();
-//     $('#modalRegistration').modal('show');
-//     formhash(this.form, this.form.password)
-//     console.log("test");
-// };
+}
 
 function setBackground() {var pattern = Trianglify({
       cell_size: 500,
