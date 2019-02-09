@@ -40,9 +40,11 @@ function userlogin($email, $password, $mysqli) {
         // hash das Passwort mit dem eindeutigen salt.
         error_log("vor hash");
         error_log($password);
+        error_log($salt);
         $password = hash('sha512', $password . $salt);
         error_log("nach hash");
         error_log($password);
+        error_log($salt);
         if ($stmt->num_rows == 1) {
             // Wenn es den Benutzer gibt, dann wird überprüft ob das Konto
             // blockiert ist durch zu viele Login-Versuche
@@ -50,6 +52,7 @@ function userlogin($email, $password, $mysqli) {
               error_log($email);
               error_log($password);
               error_log($user_password);
+              error_log($salt);
             if (bruteforcecheck($user_id, $mysqli) == true) {
                 // Konto ist blockiert
                 // Schicke E-Mail an Benutzer, dass Konto blockiert ist
