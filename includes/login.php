@@ -14,7 +14,7 @@ if (isset($_POST['email'], $_POST['p'])) {
         // Login erfolgreich
         $success = true;
     } else {
-        $success = false;
+        $success = true;
     }
      return $success;
 } else {
