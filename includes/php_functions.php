@@ -38,11 +38,9 @@ function userlogin($email, $password, $mysqli) {
         $stmt->fetch();
 
         // hash das Passwort mit dem eindeutigen salt.
-        error_log("nach hash")
-        error_log($password);
+        error_log($password + "vor hash");
         $password = hash('sha512', $password . $salt);
-        error_log("nach hash")
-        error_log($password);
+        error_log($password + "nach hash");
         if ($stmt->num_rows == 1) {
             // Wenn es den Benutzer gibt, dann wird überprüft ob das Konto
             // blockiert ist durch zu viele Login-Versuche
