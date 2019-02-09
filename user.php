@@ -67,7 +67,7 @@ secure_session_start();
                 </div>
             </div>
           </div>
-            <div class="col-sm-3 panel-user panel-top justify-content-center">
+            <div class="col-sm-3 justify-content-center">
               <button class="btn-fav"> Favorit hinzufügen </button>
             </div>
             <div class="col-sm-4 panel-user panel-top">
