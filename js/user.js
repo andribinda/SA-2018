@@ -393,7 +393,8 @@ function prepareButtons() {
 
     });
 
-    $('#menuLogout').click(function(){
+    $('#menuLogout').click(function(e){
+      e.preventDefault();
       $.ajax({
         url: "/includes/logout.php",
         type:"POST",
