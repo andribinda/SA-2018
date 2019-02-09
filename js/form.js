@@ -1,4 +1,5 @@
 function formhash(form, password) {
+    event.preventDefault();
     // Erstelle ein neues Feld für das gehashte Passwort.
     var p = document.createElement("input");
 
@@ -12,19 +13,17 @@ function formhash(form, password) {
     // Sorge dafür, dass kein Text-Passwort geschickt wird.
     password.value = "";
 
-   loginFormControl(e) {
-       event.preventDefault();
-       console.log("loginTest");
-       $.ajax({
-           url: "/includes/login.php",
-           type:"POST",
-           data:
-           {
-            'email': $('#emailInputLogin').val(),
-            'p': $('#p').val(),
-           }
-           });
-        };
+     event.preventDefault();
+     console.log("loginTest");
+     $.ajax({
+         url: "/includes/login.php",
+         type:"POST",
+         data:
+         {
+          'email': $('#emailInputLogin').val(),
+          'p': $('#p').val(),
+         }
+         });
 
     // Reiche das Formular ein.
     // form.submit();
