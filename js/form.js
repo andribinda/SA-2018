@@ -24,11 +24,11 @@ function formhash(form, password) {
           'p': $('#p').val(),
         },
          success: function(data) {
-            if (data === 'login') {
+            // if (data === 'login') {
               window.location = '/user.php';
-            } else {
-              alert('Invalid Credentials');
-            }
+            // } else {
+            //   alert('Invalid Credentials');
+            // }
           }
          });
 
