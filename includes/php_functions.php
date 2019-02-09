@@ -143,6 +143,7 @@ function userlogin_check($mysqli) {
     } else {
         // Nicht eingeloggt
         error_log('Fehler bei userlogin');
+        error_log($login_check);
         return false;
     }
 }
