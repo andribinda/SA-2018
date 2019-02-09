@@ -3,6 +3,7 @@ include_once 'connect_db.php';
 include_once 'php_functions.php';
 
 secure_session_start(); // Unsere selbstgemachte sichere Funktion um eine PHP-Sitzung zu starten.
+login();
 
 function login(){
   $success = false;
