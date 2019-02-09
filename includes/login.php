@@ -7,6 +7,8 @@ $success = false;
 if (isset($_POST['email'], $_POST['p'])) {
     $email = $_POST['email'];
     $password = $_POST['p'];
+    error_log($email);
+    error_log($password);
 
     if (userlogin($email, $password, $mysqli) == true) {
         // Login erfolgreich
