@@ -152,7 +152,6 @@ function clean_php_url($url) {
     }
 
     $url = preg_replace('|[^a-z0-9-~+_.?#=!&;,/:%@$\|*\'()\\x80-\\xff]|i', '', $url);
-
     $strip = array('%0d', '%0a', '%0D', '%0A');
     $url = (string) $url;
 
@@ -177,16 +176,26 @@ function clean_php_url($url) {
 }
 
 function getHomebase($mysqli) {
-      if ($stmt = $mysqli->prepare("SELECT homebasePlz
+  error_log("start query");
+      if ($stmtH = $mysqli->prepare("SELECT homebasePlz
                            FROM users
                            WHERE email = ?
                             LIMIT = 1")) {
       error_log("mysql korrekt");
-      $stmt->bind_param('s', $email);
-      $stmt->execute();
-      $stmt->store_result();
-      $stmt->bind_result($homebasePlz);
-      $stmt->fetch();
+      $stmtH->bind_param('s', $email);
+      $stmtH->execute();
+      $stmtH->store_result();
+      $stmtH->bind_result($homebasePlz);
+      $stmtH->fetch();
+
+      if (! $stmtH->execute()) {
+        $error = $mysqli->errno . ' ' . $mysqli->error;
+            error_log($error);
+      }
+  } else {
+        $error = $mysqli->errno . ' ' . $mysqli->error;
+            error_log($error);
+          }
 
         echo($homebasePLZ);
         error_log($homebasePlz);

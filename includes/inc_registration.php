@@ -52,12 +52,6 @@ if (isset ($_POST['email'], $_POST['pReg'], $_POST['homebasePlz'])) {
         // Trage den neuen Benutzer in die Datenbank ein
         if ($insert_stmt = $mysqli->prepare("INSERT INTO users (email, homebasePlz ,password ,salt) VALUES (?, ?, ?, ?)")) {
             $insert_stmt->bind_param('ssss', $email, $homebasePlz, $password, $salt);
-            error_log(print_r($_POST, true));
-            // error_log($email);
-            // error_log($homebasePlz);
-            // error_log($password);
-            // error_log($salt);
-            // Führe die vorbereitete Anfrage aus.
             if (! $insert_stmt->execute()) {
               $error = $mysqli->errno . ' ' . $mysqli->error;
                   error_log($error);
