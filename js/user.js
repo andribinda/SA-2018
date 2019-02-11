@@ -40,6 +40,7 @@ function showPosition(position) {
   getWeatherToday(lat,lng);
   getWeather5Day(lat,lng);
   getWeatherHomeToday(plz);
+  console.log(plz);
 }
 
 function getWeatherHomeToday(plz){
