@@ -14,7 +14,7 @@ dataHomeDay = 0;
 data5HomeDay = 0;
 lat = 0;
 lng = 0;
-plz = 5400;
+plz = '<?php echo $plz;?>';
 modalSelection = "none";
 manualSelection = true;
 
@@ -49,7 +49,8 @@ function getWeatherHomeToday(plz){
      context: document.body,
      dataType: 'json'
    }).done(function(dataHomeDay) {
-     console.log("homebase")
+     console.log("homebase");
+     console.log(dataHomeDay);
      setItemsHome(dataHomeDay, weatherIcons);
    });
 }

@@ -376,7 +376,6 @@ function prepareButtons() {
 
   if (window.location.href == 'https://weather.zubler.ch/index.php?error-login') {
     $('.modalRegLog').modal({'backdrop':'static'});
-    $('.modalRegTabBar a[href="#modalTabLogin]').tab('show');
   } else if (window.location.href.match(/error-reg/gi)) {
     $('.modalRegLog').modal({'backdrop':'static'});
     $('.modalRegTabBar a[href="#modalTabReg"]').tab('show');

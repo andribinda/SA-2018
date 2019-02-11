@@ -1,6 +1,5 @@
 <?php
 include_once 'db_config.php';
-
 function secure_session_start() {
     $session_name = 'secure_session_id';
     $secure = SECURE;
@@ -58,7 +57,8 @@ function userlogin($email, $password, $mysqli) {
                     // XSS-Schutz, denn eventuell wir der Wert gedruckt
                     $_SESSION['login_string'] = hash('sha512', $password . $user_browser);
                     // Login erfolgreich.
-                                error_log($_SESSION['login_string']);
+                    $_SESSION['plz'] = getHomebase($email, $mysqli);
+
                     return true;
                     } else {
             //Es gibt keinen Benutzer.
@@ -175,26 +175,22 @@ function clean_php_url($url) {
     }
 }
 
-function getHomebase($mysqli) {
-  error_log("start query");
+function getHomebase($email, $mysqli) {
+  error_log("homebase ready");
   error_log($email);
       if ($stmtH = $mysqli->prepare("SELECT homebasePlz
                            FROM users
                            WHERE email = ?
                            LIMIT 1")) {
-      error_log("mysql korrekt");
       $stmtH->bind_param('s', $email);
       $stmtH->execute();
       $stmtH->store_result();
       $stmtH->bind_result($homebasePlz);
       $stmtH->fetch();
-
-        error_log(  $stmtH->fetch());
-        echo($homebasePlz);
-        error_log($homebasePlz);
+      return $homebasePlz;
     }
-
-      $error = $mysqli->errno . ' ' . $mysqli->error;
-      error_log($error);
+      // SQL Error Debug Hilfe
+      // $error = $mysqli->errno . ' ' . $mysqli->error;
+      // error_log($error);
 }
 ?>

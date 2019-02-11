@@ -17,5 +17,5 @@ setcookie(session_name(),
         $params["httponly"]);
 
 // Vernichte die Session
-session_destroy();
 header('Location: ../index.php');
+session_destroy();

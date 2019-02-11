@@ -29,7 +29,7 @@ secure_session_start();
   <link rel="stylesheet" type="text/css" href="css/main.css">
 
   <?php if (userlogin_check($mysqli) == true) :
-      getHomebase($mysqli);
+      $plz = $_SESSION['plz'];
     ?>
 </head>
 <body>
