@@ -3,7 +3,6 @@ include_once 'includes/connect_db.php';
 include_once 'includes/php_functions.php';
 
 secure_session_start();
-getHomebase($email, $mysqli);
 ?>
 
 <!DOCTYPE html>
@@ -29,7 +28,9 @@ getHomebase($email, $mysqli);
   <link rel="stylesheet" type="text/css" href="css/weather-icons-wind.min.css">
   <link rel="stylesheet" type="text/css" href="css/main.css">
 
-  <?php if (userlogin_check($mysqli) == true) : ?>
+  <?php if (userlogin_check($mysqli) == true) :
+      getHomebase($mysqli);
+    ?>
 </head>
 <body>
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark justify-content-center topNav">
