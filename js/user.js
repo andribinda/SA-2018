@@ -14,7 +14,7 @@ dataHomeDay = 0;
 data5HomeDay = 0;
 lat = 0;
 lng = 0;
-plz = '<?php echo $plz;?>';
+plz = 5400;
 modalSelection = "none";
 manualSelection = true;
 
@@ -44,14 +44,26 @@ function showPosition(position) {
 
 function getWeatherHomeToday(plz){
   $.ajax({
-     url: "https://api.openweathermap.org/data/2.5/weather?zip=" + plz + ",ch" +
-       "&units=metric&lang=de&appid=6012cf5997f032d2c82563e60ef96a56",
-     context: document.body,
-     dataType: 'json'
-   }).done(function(dataHomeDay) {
-     console.log("homebase");
-     console.log(dataHomeDay);
-     setItemsHome(dataHomeDay, weatherIcons);
+    type: "GET",
+     url: "/user.php",
+     data: {requestplz: 'plz'},
+     dataType: 'json',
+     success: function(data){
+        alert(data);
+        alert("Test");
+      }}).done(function(data){
+        alert(data);
+        alert("Test");
+      });
+    $.ajax({
+       url: "https://api.openweathermap.org/data/2.5/weather?zip=" + plz + ",ch" +
+         "&units=metric&lang=de&appid=6012cf5997f032d2c82563e60ef96a56",
+       context: document.body,
+       dataType: 'json'
+     }).done(function(dataHomeDay) {
+       console.log("homebase");
+       console.log(dataHomeDay);
+       setItemsHome(dataHomeDay, weatherIcons);
    });
 }
 

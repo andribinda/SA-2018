@@ -29,7 +29,12 @@ secure_session_start();
   <link rel="stylesheet" type="text/css" href="css/main.css">
 
   <?php if (userlogin_check($mysqli) == true) :
-      $plz = $_SESSION['plz'];
+    if (isset($_GET['requestplz'])) {
+      // return requested value
+      echo json_encode($_SESSION['plz']);
+      error_log($_GET['requestplz']);
+      error_log($_SESSION['plz']);
+    }
     ?>
 </head>
 <body>
