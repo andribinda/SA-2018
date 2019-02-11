@@ -177,6 +177,7 @@ function clean_php_url($url) {
 
 function getHomebase($mysqli) {
   error_log("start query");
+  error_log($email);
       if ($stmtH = $mysqli->prepare("SELECT homebasePlz
                            FROM users
                            WHERE email = ?
