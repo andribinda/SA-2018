@@ -195,4 +195,5 @@ function getHomebase($user_id, $mysqli) {
           error_log("fehler PLZ");
       }
     }
+}
 ?>
