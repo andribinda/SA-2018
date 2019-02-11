@@ -97,8 +97,6 @@ function bruteforcecheck($user_id, $mysqli) {
 }
 
 function userlogin_check($mysqli) {
-  error_log($_SESSION['user_id']);
-  error_log($_SESSION['login_string']);
     // Überprüfe, ob alle Session-Variablen gesetzt sind
     if (isset($_SESSION['user_id'], $_SESSION['login_string'])) {
 
@@ -183,18 +181,15 @@ function getHomebase($mysqli) {
                            FROM users
                            WHERE email = ?
                             LIMIT = 1")) {
+      error_log("mysql korrekt")
       $stmt->bind_param('i', $email);
       $stmt->execute();
       $stmt->store_result();
       $stmt->bind_result($homebasePlz);
       $stmt->fetch();
 
-      if ($stmt->num_rows = 1) {
         echo($homebasePLZ);
-          error_log($homebasePlz);
-      } else {
-          error_log("fehler PLZ");
-      }
+        error_log($homebasePlz);
     }
 }
 ?>
