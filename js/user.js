@@ -46,7 +46,7 @@ function showPosition(position) {
 function getWeatherHomeToday(plz){
   $.ajaxSetup({cache: false});
   $.get('../user.php', {requested: 'plz'}, function (data) {
-      console.log(data);
+      console.log("plz" + data);
   }, 'json');
 
     $.ajax({
