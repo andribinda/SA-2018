@@ -28,16 +28,7 @@ secure_session_start();
   <link rel="stylesheet" type="text/css" href="css/weather-icons-wind.min.css">
   <link rel="stylesheet" type="text/css" href="css/main.css">
 
-  <?php if (userlogin_check($mysqli) == true) :
-    if (!isset($_GET)) {
-      // return requested value
-      print json_encode($_SESSION[$_GET['requested']]);
-  } else {
-      // nothing requested, so return all values
-      print json_encode($_SESSION['plz']);
-      print_r($_GET);
-  }
-    ?>
+  <?php if (userlogin_check($mysqli) == true) :?>
 </head>
 <body>
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark justify-content-center topNav">
@@ -82,6 +73,7 @@ secure_session_start();
             <div class="col-sm-4 panel-user panel-top">
               <a href="#" class="emptyLink" id="modalLaunchHomebase"></a>
               <h1 class="text-center" id="homebaseOrt"></h1>
+              <p hidden id=pPlz><?php print($_SESSION['plz']); ?></p>
               <div class="row">
                 <div class="col-6">
                   <div class="wUserContainerL text-center">

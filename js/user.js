@@ -44,11 +44,7 @@ function showPosition(position) {
 }
 
 function getWeatherHomeToday(plz){
-  $.ajaxSetup({cache: false});
-  $.get('../user.php', {requested: 'plz'}, function (data) {
-      console.log(data);
-  }, 'json');
-
+var plz = document.getElementById('pPlz').
     $.ajax({
        url: "https://api.openweathermap.org/data/2.5/weather?zip=" + plz + ",ch" +
          "&units=metric&lang=de&appid=6012cf5997f032d2c82563e60ef96a56",
