@@ -23,8 +23,6 @@ function secure_session_start() {
 }
 
 function userlogin($email, $password, $mysqli) {
-    error_log($email);
-    error_log($password);
     // Das Benutzen vorbereiteter Statements verhindert SQL-Injektion.
     if ($stmt = $mysqli->prepare("SELECT id, email, password, salt FROM users
        WHERE email = ? LIMIT 1")) {
@@ -180,4 +178,21 @@ function clean_php_url($url) {
     }
 }
 
+function getHomebase($user_id, $mysqli) {
+      if ($stmt = $mysqli->prepare("SELECT homebasePlz
+                           FROM users
+                           WHERE user_id = ?
+                            LIMIT = 1")) {
+      $stmt->bind_param('i', $user_id);
+      $stmt->execute();
+      $stmt->store_result();
+      $stmt->bind_result($homebasePlz);
+      $stmt->fetch();
+
+      if ($stmt->num_rows = 1) {
+          error_log($homebasePlz)
+      } else {
+          error_log("fehler PLZ");
+      }
+    }
 ?>
