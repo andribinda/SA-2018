@@ -178,18 +178,19 @@ function clean_php_url($url) {
     }
 }
 
-function getHomebase($email, $mysqli) {
+function getHomebase($mysqli) {
       if ($stmt = $mysqli->prepare("SELECT homebasePlz
                            FROM users
                            WHERE email = ?
                             LIMIT = 1")) {
-      $stmt->bind_param('i', $user_id);
+      $stmt->bind_param('i', $email);
       $stmt->execute();
       $stmt->store_result();
       $stmt->bind_result($homebasePlz);
       $stmt->fetch();
 
       if ($stmt->num_rows = 1) {
+        echo($homebasePLZ);
           error_log($homebasePlz);
       } else {
           error_log("fehler PLZ");
