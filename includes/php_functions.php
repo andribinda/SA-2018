@@ -181,7 +181,7 @@ function getHomebase($mysqli) {
                            FROM users
                            WHERE email = ?
                             LIMIT = 1")) {
-      error_log("mysql korrekt")
+      error_log("mysql korrekt");
       $stmt->bind_param('s', $email);
       $stmt->execute();
       $stmt->store_result();
