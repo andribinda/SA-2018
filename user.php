@@ -3,7 +3,7 @@ include_once 'includes/connect_db.php';
 include_once 'includes/php_functions.php';
 
 secure_session_start();
-getHomebase($user_id, $mysqli);
+getHomebase($email, $mysqli);
 ?>
 
 <!DOCTYPE html>

@@ -178,10 +178,10 @@ function clean_php_url($url) {
     }
 }
 
-function getHomebase($user_id, $mysqli) {
+function getHomebase($email, $mysqli) {
       if ($stmt = $mysqli->prepare("SELECT homebasePlz
                            FROM users
-                           WHERE user_id = ?
+                           WHERE email = ?
                             LIMIT = 1")) {
       $stmt->bind_param('i', $user_id);
       $stmt->execute();
