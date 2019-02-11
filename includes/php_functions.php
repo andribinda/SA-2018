@@ -187,10 +187,11 @@ function getHomebase($email, $mysqli) {
       $stmtH->store_result();
       $stmtH->bind_result($homebasePlz);
       $stmtH->fetch();
+      error_log($homebasePlz);
       return $homebasePlz;
     }
       // SQL Error Debug Hilfe
-      // $error = $mysqli->errno . ' ' . $mysqli->error;
-      // error_log($error);
+      $error = $mysqli->errno . ' ' . $mysqli->error;
+      error_log($error);
 }
 ?>

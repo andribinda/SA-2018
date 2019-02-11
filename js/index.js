@@ -12,6 +12,7 @@ tMin = "<i data-eva='thermometer-minus' data-eva-fill='#d8eaf1' data-eva-height=
 tMax = "<i data-eva='thermometer-plus' data-eva-fill='#d8eaf1' data-eva-height='24' data-eva-width='24'></i> ";
 tNormal = "<i data-eva='thermometer' data-eva-fill='#d8eaf1' data-eva-height='24' data-eva-width='24'></i> ";
 manualSelection = true;
+manualSelectionReg = true;
 
 function getLocation() {
   console.log("get location ready");
@@ -382,7 +383,40 @@ function prepareButtons() {
   }
 
     google.maps.event.addDomListener(window, 'load', ortSuche);
+    google.maps.event.addDomListener(window, 'load', setHomebaseReg);
 }
+
+function setHomebaseReg() {
+              var options = {
+              types: ['(regions)'],
+              componentRestrictions: {country: 'CH'}
+            };
+
+            var input = document.getElementById('homebaseInput');
+            var autocomplete = new google.maps.places.Autocomplete(input, options);
+            autocomplete.addListener('place_changed', getPlaceSearchReg);
+
+            google.maps.event.addDomListener(input, 'keydown', function(e) {
+              if (e.keyCode == 13 && $('.pac-container:visible').length) {
+                  e.preventDefault();
+                  manualSelectionReg = false;
+                  var firstChoiceH = $(".pac-container .pac-item:first").text();
+                  console.log(firstChoiceH);
+                  var geocode = new google.maps.Geocoder();
+                  geocode.geocode({"address":firstChoiceH }, function(resultatH, status) {
+                      if (status == google.maps.GeocoderStatus.OK) {
+                      document.getElementById('homebaseInput'.val(firstChoiceH.match(/[A-Z][a-z]+/g).join(", ")));
+                      }
+                  });
+              } else {manualSelectionReg = true;}
+          })
+};
+
+function getPlaceSearchReg() {
+      if (manualSelectionReg == true) {
+        var placeH = this.getPlace();
+      }
+      }
 
 function setBackground() {var pattern = Trianglify({
       cell_size: 500,

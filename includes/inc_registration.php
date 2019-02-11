@@ -19,8 +19,8 @@ if (isset ($_POST['email'], $_POST['pReg'], $_POST['homebasePlz'])) {
             $error_msg = '2';
             header('Location: ../index.php?error-reg2');
         } else {
-            $homebasePlz = filter_input(INPUT_POST, 'homebasePlz', FILTER_SANITIZE_NUMBER_INT);
-            if ($homebasePlz < 1000 || 'homebasePlz' > 10000){
+            $homebasePlz = filter_input(INPUT_POST, 'homebasePlz',FILTER_SANITIZE_STRING);
+            if (strlen($homebasePlz) > 50) {
             $error_msg = '3';
             header('Location: ../index.php?error-reg3');
             } else {

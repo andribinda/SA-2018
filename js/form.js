@@ -27,14 +27,6 @@ function regformhash(form, email, homebasePlz, password, password2) {
         return false;
     }
 
-    // Überprüfe den Benutzernamen
-
-    re = /^[0-9]{4,4}$/
-    if(!re.test(form.homebasePlz.value)) {
-        alert("Bitte gültige Postleitzahl eingeben");
-        form.homebasePlz.focus();
-        return false;
-    }
 
     // Überprüfe, dass Passwort lang genug ist (min 6 Zeichen)
     // Die Überprüfung wird unten noch einmal wiederholt, aber so kann man dem

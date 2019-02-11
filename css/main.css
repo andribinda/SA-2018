@@ -1,6 +1,7 @@
 .topNav{
   background: rgba(81, 107, 123, 0.5) !important;
   margin-bottom: 0.5%;
+  z-index: 100;
 }
 
 .navbar-toggler{
@@ -297,6 +298,10 @@ input#inputTextNav[type="search"]::placeholder {
   top:0;
   left: 0;
   z-index: 1;
+}
+
+.pac-container {
+  z-index: 10000;
 }
 
 #actualPlace {

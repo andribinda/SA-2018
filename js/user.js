@@ -14,6 +14,8 @@ dataHomeDay = 0;
 data5HomeDay = 0;
 lat = 0;
 lng = 0;
+latH = 0;
+lngH = 0;
 plz = 5400;
 modalSelection = "none";
 manualSelection = true;
@@ -44,9 +46,24 @@ function showPosition(position) {
 }
 
 function getWeatherHomeToday(plz){
-var plz = document.getElementById('pPlz').
+  var options = {
+  types: ['(regions)'],
+  componentRestrictions: {country: 'CH'}
+};
+
+  var pPlz = document.getElementById('pPlz').innerText;
+  console.log(pPlz);
+  var geocode = new google.maps.Geocoder();
+    geocode.geocode({"address": pPlz }, function(resultatH, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+          latH = resultatH[0].geometry.location.lat();
+          lngH = resultatH[0].geometry.location.lng();
+
+        console.log(latH);
+        console.log(lngH);
+
     $.ajax({
-       url: "https://api.openweathermap.org/data/2.5/weather?zip=" + plz + ",ch" +
+       url: "https://api.openweathermap.org/data/2.5/weather?lat=" + latH + "&lon=" + lngH +
          "&units=metric&lang=de&appid=6012cf5997f032d2c82563e60ef96a56",
        context: document.body,
        dataType: 'json'
@@ -55,6 +72,7 @@ var plz = document.getElementById('pPlz').
        console.log(dataHomeDay);
        setItemsHome(dataHomeDay, weatherIcons);
    });
+ }});
 }
 
 function getWeatherHome5Day(plz) {
