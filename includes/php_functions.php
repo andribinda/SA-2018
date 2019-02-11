@@ -190,7 +190,7 @@ function getHomebase($user_id, $mysqli) {
       $stmt->fetch();
 
       if ($stmt->num_rows = 1) {
-          error_log($homebasePlz)
+          error_log($homebasePlz);
       } else {
           error_log("fehler PLZ");
       }
