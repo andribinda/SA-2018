@@ -180,7 +180,7 @@ function getHomebase($mysqli) {
       if ($stmtH = $mysqli->prepare("SELECT homebasePlz
                            FROM users
                            WHERE email = ?
-                            LIMIT = 1")) {
+                           LIMIT 1")) {
       error_log("mysql korrekt");
       $stmtH->bind_param('s', $email);
       $stmtH->execute();
@@ -188,17 +188,12 @@ function getHomebase($mysqli) {
       $stmtH->bind_result($homebasePlz);
       $stmtH->fetch();
 
-      if (! $stmtH->execute()) {
-        $error = $mysqli->errno . ' ' . $mysqli->error;
-            error_log($error);
-      }
-  } else {
-        $error = $mysqli->errno . ' ' . $mysqli->error;
-            error_log($error);
-          }
-
-        echo($homebasePLZ);
+        error_log(  $stmtH->fetch());
+        echo($homebasePlz);
         error_log($homebasePlz);
     }
+
+      $error = $mysqli->errno . ' ' . $mysqli->error;
+      error_log($error);
 }
 ?>
