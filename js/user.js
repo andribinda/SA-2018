@@ -45,12 +45,14 @@ function showPosition(position) {
 
 function getWeatherHomeToday(plz){
   $.ajaxSetup({cache: false});
-  $.get('../user.php', {requested: 'plz'}, function (data) {
-      console.log("plz" + data);
-  }, 'json');
-
+  $.ajax({
+    url: '../user.php?request=plz',
+    context: document.body,
+    dataType: 'json'
+  }).done(function(plzData) {
+    console.log("plz" + plzData);
     $.ajax({
-       url: "https://api.openweathermap.org/data/2.5/weather?zip=" + plz + ",ch" +
+       url: "https://api.openweathermap.org/data/2.5/weather?zip=" + plzData + ",ch" +
          "&units=metric&lang=de&appid=6012cf5997f032d2c82563e60ef96a56",
        context: document.body,
        dataType: 'json'
@@ -58,7 +60,8 @@ function getWeatherHomeToday(plz){
        console.log("homebase");
        console.log(dataHomeDay);
        setItemsHome(dataHomeDay, weatherIcons);
-   });
+    });
+  });
 }
 
 function getWeatherHome5Day(plz) {
