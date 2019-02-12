@@ -96,7 +96,7 @@ function ortSuche() {
                       if (status == google.maps.GeocoderStatus.OK) {
                         lat = resultat[0].geometry.location.lat();
                         lng = resultat[0].geometry.location.lng();
-                        $("input").val(firstChoice.match(/[A-Z][a-z]+|[0-9]+/g).join(", "));
+                        $("inputTextNav").val(firstChoice.match(/[A-Z][a-z]+|[0-9]+/g).join(", "));
                         getWeather(lat,lng);
                       }
                   });

@@ -58,6 +58,7 @@ function userlogin($email, $password, $mysqli) {
                     $_SESSION['login_string'] = hash('sha512', $password . $user_browser);
                     // Login erfolgreich.
                     $_SESSION['plz'] = getHomebase($email, $mysqli);
+                    $_SESSION['favoriten[]'] = getFavorites($user_id, $mysqli);
 
                     return true;
                     } else {
@@ -193,5 +194,19 @@ function getHomebase($email, $mysqli) {
       // SQL Error Debug Hilfe
       $error = $mysqli->errno . ' ' . $mysqli->error;
       error_log($error);
+}
+
+function getFavorites($userId,$mysqli) {
+    if ($stmtFav = $mysqli->prepare("SELECT fav_id, lat, lng FROM favorite WHERE user_id = ?;")) {
+      error_log("Statement OK");
+      error_log($userId);
+      $stmtFav->bind_param('s',$userId);
+      $stmtFav->execute();
+      $result = $stmtFav->get_result();
+      $favoriten = array();
+      $favoriten =$result->fetch_all(MYSQLI_ASSOC);
+      // print_r($favoriten);
+      // return json.encode($favoriten);
+    }
 }
 ?>
