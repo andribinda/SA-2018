@@ -4,8 +4,7 @@ $(document).ready(function() {
   var longitude = 0;
   getLocation();
   setBackground() ;
-  prepareButtons();
-  console.log(modalSelection);
+  prepareButtons();;
 });
 
 dataDay = 0;
@@ -16,7 +15,7 @@ lat = 0;
 lng = 0;
 latH = 0;
 lngH = 0;
-plz = 5400;
+plz = "";
 modalSelection = "none";
 manualSelection = true;
 
@@ -42,7 +41,6 @@ function showPosition(position) {
   getWeatherToday(lat,lng);
   getWeather5Day(lat,lng);
   getWeatherHomeToday(plz);
-  console.log(plz);
 }
 
 function getWeatherHomeToday(plz){
@@ -58,7 +56,6 @@ function getWeatherHomeToday(plz){
         if (status == google.maps.GeocoderStatus.OK) {
           latH = resultatH[0].geometry.location.lat();
           lngH = resultatH[0].geometry.location.lng();
-
         console.log(latH);
         console.log(lngH);
 
@@ -77,7 +74,7 @@ function getWeatherHomeToday(plz){
 
 function getWeatherHome5Day(plz) {
         $.ajax({
-          url: "https://api.openweathermap.org/data/2.5/forecast?zip=" + plz + ",ch" +
+          url: "https://api.openweathermap.org/data/2.5/forecast?lat=" + latH + "&lon=" + lngH +
             "&units=metric&lang=de&appid=6012cf5997f032d2c82563e60ef96a56",
           context: document.body,
           dataType: 'json'
@@ -229,7 +226,7 @@ function ortSuche() {
                       if (status == google.maps.GeocoderStatus.OK) {
                         lat = resultat[0].geometry.location.lat();
                         lng = resultat[0].geometry.location.lng();
-                        $("input").val(firstChoice.match(/[A-Z][a-z]+|[0-9]+/g).join(", "));
+                        $( "inputTextNav" ).val(firstChoice.match(/[A-Z][a-z]+/g).join(", "));
                         getWeatherToday(lat,lng);
                         getWeather5Day(lat,lng);
                       }
@@ -325,6 +322,7 @@ function setHTML(dataDay) {
   " °C</h4></li><li><h4><i class='wi wi-strong-wind'></i> " + dataDay["wind"]["speed"] + " m/s</li><li><h4><i class='wi wi-sunrise'></i> " +
   Unix_timestamp(tRise) + "</h4></li><li><h4><i class='wi wi-sunset'></i> " + Unix_timestamp(tSet) + "</h4></li>");
   eva.replace()
+  prepareFavorite(dataDay);
 }
 
 function setHTMLHome(dataDay) {
@@ -379,6 +377,20 @@ function setHTML5day(wetter, wIconD1, wIconD2, wIconD3, wIconD4, wIconD5) {
         drawChartDetail(wetter);
         }
 
+function addFavorite(form, userId, latFav, lngFav) {
+  if (userId.value != ''       ||
+        latFav.value != ''     ||
+        lngFav.value != ''     ){
+            form.submit()
+          }
+}
+
+function prepareFavorite(dataShow){
+document.getElementById("userIdFav").value = document.getElementById('pID').innerText;
+document.getElementById("latFav").value = dataShow["coord"]["lat"];
+document.getElementById("lngFav").value = dataShow["coord"]["lon"];
+}
+
 function prepareButtons() {
     $('.btn-Navbar').on('click', function setModalTab() {
       var tabTarget = $(this).data('tab');
@@ -414,18 +426,8 @@ function prepareButtons() {
 
     });
 
-    $('#menuLogout').click(function(e){
-      e.preventDefault();
-      $.ajax({
-        url: "/includes/logout.php",
-        type:"POST",
-        data: { 'action': $('#menuLogout').val()}
-        });
-     });
     google.maps.event.addDomListener(window, 'load', ortSuche);
     }
-
-
 
 function setBackground() {
   var pattern = Trianglify({

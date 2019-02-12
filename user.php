@@ -68,12 +68,23 @@ secure_session_start();
             </div>
           </div>
             <div class="col-sm-3">
-              <button class="btn-fav"> <h2>Favorit hinzufügen </h2> </button>
+              <div class="row">
+                <form action="includes/favorite.php" method="post" name="addFav" id="addFav">
+    							<div hidden class="form-row">
+    								<div class="form-group col-sm-8">
+    									<input type="text" name='userId' class="form-control" id="userIdFav">
+                      <input type="text" name='latFav' class="form-control" id="latFav">
+                      <input type="text" name='lngFav' class="form-control" id="lngFav">
+    								</div>
+    							</div>
+    						<button type='button' class="btn-fav" id="btnAddFavorite" onclick="addFavorite(this.form, this.form.userId, this.form.latFav, this.form.lngFav)"><h2>Favorit hinzufügen</h2></button>
+    						</form>
+              </div>
             </div>
             <div class="col-sm-4 panel-user panel-top">
               <a href="#" class="emptyLink" id="modalLaunchHomebase"></a>
               <h1 class="text-center" id="homebaseOrt"></h1>
-              <p hidden id=pPlz><?php print($_SESSION['plz']); ?></p>
+              <p hidden id="pPlz"><?php print($_SESSION['plz']); ?></p><p hidden id="pID"><?php print($_SESSION['user_id']); ?></p>
               <div class="row">
                 <div class="col-6">
                   <div class="wUserContainerL text-center">
@@ -139,7 +150,7 @@ secure_session_start();
             <div class="form-group col-sm-8">
               <label for="passwordInput" class="modalFormLabel">Passwort ändern</label>
               <input type="password" name='password' class="form-control" id="passwordInputUser" placeholder="Passwort">
-              <input type="password" name='password' class="form-control" id="passwordInputUserConfirm" placeholder="Passwort bestätigen">
+              <input type="password" name='passwordConfirm' class="form-control" id="passwordInputUserConfirm" placeholder="Passwort bestätigen">
             </div>
           </div>
           <button type="button" class="btn btn-primary btn-modal1" onclick="">Bestätigen</button>

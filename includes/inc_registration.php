@@ -52,7 +52,7 @@ if (isset ($_POST['email'], $_POST['pReg'], $_POST['homebasePlz'])) {
         // Trage den neuen Benutzer in die Datenbank ein
         if ($insert_stmt = $mysqli->prepare("INSERT INTO users (email, homebasePlz ,password ,salt) VALUES (?, ?, ?, ?)")) {
             $insert_stmt->bind_param('ssss', $email, $homebasePlz, $password, $salt);
-            if (! $insert_stmt->execute()) {
+            if (!$insert_stmt->execute()) {
               $error = $mysqli->errno . ' ' . $mysqli->error;
                   error_log($error);
             }
@@ -60,5 +60,6 @@ if (isset ($_POST['email'], $_POST['pReg'], $_POST['homebasePlz'])) {
               $error = $mysqli->errno . ' ' . $mysqli->error;
                   error_log($error);
                 }
+    header('Location: ../index.php?login');
     }
 }

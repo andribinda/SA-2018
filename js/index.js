@@ -380,6 +380,8 @@ function prepareButtons() {
   } else if (window.location.href.match(/error-reg/gi)) {
     $('.modalRegLog').modal({'backdrop':'static'});
     $('.modalRegTabBar a[href="#modalTabReg"]').tab('show');
+  } else if (window.location.href == 'https://weather.zubler.ch/index.php?login') {
+    $('.modalRegLog').modal({'backdrop':'static'});
   }
 
     google.maps.event.addDomListener(window, 'load', ortSuche);
@@ -405,7 +407,7 @@ function setHomebaseReg() {
                   var geocode = new google.maps.Geocoder();
                   geocode.geocode({"address":firstChoiceH }, function(resultatH, status) {
                       if (status == google.maps.GeocoderStatus.OK) {
-                      document.getElementById('homebaseInput'.val(firstChoiceH.match(/[A-Z][a-z]+/g).join(", ")));
+                      $( "#homebaseInput" ).val(firstChoiceH.match(/[A-Z][a-z]+/g).join(", "));
                       }
                   });
               } else {manualSelectionReg = true;}
