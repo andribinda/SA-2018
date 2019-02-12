@@ -25,7 +25,7 @@ tNormal = "<i data-eva='thermometer' data-eva-fill='#d8eaf1' data-eva-height='24
 
 function getLocation() {
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition, showError);
+    navigator.geolocation.getCurrentPosition(showPosition, showError,{enableHighAccuracy:true});
   } else {
     x.innerHTML = "Geolocation is not supported by this browser.";
   }
@@ -387,8 +387,8 @@ function addFavorite(form, userId, latFav, lngFav) {
 
 function prepareFavorite(dataShow){
 document.getElementById("userIdFav").value = document.getElementById('pID').innerText;
-document.getElementById("latFav").value = dataShow["coord"]["lat"];
-document.getElementById("lngFav").value = dataShow["coord"]["lon"];
+document.getElementById("latFav").value = lat;
+document.getElementById("lngFav").value = lng;
 }
 
 function prepareButtons() {

@@ -18,7 +18,7 @@ function getLocation() {
   console.log("get location ready");
   if (navigator.geolocation) {
     console.log("navigator ready");
-    navigator.geolocation.getCurrentPosition(showPosition, showError);
+    navigator.geolocation.getCurrentPosition(showPosition, showError,{enableHighAccuracy:true});
   } else {
     x.innerHTML = "Geolocation is not supported by this browser.";
   }

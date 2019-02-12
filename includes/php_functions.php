@@ -23,7 +23,7 @@ function secure_session_start() {
 
 function userlogin($email, $password, $mysqli) {
     // Das Benutzen vorbereiteter Statements verhindert SQL-Injektion.
-    if ($stmt = $mysqli->prepare("SELECT id, email, password, salt FROM users
+    if ($stmt = $mysqli->prepare("SELECT user_id, email, password, salt FROM users
        WHERE email = ? LIMIT 1")) {
         $stmt->bind_param('s', $email);  // Bind "$email" to parameter.
         $stmt->execute();    // Führe die vorbereitete Anfrage aus.
@@ -108,7 +108,7 @@ function userlogin_check($mysqli) {
 
         if ($stmt = $mysqli->prepare("SELECT password
                                       FROM users
-                                      WHERE id = ? LIMIT 1")) {
+                                      WHERE user_id = ? LIMIT 1")) {
             // Bind "$user_id" zum Parameter.
             $stmt->bind_param('i', $user_id);
             $stmt->execute();   // Execute the prepared query.

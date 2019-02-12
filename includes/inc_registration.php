@@ -24,7 +24,7 @@ if (isset ($_POST['email'], $_POST['pReg'], $_POST['homebasePlz'])) {
             $error_msg = '3';
             header('Location: ../index.php?error-reg3');
             } else {
-              $prep_stmt = "SELECT id FROM users WHERE email = ? LIMIT 1";
+              $prep_stmt = "SELECT user_id FROM users WHERE email = ? LIMIT 1";
               $stmt = $mysqli->prepare($prep_stmt);
                 if ($stmt) {
                   $stmt->bind_param('s', $email);
