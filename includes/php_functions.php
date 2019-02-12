@@ -58,7 +58,7 @@ function userlogin($email, $password, $mysqli) {
                     $_SESSION['login_string'] = hash('sha512', $password . $user_browser);
                     // Login erfolgreich.
                     $_SESSION['plz'] = getHomebase($email, $mysqli);
-                    $_SESSION['favoriten[]'] = getFavorites($user_id, $mysqli);
+                    $_SESSION['favoriten'] = getFavorites($user_id, $mysqli);
 
                     return true;
                     } else {
@@ -197,7 +197,7 @@ function getHomebase($email, $mysqli) {
 }
 
 function getFavorites($userId,$mysqli) {
-    if ($stmtFav = $mysqli->prepare("SELECT fav_id, lat, lng FROM favorite WHERE user_id = ?;")) {
+    if ($stmtFav = $mysqli->prepare("SELECT lat, lng FROM favorite WHERE user_id = ?;")) {
       error_log("Statement OK");
       error_log($userId);
       $stmtFav->bind_param('s',$userId);
@@ -206,7 +206,7 @@ function getFavorites($userId,$mysqli) {
       $favoriten = array();
       $favoriten =$result->fetch_all(MYSQLI_ASSOC);
       // print_r($favoriten);
-      // return json.encode($favoriten);
+      return json_encode($favoriten);
     }
 }
 ?>

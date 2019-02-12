@@ -363,3 +363,7 @@ ul {
   font-weight: bold;
   color: #ad997d;
 }
+
+#favTemplate {
+  display: none;
+}

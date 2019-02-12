@@ -28,7 +28,7 @@ secure_session_start();
   <link rel="stylesheet" type="text/css" href="css/weather-icons-wind.min.css">
   <link rel="stylesheet" type="text/css" href="css/main.css">
 
-  <?php if (userlogin_check($mysqli) == true) :?>
+  <?php if (userlogin_check($mysqli) == true) : ?>
 </head>
 <body>
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark justify-content-center topNav">
@@ -105,30 +105,9 @@ secure_session_start();
           <div class="row">
             <div class="col-sm-11 panel-user justify-content-center">
               <h1 class="text-center">Favoriten</h1>
-              <div class="d-flex flex-wrap align-items-start favoriten-container">
-                <div class="p-2 favorit">
-                    <div class="row">
-                      <div class="col-6">
-                        <div class="wUserContainerL text-center">
-                          <i class="wi wi-night-sleet wi-big piktogrammWUser"></i>
-                          <h3>Leichter Regen</h3>
-                      </div>
-                    </div>
-                      <div class="col-6">
-                        <div class="wUserContainerR text-left">
-                          <ul class="ul-user-info">
-                            <li id="StandortOrt"><h2>Baden</h2></li>
-                            <li id="StandortTemperatur"><h2>7.2°C</h2></li>
-                            <li id="StandortUhrzeit"><h2>12:16</h2></li>
-                          </ul>
-                        </div>
-                      </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+              <div hidden id=favoritenListe><?php echo($_SESSION['favoriten']) ?></div>
+              <div class="d-flex flex-wrap align-items-start favoriten-container" id="favoriten-container">
           </div>
-        <!-- </div> -->
       </div>
     </div>
   </div>

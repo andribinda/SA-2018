@@ -4,7 +4,8 @@ $(document).ready(function() {
   var longitude = 0;
   getLocation();
   setBackground() ;
-  prepareButtons();;
+  prepareButtons();
+  getFavorites(weatherIcons);
 });
 
 dataDay = 0;
@@ -391,6 +392,49 @@ document.getElementById("latFav").value = lat;
 document.getElementById("lngFav").value = lng;
 }
 
+function getFavorites(weatherIcons) {
+  favList = JSON.parse(document.getElementById('favoritenListe').innerHTML);
+  console.log(favList);
+
+  for (var i = 0; i < favList.length; i++) {
+    latFav = (favList[i]['lat']);
+    lngFav = (favList[i]['lng']);
+
+    var fav = document.createElement('div');
+    fav.class = 'p-2 favorit';
+    fav.id = 'favorit'+[i];
+    fav.innerHTML = "<div class='row'><div class='col-6'><div class='wUserContainerL text-center'><i class='wi wi-big piktogrammWUser' id='favIcon"+[i]+"''></i> <h3 id='favBeschreibung"+[i]+"'></h3> </div> </div><div class='col-6'><div class=wUserContainerR text-left'> <ul class='ul-user-info'><li id='favOrt"+[i]+"'><h2></h2></li><li id='favTemp"+[i]+"'><h2></h2>";
+    document.getElementById('favoriten-container').appendChild(fav);
+    var favIconId = "#favIcon"+[i];
+    var favOrtId = "#favOrt"+[i];
+    var favBeschreibungId = "favBeschreibung"+[i];
+    var favTempId = "favTemp"+[i];
+
+    $.ajax({
+       url: "https://api.openweathermap.org/data/2.5/weather?lat=" + latFav + "&lon=" + lngFav +
+         "&units=metric&lang=de&appid=6012cf5997f032d2c82563e60ef96a56",
+       context: document.body,
+       dataType: 'json'
+     }).done(function(dataFav) {
+       console.log(dataFav);
+       var prefix = 'wi wi-';
+       var weatherid = dataFav.weather[0].id;
+       var wIcon = weatherIcons[weatherid].icon;
+
+       if (!(weatherid > 699 && weatherid < 800) && !(weatherid > 899 && weatherid < 1000)) {
+         wIcon = 'day-' + wIcon;
+       }
+
+       wIcon = prefix + wIcon;
+
+       $(favIconId).addClass(wIcon);
+       $(favOrtId).html(dataFav["name"] + " / " + dataFav["sys"]["country"]);
+       $(favBeschreibungId).html(Math.round(dataFav["main"]["temp"]) + "°C");
+       $(favTempId).html(dataFav["weather"]["0"]["description"]);
+     });
+  }
+}
+
 function prepareButtons() {
     $('.btn-Navbar').on('click', function setModalTab() {
       var tabTarget = $(this).data('tab');
@@ -413,7 +457,6 @@ function prepareButtons() {
     });
     $('#modalLaunchHomebase').on('click', function () {
         modalSelection = "home";
-        console.log("home click");
         $('#modalDetail').modal('show');
     });
 
