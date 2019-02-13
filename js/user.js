@@ -374,17 +374,65 @@ function setHTML5day(wetter, wIconD1, wIconD2, wIconD3, wIconD4, wIconD5) {
         }
 
 function addFavorite(form, userId, latFav, lngFav) {
+  var container = document.getElementById("favoriten-container")
+  if (container.hasChildNodes()) {
+    var lastChildID = document.getElementById("favoriten-container").lastChild.id
+    var idNmbr = lastChildID.slice(-3);
+    var favId = parseInt(idNmbr) + 1;
+    var newFavId = 'favorit' + String(favId).padStart(3,0);
+    } else {
+      var favId = parseInt(1);
+      var newFavId = 'favorit' + String(favId).padStart(3,0);
+    }
+
+    latFav = latFav.value;
+    lngFav = lngFav.value;
+
+    var fav = document.createElement('div');
+    fav.classList.add ('favorit');
+    fav.id = 'favorit'+ String(favId).padStart(3,0);
+    console.log(fav.id);
+    fav.innerHTML = "<a href='#' class='emptyLink' id='modalLaunchFav"+String(favId).padStart(3,0)+"'></a><h2 id='favOrt"+favId+"' class='text-center'></h2><div class='row'><div class='col-6'><div class='wUserContainerL text-center'>" +
+     "<i class='wi wi-big piktogrammWUser' id='favIcon"+favId+"''></i></div></div><div class='col-6'><div class=wUserContainerR text-left'> <ul class='ul-user-info-fav'><h3><li id='favTemp"+favId+"'></ul></h3></div></div></div>" +
+     "<h3 class='text-center' id='favBeschreibung"+favId+"'></h3></div>";
+    document.getElementById('favoriten-container').appendChild(fav);
+
+    var favIconId = "#favIcon"+favId;
+    var favOrtId = "#favOrt"+favId;
+    var favBeschreibungId = "#favBeschreibung"+favId;
+    var favTempId = "#favTemp"+favId;
+
+    $.ajax({
+       url: "https://api.openweathermap.org/data/2.5/weather?lat=" + latFav + "&lon=" + lngFav +
+         "&units=metric&lang=de&appid=6012cf5997f032d2c82563e60ef96a56",
+       async: true,
+       context: document.body,
+       dataType: 'json',
+       success:function(dataFav) {
+
+         var prefix = 'wi wi-';
+         var weatherid = dataFav.weather[0].id;
+         var wIcon = weatherIcons[weatherid].icon;
+
+         if (!(weatherid > 699 && weatherid < 800) && !(weatherid > 899 && weatherid < 1000)) {
+           wIcon = 'day-' + wIcon;
+         }
+
+         wIcon = prefix + wIcon;
+
+         $(favIconId).addClass(wIcon);
+         $(favOrtId).html(dataFav["name"]);
+         $(favTempId).html(Math.round(dataFav["main"]["temp"]) + "°C");
+         $(favBeschreibungId).html(dataFav["weather"]["0"]["description"]);
+
+       }
+     });
+
   if (userId.value != ''       ||
         latFav.value != ''     ||
         lngFav.value != ''     ){
-          var lastChildID = document.getElementById("favoriten-container").lastChild.id
-          var newFavId = lastChildID.substr(-1,1);
-          // var favId = [newFavId] + 1;
-          // var newFav = "#favorit"+[favId];
-          // console.log(newFav);
-            form.submit();
-          }
-
+           $.post("../includes/favorite.php", $(form).serialize(), function(data){});
+                }
 }
 
 function prepareFavorite(dataShow){
@@ -395,22 +443,21 @@ document.getElementById("lngFav").value = lng;
 
 function getFavoriteList(weatherIcons) {
   favList = JSON.parse(document.getElementById('favoritenListe').innerHTML);
+  console.log(favList);
   var i = 0;
-  getFavoriteData(favList);
+  if (favList.length) {getFavoriteData(favList)};
 
 function getFavoriteData(favList) {
     latFav = (favList[i]['lat']);
     lngFav = (favList[i]['lng']);
 
-    console.log(latFav,lngFav);
-
     var fav = document.createElement('div');
     fav.classList.add ('favorit');
-    fav.id = 'favorit'+[i];
+    fav.id = 'favorit'+ String([i]).padStart(3,0);
     console.log(fav.id);
-    fav.innerHTML = "<h2 id='favOrt"+[i]+"' class='text-center'></h2><div class='row'><div class='col-6'><div class='wUserContainerL text-center'>" +
-     "<i class='wi wi-big piktogrammWUser' id='favIcon"+[i]+"''></i></div></div><div class='col-6'><div class=wUserContainerR text-left'> <ul class='ul-user-info-fav'><h3><li id='favTemp"+[i]+"'></ul></h3></div></div></div>" +
-     "<h3 class='text-center' id='favBeschreibung"+[i]+"'></h3></div>";
+    fav.innerHTML = "<a href='#' id='modalLaunchFav"+ String([i]).padStart(3,0)+"'><h2 id='favOrt"+[i]+"' class='text-center'></h2><div class='row'><div class='col-6'><div class='wUserContainerL text-center'>" +
+     "<i class='wi wi-big piktogrammWUser' id='favIcon"+[i]+"'></i></div></div><div class='col-6'><div class=wUserContainerR text-left'> <ul class='ul-user-info-fav'><h3><li id='favTemp"+[i]+"'></ul></h3></div></div></div>" +
+     "<h3 class='text-center' id='favBeschreibung"+[i]+"'></h3></div><input>"+latFav+"</input></a>";
     document.getElementById('favoriten-container').appendChild(fav);
 
     var favIconId = "#favIcon"+[i];
@@ -429,8 +476,6 @@ function getFavoriteData(favList) {
          var prefix = 'wi wi-';
          var weatherid = dataFav.weather[0].id;
          var wIcon = weatherIcons[weatherid].icon;
-         console.log(dataFav["name"]);
-         console.log(latFav,lngFav);
 
          if (!(weatherid > 699 && weatherid < 800) && !(weatherid > 899 && weatherid < 1000)) {
            wIcon = 'day-' + wIcon;

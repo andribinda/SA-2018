@@ -177,8 +177,6 @@ function clean_php_url($url) {
 }
 
 function getHomebase($email, $mysqli) {
-  error_log("homebase ready");
-  error_log($email);
       if ($stmtH = $mysqli->prepare("SELECT homebasePlz
                            FROM users
                            WHERE email = ?
@@ -188,18 +186,14 @@ function getHomebase($email, $mysqli) {
       $stmtH->store_result();
       $stmtH->bind_result($homebasePlz);
       $stmtH->fetch();
-      error_log($homebasePlz);
       return $homebasePlz;
     }
       // SQL Error Debug Hilfe
       $error = $mysqli->errno . ' ' . $mysqli->error;
-      error_log($error);
 }
 
 function getFavorites($userId,$mysqli) {
     if ($stmtFav = $mysqli->prepare("SELECT lat, lng FROM favorite WHERE user_id = ?;")) {
-      error_log("Statement OK");
-      error_log($userId);
       $stmtFav->bind_param('s',$userId);
       $stmtFav->execute();
       $result = $stmtFav->get_result();

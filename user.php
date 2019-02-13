@@ -24,6 +24,8 @@ secure_session_start();
   <script src="https://unpkg.com/eva-icons"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/trianglify/2.0.0/trianglify.min.js"></script>
   <script src="js/user.js"></script>
+  <script src="js/form.js"></script>
+  <script src="js/sha512.js"></script>
   <link rel="stylesheet" type="text/css" href="css/weather-icons.min.css">
   <link rel="stylesheet" type="text/css" href="css/weather-icons-wind.min.css">
   <link rel="stylesheet" type="text/css" href="css/main.css">
@@ -106,8 +108,7 @@ secure_session_start();
             <div class="col-sm-11 panel-user justify-content-center">
               <h1 class="text-center">Favoriten</h1>
               <div hidden id=favoritenListe><?php echo($_SESSION['favoriten']) ?></div>
-              <div class="d-flex flex-wrap align-items-start favoriten-container" id="favoriten-container">
-          </div>
+              <div class="d-flex flex-wrap align-items-start favoriten-container" id="favoriten-container"></div>
       </div>
     </div>
   </div>
@@ -117,24 +118,31 @@ secure_session_start();
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
 			<div class="modal-body">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <form action="" method="post" name="login_form" id="loginForm">
-          <div class="form-row">
+        <form action="" method="post" name="formUpdateEmail" id="formUpdateEmail">
             <div class="form-group col-sm-8">
-              <label for="emailInput" class="modalFormLabel">Email-Adresse ändern</label>
-              <input type="email" name='emailUser' class="form-control" id="emailInputUser" placeholder="Email-Adresse">
+              <label for="updateEmailInput" class="modalFormLabel">Email-Adresse ändern</label>
+              <input type="email" name='emailUser' class="form-control" id="updateEmailInput" placeholder="Email-Adresse">
+              <button type="button" id="btnUpdateEmail" class="btn btn-modalUser" onclick="updateEmail(form, emailUser)">Bestätigen</button>
             </div>
-          </div>
-          <div class="form-row">
+        </form>
+        <form action="" method="post" name="formUpdatePassword" id="formUpdatePassword">
             <div class="form-group col-sm-8">
-              <label for="passwordInput" class="modalFormLabel">Passwort ändern</label>
+              <label for="passwordInputUser" class="modalFormLabel">Passwort ändern</label>
               <input type="password" name='password' class="form-control" id="passwordInputUser" placeholder="Passwort">
               <input type="password" name='passwordConfirm' class="form-control" id="passwordInputUserConfirm" placeholder="Passwort bestätigen">
+              <button type="button" id="btnUpdatePassword" class="btn btn-modalUser" onclick="updatePassword(form, password, passwordConfirm)">Bestätigen</button>
             </div>
+          </form>
+          <form>
+            <div class="form-group col-sm-8">
+            <label for="btnCelcius" class="modalFormLabel">Temperaturanzeige ändern</label>
+            <div data-toggle="buttons-radio">
+            <button type="button" class="btn btn-modalTemp" id="btnCelcius" data-info='{"post":"1"}'> °C </button><button type="button" class="btn btn-modalTemp" id="btnFarenheit" data-info='{"post":"0"}'> °F </button>
+            </div>
+            </div>
+          </form>
           </div>
-          <button type="button" class="btn btn-primary btn-modal1" onclick="">Bestätigen</button>
-          <button type="button" class="btn btn-primary btn-modal1" data-dismiss="modal" aria-label="Close">Schliessen</button>
-        </form>
+          <button type="button" class="btn btn-modal2" data-dismiss="modal" aria-label="Close">Schliessen</button>
 			</div>
 		</div>
 	</div>

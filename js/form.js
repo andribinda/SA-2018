@@ -43,6 +43,7 @@ function regformhash(form, email, homebasePlz, password, password2) {
     var re = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
     if (!re.test(password.value)) {
         alert('Das Passwort soll Gross- und Kleinbuchstaben, sowie eine Zahl enthalten');
+        form.password.focus();
         return false;
     }
 
@@ -68,7 +69,74 @@ function regformhash(form, email, homebasePlz, password, password2) {
     password2.value = "";
 
     // Reiche das Formular ein.
-    console.log(pReg);
     form.submit();
+    return true;
+}
+
+function updatePassword(form, password, passwordConf) {
+
+    if (  password.value == ''  ||
+          passwordConf.value == '') {
+        alert('Bitte beide Felder ausfüllen');
+        return false;
+    }
+
+    if (password.value.length < 6) {
+        alert('Das Passwort sollte mindestens 6 Zeichen lang sein');
+        form.password.focus();
+        return false;
+    }
+
+    var re = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
+    if (!re.test(password.value)) {
+        alert('Das Passwort soll Gross- und Kleinbuchstaben, sowie eine Zahl enthalten');
+        form.password.focus();
+        return false;
+    }
+
+    if (password.value != passwordConf.value) {
+        alert('Die Passwörter stimmen nicht überein');
+        form.password.focus();
+        return false;
+    }
+
+    var pPW = document.createElement("input");
+
+    document.getElementById("formUpdatePassword").appendChild(pPW);
+    pPW.name = "pPW";
+    pPW.id = "pPW"
+    pPW.type = "hidden";
+    pPW.value = hex_sha512(password.value);
+
+    password.value = "";
+    passwordConf.value = "";
+
+    var user_id = document.createElement("input");
+    document.getElementById("formUpdatePassword").appendChild(user_id);
+    user_id.name = "user_id";
+    user_id.type = "hidden";
+    user_id.value = document.getElementById('pID').innerText;
+    console.log($(form).serialize());
+    $.post("../includes/userSettings.php", $(form).serialize(), function(data){});
+    return true;
+}
+
+function updateEmail(form, emailUser) {
+
+    var re = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    if (!re.test(emailUser.value)) {
+        alert('Keine gültige Email-Adresse');
+        form.emailUser.focus();
+        return false;
+    }
+
+    var user_id = document.createElement("input");
+    document.getElementById("formUpdateEmail").appendChild(user_id);
+    user_id.name = "user_id";
+    user_id.type = "hidden";
+    user_id.value = document.getElementById('pID').innerText;
+
+    $.post("../includes/userSettings.php", $(form).serialize(), function(data){
+    });
     return true;
 }
