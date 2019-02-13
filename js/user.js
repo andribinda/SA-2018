@@ -377,8 +377,14 @@ function addFavorite(form, userId, latFav, lngFav) {
   if (userId.value != ''       ||
         latFav.value != ''     ||
         lngFav.value != ''     ){
-            form.submit()
+          var lastChildID = document.getElementById("favoriten-container").lastChild.id
+          var newFavId = lastChildID.substr(-1,1);
+          // var favId = [newFavId] + 1;
+          // var newFav = "#favorit"+[favId];
+          // console.log(newFav);
+            form.submit();
           }
+
 }
 
 function prepareFavorite(dataShow){
