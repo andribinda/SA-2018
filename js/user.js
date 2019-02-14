@@ -4,8 +4,8 @@ $(document).ready(function() {
   var longitude = 0;
   getLocation();
   setBackground() ;
-  prepareButtons();
   getFavoriteList(weatherIcons);
+  prepareButtons();
 });
 
 dataDay = 0;
@@ -392,7 +392,7 @@ function addFavorite(form, userId, latFav, lngFav) {
     fav.classList.add ('favorit');
     fav.id = 'favorit'+ String(favId).padStart(3,0);
     console.log(fav.id);
-    fav.innerHTML = "<a href='' class='modalLaunchFavorit' id='modalLaunchFav"+String(favId).padStart(3,0)+"'><h2 id='favOrt"+favId+"' class='text-center'></h2><div class='row'><div class='col-6'><div class='wUserContainerL text-center'>" +
+    fav.innerHTML = "<a href='' class='modalLaunchFavorit' id='modalLaunchFav'><h2 id='favOrt"+favId+"' class='text-center'></h2><div class='row'><div class='col-6'><div class='wUserContainerL text-center'>" +
      "<i class='wi wi-big piktogrammWUser' id='favIcon"+favId+"''></i></div></div><div class='col-6'><div class=wUserContainerR text-left'> <ul class='ul-user-info-fav'><h3><li id='favTemp"+favId+"'></ul></h3></div></div></div>" +
      "<h3 class='text-center' id='favBeschreibung"+favId+"'></h3></div></a>";
     document.getElementById('favoriten-container').appendChild(fav);
@@ -446,6 +446,8 @@ function getFavoriteList(weatherIcons) {
   console.log(favList);
   var i = 0;
   if (favList.length) {getFavoriteData(favList)};
+  var test = document.getElementsByClassName('modalLaunchFavorit');
+  console.log(test);
 
 function getFavoriteData(favList) {
     latFav = (favList[i]['lat']);
@@ -455,9 +457,9 @@ function getFavoriteData(favList) {
     fav.classList.add ('favorit');
     fav.id = 'favorit'+ String([i]).padStart(3,0);
     console.log(fav.id);
-    fav.innerHTML = "<a href='' class='modalLaunchFavorit' id='modalLaunchFav"+ String([i]).padStart(3,0)+"'><h2 id='favOrt"+[i]+"' class='text-center'></h2><div class='row'><div class='col-6'><div class='wUserContainerL text-center'>" +
+    fav.innerHTML = "<a href='#modalDetail' data-toggle='modal' data-target='#modalDetail' class='modalLaunchFavorit' id='modalLaunchFav'></a><h2 id='favOrt"+[i]+"' class='text-center'></h2><div class='row'><div class='col-6'><div class='wUserContainerL text-center'>" +
      "<i class='wi wi-big piktogrammWUser' id='favIcon"+[i]+"'></i></div></div><div class='col-6'><div class=wUserContainerR text-left'> <ul class='ul-user-info-fav'><h3><li id='favTemp"+[i]+"'></ul></h3></div></div></div>" +
-     "<h3 class='text-center' id='favBeschreibung"+[i]+"'></h3></div><input>"+latFav+"</input></a>";
+     "<h3 class='text-center' id='favBeschreibung"+[i]+"'></h3></div>";
     document.getElementById('favoriten-container').appendChild(fav);
 
     var favIconId = "#favIcon"+[i];
@@ -515,14 +517,10 @@ function prepareButtons() {
         modalSelection = "standort";
         $('#modalDetail').modal('show');
     });
+
     $('#modalLaunchHomebase').on('click', function () {
         modalSelection = "home";
         $('#modalDetail').modal('show');
-    });
-
-    $('.modalLaunchFavorit').click(function() {
-        modalSelection = "fav";
-      $('#modalDetail').modal('show');
     });
 
     $('#modalDetail').on('shown.bs.modal', function () {
@@ -534,6 +532,18 @@ function prepareButtons() {
         alert("blablabla");
       };
 
+    });
+
+    $('input[type=radio]').on('change', function() {
+      var user_id = document.createElement("input");
+      document.getElementById("formUpdateTemp").appendChild(user_id);
+      user_id.name = "user_id";
+      user_id.type = "hidden";
+      user_id.value = document.getElementById('pID').innerText;
+      console.log($(this.closest("form")).serialize());
+      $.post("../includes/userSettings.php", $(this).closest("form").serialize(), function(data){});
+      // $(this).closest("form").submit();
+      // });
     });
 
     google.maps.event.addDomListener(window, 'load', ortSuche);
@@ -573,6 +583,8 @@ function setDay() {
       $("#day_name4").html(name_day4);
       $("#day_name5").html(name_day5);
 }
+
+
 
 weatherIcons = {
   "200": {

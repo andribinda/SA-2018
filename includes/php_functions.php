@@ -59,6 +59,7 @@ function userlogin($email, $password, $mysqli) {
                     // Login erfolgreich.
                     $_SESSION['plz'] = getHomebase($email, $mysqli);
                     $_SESSION['favoriten'] = getFavorites($user_id, $mysqli);
+                    $_SESSION['tempSelection'] = getTempSelection($user_id, $mysqli);
 
                     return true;
                     } else {
@@ -192,7 +193,7 @@ function getHomebase($email, $mysqli) {
       $error = $mysqli->errno . ' ' . $mysqli->error;
 }
 
-function getFavorites($userId,$mysqli) {
+function getFavorites($userId, $mysqli) {
     if ($stmtFav = $mysqli->prepare("SELECT lat, lng FROM favorite WHERE user_id = ?;")) {
       $stmtFav->bind_param('s',$userId);
       $stmtFav->execute();
@@ -203,4 +204,18 @@ function getFavorites($userId,$mysqli) {
       return json_encode($favoriten);
     }
 }
+
+function getTempSelection($userId, $mysqli) {
+      if ($stmtH = $mysqli->prepare("SELECT tempSelection
+                           FROM users
+                           WHERE user_id = ?
+                           LIMIT 1")) {
+      $stmtH->bind_param('s', $userId);
+      $stmtH->execute();
+      $stmtH->store_result();
+      $stmtH->bind_result($tempSelection);
+      $stmtH->fetch();
+      return $tempSelection;
+    }
+  }
 ?>

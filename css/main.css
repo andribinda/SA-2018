@@ -216,12 +216,43 @@ input#inputTextNav[type="search"]::placeholder {
   background-color :#8e999d;
 }
 
-.btn-modalTemp{
-  color: #d8eaf1;
-  border: none;
-  background-color :#8e999d;
-  border-radius:0;
+.tempRadio {
+   -webkit-appearance: none;
+   -moz-appearance: none;
+   appearance: none;
+   display: inline-block;
+   position: relative;
+   background-color: #f1f1f1;
+   color: #565c5e;
+   top: 10px;
+   height: 30px;
+   width: 30px;
+   border: 0;
+   border-radius: 2px;
+   cursor: pointer;
+   margin-right: 7px;
+   outline: none;
 }
+
+.tempRadio:checked::before{
+     position: absolute;
+     left: 11px;
+     content: '\02143';
+     transform: rotate(40deg);
+}
+
+.tempRadio:hover{
+     background-color: #fff;
+}
+
+.tempRadio:checked{
+     background-color: #fff;
+}
+#formUpdateTemp label {
+     color: #d8eaf1;
+     cursor: pointer;
+}
+
 
 .btn-modalUser{
   color: #d8eaf1;
@@ -242,15 +273,6 @@ input#inputTextNav[type="search"]::placeholder {
 }
 
 .btn-modal2:hover, .btn-modal2:focus, .btn-modal2:active, .btn-modal2.active {
-  color: #d8eaf1;
-  font-weight: bold;
-  border: none !important;
-  box-shadow: none !important;
-  -webkit-box-shadow: none !important;
-  background-color: #565c5e !important;
-}
-
-.btn-modalTemp:hover, .btn-modalTemp:focus, .btn-modalTemp:active, .btn-modalTemp.active {
   color: #d8eaf1;
   font-weight: bold;
   border: none !important;

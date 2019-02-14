@@ -119,34 +119,32 @@ secure_session_start();
 		<div class="modal-content">
 			<div class="modal-body">
         <form action="" method="post" name="formUpdateEmail" id="formUpdateEmail">
-            <div class="form-group col-sm-8">
-              <label for="updateEmailInput" class="modalFormLabel">Email-Adresse ändern</label>
+            <div class="form-group col-sm-12">
+              <h5>Emailadresse ändern</h5>
               <input type="email" name='emailUser' class="form-control" id="updateEmailInput" placeholder="Email-Adresse">
               <button type="button" id="btnUpdateEmail" class="btn btn-modalUser" onclick="updateEmail(form, emailUser)">Bestätigen</button>
             </div>
         </form>
         <form action="" method="post" name="formUpdatePassword" id="formUpdatePassword">
-            <div class="form-group col-sm-8">
-              <label for="passwordInputUser" class="modalFormLabel">Passwort ändern</label>
+            <div class="form-group col-sm-12">
+              <h5>Passwort ändern</h5>
               <input type="password" name='password' class="form-control" id="passwordInputUser" placeholder="Passwort">
               <input type="password" name='passwordConfirm' class="form-control" id="passwordInputUserConfirm" placeholder="Passwort bestätigen">
               <button type="button" id="btnUpdatePassword" class="btn btn-modalUser" onclick="updatePassword(form, password, passwordConfirm)">Bestätigen</button>
             </div>
           </form>
-          <form>
-            <div class="form-group col-sm-8">
-            <label for="btnCelcius" class="modalFormLabel">Temperaturanzeige ändern</label>
-            <div data-toggle="buttons-radio">
-            <button type="button" class="btn btn-modalTemp" id="btnCelcius" data-info='{"post":"1"}'> °C </button><button type="button" class="btn btn-modalTemp" id="btnFarenheit" data-info='{"post":"0"}'> °F </button>
-            </div>
-            </div>
+          <form action="/includes/userSettings.php" method="post" name="formUpdateTemp" id="formUpdateTemp">
+            <div class="form-group col-sm-12">
+            <h5>Temperaturanzeige ändern (Neuanmeldung nötig)</h5>
+            <div><input id="radioC" type="radio" name="tempRadio" class="tempRadio" value="C"/><label for="radioC"> C°</label></div>
+            <div><input id="radioF" type="radio" name="tempRadio" class="tempRadio" value="F"/><label for="radioF" > F°</label></div>
+            <p>Aktuelle Auswahl: °<?php echo($_SESSION['tempSelection']) ?><p></div>
           </form>
           </div>
           <button type="button" class="btn btn-modal2" data-dismiss="modal" aria-label="Close">Schliessen</button>
 			</div>
 		</div>
 	</div>
-</div>
 
 <div class="modal fade" id="modalAbout" role="dialog" aria-labelledby="modalAbout" aria-hidden="true">
 	<div class="modal-dialog modal-lg" role="document">

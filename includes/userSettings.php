@@ -4,13 +4,12 @@ include_once 'php_functions.php';
 
 secure_session_start(); // Unsere selbstgemachte sichere Funktion um eine PHP-Sitzung zu starten.
 
-// error_log($_POST['emailUser']);
-// error_log($_POST['user_id']);
-// error_log($_POST['pPW']);
+error_log($_POST['user_id']);
+error_log($_POST['tempRadio']);
 
 if (isset($_POST['emailUser'], $_POST['user_id'])) {
-  $userId = $_POST['user_id'];
-  $email = $_POST['emailUser'];
+  $userId = filter_input(INPUT_POST, 'user_id', FILTER_VALIDATE_INT );
+  $email = filter_input(INPUT_POST, 'emailUser', FILTER_SANITIZE_EMAIL);
   error_log($userId);
   error_log($email);
 
@@ -24,8 +23,7 @@ if (isset($_POST['emailUser'], $_POST['user_id'])) {
 }
 
 else if (isset($_POST['pPW'], $_POST['user_id'])) {
-  $userId = $_POST['user_id'];
-
+  $userId = filter_input(INPUT_POST, 'user_id', FILTER_VALIDATE_INT );
   $pw = filter_input(INPUT_POST, 'pPW', FILTER_SANITIZE_STRING);
   if (strlen($pw) != 128) {
       $error_msg = '1';
@@ -43,5 +41,28 @@ else if (isset($_POST['pPW'], $_POST['user_id'])) {
       error_log($error);
       }
     }
+  }
+}
+
+else if (isset($_POST['tempRadio'], $_POST['user_id'])) {
+  $tempSelection = filter_input(INPUT_POST, 'tempRadio', FILTER_SANITIZE_STRING);
+  $userId = filter_input(INPUT_POST, 'user_id', FILTER_VALIDATE_INT);
+
+  error_log($tempSelection);
+  error_log($userId);
+
+  if (strlen($tempSelection) != 1) {
+      $error_msg = '1';
+  }
+
+  if (empty($error_msg)) {
+
+  if ($stmtTemp = $mysqli->prepare("UPDATE users SET tempSelection = ? WHERE user_id = ?")) {
+    $stmtTemp->bind_param('si', $tempSelection, $userId);
+    if (!$stmtTemp->execute()) {
+      $error = $mysqli->errno . ' ' . $mysqli->error;
+      error_log($error);
+    }
+  }
   }
 }
