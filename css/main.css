@@ -98,13 +98,15 @@ input#inputTextNav[type="search"]::placeholder {
 
 @media (max-width: 576px) {
   .btn-Navbar {
-    margin-top:10px;
-    margin-right: 10px;
+    margin-top: 10px;
+    margin-right: 2px;
+    margin-left: 2px;
   }
 
   .btn-NavbarInfo {
-    margin-top:10px;
-    margin-right: 10px;
+    margin-top: 10px;
+    margin-right: 2px;
+    margin-left: 2px;
   }
 
   .modalSize {
@@ -403,6 +405,11 @@ input#inputTextNav[type="search"]::placeholder {
 .piktogrammWUser {
   padding-top: 15%;
   padding-bottom: 5%;
+}
+
+.piktogrammWUserFav {
+  padding-top: 10%;
+  padding-bottom: 10%;
 }
 
 .wUserContainerL, .wUserContainerR {
