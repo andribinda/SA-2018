@@ -235,8 +235,10 @@ input#inputTextNav[type="search"]::placeholder {
 }
 
 .tempRadio:checked::before{
+  font-weight: bold;
      position: absolute;
      left: 11px;
+     top: 2px;
      content: '\02143';
      transform: rotate(40deg);
 }
@@ -249,6 +251,7 @@ input#inputTextNav[type="search"]::placeholder {
      background-color: #fff;
 }
 #formUpdateTemp label {
+    font-weight: bold;
      color: #d8eaf1;
      cursor: pointer;
 }
@@ -323,9 +326,9 @@ input#inputTextNav[type="search"]::placeholder {
 .btn-fav {
   font-weight: bold;
   color: #d8eaf1;
-  border: none;
+  border: 1px solid black;
   border-radius: 7px;
-  background-color:rgba(81, 107, 123, 0.5);
+  background-color:rgba(0, 0, 0, 0.3) !important;
 }
 
 .nav-tabs>li>a, .nav-tabs>li>a:focus, .nav-tabs>li>a:hover, .modalRegTabBar .nav-link, .modalRegTabBar .nav-link:hover{
@@ -429,7 +432,7 @@ ul {
   padding: 0 2% 0 0;
 }
 
-.wi, .i, a, p{
+.wi, .i, a, p, .colorSpan{
   color: #d8eaf1;
 }
 
@@ -462,4 +465,9 @@ ul {
 
 #passwordInputUser {
   margin-bottom: 1%;
+}
+
+.linkDetailView, .linkDetailView:hover, .linkDetailView:active {
+  color: #d8eaf1;
+  text-decoration: none;
 }

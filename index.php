@@ -179,8 +179,6 @@ if (userlogin_check($mysqli) == true) {
 										 if (isset($_GET['error-login'])) {echo '<p class="error">Benutzername / Passwort falsch</p>';}
                  ?>
 							<button type="button" class="btn btn-primary btn-modal1" onclick="formhash(this.form, this.form.password)">Login</button>
-              <!--  -->
-							<button type="button" class="btn btn-primary btn-modal1" data-dismiss="modal" aria-label="Close">Schliessen</button>
 						</form>
 					</div>
 					<div id="modalTabReg" class="container tab-pane fade"><br>
@@ -228,11 +226,11 @@ if (userlogin_check($mysqli) == true) {
                                    this.form.password,
 																	 this.form.password2);"
               >Registrieren</button>
-							<button type="button" class="btn btn-primary btn-modal1" data-dismiss="modal" aria-label="Close">Schliessen</button>
 							</form>
 					</div>
 				</div>
 			</div>
+      <button type="button" class="btn btn-modal2" data-dismiss="modal" aria-label="Close">Schliessen</button>
 		</div>
 	</div>
 </div>

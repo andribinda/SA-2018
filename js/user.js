@@ -1,7 +1,7 @@
-// Script starter
 $(document).ready(function() {
   var latitude = 0;
   var longitude = 0;
+  setTempQuery();
   getLocation();
   setBackground() ;
   getFavoriteList(weatherIcons);
@@ -12,6 +12,9 @@ dataDay = 0;
 data5Day = 0;
 dataHomeDay = 0;
 data5HomeDay = 0;
+tempUnit = "";
+tempAnzeige = "";
+// favlist ;
 lat = 0;
 lng = 0;
 latH = 0;
@@ -59,7 +62,7 @@ function getWeatherHomeToday(plz){
 
     $.ajax({
        url: "https://api.openweathermap.org/data/2.5/weather?lat=" + latH + "&lon=" + lngH +
-         "&units=metric&lang=de&appid=6012cf5997f032d2c82563e60ef96a56",
+         "&units=" + tempUnit + "&lang=de&appid=6012cf5997f032d2c82563e60ef96a56",
        context: document.body,
        dataType: 'json'
      }).done(function(dataHomeDay) {
@@ -71,7 +74,7 @@ function getWeatherHomeToday(plz){
 function getWeatherHome5Day(plz) {
         $.ajax({
           url: "https://api.openweathermap.org/data/2.5/forecast?lat=" + latH + "&lon=" + lngH +
-            "&units=metric&lang=de&appid=6012cf5997f032d2c82563e60ef96a56",
+            "&units=" + tempUnit + "&lang=de&appid=6012cf5997f032d2c82563e60ef96a56",
           context: document.body,
           dataType: 'json'
         }).done(function(dataHome5Day) {
@@ -83,7 +86,7 @@ function getWeatherHome5Day(plz) {
 function getWeatherToday(latitude,longitude) {
        $.ajax({
           url: "https://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude +
-            "&units=metric&lang=de&appid=6012cf5997f032d2c82563e60ef96a56",
+            "&units=" + tempUnit + "&lang=de&appid=6012cf5997f032d2c82563e60ef96a56",
           context: document.body,
           dataType: 'json'
         }).done(function(dataDay) {
@@ -94,10 +97,11 @@ function getWeatherToday(latitude,longitude) {
 function getWeather5Day(latitude,longitude) {
         $.ajax({
           url: "https://api.openweathermap.org/data/2.5/forecast?lat=" + latitude + "&lon=" + longitude +
-            "&units=metric&lang=de&appid=6012cf5997f032d2c82563e60ef96a56",
+            "&units=" + tempUnit + "&lang=de&appid=6012cf5997f032d2c82563e60ef96a56",
           context: document.body,
           dataType: 'json'
         }).done(function(data5Day) {
+          console.log(data5Day);
           setItems5day(data5Day, weatherIcons);
       });
     }
@@ -312,10 +316,10 @@ function setHTML(dataDay) {
   tSet = dataDay["sys"]["sunset"];
 
   $("#standortOrt").html(dataDay["name"] + " / " + dataDay["sys"]["country"]);
-  $("#standortTemperatur").html(Math.round(dataDay["main"]["temp"]) + "°C");
+  $("#standortTemperatur").html(Math.round(dataDay["main"]["temp"]) + tempAnzeige);
   $("#standortBeschreibung").html(dataDay["weather"]["0"]["description"]);
-  $("#standortInfo").html("<li><h4>" + tMin + dataDay["main"]["temp_min"] + " °C</h4></li><li><h4>" + tMax + dataDay["main"]["temp_max"] +
-  " °C</h4></li><li><h4><i class='wi wi-strong-wind'></i> " + dataDay["wind"]["speed"] + " m/s</li><li><h4><i class='wi wi-sunrise'></i> " +
+  $("#standortInfo").html("<li><h4>" + tMin + dataDay["main"]["temp_min"] + tempAnzeige + "</h4></li><li><h4>" + tMax + dataDay["main"]["temp_max"] +
+  tempAnzeige + "</h4></li><li><h4><i class='wi wi-strong-wind'></i> " + dataDay["wind"]["speed"] + " m/s</li><li><h4><i class='wi wi-sunrise'></i> " +
   Unix_timestamp(tRise) + "</h4></li><li><h4><i class='wi wi-sunset'></i> " + Unix_timestamp(tSet) + "</h4></li>");
   eva.replace()
   prepareFavorite(dataDay);
@@ -327,10 +331,10 @@ function setHTMLHome(dataDay) {
   tSet = dataDay["sys"]["sunset"];
 
   $("#homebaseOrt").html(dataDay["name"] + " / " + dataDay["sys"]["country"]);
-  $("#homebaseTemperatur").html(Math.round(dataDay["main"]["temp"]) + "°C");
+  $("#homebaseTemperatur").html(Math.round(dataDay["main"]["temp"]) + tempAnzeige);
   $("#homebaseBeschreibung").html(dataDay["weather"]["0"]["description"]);
-  $("#homebaseInfo").html("<li><h4>" + tMin + dataDay["main"]["temp_min"] + " °C</h4></li><li><h4>" + tMax + dataDay["main"]["temp_max"] +
-  " °C</h4></li><li><h4><i class='wi wi-strong-wind'></i> " + dataDay["wind"]["speed"] + " m/s</li><li><h4><i class='wi wi-sunrise'></i> " +
+  $("#homebaseInfo").html("<li><h4>" + tMin + dataDay["main"]["temp_min"] + tempAnzeige + "</h4></li><li><h4>" + tMax + dataDay["main"]["temp_max"] +
+  tempAnzeige + "</h4></li><li><h4><i class='wi wi-strong-wind'></i> " + dataDay["wind"]["speed"] + " m/s</li><li><h4><i class='wi wi-sunrise'></i> " +
   Unix_timestamp(tRise) + "</h4></li><li><h4><i class='wi wi-sunset'></i> " + Unix_timestamp(tSet) + "</h4></li>");
   eva.replace()
 }
@@ -338,29 +342,29 @@ function setHTMLHome(dataDay) {
 function setHTML5day(wetter, wIconD1, wIconD2, wIconD3, wIconD4, wIconD5) {
 
         $("#wIconD1").addClass(wIconD1);
-        $("#d1Temp").html("<h4><li>" +  Math.round(wetter["list"]["0"]["main"]["temp"]) + "°C</h4></li><li><h6>" + wetter["list"]["0"]["weather"]["0"]["description"] +"</h6></li>");
-        $("#d1Info").html("<li><h5>" + tMin +	Math.round(wetter["list"]["0"]["main"]["temp_min"]) + "°C</h5></li><li><h5>" + tMax +
-        Math.round(wetter["list"]["0"]["main"]["temp_max"]) + "°C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " + wetter["list"]["0"]["wind"]["speed"] + "m/s</li>");
+        $("#d1Temp").html("<h4><li>" +  Math.round(wetter["list"]["0"]["main"]["temp"]) + tempAnzeige + "</h4></li><li><h6>" + wetter["list"]["0"]["weather"]["0"]["description"] +"</h6></li>");
+        $("#d1Info").html("<li><h5>" + tMin +	Math.round(wetter["list"]["0"]["main"]["temp_min"]) + tempAnzeige + "</h5></li><li><h5>" + tMax +
+        Math.round(wetter["list"]["0"]["main"]["temp_max"]) + tempAnzeige + "</h5></li><li><h5><i class='wi wi-strong-wind'></i> " + wetter["list"]["0"]["wind"]["speed"] + "m/s</li>");
 
         $("#wIconD2").addClass(wIconD2);
-        $("#d2Temp").html("<h4><li> " + Math.round(wetter["list"]["8"]["main"]["temp"]) + "°C</h4></li><li><h6>" + wetter["list"]["8"]["weather"]["0"]["description"] + "</h6></li>");
-        $("#d2Info").html("<li><h5>" + tMin +	Math.round(wetter["list"]["8"]["main"]["temp_min"]) + "°C</h5></li><li><h5>" + tMax +
-        Math.round(wetter["list"]["8"]["main"]["temp_max"]) + "°C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " + wetter["list"]["8"]["wind"]["speed"] + "m/s</li>");
+        $("#d2Temp").html("<h4><li> " + Math.round(wetter["list"]["8"]["main"]["temp"]) + tempAnzeige + "</h4></li><li><h6>" + wetter["list"]["8"]["weather"]["0"]["description"] + "</h6></li>");
+        $("#d2Info").html("<li><h5>" + tMin +	Math.round(wetter["list"]["8"]["main"]["temp_min"]) + tempAnzeige + "</h5></li><li><h5>" + tMax +
+        Math.round(wetter["list"]["8"]["main"]["temp_max"]) + tempAnzeige + "</h5></li><li><h5><i class='wi wi-strong-wind'></i> " + wetter["list"]["8"]["wind"]["speed"] + "m/s</li>");
 
         $("#wIconD3").addClass(wIconD3);
-        $("#d3Temp").html("<li><h4>" + Math.round(wetter["list"]["16"]["main"]["temp"]) + "°C</h4></li><li><h6>" + wetter["list"]["16"]["weather"]["0"]["description"] + "</h6></li>");
-        $("#d3Info").html("<li><h5>" + tMin +	Math.round(wetter["list"]["16"]["main"]["temp_min"]) + "°C</h5></li><li><h5>" + tMax +
-        Math.round(wetter["list"]["16"]["main"]["temp_max"]) + "°C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " + wetter["list"]["16"]["wind"]["speed"] + "m/s</li>");
+        $("#d3Temp").html("<li><h4>" + Math.round(wetter["list"]["16"]["main"]["temp"]) + tempAnzeige + "</h4></li><li><h6>" + wetter["list"]["16"]["weather"]["0"]["description"] + "</h6></li>");
+        $("#d3Info").html("<li><h5>" + tMin +	Math.round(wetter["list"]["16"]["main"]["temp_min"]) + tempAnzeige + "</h5></li><li><h5>" + tMax +
+        Math.round(wetter["list"]["16"]["main"]["temp_max"]) + tempAnzeige + "</h5></li><li><h5><i class='wi wi-strong-wind'></i> " + wetter["list"]["16"]["wind"]["speed"] + "m/s</li>");
 
         $("#wIconD4").addClass(wIconD4);
-        $("#d4Temp").html("<li><li><h4>" + Math.round(wetter["list"]["24"]["main"]["temp"]) + "°C</h4></li><h6>" + wetter["list"]["24"]["weather"]["0"]["description"] + "</h6></li>");
-        $("#d4Info").html("<li><h5>" + tMin +	Math.round(wetter["list"]["24"]["main"]["temp_min"]) + "°C</h5></li><li><h5>" + tMax +
-        Math.round(wetter["list"]["24"]["main"]["temp_max"]) + "°C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " + wetter["list"]["24"]["wind"]["speed"] + "m/s</li>");
+        $("#d4Temp").html("<li><li><h4>" + Math.round(wetter["list"]["24"]["main"]["temp"]) + tempAnzeige + "</h4></li><h6>" + wetter["list"]["24"]["weather"]["0"]["description"] + "</h6></li>");
+        $("#d4Info").html("<li><h5>" + tMin +	Math.round(wetter["list"]["24"]["main"]["temp_min"]) + tempAnzeige + "</h5></li><li><h5>" + tMax +
+        Math.round(wetter["list"]["24"]["main"]["temp_max"]) + tempAnzeige + "</h5></li><li><h5><i class='wi wi-strong-wind'></i> " + wetter["list"]["24"]["wind"]["speed"] + "m/s</li>");
 
         $("#wIconD5").addClass(wIconD5);
-        $("#d5Temp").html("<li><h4>" + Math.round(wetter["list"]["32"]["main"]["temp"]) + "°C</h4></li><li><h6>" + wetter["list"]["32"]["weather"]["0"]["description"] + "</h6></li>");
-        $("#d5Info").html("<li><h5>" + tMin +	Math.round(wetter["list"]["32"]["main"]["temp_min"]) + "°C</h5></li><li><h5>" + tMax +
-        Math.round(wetter["list"]["32"]["main"]["temp_max"]) + "°C</h5></li><li><h5><i class='wi wi-strong-wind'></i> " + wetter["list"]["32"]["wind"]["speed"] + "m/s</li>");
+        $("#d5Temp").html("<li><h4>" + Math.round(wetter["list"]["32"]["main"]["temp"]) + tempAnzeige + "</h4></li><li><h6>" + wetter["list"]["32"]["weather"]["0"]["description"] + "</h6></li>");
+        $("#d5Info").html("<li><h5>" + tMin +	Math.round(wetter["list"]["32"]["main"]["temp_min"]) + tempAnzeige + "</h5></li><li><h5>" + tMax +
+        Math.round(wetter["list"]["32"]["main"]["temp_max"]) + tempAnzeige + "</h5></li><li><h5><i class='wi wi-strong-wind'></i> " + wetter["list"]["32"]["wind"]["speed"] + "m/s</li>");
 
         //Header Detailansicht nur setzen wenn das Modal auf der User-Site geöffnet wird
         var onUserPage = document.getElementById("userPageDetailHeader");
@@ -385,16 +389,16 @@ function addFavorite(form, userId, latFav, lngFav) {
       var newFavId = 'favorit' + String(favId).padStart(3,0);
     }
 
-    latFav = latFav.value;
-    lngFav = lngFav.value;
+    latFavNew = latFav.value;
+    lngFavNew = lngFav.value;
 
     var fav = document.createElement('div');
     fav.classList.add ('favorit');
     fav.id = 'favorit'+ String(favId).padStart(3,0);
     console.log(fav.id);
-    fav.innerHTML = "<a href='' class='modalLaunchFavorit' id='modalLaunchFav'><h2 id='favOrt"+favId+"' class='text-center'></h2><div class='row'><div class='col-6'><div class='wUserContainerL text-center'>" +
+    fav.innerHTML = "<a href='#' class='linkDetailView' id='modalLaunchFav"+favId+"'><h2 id='favOrt"+favId+"' class='text-center'></h2><div class='row'><div class='col-6'><div class='wUserContainerL text-center'>" +
      "<i class='wi wi-big piktogrammWUser' id='favIcon"+favId+"''></i></div></div><div class='col-6'><div class=wUserContainerR text-left'> <ul class='ul-user-info-fav'><h3><li id='favTemp"+favId+"'></ul></h3></div></div></div>" +
-     "<h3 class='text-center' id='favBeschreibung"+favId+"'></h3></div></a>";
+     "<h3 class='text-center' id='favBeschreibung"+favId+"'></h3></div><span></span></a>";
     document.getElementById('favoriten-container').appendChild(fav);
 
     var favIconId = "#favIcon"+favId;
@@ -403,8 +407,8 @@ function addFavorite(form, userId, latFav, lngFav) {
     var favTempId = "#favTemp"+favId;
 
     $.ajax({
-       url: "https://api.openweathermap.org/data/2.5/weather?lat=" + latFav + "&lon=" + lngFav +
-         "&units=metric&lang=de&appid=6012cf5997f032d2c82563e60ef96a56",
+       url: "https://api.openweathermap.org/data/2.5/weather?lat=" + latFavNew + "&lon=" + lngFavNew +
+         "&units=" + tempUnit + "&lang=de&appid=6012cf5997f032d2c82563e60ef96a56",
        async: true,
        context: document.body,
        dataType: 'json',
@@ -422,18 +426,25 @@ function addFavorite(form, userId, latFav, lngFav) {
 
          $(favIconId).addClass(wIcon);
          $(favOrtId).html(dataFav["name"]);
-         $(favTempId).html(Math.round(dataFav["main"]["temp"]) + "°C");
+         $(favTempId).html(Math.round(dataFav["main"]["temp"]) + tempAnzeige);
          $(favBeschreibungId).html(dataFav["weather"]["0"]["description"]);
 
        }
      });
+
+     $("a[id='modalLaunchFav"+ favId +"']").on('click', function () {
+       modalSelection = "newFav"+ $(this).attr('id');
+       console.log("Modal Launch");
+       console.log(modalSelection);
+       $('#modalDetail').modal('show');
 
   if (userId.value != ''       ||
         latFav.value != ''     ||
         lngFav.value != ''     ){
            $.post("../includes/favorite.php", $(form).serialize(), function(data){});
                 }
-}
+})}
+
 
 function prepareFavorite(dataShow){
 document.getElementById("userIdFav").value = document.getElementById('pID').innerText;
@@ -450,16 +461,16 @@ function getFavoriteList(weatherIcons) {
   console.log(test);
 
 function getFavoriteData(favList) {
-    latFav = (favList[i]['lat']);
-    lngFav = (favList[i]['lng']);
+    latFavL = (favList[i]['lat']);
+    lngFavL = (favList[i]['lng']);
 
     var fav = document.createElement('div');
     fav.classList.add ('favorit');
     fav.id = 'favorit'+ String([i]).padStart(3,0);
     console.log(fav.id);
-    fav.innerHTML = "<a href='#modalDetail' data-toggle='modal' data-target='#modalDetail' class='modalLaunchFavorit' id='modalLaunchFav'></a><h2 id='favOrt"+[i]+"' class='text-center'></h2><div class='row'><div class='col-6'><div class='wUserContainerL text-center'>" +
+    fav.innerHTML = "<a href='#' class='linkDetailView' id='modalLaunchFav"+[i]+"'><h2 id='favOrt"+[i]+"' class='text-center'></h2><div class='row'><div class='col-6'><div class='wUserContainerL text-center'>" +
      "<i class='wi wi-big piktogrammWUser' id='favIcon"+[i]+"'></i></div></div><div class='col-6'><div class=wUserContainerR text-left'> <ul class='ul-user-info-fav'><h3><li id='favTemp"+[i]+"'></ul></h3></div></div></div>" +
-     "<h3 class='text-center' id='favBeschreibung"+[i]+"'></h3></div>";
+     "<h3 class='text-center' id='favBeschreibung"+[i]+"'></h3></div><span></span></a>";
     document.getElementById('favoriten-container').appendChild(fav);
 
     var favIconId = "#favIcon"+[i];
@@ -468,8 +479,8 @@ function getFavoriteData(favList) {
     var favTempId = "#favTemp"+[i];
 
     $.ajax({
-       url: "https://api.openweathermap.org/data/2.5/weather?lat=" + latFav + "&lon=" + lngFav +
-         "&units=metric&lang=de&appid=6012cf5997f032d2c82563e60ef96a56",
+       url: "https://api.openweathermap.org/data/2.5/weather?lat=" + latFavL + "&lon=" + lngFavL +
+         "&units=" + tempUnit + "&lang=de&appid=6012cf5997f032d2c82563e60ef96a56",
        async: true,
        context: document.body,
        dataType: 'json',
@@ -487,11 +498,20 @@ function getFavoriteData(favList) {
 
          $(favIconId).addClass(wIcon);
          $(favOrtId).html(dataFav["name"]);
-         $(favTempId).html(Math.round(dataFav["main"]["temp"]) + "°C");
+         $(favTempId).html(Math.round(dataFav["main"]["temp"]) + tempAnzeige);
          $(favBeschreibungId).html(dataFav["weather"]["0"]["description"]);
 
          i++;
          if (i < favList.length) getFavoriteData(favList);
+         if (i == favList.length){
+             console.log(i);
+           $("a[id^='modalLaunchFav']").on('click', function (favList) {
+             modalSelection = "fav"+ $(this).attr('id');
+             console.log("Modal Launch");
+             console.log(modalSelection);
+             $('#modalDetail').modal('show');
+         });
+       }
      }
   })
 }
@@ -528,10 +548,15 @@ function prepareButtons() {
         getWeather5Day(lat,lng)
       } else if (modalSelection == "home") {
         getWeatherHome5Day(plz);
-      } else if (modalSelection == "fav") {
-        alert("blablabla");
-      };
-
+      } else if (modalSelection.match("^fav")) {
+        console.log(modalSelection);
+        indexF = modalSelection.replace(/\D/g,'')
+        latF = favList[indexF]['lat'];
+        lngF = favList[indexF]['lng'];
+        getWeather5Day(latF,lngF)
+      } else if (modalSelection.match("^newFavmodal")) {
+        getWeather5Day(latFavNew, lngFavNew)
+      }
     });
 
     $('input[type=radio]').on('change', function() {
@@ -542,8 +567,6 @@ function prepareButtons() {
       user_id.value = document.getElementById('pID').innerText;
       console.log($(this.closest("form")).serialize());
       $.post("../includes/userSettings.php", $(this).closest("form").serialize(), function(data){});
-      // $(this).closest("form").submit();
-      // });
     });
 
     google.maps.event.addDomListener(window, 'load', ortSuche);
@@ -584,6 +607,19 @@ function setDay() {
       $("#day_name5").html(name_day5);
 }
 
+function setTempQuery(){
+  var tempSelection = document.getElementById('setTemp').innerText;
+  console.log(tempSelection);
+  if (tempSelection == "C") {
+    tempAnzeige = " °C";
+    tempUnit = "metric";
+  } else if (tempSelection == "F"){
+    tempAnzeige = " °F";
+    tempUnit = "imperial";
+  }
+  console.log(tempAnzeige);
+  console.log(tempUnit);
+  }
 
 
 weatherIcons = {
