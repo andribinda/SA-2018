@@ -392,9 +392,9 @@ function addFavorite(form, userId, latFav, lngFav) {
     fav.classList.add ('favorit');
     fav.id = 'favorit'+ String(favId).padStart(3,0);
     console.log(fav.id);
-    fav.innerHTML = "<a href='#' class='emptyLink' id='modalLaunchFav"+String(favId).padStart(3,0)+"'></a><h2 id='favOrt"+favId+"' class='text-center'></h2><div class='row'><div class='col-6'><div class='wUserContainerL text-center'>" +
+    fav.innerHTML = "<a href='' class='modalLaunchFavorit' id='modalLaunchFav"+String(favId).padStart(3,0)+"'><h2 id='favOrt"+favId+"' class='text-center'></h2><div class='row'><div class='col-6'><div class='wUserContainerL text-center'>" +
      "<i class='wi wi-big piktogrammWUser' id='favIcon"+favId+"''></i></div></div><div class='col-6'><div class=wUserContainerR text-left'> <ul class='ul-user-info-fav'><h3><li id='favTemp"+favId+"'></ul></h3></div></div></div>" +
-     "<h3 class='text-center' id='favBeschreibung"+favId+"'></h3></div>";
+     "<h3 class='text-center' id='favBeschreibung"+favId+"'></h3></div></a>";
     document.getElementById('favoriten-container').appendChild(fav);
 
     var favIconId = "#favIcon"+favId;
@@ -455,7 +455,7 @@ function getFavoriteData(favList) {
     fav.classList.add ('favorit');
     fav.id = 'favorit'+ String([i]).padStart(3,0);
     console.log(fav.id);
-    fav.innerHTML = "<a href='#' id='modalLaunchFav"+ String([i]).padStart(3,0)+"'><h2 id='favOrt"+[i]+"' class='text-center'></h2><div class='row'><div class='col-6'><div class='wUserContainerL text-center'>" +
+    fav.innerHTML = "<a href='' class='modalLaunchFavorit' id='modalLaunchFav"+ String([i]).padStart(3,0)+"'><h2 id='favOrt"+[i]+"' class='text-center'></h2><div class='row'><div class='col-6'><div class='wUserContainerL text-center'>" +
      "<i class='wi wi-big piktogrammWUser' id='favIcon"+[i]+"'></i></div></div><div class='col-6'><div class=wUserContainerR text-left'> <ul class='ul-user-info-fav'><h3><li id='favTemp"+[i]+"'></ul></h3></div></div></div>" +
      "<h3 class='text-center' id='favBeschreibung"+[i]+"'></h3></div><input>"+latFav+"</input></a>";
     document.getElementById('favoriten-container').appendChild(fav);
@@ -520,11 +520,18 @@ function prepareButtons() {
         $('#modalDetail').modal('show');
     });
 
+    $('.modalLaunchFavorit').click(function() {
+        modalSelection = "fav";
+      $('#modalDetail').modal('show');
+    });
+
     $('#modalDetail').on('shown.bs.modal', function () {
       if (modalSelection == "standort") {
         getWeather5Day(lat,lng)
       } else if (modalSelection == "home") {
         getWeatherHome5Day(plz);
+      } else if (modalSelection == "fav") {
+        alert("blablabla");
       };
 
     });
