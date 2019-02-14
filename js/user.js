@@ -320,7 +320,7 @@ function setHTML(dataDay) {
   $("#standortInfo").html("<li><h4>" + tMin + dataDay["main"]["temp_min"] + tempAnzeige + "</h4></li><li><h4>" + tMax + dataDay["main"]["temp_max"] +
   tempAnzeige + "</h4></li><li><h4><i class='wi wi-strong-wind'></i> " + dataDay["wind"]["speed"] + " m/s</li><li><h4><i class='wi wi-sunrise'></i> " +
   Unix_timestamp(tRise) + "</h4></li><li><h4><i class='wi wi-sunset'></i> " + Unix_timestamp(tSet) + "</h4></li>");
-  eva.replace()
+  eva.replace();
   prepareFavorite(dataDay);
 }
 
@@ -396,7 +396,7 @@ function addFavorite(form, userId, latFav, lngFav) {
     fav.id = 'favorit'+ String(favId).padStart(3,0);
     console.log(fav.id);
     fav.innerHTML = "<a href='#' class='linkDetailView' id='modalLaunchFav"+favId+"'><h2 id='favOrt"+favId+"' class='text-center'></h2><div class='row'><div class='col-6'><div class='wUserContainerL text-center'>" +
-     "<i class='wi wi-big piktogrammWUserFav' id='favIcon"+favId+"''></i></div></div><div class='col-6'><div class=wUserContainerR text-left'> <ul class='ul-user-info-fav'><h3><li id='favTemp"+favId+"'>"+tNormal+"</ul></h3></div></div></div>" +
+     "<i class='wi wi-big piktogrammWUserFav' id='favIcon"+favId+"''></i><h3><li id='favTemp"+favId+"'>"+tNormal+"</li></h3></div></div><div class='col-6'><div class=wUserContainerR text-left'> <ul class='ul-user-info-fav'></ul></div></div></div>" +
      "<h3 class='text-center' id='favBeschreibung"+favId+"'></h3></div><span></span></a>";
     document.getElementById('favoriten-container').appendChild(fav);
 
@@ -427,6 +427,8 @@ function addFavorite(form, userId, latFav, lngFav) {
          $(favOrtId).html(dataFav["name"]);
          $(favTempId).html(Math.round(dataFav["main"]["temp"]) + tempAnzeige);
          $(favBeschreibungId).html(dataFav["weather"]["0"]["description"]);
+
+          eva.replace();
 
        }
      });
@@ -468,7 +470,7 @@ function getFavoriteData(favList) {
     fav.id = 'favorit'+ String([i]).padStart(3,0);
     console.log(fav.id);
     fav.innerHTML = "<a href='#' class='linkDetailView' id='modalLaunchFav"+[i]+"'><h2 id='favOrt"+[i]+"' class='text-center'></h2><div class='row'><div class='col-6'><div class='wUserContainerL text-center'>" +
-     "<i class='wi wi-big piktogrammWUserFav' id='favIcon"+[i]+"'></i></div></div><div class='col-6'><div class=wUserContainerR text-left'> <ul class='ul-user-info-fav'><h3><li id='favTemp"+[i]+"'>"+tNormal+"</ul></h3></div></div></div>" +
+     "<i class='wi wi-big piktogrammWUserFav' id='favIcon"+[i]+"'></i><h3><li id='favTemp"+[i]+"'>"+tNormal+"</li></h3></div></div><div class='col-6'><div class=wUserContainerR text-left'> <ul class='ul-user-info-fav'></div></div></div>" +
      "<h3 class='text-center' id='favBeschreibung"+[i]+"'></h3></div><span></span></a>";
     document.getElementById('favoriten-container').appendChild(fav);
 
@@ -499,6 +501,7 @@ function getFavoriteData(favList) {
          $(favOrtId).html(dataFav["name"]);
          $(favTempId).html(Math.round(dataFav["main"]["temp"]) + tempAnzeige);
          $(favBeschreibungId).html(dataFav["weather"]["0"]["description"]);
+         eva.replace();
 
          i++;
          if (i < favList.length) getFavoriteData(favList);
