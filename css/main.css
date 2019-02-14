@@ -62,11 +62,51 @@ input#inputTextNav[type="search"]::placeholder {
   border-left: 2px solid #ad997d;
 }
 
+.btn-NavbarInfo {
+  color: #d8eaf1;
+  background-color: rgba(81, 107, 123, 0.5) !important;
+  border: none;
+  border-radius: 0px;
+  border-bottom: 2px solid transparent;
+  border-left: 2px solid #ad997d ;
+  margin-left: 30px;
+}
+
+.btn-NavbarInfo:hover, .btn-NavbarInfo:focus {
+  color: #ad997d ;
+  background-color: transparent !important;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  border-radius: 0px;
+  font-weight: bold;
+  border-bottom: 2px solid #ad997d;
+  border-left: 2px solid #ad997d;
+}
+
+.btn-NavbarInfo:active, .btn-NavbarInfo.active {
+  color: #ad997d ;
+  font-style: solid;
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  border-radius: 0;
+  border-bottom:70px solid #ad997d;
+  border-left: 2px solid #ad997d;
+}
+
 @media (max-width: 576px) {
   .btn-Navbar {
     margin-top:10px;
     margin-right: 10px;
   }
+
+  .btn-NavbarInfo {
+    margin-top:10px;
+    margin-right: 10px;
+  }
+
   .modalSize {
     width: 90% !important;
   }
@@ -432,7 +472,7 @@ ul {
   padding: 0 2% 0 0;
 }
 
-.wi, .i, a, p, .colorSpan{
+.wi, .i, a, p, .colorSpan, li{
   color: #d8eaf1;
 }
 

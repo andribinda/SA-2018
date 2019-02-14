@@ -384,6 +384,11 @@ function prepareButtons() {
     $('.modalRegLog').modal({'backdrop':'static'});
   }
 
+  $('.btn-NavbarInfo').on('click', function setModalTab() {
+    $('#modalInfo').modal('show');
+    console.log("Penis");
+  });
+
     google.maps.event.addDomListener(window, 'load', ortSuche);
     google.maps.event.addDomListener(window, 'load', setHomebaseReg);
 }

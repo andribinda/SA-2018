@@ -57,6 +57,9 @@ if (userlogin_check($mysqli) == true) {
 					<button type="button" class="btn btn-Navbar" data-tab="modalTabReg">
 						Registrieren
 					</button>
+          <button type="button" class="btn btn-NavbarInfo" data-tab="modalInfo">
+            Info
+          </button>
 				</li>
 			</ul>
 		</div>
@@ -229,6 +232,39 @@ if (userlogin_check($mysqli) == true) {
 							</form>
 					</div>
 				</div>
+			</div>
+      <button type="button" class="btn btn-modal2" data-dismiss="modal" aria-label="Close">Schliessen</button>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="modalInfo" role="dialog" aria-labelledby="modalInfo" aria-hidden="true">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-body">
+        <h1>Über diese Website</h1>
+        <p>Diese Website ist im Rahmen einer Semesterarbeit an der ABB Technikerschule in Baden entstanden.</p>
+        <h2>Das Projektteam</h2>
+          <p>
+          <ul>
+            <li> •	Marek Giesen, Projektleiter </li>
+            <li> •	Andri Binda, Verantwortlicher Web-Entwicklung </li>
+            <li> •	Dominik Wüst, Verantwortlicher Datenbank-Entwicklung </li>
+            <li> •	Pascal Bosisio, Projektmitarbeiter </li>
+          </ul>
+          </p>
+          <h2>Verwendete Techniken</h2>
+
+          <h2>APIs</h2>
+
+          <h2>Verwendete Produkte</h2>
+
+
+
+
+
+
+
+
 			</div>
       <button type="button" class="btn btn-modal2" data-dismiss="modal" aria-label="Close">Schliessen</button>
 		</div>
