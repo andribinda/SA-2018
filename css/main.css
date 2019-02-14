@@ -112,11 +112,16 @@ input#inputTextNav[type="search"]::placeholder {
   .modalSize {
     width: 90% !important;
   }
-  .ul-user-info, .ul-user-info-fav {
+  .ul-user-info-fav {
     padding-left: 10%;
-    padding-top: 15%;
-    text-align: left;
+    padding-top: 5%;
     }
+
+.ul-user-info{
+      padding-left: 10%;
+      padding-top: 15%;
+      text-align: left;
+      }
 
   .ul-user {
       margin: 0;
@@ -219,8 +224,8 @@ input#inputTextNav[type="search"]::placeholder {
      }
 
     .ul-user-info-fav  {
-        padding-left: 25%;
-        padding-top: 10%;
+        padding-left: 5%;
+        padding-top: 0%;
         }
 
     .favorit{
