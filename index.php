@@ -58,7 +58,7 @@ if (userlogin_check($mysqli) == true) {
 						Registrieren
 					</button>
           <button type="button" class="btn btn-NavbarInfo" data-tab="modalInfo">
-            Infos über diese Website
+            Infos
           </button>
 				</li>
 			</ul>
