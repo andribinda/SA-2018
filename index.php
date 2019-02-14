@@ -58,7 +58,7 @@ if (userlogin_check($mysqli) == true) {
 						Registrieren
 					</button>
           <button type="button" class="btn btn-NavbarInfo" data-tab="modalInfo">
-            Info
+            Infos über diese Website
           </button>
 				</li>
 			</ul>
@@ -253,10 +253,73 @@ if (userlogin_check($mysqli) == true) {
           </ul>
           </p>
           <h2>Verwendete Techniken</h2>
+          <p>
+          <ul>
+            <li> •	PHP </li>
+            <li> •	HTML </li>
+            <li> •	Javascript </li>
+            <li> •	JQuery </li>
+            <li> •	AJAX </li>
+            <li> •	SQL </li>
+            <li> •	CSS</li>
+          </ul>
+          </p>
 
           <h2>APIs</h2>
+          <p>
+          <ul>
+            <li> •	OpenWeatherMap </li>
+            <li> •	Google API Places </li>
+          </ul>
+          </p>
 
           <h2>Verwendete Produkte</h2>
+          <p>
+          <ul>
+            <li> •	Frontend Framework:	Bootstrap </li>
+            <li> •	Datenbank:		MySQL </li>
+            <li> •	Entwicklungstools:	Atom, MySQL Workbench, GitHub</li>
+            <li> •	Hintergrundbild:	Trianglify.io </li>
+            <li> •	Icons:			erikflowers Weather Icons, EVA Icons </li>
+            <li> •	Graphs:			chart.js </li>
+
+          </ul>
+          </p>
+
+          <h2>Haftungsauschluss</h2>
+          <p>Die Autoren übernehmen keinerlei Gewähr hinsichtlich der inhaltlichen Richtigkeit, Genauigkeit,
+             Aktualität, Zuverlässigkeit und Vollständigkeit der Informationen. Haftungsansprüche gegen den
+             Autor wegen Schäden materieller oder immaterieller Art, welche aus dem Zugriff oder der Nutzung
+             bzw. Nichtnutzung der veröffentlichten Informationen, durch Missbrauch der Verbindung oder durch
+             technische Störungen entstanden sind, werden ausgeschlossen. Alle Angebote sind unverbindlich.
+             Der Autor behält es sich ausdrücklich vor, Teile der Seiten oder das gesamte Angebot ohne
+             gesonderte Ankündigung zu verändern, zu ergänzen, zu löschen oder die Veröffentlichung zeitweise
+             oder endgültig einzustellen.
+          </p>
+
+          <h2>Haftung für Links</h2>
+          <p>Verweise und Links auf Webseiten Dritter liegen ausserhalb unseres Verantwortungsbereichs.
+             Es wird jegliche Verantwortung für solche Webseiten abgelehnt. Der Zugriff und die Nutzung
+             solcher Webseiten erfolgen auf eigene Gefahr des Nutzers oder der Nutzerin.
+          </p>
+
+          <h2>Datenschutz</h2>
+          <p>Gestützt auf Artikel 13 der schweizerischen Bundesverfassung und die datenschutzrechtlichen
+             Bestimmungen des Bundes (Datenschutzgesetz, DSG) hat jede Person Anspruch auf Schutz ihrer
+             Privatsphäre sowie auf Schutz vor Missbrauch ihrer persönlichen Daten. Wir halten diese
+             Bestimmungen ein. Persönliche Daten werden streng vertraulich behandelt und weder an Dritte
+             verkauft noch weitergegeben. In enger Zusammenarbeit mit unseren Hosting-Providern bemühen
+             wir uns, die Datenbanken so gut wie möglich vor fremden Zugriffen, Verlusten, Missbrauch oder
+             vor Fälschung zu schützen. Beim Zugriff auf unsere Webseiten werden folgende Daten in
+             Logfiles gespeichert: IP-Adresse, Datum, Uhrzeit, Browser-Anfrage und allg. übertragene
+             Informationen zum Betriebssystem resp. Browser. Diese Nutzungsdaten bilden die Basis für
+             statistische, anonyme Auswertungen, so dass Trends erkennbar sind, anhand derer wir unsere
+             Angebote entsprechend verbessern können.
+
+          </p>
+
+
+
 
 
 
