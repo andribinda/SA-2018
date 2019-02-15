@@ -154,10 +154,19 @@ secure_session_start();
 			<div class="modal-body">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h1>Hilfe</h1>
-        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-        <h2>About</h2>
-        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+        <h2>Informationen auf dieser Seite</h2>
+        <p>Der aktuelle Standort wird in der Box auf der linken Seite angezeigt,
+          die Homebase vom Benutzer in der Box auf der rechten Seite.<br><br>
+          Will der Benutzer einen Favorit hinzufügen, kann er den gewünschten Ort
+          im Suchfeld eingeben. Mit dem Button "Favorit hinzugügen" wird dieser
+          in den Favoriten aufgenommen. Es können beliebig viele Favoriten
+          definiert werden. <br>
+        <h2>Einstellungen ändern</h2>
+          <p>Will der Benutzer Einstellungen ändern, also seine E-Mail Adresse, sein
+          Passwort oder die Anzeige der Temperatur, kann er dies via dem "User-Button"
+          auf der linken Seite machen.</p>
+
+        </p>
 			</div>
       <button type="button" class="btn btn-modal2" data-dismiss="modal" aria-label="Close">Schliessen</button>
 		</div>

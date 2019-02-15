@@ -277,12 +277,12 @@ if (userlogin_check($mysqli) == true) {
           <h2>Verwendete Produkte</h2>
           <p>
           <ul>
-            <li> •	Frontend Framework:	Bootstrap </li>
-            <li> •	Datenbank:		MySQL </li>
-            <li> •	Entwicklungstools:	Atom, MySQL Workbench, GitHub</li>
-            <li> •	Hintergrundbild:	Trianglify.io </li>
-            <li> •	Icons:			erikflowers Weather Icons, EVA Icons </li>
-            <li> •	Graphs:			chart.js </li>
+            <li> •	<b>Frontend Framework:</b>	<a href="https://getbootstrap.com/" target="_blank">Bootstrap</a></li>
+            <li> •	<b>Datenbank:</b>		<a href="https://www.mysql.com/de/" target="_blank">MySQL</a></li>
+            <li> •	<b>Entwicklungstools:</b>	<a href="https://atom.io/" target="_blank">Atom</a>, <a href="https://www.mysql.com/de/products/workbench/" target="_blank">MySQL Workbench</a>,<a href="https://github.com" target="_blank"> GitHub</a></li>
+            <li> •	<b>Hintergrundbild:</b>	<a href="https://trianglify.io/" target="_blank">Trianglify.io </a></li>
+            <li> •	<b>Icons:</b>			<a href="https://erikflowers.github.io/weather-icons/" target="_blank">erikflowers Weather Icons </a>, <a href="https://github.com/akveo/eva-icons" target="_blank">EVA Icons</a></li>
+            <li> •	<b>Graphs:</b>			<a href="https://www.chartjs.org/" target="_blank">chart.js </a></li>
 
           </ul>
           </p>
