@@ -2,7 +2,8 @@
 include_once 'connect_db.php';
 include_once 'php_functions.php';
 
-secure_session_start(); // Unsere selbstgemachte sichere Funktion um eine PHP-Sitzung zu starten.
+// Funktion um die PHP-Session zu starten
+secure_session_start();
 
 if (isset($_POST['userId'], $_POST['latFav'], $_POST['lngFav'])) {
   $userId = $_POST['userId'];

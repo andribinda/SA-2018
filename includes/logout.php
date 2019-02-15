@@ -2,13 +2,13 @@
 include_once 'php_functions.php';
 secure_session_start();
 
-// Setze alle Session-Werte zurück
+// Alle Session-Werte zurücksetzen
 $_SESSION = array();
 
 // hole Session-Parameter
 $params = session_get_cookie_params();
 
-// Lösche das aktuelle Cookie.
+// Aktuelles Cookie löschen
 setcookie(session_name(),
         '', time() - 42000,
         $params["path"],
