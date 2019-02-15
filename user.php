@@ -136,9 +136,11 @@ secure_session_start();
           <form action="/includes/userSettings.php" method="post" name="formUpdateTemp" id="formUpdateTemp">
             <div class="form-group col-sm-12">
             <h5>Temperaturanzeige ändern (Neuanmeldung nötig)</h5>
-            <div><input id="radioC" type="radio" name="tempRadio" class="tempRadio" value="C"/><label for="radioC"> C°</label></div>
-            <div><input id="radioF" type="radio" name="tempRadio" class="tempRadio" value="F"/><label for="radioF" > F°</label></div>
-            <span class= "colorSpan">Aktuelle Auswahl: °</span><span class= "colorSpan" id="setTemp"><?php echo($_SESSION['tempSelection']) ?><span></div>
+              <div class="radio-field">
+                <input id="radioC" type="radio" name="tempRadio" class="tempRadio" value="C"/><label for="radioC"> C°</label>
+                <input id="radioF" type="radio" name="tempRadio" class="tempRadio" value="F"/><label for="radioF" > F°</label>
+              </div>
+            <span class= "colorSpan">Aktuelle Einstellung: °</span><span class= "colorSpan" id="setTemp"><?php echo($_SESSION['tempSelection']) ?><span></div>
           </form>
           </div>
           <button type="button" class="btn btn-modal2" data-dismiss="modal" aria-label="Close">Schliessen</button>
