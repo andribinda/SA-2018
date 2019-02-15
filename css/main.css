@@ -28,6 +28,22 @@ input#inputTextNav[type="search"]::placeholder {
   font-style: italic;
 }
 
+.close{
+  float: right;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #d8eaf1;
+  text-shadow: none;
+  opacity: .5;
+  border: none;
+}
+
+.close:hover, .close:active .close.active{
+  color: #8e999d;
+  border: none;
+}
+
 .btn-Navbar {
   color: #d8eaf1;
   background-color: rgba(81, 107, 123, 0.5) !important;
@@ -112,9 +128,17 @@ input#inputTextNav[type="search"]::placeholder {
   .modalSize {
     width: 90% !important;
   }
+
   .ul-user-info-fav {
     padding-left: 10%;
     padding-top: 5%;
+    text-align: right;
+    }
+
+  .ul-user-info-fav-right {
+      padding-left: 10%;
+      padding-top: 5%;
+      text-align: left;
     }
 
 .ul-user-info{
@@ -139,8 +163,8 @@ input#inputTextNav[type="search"]::placeholder {
 
     .ul-user-info-detail {
       padding-left: 5%;
-      padding-top: 10%;
-      text-align: left
+      padding-top: 15%;
+      text-align: left;
       }
 
     .btn-fav {
@@ -223,10 +247,17 @@ input#inputTextNav[type="search"]::placeholder {
        margin:auto;
      }
 
-    .ul-user-info-fav  {
-        padding-left: 5%;
-        padding-top: 0%;
-        }
+     .ul-user-info-fav {
+       padding-left: 10%;
+       padding-top: 5%;
+       text-align: right;
+       }
+
+     .ul-user-info-fav-right {
+         padding-left: 0%;
+         padding-top: 10%;
+         text-align: left;
+       }
 
     .favorit{
       min-width: 17vw;
@@ -414,7 +445,7 @@ input#inputTextNav[type="search"]::placeholder {
 
 .piktogrammWUserFav {
   padding-top: 10%;
-  padding-bottom: 10%;
+  padding-bottom: 1%;
 }
 
 .wUserContainerL, .wUserContainerR {

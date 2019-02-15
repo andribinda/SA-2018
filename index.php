@@ -241,6 +241,7 @@ if (userlogin_check($mysqli) == true) {
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
 			<div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h1>Über diese Website</h1>
         <p>Diese Website ist im Rahmen einer Semesterarbeit an der ABB Technikerschule in Baden entstanden.</p>
         <h2>Das Projektteam</h2>
@@ -317,17 +318,6 @@ if (userlogin_check($mysqli) == true) {
              Angebote entsprechend verbessern können.
 
           </p>
-
-
-
-
-
-
-
-
-
-
-
 			</div>
       <button type="button" class="btn btn-modal2" data-dismiss="modal" aria-label="Close">Schliessen</button>
 		</div>

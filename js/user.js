@@ -396,14 +396,16 @@ function addFavorite(form, userId, latFav, lngFav) {
     fav.id = 'favorit'+ String(favId).padStart(3,0);
     console.log(fav.id);
     fav.innerHTML = "<a href='#' class='linkDetailView' id='modalLaunchFav"+favId+"'><h2 id='favOrt"+favId+"' class='text-center'></h2><div class='row'><div class='col-6'><div class='wUserContainerL text-center'>" +
-     "<i class='wi wi-big piktogrammWUserFav' id='favIcon"+favId+"''></i> <ul class='ul-user-info-fav'><h3><li id='favTemp"+favId+"'></li></h3></ul></div></div><div class='col-6'><div class=wUserContainerR text-left'></div></div></div>" +
-     "<h3 class='text-center' id='favBeschreibung"+favId+"'></h3></div><span></span></a>";
+     "<i class='wi wi-big piktogrammWUserFav' id='favIcon"+favId+"'></i><ul class='ul-user-info-fav'><h3><li id='favTemp"+favId+"'></li></h3><li><h3 id='favBeschreibung"+favId+"'></h3></li></div></ul></div>" +
+     "<div class='col-6'><div class=wUserContainerR text-left'><ul class='ul-user-info-fav-right' id='favInfo"+favId+"'></ul></div></div></div><span></span></a>";
+    eva.replace();
     document.getElementById('favoriten-container').appendChild(fav);
 
     var favIconId = "#favIcon"+favId;
     var favOrtId = "#favOrt"+favId;
     var favBeschreibungId = "#favBeschreibung"+favId;
     var favTempId = "#favTemp"+favId;
+    var favInfo = "#favInfo"+favId;
 
     $.ajax({
        url: "https://api.openweathermap.org/data/2.5/weather?lat=" + latFavNew + "&lon=" + lngFavNew +
@@ -423,11 +425,18 @@ function addFavorite(form, userId, latFav, lngFav) {
 
          wIcon = prefix + wIcon;
 
+         tRiseFav = dataFav["sys"]["sunrise"];
+         tSetFav = dataFav["sys"]["sunset"];
+
          $(favIconId).addClass(wIcon);
          $(favOrtId).html(dataFav["name"]);
-         console.log(tNormal);
-         $(favTempId).html(tNormal + Math.round(dataFav["main"]["temp"]) + tempAnzeige);
+         $(favTempId).html(Math.round(dataFav["main"]["temp"]) + tempAnzeige);
          $(favBeschreibungId).html(dataFav["weather"]["0"]["description"]);
+         $(favInfo).html("<li><h4>" + tMin + dataFav["main"]["temp_min"] + tempAnzeige + "</h4></li><li><h4>" + tMax + dataFav["main"]["temp_max"] +
+         tempAnzeige + "</h4></li><li><h4><i class='wi wi-strong-wind'></i> " + dataFav["wind"]["speed"] + " m/s</li><li><h4><i class='wi wi-sunrise'></i> " +
+         Unix_timestamp(tRiseFav) + "</h4></li><li><h4><i class='wi wi-sunset'></i> " + Unix_timestamp(tSetFav) + "</h4></li>");
+         eva.replace();
+         eva.replace();
        }
      });
 
@@ -468,14 +477,15 @@ function getFavoriteData(favList) {
     fav.id = 'favorit'+ String([i]).padStart(3,0);
     console.log(fav.id);
     fav.innerHTML = "<a href='#' class='linkDetailView' id='modalLaunchFav"+[i]+"'><h2 id='favOrt"+[i]+"' class='text-center'></h2><div class='row'><div class='col-6'><div class='wUserContainerL text-center'>" +
-     "<i class='wi wi-big piktogrammWUserFav' id='favIcon"+[i]+"'></i><ul class='ul-user-info-fav'><h3><li id='favTemp"+[i]+"'>"+tNormal+"</li></h3></ul></div></div><div class='col-6'><div class=wUserContainerR text-left'><ul><li>1</li><li>2</li><li>3</li></ul></div></div></div>" +
-     "<h3 class='text-center' id='favBeschreibung"+[i]+"'></h3></div><span></span></a>";
+     "<i class='wi wi-big piktogrammWUserFav' id='favIcon"+[i]+"'></i><ul class='ul-user-info-fav'><h3><li id='favTemp"+[i]+"'></li></h3><li><h3 id='favBeschreibung"+[i]+"'></h3></li></div></ul></div>" +
+     "<div class='col-6'><div class=wUserContainerR text-left'><ul class='ul-user-info-fav-right' id='favInfo"+[i]+"'></ul></div></div></div><span></span></a>";
     document.getElementById('favoriten-container').appendChild(fav);
 
     var favIconId = "#favIcon"+[i];
     var favOrtId = "#favOrt"+[i];
     var favBeschreibungId = "#favBeschreibung"+[i];
     var favTempId = "#favTemp"+[i];
+    var favInfo = "#favInfo"+[i];
 
     $.ajax({
        url: "https://api.openweathermap.org/data/2.5/weather?lat=" + latFavL + "&lon=" + lngFavL +
@@ -495,10 +505,16 @@ function getFavoriteData(favList) {
 
          wIcon = prefix + wIcon;
 
+         tRiseFav = dataFav["sys"]["sunrise"];
+         tSetFav = dataFav["sys"]["sunset"];
+
          $(favIconId).addClass(wIcon);
          $(favOrtId).html(dataFav["name"]);
-         $(favTempId).html(tNormal + Math.round(dataFav["main"]["temp"]) + tempAnzeige);
+         $(favTempId).html(Math.round(dataFav["main"]["temp"]) + tempAnzeige);
          $(favBeschreibungId).html(dataFav["weather"]["0"]["description"]);
+         $(favInfo).html("<li><h4>" + tMin + dataFav["main"]["temp_min"] + tempAnzeige + "</h4></li><li><h4>" + tMax + dataFav["main"]["temp_max"] +
+         tempAnzeige + "</h4></li><li><h4><i class='wi wi-strong-wind'></i> " + dataFav["wind"]["speed"] + " m/s</li><li><h4><i class='wi wi-sunrise'></i> " +
+         Unix_timestamp(tRiseFav) + "</h4></li><li><h4><i class='wi wi-sunset'></i> " + Unix_timestamp(tSetFav) + "</h4></li>");
          eva.replace();
 
          i++;
