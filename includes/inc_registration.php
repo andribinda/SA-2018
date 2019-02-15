@@ -56,10 +56,7 @@ if (isset ($_POST['email'], $_POST['pReg'], $_POST['homebasePlz'])) {
               $error = $mysqli->errno . ' ' . $mysqli->error;
                   error_log($error);
             }
-        } else {
-              $error = $mysqli->errno . ' ' . $mysqli->error;
-                  error_log($error);
-                }
+        }
     header('Location: ../index.php?login');
     }
 }

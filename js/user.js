@@ -77,7 +77,6 @@ function getWeatherHome5Day(plz) {
           context: document.body,
           dataType: 'json'
         }).done(function(dataHome5Day) {
-          console.log(dataHome5Day);
           setItems5day(dataHome5Day, weatherIcons);
       });
     }
@@ -100,7 +99,6 @@ function getWeather5Day(latitude,longitude) {
           context: document.body,
           dataType: 'json'
         }).done(function(data5Day) {
-          console.log(data5Day);
           setItems5day(data5Day, weatherIcons);
       });
     }
@@ -219,7 +217,6 @@ function ortSuche() {
                   e.preventDefault();
                   manualSelection = false;
                   var firstChoice = $(".pac-container .pac-item:first").text();
-                  console.log(firstChoice);
                   var geocode = new google.maps.Geocoder();
                   geocode.geocode({"address":firstChoice }, function(resultat, status) {
                       if (status == google.maps.GeocoderStatus.OK) {
@@ -394,7 +391,6 @@ function addFavorite(form, userId, latFav, lngFav) {
     var fav = document.createElement('div');
     fav.classList.add ('favorit');
     fav.id = 'favorit'+ String(favId).padStart(3,0);
-    console.log(fav.id);
     fav.innerHTML = "<a href='#' class='linkDetailView' id='modalLaunchFav"+favId+"'><h2 id='favOrt"+favId+"' class='text-center'></h2><div class='row'><div class='col-6'><div class='wUserContainerL text-center'>" +
      "<i class='wi wi-big piktogrammWUserFav' id='favIcon"+favId+"'></i><ul class='ul-user-info-fav'><h3><li id='favTemp"+favId+"'></li></h3><li><h3 id='favBeschreibung"+favId+"'></h3></li></div></ul></div>" +
      "<div class='col-6'><div class=wUserContainerR text-left'><ul class='ul-user-info-fav-right' id='favInfo"+favId+"'></ul></div></div></div><span></span></a>";
@@ -442,8 +438,6 @@ function addFavorite(form, userId, latFav, lngFav) {
 
      $("a[id='modalLaunchFav"+ favId +"']").on('click', function () {
        modalSelection = "newFav"+ $(this).attr('id');
-       console.log("Modal Launch");
-       console.log(modalSelection);
        $('#modalDetail').modal('show');
 
   if (userId.value != ''       ||
@@ -462,11 +456,9 @@ document.getElementById("lngFav").value = lng;
 
 function getFavoriteList(weatherIcons) {
   favList = JSON.parse(document.getElementById('favoritenListe').innerHTML);
-  console.log(favList);
   var i = 0;
   if (favList.length) {getFavoriteData(favList)};
   var test = document.getElementsByClassName('modalLaunchFavorit');
-  console.log(test);
 
 function getFavoriteData(favList) {
     latFavL = (favList[i]['lat']);
@@ -475,7 +467,6 @@ function getFavoriteData(favList) {
     var fav = document.createElement('div');
     fav.classList.add ('favorit');
     fav.id = 'favorit'+ String([i]).padStart(3,0);
-    console.log(fav.id);
     fav.innerHTML = "<a href='#' class='linkDetailView' id='modalLaunchFav"+[i]+"'><h2 id='favOrt"+[i]+"' class='text-center'></h2><div class='row'><div class='col-6'><div class='wUserContainerL text-center'>" +
      "<i class='wi wi-big piktogrammWUserFav' id='favIcon"+[i]+"'></i><ul class='ul-user-info-fav'><h3><li id='favTemp"+[i]+"'></li></h3><li><h3 id='favBeschreibung"+[i]+"'></h3></li></div></ul></div>" +
      "<div class='col-6'><div class=wUserContainerR text-left'><ul class='ul-user-info-fav-right' id='favInfo"+[i]+"'></ul></div></div></div><span></span></a>";
@@ -520,11 +511,8 @@ function getFavoriteData(favList) {
          i++;
          if (i < favList.length) getFavoriteData(favList);
          if (i == favList.length){
-             console.log(i);
            $("a[id^='modalLaunchFav']").on('click', function (favList) {
              modalSelection = "fav"+ $(this).attr('id');
-             console.log("Modal Launch");
-             console.log(modalSelection);
              $('#modalDetail').modal('show');
          });
        }
@@ -565,7 +553,6 @@ function prepareButtons() {
       } else if (modalSelection == "home") {
         getWeatherHome5Day(plz);
       } else if (modalSelection.match("^fav")) {
-        console.log(modalSelection);
         indexF = modalSelection.replace(/\D/g,'')
         latF = favList[indexF]['lat'];
         lngF = favList[indexF]['lng'];
@@ -581,7 +568,6 @@ function prepareButtons() {
       user_id.name = "user_id";
       user_id.type = "hidden";
       user_id.value = document.getElementById('pID').innerText;
-      console.log($(this.closest("form")).serialize());
       $.post("../includes/userSettings.php", $(this).closest("form").serialize(), function(data){});
     });
 
@@ -625,7 +611,6 @@ function setDay() {
 
 function setTempQuery(){
   var tempSelection = document.getElementById('setTemp').innerText;
-  console.log(tempSelection);
   if (tempSelection == "C") {
     tempAnzeige = " °C";
     tempUnit = "metric";
@@ -633,8 +618,6 @@ function setTempQuery(){
     tempAnzeige = " °F";
     tempUnit = "imperial";
   }
-  console.log(tempAnzeige);
-  console.log(tempUnit);
   }
 
 

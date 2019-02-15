@@ -245,7 +245,7 @@ secure_session_start();
 <?php else : ?>
             <p>
             <h1 id = errorNotLoggedIn>
-                <p>Sie sind nicht eingeloggt. </p> Bitte <a href="index.php">einloggen</a>.
+                <p>Sie sind nicht eingeloggt </p>Bitte <a href="index.php">einloggen</a>.
             </h1>
             <p>
 <?php endif; ?>

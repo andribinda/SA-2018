@@ -4,14 +4,9 @@ include_once 'php_functions.php';
 
 secure_session_start(); // Unsere selbstgemachte sichere Funktion um eine PHP-Sitzung zu starten.
 
-error_log($_POST['user_id']);
-error_log($_POST['tempRadio']);
-
 if (isset($_POST['emailUser'], $_POST['user_id'])) {
   $userId = filter_input(INPUT_POST, 'user_id', FILTER_VALIDATE_INT );
   $email = filter_input(INPUT_POST, 'emailUser', FILTER_SANITIZE_EMAIL);
-  error_log($userId);
-  error_log($email);
 
   if ($stmtEmail = $mysqli->prepare("UPDATE users SET email = ? WHERE user_id = ?")) {
     $stmtEmail->bind_param('si', $email, $userId);
@@ -47,9 +42,6 @@ else if (isset($_POST['pPW'], $_POST['user_id'])) {
 else if (isset($_POST['tempRadio'], $_POST['user_id'])) {
   $tempSelection = filter_input(INPUT_POST, 'tempRadio', FILTER_SANITIZE_STRING);
   $userId = filter_input(INPUT_POST, 'user_id', FILTER_VALIDATE_INT);
-
-  error_log($tempSelection);
-  error_log($userId);
 
   if (strlen($tempSelection) != 1) {
       $error_msg = '1';

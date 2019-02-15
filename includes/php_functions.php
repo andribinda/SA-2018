@@ -42,7 +42,6 @@ function userlogin($email, $password, $mysqli) {
             if (bruteforcecheck($user_id, $mysqli) == true) {
                 // Konto ist blockiert
                 // Schicke E-Mail an Benutzer, dass Konto blockiert ist
-                error_log('test2');
                 return false;
             } else {
                 // Überprüfe, ob das Passwort in der Datenbank mit dem vom
@@ -64,7 +63,6 @@ function userlogin($email, $password, $mysqli) {
                     return true;
                     } else {
             //Es gibt keinen Benutzer.
-            error_log('test4');
             return false;
         }
     }
@@ -127,22 +125,18 @@ function userlogin_check($mysqli) {
                     return true;
                 } else {
                     // Nicht eingeloggt
-                    error_log('test8');
                     return false;
                 }
             } else {
                 // Nicht eingeloggt
-                error_log('test5');
                 return false;
             }
         } else {
             // Nicht eingeloggt
-            error_log('test6');
             return false;
         }
     } else {
         // Nicht eingeloggt
-        error_log('Fehler bei userlogin');
         return false;
     }
 }
@@ -190,7 +184,7 @@ function getHomebase($email, $mysqli) {
       return $homebasePlz;
     }
       // SQL Error Debug Hilfe
-      $error = $mysqli->errno . ' ' . $mysqli->error;
+      // $error = $mysqli->errno . ' ' . $mysqli->error;
 }
 
 function getFavorites($userId, $mysqli) {
@@ -200,7 +194,6 @@ function getFavorites($userId, $mysqli) {
       $result = $stmtFav->get_result();
       $favoriten = array();
       $favoriten =$result->fetch_all(MYSQLI_ASSOC);
-      // print_r($favoriten);
       return json_encode($favoriten);
     }
 }

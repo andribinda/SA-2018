@@ -1,11 +1,9 @@
 // Script starter
 $(document).ready(function() {
-  console.log("ready!");
   var latitude = 0;
   var longitude = 0;
   getLocation();
   prepareButtons();
-  console.log("Page location is " + window.location.href);
 });
 
 tMin = "<i data-eva='thermometer-minus' data-eva-fill='#d8eaf1' data-eva-height='24' data-eva-width='24'></i> ";
@@ -15,9 +13,7 @@ manualSelection = true;
 manualSelectionReg = true;
 
 function getLocation() {
-  console.log("get location ready");
   if (navigator.geolocation) {
-    console.log("navigator ready");
     navigator.geolocation.getCurrentPosition(showPosition, showError,{enableHighAccuracy:true});
   } else {
     x.innerHTML = "Geolocation is not supported by this browser.";
@@ -29,11 +25,8 @@ function showError(error) {
 }
 
 function showPosition(position) {
-  console.log("get postition ready");
   latitude = position.coords.latitude;
   longitude = position.coords.longitude;
-  console.log(latitude);
-  console.log(longitude);
 
   $.ajax({
     url: "https://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude +
@@ -46,13 +39,8 @@ function showPosition(position) {
     ShowDay();
     setItems(data, weatherIcons);
 
-    console.log(data);
-    console.log("max:  " + data["main"]["temp_max"] + " min: " + data["main"]["temp_min"]);
-    console.log(data["name"]);
-
     tRise = data["sys"]["sunrise"];
     tSet = data["sys"]["sunset"];
-
 
     $("#actualPlace").html(data["name"] + " / " + data["sys"]["country"]);
     $("#heuteTemp").html("<h3><li> " + Math.round(data["main"]["temp"]) + "°C</h3></li><li><h5>" + data["weather"]["0"]["description"] + "</h5></li>");
@@ -66,11 +54,6 @@ function showPosition(position) {
     context: document.body,
     dataType: 'json'
   }).done(function(data) {
-
-    console.log(data);
-    console.log("max:  " + data["list"]["0"]["main"]["temp_max"] + " min: " + data["list"]["0"]["main"]["temp_min"]);
-    console.log(data["city"]["name"]);
-
     setItems5day(data, weatherIcons);
   });
 }
@@ -90,7 +73,6 @@ function ortSuche() {
                   e.preventDefault();
                   manualSelection = false;
                   var firstChoice = $(".pac-container .pac-item:first").text();
-                  console.log(firstChoice);
                   var geocode = new google.maps.Geocoder();
                   geocode.geocode({"address":firstChoice }, function(resultat, status) {
                       if (status == google.maps.GeocoderStatus.OK) {
@@ -191,8 +173,6 @@ function setItems5day(data, weatherIcons){
   wIconD4 = prefix + wIconD4;
   wIconD5 = prefix + wIconD5;
 
-  console.log(data);
-  console.log("Help");
   setHTML5day(data, wIconD1, wIconD2, wIconD3, wIconD4, wIconD5);
 }
 
@@ -250,12 +230,10 @@ function ShowDay() {
   $("#day_name3").html(name_day3);
   $("#day_name4").html(name_day4);
   $("#day_name5").html(name_day5);
-  console.log("get name day ready");
 
 }
 
 function drawChartDetail(data) {
-  console.log("Starte drawChart")
     var ctx = document.getElementById('tempChart').getContext('2d');
     Chart.defaults.global.defaultFontColor = 'white';
     Chart.defaults.global.defaultFontSize = '12';
@@ -358,7 +336,6 @@ function drawChartDetail(data) {
 function prepareButtons() {
   $('.btn-Navbar').on('click', function setModalTab() {
     var tabTarget = $(this).data('tab');
-      console.log(tabTarget);
     $('.modalRegLog').modal({'backdrop':'static'});
     $('.modalRegTabBar a[href="#' + tabTarget + '"]').tab('show');
   });
@@ -386,7 +363,6 @@ function prepareButtons() {
 
   $('.btn-NavbarInfo').on('click', function setModalTab() {
     $('#modalInfo').modal('show');
-    console.log("Penis");
   });
 
     google.maps.event.addDomListener(window, 'load', ortSuche);
@@ -408,7 +384,6 @@ function setHomebaseReg() {
                   e.preventDefault();
                   manualSelectionReg = false;
                   var firstChoiceH = $(".pac-container .pac-item:first").text();
-                  console.log(firstChoiceH);
                   var geocode = new google.maps.Geocoder();
                   geocode.geocode({"address":firstChoiceH }, function(resultatH, status) {
                       if (status == google.maps.GeocoderStatus.OK) {
